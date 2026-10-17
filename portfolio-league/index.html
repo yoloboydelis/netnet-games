@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>NetNet Portfolio League · Weekly risk-adjusted portfolio competition (prototype)</title>
+<meta name="description" content="Pick up to 5 tokenized stocks, gold and T-bills. Ranked weekly on risk-adjusted return. Top 10% paid in USDG. Prototype with simulated data. Join the waitlist.">
+<link rel="canonical" href="https://yoloboydelis.github.io/netnet-games/portfolio-league/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Games">
+<meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/portfolio-league/">
+<meta property="og:title" content="NetNet Portfolio League · Skill, not luck. Paid in USDG.">
+<meta property="og:description" content="A weekly portfolio competition for people who know markets. Pick 5 assets, get ranked on risk-adjusted return, top 10% share the prize pool. Free paper league. Join the waitlist.">
+<meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/portfolio-league.png"><meta property="og:image:secure_url" content="https://yoloboydelis.github.io/netnet-games/og/portfolio-league.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="NetNet Portfolio League: weekly risk-adjusted portfolio competition">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="NetNet Portfolio League · Skill, not luck. Paid in USDG."><meta name="twitter:description" content="Pick 5 assets, get ranked on risk-adjusted return, top 10% share the prize pool. Free paper league. Join the waitlist."><meta name="twitter:image" content="https://yoloboydelis.github.io/netnet-games/og/portfolio-league.png">
+<link rel="image_src" href="../og/portfolio-league.png">
+<meta name="theme-color" content="#0a1220">
+<style>
+:root{--bg:#0a1220;--panel:#0f1a2c;--panel2:#13213a;--line:#22324d;--txt:#e6edf6;--mut:#8ea0b8;--acc:#f5a623;--up:#2fd18b;--dn:#ff5f6d;--blue:#4fa3ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.55 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.num,td,.kv b,.mono{font-variant-numeric:tabular-nums}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+a{color:var(--blue)}.wrap{max-width:980px;margin:0 auto;padding:0 16px}
+header.top{position:sticky;top:0;z-index:20;background:rgba(10,18,32,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:56px}
+.logo{font-weight:800;letter-spacing:.14em;font-size:13px;color:var(--acc);text-decoration:none}.logo span{color:var(--txt);font-weight:600;letter-spacing:.04em}
+.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:12px;color:var(--mut);white-space:nowrap}
+.pill i{width:7px;height:7px;border-radius:50%;background:var(--acc);display:inline-block}
+.tick{overflow:hidden;border-bottom:1px solid var(--line);background:#08101c;font-size:13px;white-space:nowrap}
+.tick .in{display:inline-block;padding:7px 0;animation:mv 40s linear infinite}.tick span{margin:0 16px}
+@keyframes mv{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.tick .in{animation:none}}
+.up{color:var(--up)}.dn{color:var(--dn)}.mut{color:var(--mut)}.small{font-size:13px}
+section{scroll-margin-top:60px;padding:36px 0;border-bottom:1px solid var(--line)}
+h1{font-size:clamp(30px,7vw,52px);line-height:1.08;margin:12px 0 14px;letter-spacing:-.02em}
+h1 em{font-style:normal;color:var(--acc)}
+h2{font-size:clamp(22px,4.5vw,30px);margin:0 0 6px;letter-spacing:-.01em}
+h3{margin:0 0 6px;font-size:18px}
+.lead{font-size:clamp(16px,2.6vw,19px);color:#c4d0df;max-width:640px;margin:0 0 22px}
+.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:12px;color:var(--acc);font-weight:700}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:26px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;min-width:44px;padding:0 20px;border-radius:10px;border:1px solid var(--acc);background:var(--acc);color:#111;font:inherit;font-weight:700;text-decoration:none;cursor:pointer;touch-action:manipulation}
+.btn.ghost{background:transparent;color:var(--txt);border-color:var(--line)}
+.btn.sm{min-height:44px;padding:0 14px;font-size:14px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn:focus-visible,.chip:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:720px){.kpis{grid-template-columns:repeat(4,1fr)}}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.kpi .k{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em}.kpi .v{font-size:clamp(17px,4.6vw,22px);font-weight:700;margin-top:2px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+.grid3{display:grid;gap:12px;grid-template-columns:1fr}@media(min-width:760px){.grid3{grid-template-columns:repeat(3,1fr)}}
+.grid2{display:grid;gap:14px;grid-template-columns:1fr}@media(min-width:760px){.grid2{grid-template-columns:1fr 1fr}}
+.step b{display:inline-flex;width:30px;height:30px;border-radius:50%;background:var(--panel2);border:1px solid var(--line);align-items:center;justify-content:center;color:var(--acc);margin-bottom:8px}
+ul.rules{margin:10px 0 0;padding-left:20px}ul.rules li{margin:6px 0}
+.league.feat{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}
+.league .price{font-size:28px;font-weight:800}.league ul{padding-left:18px;margin:8px 0 0;color:#c4d0df;font-size:15px}
+.tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:6px;background:var(--panel2);color:var(--mut);border:1px solid var(--line)}
+.tag.sim{color:var(--acc);border-color:#5a4410;background:#231a06}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.chip{min-height:44px;min-width:64px;padding:0 12px;border-radius:10px;border:1px solid var(--line);background:var(--panel2);color:var(--txt);font:inherit;font-size:14px;font-weight:600;cursor:pointer;touch-action:manipulation}
+.chip[aria-pressed=true]{border-color:var(--acc);background:#2a1f08;color:var(--acc)}
+.chip:disabled{opacity:.35;cursor:not-allowed}
+.wrow{display:grid;grid-template-columns:70px 1fr 56px;align-items:center;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line)}
+.wrow .t{font-weight:700}.wrow .t small{display:block;color:var(--mut);font-weight:400;font-size:11px}
+.wrow output{text-align:right;font-weight:700}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:transparent;margin:0}
+input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:3px;background:var(--line)}
+input[type=range]::-moz-range-track{height:6px;border-radius:3px;background:var(--line)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:var(--acc);border:3px solid #111;margin-top:-11px}
+input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--acc);border:3px solid #111}
+.total{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:12px 0;flex-wrap:wrap}
+.meter{flex:1 1 160px;height:10px;background:var(--panel2);border-radius:5px;overflow:hidden;border:1px solid var(--line)}.meter i{display:block;height:100%;background:var(--up);width:0;transition:width .2s}
+.btnrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.err{color:var(--dn);font-size:14px;min-height:1.4em}
+.chartbox{position:relative;background:#08101c;border:1px solid var(--line);border-radius:12px;padding:8px}
+canvas{display:block;width:100%;height:240px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--mut);margin:8px 4px 0}.legend i{display:inline-block;width:12px;height:3px;vertical-align:middle;margin-right:6px}
+.kv{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px}@media(min-width:640px){.kv{grid-template-columns:repeat(4,1fr)}}
+.kv div{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px}.kv span{display:block;font-size:12px;color:var(--mut)}.kv b{font-size:19px}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:12px}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+th,td{padding:10px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;background:var(--panel2);position:sticky;top:0}
+th:nth-child(-n+2),td:nth-child(-n+2){text-align:left}
+tr.me td{background:#241b07;color:var(--acc);font-weight:700}tr.paid td.pay{color:var(--up);font-weight:700}
+.bars .b{display:grid;grid-template-columns:110px 1fr 90px;gap:10px;align-items:center;margin:8px 0;font-size:14px}
+.bars .bar{height:14px;background:var(--panel2);border-radius:7px;overflow:hidden}.bars .bar i{display:block;height:100%}
+label{display:block;font-size:14px;color:var(--mut);margin:12px 0 6px}
+input[type=number],input[type=email],select{width:100%;min-height:48px;padding:0 12px;background:#08101c;border:1px solid var(--line);border-radius:10px;color:var(--txt);font:inherit;font-size:16px}
+.check{display:flex;gap:12px;align-items:center;min-height:44px;margin:10px 0;color:#c4d0df;font-size:15px;cursor:pointer}
+.check input{width:24px;height:24px;flex:0 0 24px;margin:0;accent-color:var(--acc)}
+.big{font-size:clamp(26px,6vw,36px);font-weight:800;color:var(--up)}
+.note{border:1px solid #5a4410;background:#1a1407;border-radius:12px;padding:16px;color:#e8d7b0;font-size:14px}
+.note b{color:var(--acc)}
+.ok{color:var(--up);font-weight:600;min-height:1.4em}
+footer{padding:28px 0 60px;color:var(--mut);font-size:13px}
+.seg{display:flex;gap:6px;flex-wrap:wrap}.seg .chip{min-width:auto}
+.hide{display:none}
+</style></head><body>
+<header class="top"><div class="wrap"><a class="logo" href="../">NETNET <span>Portfolio League</span></a><span class="pill"><i></i>Prototype · simulated data</span></div></header>
+<div class="tick" aria-hidden="true"><div class="in mono" id="tick"></div></div>
+
+<main>
+<section id="hero"><div class="wrap">
+  <div class="eyebrow">Weekly skill competition · paid in USDG</div>
+  <h1>Your portfolio. <em>Ranked on risk, not luck.</em></h1>
+  <p class="lead">Pick up to 5 tokenized stocks, gold and T-bills. Each week we rank every portfolio on <b>risk-adjusted return</b>, so a reckless all-in can't beat a disciplined allocation. The top 10% split the prize pool.</p>
+  <div class="cta"><a class="btn" href="#build">Build a demo portfolio</a><a class="btn ghost" href="#waitlist">Join the waitlist</a></div>
+  <div class="kpis">
+    <div class="kpi"><div class="k">Entry</div><div class="v num">Free · $25 · $250</div></div>
+    <div class="kpi"><div class="k">Paid out</div><div class="v num">Top 10%</div></div>
+    <div class="kpi"><div class="k">Prize pool</div><div class="v num">75% of entries</div></div>
+    <div class="kpi"><div class="k">Season</div><div class="v num">Mon → Fri</div></div>
+  </div>
+</div></section>
+
+<section id="how"><div class="wrap">
+  <h2>How it works</h2><p class="mut">Like a fantasy league, but for people who read earnings reports.</p>
+  <div class="grid3">
+    <div class="card step"><b>1</b><h3>Pick &amp; weight</h3><p class="mut small">Choose 1–5 assets and set weights in 5% steps (5% min, 60% max per asset). Lock in before Monday's open.</p></div>
+    <div class="card step"><b>2</b><h3>The week plays out</h3><p class="mut small">Buy-and-hold for the trading week. Your score uses public closing prices from the onchain price feed, the same for everyone.</p></div>
+    <div class="card step"><b>3</b><h3>Ranked &amp; paid</h3><p class="mut small">Friday close: portfolios ranked by score. Top 10% are paid in USDG on a tiered scale, settled onchain.</p></div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <h3>Rules</h3>
+    <ul class="rules">
+      <li><b>Score = weekly return % − 0.5 × max drawdown %.</b> Return counts, but so does the pain along the way.</li>
+      <li><b>Ties:</b> lower max drawdown wins, then earliest lock-in. No random draws, ever.</li>
+      <li><b>Entry split:</b> 75% prize pool · 20% NetNet treasury · 5% next-season seed. Fixed, published, onchain.</li>
+      <li><b>Payout:</b> top 10% of entrants. 1st 25%, 2nd 15%, 3rd 10%, 4th–10th 4% each, the remaining 22% split equally across the rest of the top 10%.</li>
+      <li><b>Prizes come only from entries</b>, so the treasury never risks its own capital. The 5% seed tops up next season's pool and funds free Standard entries for top Paper League players.</li>
+      <li>One entry per verified account per league. Picks are hashed onchain at lock-in and can't change.</li>
+    </ul>
+  </div>
+</div></section>
+
+<section id="leagues"><div class="wrap">
+  <h2>Three leagues</h2><p class="mut">Start free. Move up when you're ready.</p>
+  <div class="grid3">
+    <div class="card league"><span class="tag">Funnel</span><h3 style="margin-top:8px">Paper League</h3><div class="price num">Free</div>
+      <ul><li>Same rules, no money at stake</li><li>Public track record &amp; badges</li><li>Top 10 earn a free Standard entry (from the seed fund)</li></ul></div>
+    <div class="card league feat"><span class="tag sim">Most popular</span><h3 style="margin-top:8px">Standard League</h3><div class="price num">$25 <span class="mut small">USDG / week</span></div>
+      <ul><li>Weekly prize pool</li><li>Top 10% paid</li><li>Season rankings &amp; stats</li></ul></div>
+    <div class="card league"><span class="tag">Premium</span><h3 style="margin-top:8px">Pro League</h3><div class="price num">$250 <span class="mut small">USDG / week</span></div>
+      <ul><li>Separate, larger pool</li><li>Verified-identity players only</li><li>Quarterly Pro championship title</li></ul></div>
+  </div>
+</div></section>
+
+<section id="build"><div class="wrap">
+  <h2>Build your portfolio</h2>
+  <p class="mut">Try it on a demo week. <span class="tag sim">Simulated demo data, not real prices</span></p>
+  <div class="card">
+    <label for="season" style="margin-top:0">Demo week</label>
+    <div class="seg" id="seasons" role="group" aria-label="Demo week"></div>
+    <label>Assets <span class="mut" id="pickcount">(0/5)</span></label>
+    <div class="chips" id="chips"></div>
+    <div id="sliders"></div>
+    <div class="total"><b class="num" id="sumtxt">Total 0%</b><div class="meter"><i id="meter"></i></div></div>
+    <div class="err" id="werr" role="alert"></div>
+    <div class="btnrow"><button class="btn ghost sm" id="eq" type="button">Equal weight</button><button class="btn ghost sm" id="preset" type="button">Example: 60/40-style</button><button class="btn" id="lock" type="button">Lock in &amp; replay week</button></div>
+  </div>
+</div></section>
+
+<section id="replay"><div class="wrap">
+  <h2>Week replay</h2>
+  <p class="mut"><span class="tag sim">Simulated</span> Deterministic seeded price paths. Same week + same picks = same result, every time.</p>
+  <div class="chartbox"><canvas id="chart" width="900" height="240" aria-label="Portfolio value versus US 500 index over the demo week"></canvas>
+    <div class="legend"><span><i style="background:var(--acc)"></i>Your portfolio</span><span><i style="background:#9fb3c8"></i>US 500 index</span><span id="daylbl" class="mono"></span></div></div>
+  <div class="btnrow"><button class="btn ghost sm" id="play" type="button">▶ Replay</button><button class="btn ghost sm" id="skip" type="button">Skip to Friday</button></div>
+  <div class="kv">
+    <div><span>Weekly return</span><b class="num" id="kret">—</b></div>
+    <div><span>Max drawdown</span><b class="num" id="kdd">—</b></div>
+    <div><span>Score</span><b class="num" id="kscore">—</b></div>
+    <div><span>Rank</span><b class="num" id="krank">—</b></div>
+  </div>
+</div></section>
+
+<section id="board"><div class="wrap">
+  <h2>Leaderboard</h2>
+  <p class="mut"><span class="tag sim">Simulated</span> You vs 20 demo players · Standard League, $25 entry.</p>
+  <div class="tw"><table><thead><tr><th>#</th><th>Player</th><th>Score</th><th>Payout</th><th>Return</th><th>Max DD</th><th>Top holding</th></tr></thead><tbody id="lb"></tbody></table></div>
+  <p class="small mut" id="lbnote"></p>
+</div></section>
+
+<section id="payout"><div class="wrap">
+  <h2>Where every dollar goes</h2>
+  <div class="grid2">
+    <div class="card">
+      <label for="pn" style="margin-top:0">Players in league</label><input id="pn" type="number" min="1" max="1000000" value="1000" inputmode="numeric">
+      <label for="pf">Entry fee (USDG)</label><input id="pf" type="number" min="0" max="100000" value="25" inputmode="decimal">
+      <div class="bars" id="split" style="margin-top:16px"></div>
+    </div>
+    <div class="card"><h3>Prize ladder</h3><p class="mut small" id="ladhead"></p><div class="tw" style="border:0"><table style="min-width:0"><thead><tr><th>Rank</th><th>Share</th><th>Payout</th></tr></thead><tbody id="ladder"></tbody></table></div></div>
+  </div>
+</div></section>
+
+<section id="revenue"><div class="wrap">
+  <h2>Treasury revenue calculator</h2>
+  <p class="mut">Treasury income is a fixed 20% of entries. No market exposure, no house bet.</p>
+  <div class="card">
+    <div class="grid2">
+      <div><label for="rs" style="margin-top:0">Standard players / week</label><input id="rs" type="number" min="0" value="1000" inputmode="numeric">
+        <label for="rsf">Standard entry (USDG)</label><input id="rsf" type="number" min="0" value="25" inputmode="decimal"></div>
+      <div><label for="rp" style="margin-top:0">Pro players / week</label><input id="rp" type="number" min="0" value="0" inputmode="numeric">
+        <label for="rpf">Pro entry (USDG)</label><input id="rpf" type="number" min="0" value="250" inputmode="decimal"></div>
+    </div>
+    <div class="kv" style="margin-top:18px">
+      <div><span>Entries / week</span><b class="num" id="rg">—</b></div>
+      <div><span>Paid to players / week</span><b class="num" id="rpz">—</b></div>
+      <div><span>Seed fund / week</span><b class="num" id="rsd">—</b></div>
+      <div><span>Treasury / week</span><b class="num up" id="rtw">—</b></div>
+    </div>
+    <p style="margin:16px 0 0">Treasury per year (52 seasons): <span class="big num" id="rty">—</span></p>
+  </div>
+</div></section>
+
+<section id="waitlist"><div class="wrap">
+  <h2>Join the waitlist</h2><p class="mut">Get first access to the Paper League and launch details. No spam, announcements only via official channels.</p>
+  <form class="card" id="wl" novalidate>
+    <label for="em" style="margin-top:0">Email</label><input id="em" type="email" autocomplete="email" required placeholder="you@company.com">
+    <label for="lg">Which league interests you?</label><select id="lg"><option value="paper">Paper League (free)</option><option value="standard" selected>Standard League ($25)</option><option value="pro">Pro League ($250)</option></select>
+    <label for="ct">Country of residence</label><select id="ct"><option value="">Select…</option><option>Belgium</option><option>Netherlands</option><option>Germany</option><option>France</option><option>United Kingdom</option><option>Switzerland</option><option>United States</option><option>Other EU/EEA</option><option>Other</option></select>
+    <label class="check"><input type="checkbox" id="age"> I am 18 or older.</label>
+    <label class="check"><input type="checkbox" id="cons"> I understand this is a prototype and paid leagues will only open where legally permitted.</label>
+    <div class="err" id="ferr" role="alert"></div>
+    <button class="btn" type="submit" style="width:100%">Join the waitlist</button>
+    <div class="ok" id="fok" role="status"></div>
+  </form>
+</div></section>
+
+<section id="legal" style="border-bottom:0"><div class="wrap">
+  <div class="note">
+    <p style="margin-top:0"><b>Prototype. No deposits, no prizes, no real money.</b> All prices, players and results on this page are <b>simulated demo data</b> from a seeded generator. They are not real market prices and not a forecast.</p>
+    <p><b>Skill competition, legal review pending.</b> Paid leagues will launch only after legal review, and only in jurisdictions where they're allowed. Access will be geofenced and limited to verified adults (18+).</p>
+    <p style="margin-bottom:0">Nothing here is investment advice or an offer of a financial product. Ticker names are for illustration. Availability of any tokenized asset on Robinhood Chain is not confirmed. Official links only via <a href="https://docs.netnet.capital/official-channels" target="_blank" rel="noopener">docs.netnet.capital/official-channels</a>.</p>
+  </div>
+</div></section>
+</main>
+<footer><div class="wrap">NetNet Capital · Portfolio League prototype · <a href="../">More NetNet prototypes</a></div></footer>
+
+<script src="engine.js"></script>
+<script>
+/*
+  FORM_ENDPOINT: leave "" to store signups in this browser's localStorage only.
+  To collect signups for real: create a free form at formspree.io (or similar),
+  paste its endpoint below (JSON POST supported).
+*/
+const FORM_ENDPOINT = "";
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+const fmt$=(x,d=0)=>'$'+Number(x).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+const pct=(x,d=2)=>(x>=0?'+':'')+x.toFixed(d)+'%';
+const A=PL.ASSETS,R=PL.RULES;
+const SEASONS=[{id:20261019,label:'Week A'},{id:20261026,label:'Week B'},{id:20261102,label:'Week C'}];
+let season=SEASONS[0].id, paths=PL.pricePaths(season);
+let weights={NVDA:30,MSFT:25,GOLD:20,TBILL:25};
+let result=null, animT=null;
+
+// ticker (simulated weekly change)
+function renderTick(){const s=A.map(a=>{const p=paths[a.id];const c=(p[p.length-1]/p[0]-1)*100;return `<span>${a.id} <b class="${c>=0?'up':'dn'}">${pct(c)}</b></span>`}).join('');
+ $('tick').innerHTML='<span class="mut">SIMULATED DEMO WEEK ·</span>'+s+'<span class="mut">SIMULATED DEMO WEEK ·</span>'+s;}
+
+function renderSeasons(){$('seasons').innerHTML=SEASONS.map(s=>`<button type="button" class="chip" aria-pressed="${s.id===season}" data-s="${s.id}">${s.label}</button>`).join('');}
+$('seasons').addEventListener('click',e=>{const b=e.target.closest('[data-s]');if(!b)return;season=+b.dataset.s;paths=PL.pricePaths(season);renderSeasons();renderTick();result=null;clearResult();drawChart(0);});
+
+function picks(){return Object.keys(weights).filter(k=>weights[k]>0);}
+function renderChips(){const n=picks().length;$('pickcount').textContent=`(${n}/${R.maxPicks})`;
+ $('chips').innerHTML=A.map(a=>{const on=weights[a.id]>0;return `<button type="button" class="chip" aria-pressed="${on}" data-a="${a.id}" ${!on&&n>=R.maxPicks?'disabled':''} title="${a.name}">${a.id}</button>`}).join('');}
+$('chips').addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(!b)return;const id=b.dataset.a;
+ if(weights[id]>0){delete weights[id];}else{if(picks().length>=R.maxPicks)return;weights[id]=0;weights[id]=R.minWeight;}
+ rebalance(id);renderAll();});
+
+// Keep total at 100: after changing `fixed`, scale others proportionally within [min,max], 5% steps.
+function rebalance(fixed){const ids=picks();if(!ids.length)return;
+ if(ids.length===1){weights[ids[0]]=Math.min(100,R.maxWeight);return;}
+ const others=ids.filter(k=>k!==fixed);let target=100-(weights[fixed]||0);
+ const minO=others.length*R.minWeight,maxO=others.length*R.maxWeight;
+ if(fixed&&weights[fixed]!==undefined){ if(target<minO){weights[fixed]=100-minO;target=minO;} if(target>maxO){weights[fixed]=100-maxO;target=maxO;} }
+ const cur=others.reduce((s,k)=>s+weights[k],0)||1;
+ others.forEach(k=>{weights[k]=Math.max(R.minWeight,Math.min(R.maxWeight,Math.round(weights[k]/cur*target/R.step)*R.step));});
+ let diff=100-ids.reduce((s,k)=>s+weights[k],0),guard=200;
+ while(diff!==0&&guard--){const k=others[(guard)%others.length];const nv=weights[k]+Math.sign(diff)*R.step;if(nv>=R.minWeight&&nv<=R.maxWeight){weights[k]=nv;diff-=Math.sign(diff)*R.step;}}
+}
+function renderSliders(){$('sliders').innerHTML=picks().map(id=>{const a=A.find(x=>x.id===id);return `<div class="wrow"><div class="t">${id}<small>${a.name}</small></div><input type="range" min="${R.minWeight}" max="${R.maxWeight}" step="${R.step}" value="${weights[id]}" data-w="${id}" aria-label="${a.name} weight"><output class="num" id="o_${id}">${weights[id]}%</output></div>`}).join('')||'<p class="mut small">Select at least 2 assets above (60% max per asset).</p>';}
+$('sliders').addEventListener('input',e=>{const id=e.target.dataset.w;if(!id)return;weights[id]=+e.target.value;rebalance(id);
+ picks().forEach(k=>{const el=document.querySelector(`[data-w="${k}"]`);if(el&&k!==id)el.value=weights[k];$('o_'+k).textContent=weights[k]+'%';});
+ if(+e.target.value!==weights[id])e.target.value=weights[id];renderTotal();});
+function renderTotal(){const v=PL.validate(weights);$('sumtxt').textContent='Total '+v.sum+'%';$('meter').style.width=Math.min(100,v.sum)+'%';
+ $('meter').style.background=v.sum===100?'var(--up)':'var(--dn)';$('werr').textContent=v.ok?'':v.errors[0];$('lock').disabled=!v.ok;}
+function renderAll(){renderChips();renderSliders();renderTotal();}
+$('eq').onclick=()=>{const ids=picks();if(ids.length<2)return;const base=Math.floor(100/ids.length/R.step)*R.step;ids.forEach(k=>weights[k]=base);let left=100-base*ids.length,i=0;while(left>0){weights[ids[i++%ids.length]]+=R.step;left-=R.step;}renderAll();};
+$('preset').onclick=()=>{weights={US500:40,MSFT:20,TBILL:30,GOLD:10};renderAll();};
+
+// Chart
+const cv=$('chart'),ctx=cv.getContext('2d');
+function sizeCanvas(){const r=cv.getBoundingClientRect(),d=window.devicePixelRatio||1;cv.width=Math.round(r.width*d);cv.height=Math.round(240*d);ctx.setTransform(d,0,0,d,0,0);}
+function drawChart(upto){sizeCanvas();const W=cv.getBoundingClientRect().width,H=240,pad={l:44,r:10,t:12,b:24};
+ ctx.clearRect(0,0,W,H);const idx=PL.evaluate({US500:100},paths).values;const mine=result?result.values:null;
+ const all=idx.concat(mine||[]);let lo=Math.min(...all),hi=Math.max(...all);const m=(hi-lo)*.1||.01;lo-=m;hi+=m;
+ const X=i=>pad.l+(W-pad.l-pad.r)*i/PL.STEPS,Y=v=>pad.t+(H-pad.t-pad.b)*(1-(v-lo)/(hi-lo));
+ ctx.font='11px ui-monospace,monospace';ctx.fillStyle='#8ea0b8';ctx.strokeStyle='#1b2a42';ctx.lineWidth=1;
+ for(let g=0;g<=4;g++){const v=lo+(hi-lo)*g/4,y=Y(v);ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(W-pad.r,y);ctx.stroke();ctx.fillText(((v-1)*100).toFixed(1)+'%',2,y+4);}
+ ['Mon','Tue','Wed','Thu','Fri'].forEach((d,i)=>{const x=X(i*PL.STEPS_PER_DAY+PL.STEPS_PER_DAY/2);ctx.fillText(d,x-10,H-6);});
+ ctx.strokeStyle='#2c3e5c';ctx.setLineDash([4,4]);ctx.beginPath();ctx.moveTo(pad.l,Y(1));ctx.lineTo(W-pad.r,Y(1));ctx.stroke();ctx.setLineDash([]);
+ const line=(arr,col,w,n)=>{ctx.strokeStyle=col;ctx.lineWidth=w;ctx.beginPath();for(let i=0;i<=n;i++){i?ctx.lineTo(X(i),Y(arr[i])):ctx.moveTo(X(i),Y(arr[i]));}ctx.stroke();};
+ const n=upto==null?PL.STEPS:upto;line(idx,'#9fb3c8',1.5,mine?n:PL.STEPS);if(mine)line(mine,'#f5a623',2.5,n);
+ ctx.fillStyle='rgba(245,166,35,.85)';ctx.font='bold 11px system-ui';ctx.fillText('SIMULATED',W-pad.r-70,pad.t+10);
+ $('daylbl').textContent=mine?`${['Mon','Tue','Wed','Thu','Fri'][Math.min(4,Math.floor(Math.max(0,n-1)/PL.STEPS_PER_DAY))]} · step ${n}/${PL.STEPS}`:'Lock in a portfolio to replay';}
+
+function clearResult(){['kret','kdd','kscore','krank'].forEach(k=>$(k).textContent='—');renderBoard();}
+function showKpis(n){if(!result)return;const v=result.values.slice(0,n+1);let pk=v[0],dd=0;v.forEach(x=>{pk=Math.max(pk,x);dd=Math.max(dd,(pk-x)/pk)});
+ const r=(v[v.length-1]-1)*100;$('kret').textContent=pct(r);$('kret').className='num '+(r>=0?'up':'dn');$('kdd').textContent='−'+(dd*100).toFixed(2)+'%';
+ $('kscore').textContent=(r-R.ddPenalty*dd*100).toFixed(2);}
+function play(){if(!result)return;clearInterval(animT);let n=0;$('krank').textContent='…';animT=setInterval(()=>{n++;drawChart(n);showKpis(n);if(n>=PL.STEPS){clearInterval(animT);finish();}},70);}
+function finish(){clearInterval(animT);drawChart(PL.STEPS);showKpis(PL.STEPS);renderBoard();}
+$('lock').onclick=()=>{const v=PL.validate(weights);if(!v.ok)return;result=PL.evaluate(weights,paths);document.getElementById('replay').scrollIntoView({behavior:'smooth'});setTimeout(play,350);};
+$('play').onclick=()=>{if(!result){$('lock').click();return;}play();};
+$('skip').onclick=()=>{if(!result){const v=PL.validate(weights);if(!v.ok)return;result=PL.evaluate(weights,paths);}finish();};
+
+// Leaderboard
+function topHolding(w){const k=Object.keys(w).sort((a,b)=>w[b]-w[a])[0];return `${k} ${w[k]}%`;}
+function renderBoard(){const FEE=25;const bots=PL.botPortfolios(season).map(b=>Object.assign({name:b.name,weights:b.weights,lockedAt:b.lockedAt},PL.evaluate(b.weights,paths)));
+ if(result)bots.push(Object.assign({name:'You',me:true,weights:Object.assign({},weights),lockedAt:1500},result));
+ const ranked=PL.rank(bots),eco=PL.economics(ranked.length,FEE);
+ $('lb').innerHTML=ranked.map(e=>{const pay=e.rank<=eco.winners?eco.payouts[e.rank-1]:0;return `<tr class="${e.me?'me':''} ${pay?'paid':''}"><td>${e.rank}</td><td>${e.name}</td><td><b>${e.score.toFixed(2)}</b></td><td class="pay">${pay?fmt$(pay,2):'—'}</td><td class="${e.ret>=0?'up':'dn'}">${pct(e.ret)}</td><td>−${e.maxDD.toFixed(2)}%</td><td class="mono">${topHolding(e.weights)}</td></tr>`}).join('');
+ const me=ranked.find(e=>e.me);if(me)$('krank').textContent=`${me.rank} / ${ranked.length}`;
+ $('lbnote').textContent=`${ranked.length} entries × $${FEE} = ${fmt$(eco.gross)} · prize pool ${fmt$(eco.prize,2)} to top ${eco.winners} · treasury ${fmt$(eco.treasury,2)} · seed ${fmt$(eco.seed,2)}.`;}
+
+// Payout breakdown
+function renderPayout(){const n=Math.max(1,Math.floor(+$('pn').value||1)),f=Math.max(0,+$('pf').value||0),e=PL.economics(n,f);
+ const rows=[['Prize pool 75%',e.prize,'var(--up)'],['Treasury 20%',e.treasury,'var(--acc)'],['Seed 5%',e.seed,'var(--blue)']];
+ $('split').innerHTML=`<div class="b"><span>Total entries</span><div class="bar"><i style="width:100%;background:#9fb3c8"></i></div><b class="num" style="text-align:right">${fmt$(e.gross)}</b></div>`+rows.map(r=>`<div class="b"><span>${r[0]}</span><div class="bar"><i style="width:${e.gross?r[1]/e.gross*100:0}%;background:${r[2]}"></i></div><b class="num" style="text-align:right">${fmt$(r[1])}</b></div>`).join('');
+ $('ladhead').textContent=`${n.toLocaleString('en-US')} players → top ${e.winners.toLocaleString('en-US')} paid. Prize pool ${fmt$(e.prize)}.`;
+ const tbl=PL.payoutTable(e.winners);const rws=[];const show=Math.min(10,e.winners);
+ for(let i=0;i<show;i++)rws.push(`<tr><td>${i+1}</td><td>${tbl[i].toFixed(2)}%</td><td>${fmt$(e.payouts[i],2)}</td></tr>`);
+ if(e.winners>10)rws.push(`<tr><td>11–${e.winners}</td><td>${tbl[10].toFixed(3)}% each</td><td>${fmt$(e.payouts[10],2)} each</td></tr>`);
+ $('ladder').innerHTML=rws.join('');}
+['pn','pf'].forEach(id=>$(id).addEventListener('input',renderPayout));
+
+// Revenue calc
+function renderRev(){const g=(+$('rs').value||0)*(+$('rsf').value||0)+(+$('rp').value||0)*(+$('rpf').value||0);
+ $('rg').textContent=fmt$(g);$('rpz').textContent=fmt$(g*R.split.prize);$('rsd').textContent=fmt$(g*R.split.seed);$('rtw').textContent=fmt$(g*R.split.treasury);$('rty').textContent=fmt$(g*R.split.treasury*52);}
+['rs','rsf','rp','rpf'].forEach(id=>$(id).addEventListener('input',renderRev));
+
+// Waitlist
+$('wl').addEventListener('submit',async e=>{e.preventDefault();$('ferr').textContent='';$('fok').textContent='';
+ const em=$('em').value.trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){$('ferr').textContent='Please enter a valid email.';return;}
+ if(!$('ct').value){$('ferr').textContent='Please select your country.';return;}
+ if(!$('age').checked){$('ferr').textContent='You must be 18 or older to join.';return;}
+ if(!$('cons').checked){$('ferr').textContent='Please confirm you understand this is a prototype.';return;}
+ const data={email:em,league:$('lg').value,country:$('ct').value,product:'portfolio-league',ts:new Date().toISOString()};
+ try{if(FORM_ENDPOINT){const r=await fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)});if(!r.ok)throw 0;}
+  else{const a=JSON.parse(localStorage.getItem('nn_pl_waitlist')||'[]');a.push(data);localStorage.setItem('nn_pl_waitlist',JSON.stringify(a));}
+  $('fok').textContent="You're on the waitlist. Launch news only via official NetNet channels.";$('wl').reset();
+ }catch(_){$('ferr').textContent='Something went wrong. Please try again.';}});
+
+window.addEventListener('resize',()=>drawChart(result?PL.STEPS:0));
+renderSeasons();renderTick();renderAll();drawChart(0);renderBoard();renderPayout();renderRev();
+window.__PL_UI={get weights(){return weights},get result(){return result}};
+})();
+</script>
+</body></html>
