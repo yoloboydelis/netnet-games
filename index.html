@@ -1,11 +1,11 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NetNet Games · Play-money prototypes</title>
-<meta name="description" content="Free NetNet Capital prototypes: HOT SEAT, verifiable Snake high-score and the Portfolio League. Play money only. Prototype for the NetNet community &amp; devs, feedback welcome.">
+<title>NetNet Arcade · Play-money prototypes</title>
+<meta name="description" content="The NetNet Arcade: free play-money cabinets from NetNet Capital. HOT SEAT, Snake high-score, Portfolio League and DIP DASH. Play money only. Prototype for the NetNet community &amp; devs, feedback welcome.">
 <style>
 *{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 20% 0%,#2a0b4a 0,#07040f 55%);color:#eae6ff;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;display:flex;flex-direction:column;align-items:center;padding:40px 18px}
 h1{font-size:clamp(34px,8vw,64px);margin:10px 0 6px;letter-spacing:2px;color:#fff;text-shadow:0 0 12px #ff2bd6,0 0 32px #ff2bd6}
 p.sub{color:#b9b2e0;margin:0 0 34px;text-align:center;max-width:560px}
-.grid{display:grid;gap:22px;width:100%;max-width:900px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.grid{display:grid;gap:18px;width:100%;max-width:1180px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
 a.card{display:block;text-decoration:none;color:inherit;border-radius:18px;overflow:hidden;background:#0f0a20;border:2px solid var(--c);box-shadow:0 0 18px var(--c),inset 0 0 14px rgba(255,255,255,.04);transition:transform .15s}
 a.card:hover{transform:translateY(-4px)}a.card img{width:100%;display:block;aspect-ratio:1200/630;object-fit:cover;border-bottom:1px solid var(--c)}
 .body{padding:18px 20px 22px}.body h2{margin:0 0 6px;color:var(--c);text-shadow:0 0 10px var(--c)}.body p{margin:0 0 14px;color:#c9c3ea;font-size:15px}
@@ -14,18 +14,19 @@ footer{margin-top:40px;color:#7d76a8;font-size:13px;text-align:center}footer a{c
 </style><!-- Social preview (relative image: og/home.png) -->
 <link rel="canonical" href="https://yoloboydelis.github.io/netnet-games/">
 <meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Games">
-<meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/"><meta property="og:title" content="NetNet Games · OG games on NetNet rails"><meta property="og:description" content="Free play-money prototypes from NetNet Capital: HOT SEAT, a replay-verified Snake high-score and the Portfolio League. Prototype for the NetNet community &amp; devs, feedback welcome.">
-<meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/home.png"><meta property="og:image:secure_url" content="https://yoloboydelis.github.io/netnet-games/og/home.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="NetNet Games · OG games on NetNet rails">
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="NetNet Games · OG games on NetNet rails"><meta name="twitter:description" content="Free play-money prototypes from NetNet Capital: HOT SEAT, a replay-verified Snake high-score and the Portfolio League. Prototype for the NetNet community &amp; devs, feedback welcome."><meta name="twitter:image" content="https://yoloboydelis.github.io/netnet-games/og/home.png">
+<meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/"><meta property="og:title" content="NetNet Arcade · games on NetNet rails"><meta property="og:description" content="The NetNet Arcade: free play-money cabinets from NetNet Capital. HOT SEAT, Snake high-score, Portfolio League and DIP DASH (real-world assets). Prototype for the NetNet community &amp; devs, feedback welcome.">
+<meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/home.png"><meta property="og:image:secure_url" content="https://yoloboydelis.github.io/netnet-games/og/home.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="NetNet Arcade · games on NetNet rails">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="NetNet Arcade · games on NetNet rails"><meta name="twitter:description" content="The NetNet Arcade: free play-money cabinets from NetNet Capital. HOT SEAT, Snake high-score, Portfolio League and DIP DASH (real-world assets). Prototype for the NetNet community &amp; devs, feedback welcome."><meta name="twitter:image" content="https://yoloboydelis.github.io/netnet-games/og/home.png">
 <link rel="image_src" href="og/home.png">
 </head><body>
 <div style="color:#38f5ff;text-shadow:0 0 10px #38f5ff;font-weight:700;letter-spacing:3px">NETNET CAPITAL</div>
-<h1>NETNET GAMES</h1>
-<p class="sub">OG games, rebuilt on NetNet rails. Free play-money prototypes. Prototype for the NetNet community &amp; devs, feedback welcome.</p>
+<h1>NETNET ARCADE</h1>
+<p class="sub">Arcade cabinets on NetNet rails, with real-world assets at the core. Free play-money prototypes. Prototype for the NetNet community &amp; devs, feedback welcome.</p>
 <div class="grid">
-<a class="card" href="hot-seat/" style="--c:#ff2bd6"><img src="og/hot-seat.png" alt="HOT SEAT preview"><div class="body"><h2>🔥 HOT SEAT</h2><p>Take the seat, hold it when the timer hits zero, win the pot. No randomness.</p><span class="btn">Play HOT SEAT →</span></div></a>
-<a class="card" href="snake/" style="--c:#39ff88"><img src="og/snake.png" alt="Snake preview"><div class="body"><h2>🐍 SNAKE HIGH-SCORE</h2><p>Retro Snake with replay-verified scores. Beat the record, take the pot.</p><span class="btn">Play Snake →</span></div></a>
-<a class="card" href="portfolio-league/" style="--c:#f5a623"><img src="og/portfolio-league.png" alt="Portfolio League preview"><div class="body"><h2>📈 PORTFOLIO LEAGUE</h2><p>Weekly portfolio competition for market people. Ranked on risk-adjusted return. Top 10% paid.</p><span class="btn">Try Portfolio League →</span></div></a>
+<a class="card" href="hot-seat/" style="--c:#ff2bd6"><img src="og/hot-seat.png" alt="HOT SEAT preview"><div class="body"><h2><small style="display:block;font-size:12px;letter-spacing:3px;opacity:.8">CABINET 01</small>🔥 HOT SEAT</h2><p>Take the seat, hold it when the timer hits zero, win the pot. No randomness.</p><span class="btn">Play HOT SEAT →</span></div></a>
+<a class="card" href="snake/" style="--c:#39ff88"><img src="og/snake.png" alt="Snake preview"><div class="body"><h2><small style="display:block;font-size:12px;letter-spacing:3px;opacity:.8">CABINET 02</small>🐍 SNAKE HIGH-SCORE</h2><p>Retro Snake with replay-verified scores. Beat the record, take the pot.</p><span class="btn">Play Snake →</span></div></a>
+<a class="card" href="portfolio-league/" style="--c:#f5a623"><img src="og/portfolio-league.png" alt="Portfolio League preview"><div class="body"><h2><small style="display:block;font-size:12px;letter-spacing:3px;opacity:.8">CABINET 03</small>📈 PORTFOLIO LEAGUE</h2><p>Weekly portfolio competition for market people. Ranked on risk-adjusted return. Top 10% paid.</p><span class="btn">Try Portfolio League →</span></div></a>
+<a class="card" href="dip-dash/" style="--c:#38f5ff"><img src="og/dip-dash.png" alt="DIP DASH preview"><div class="body"><h2><small style="display:block;font-size:12px;letter-spacing:3px;opacity:.8">CABINET 04 · NEW</small>📉 DIP DASH</h2><p>24-second reflex game on tokenized gold, NVIDIA, bonds and real estate. Buy the dip, dodge liquidation, challenge a friend.</p><span class="btn">Play DIP DASH →</span></div></a>
 </div>
 <footer>Play money only · Prototype · <a href="https://docs.netnet.capital/official-channels" target="_blank" rel="noopener">Official channels</a></footer>
 </body></html>

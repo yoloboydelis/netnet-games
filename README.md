@@ -1,10 +1,11 @@
-# NetNet Games
+# NetNet Arcade
 
-Free play-money prototypes from NetNet Capital, rebuilt OG games on NetNet rails.
+Free play-money arcade cabinets from NetNet Capital, on NetNet rails with real-world assets at the core.
 
 - `/hot-seat/` — HOT SEAT (play money, no randomness)
 - `/snake/` — Retro Snake with replay-verified scores
 - `/portfolio-league/` — Portfolio League: weekly risk-adjusted portfolio competition (simulated demo data, engine in `engine.js`)
+- `/dip-dash/` — Cabinet 04 DIP DASH: 24-second buy-the-dip reflex game on tokenized RWAs (daily deterministic tape, replay-verified challenge links, engine in `engine.js`)
 
 Live: https://yoloboydelis.github.io/netnet-games/
 
