@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NetNet Capital · HOT SEAT (Play-Money Prototype)</title>
+<meta name="description" content="Play-money prototype: take the Hot Seat, hold it when the timer hits zero, win the pot. No randomness. Join the waitlist for the NetNet version.">
+<style>
+:root{--bg:#07040f;--neon:#39ff14;--pink:#ff2bd6;--cyan:#00e5ff;--txt:#e8e6ff;--mut:#9a95c0;--warn:#ffb000}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0,#1a0b33,var(--bg) 60%);color:var(--txt);font-family:"Courier New",ui-monospace,monospace;line-height:1.5}
+a{color:var(--cyan)}.wrap{max-width:900px;margin:0 auto;padding:20px}
+.banner{background:#2a1a00;border:2px solid var(--warn);color:var(--warn);padding:10px 14px;border-radius:8px;text-align:center;font-weight:bold;box-shadow:0 0 14px #ffb00044}
+.brand{font-weight:bold;letter-spacing:4px;color:var(--pink);text-shadow:0 0 8px var(--pink);margin-top:14px}
+h1{font-size:clamp(1.6rem,5vw,2.6rem);color:var(--neon);text-shadow:0 0 10px var(--neon),0 0 30px #39ff1455;margin:.4em 0}
+h2{color:var(--cyan);text-shadow:0 0 8px var(--cyan);margin-top:0}
+.card{border:1px solid #3a2a66;border-radius:10px;padding:18px;margin:18px 0;background:#0d0820cc;box-shadow:0 0 18px #ff2bd622}
+.btn{background:transparent;border:2px solid var(--neon);color:var(--neon);padding:10px 16px;font:inherit;font-weight:bold;border-radius:6px;cursor:pointer;margin:4px 4px 4px 0}
+.btn:hover:not(:disabled){background:var(--neon);color:#000}.btn.alt{border-color:var(--pink);color:var(--pink)}.btn.alt:hover:not(:disabled){background:var(--pink);color:#000}
+.btn:disabled{opacity:.4;cursor:not-allowed}.btn.sm{padding:4px 10px;font-size:.85em}.btn.on{background:var(--cyan);border-color:var(--cyan);color:#000}
+.big{font-size:1.25em;width:100%;padding:16px}
+code{word-break:break-all;color:var(--pink)}.mut{color:var(--mut);font-size:.9em}
+.soon{display:inline-block;border:1px solid var(--pink);color:var(--pink);padding:2px 8px;border-radius:4px;font-size:.8em}
+.sim{display:inline-block;border:1px solid var(--warn);color:var(--warn);padding:0 6px;border-radius:4px;font-size:.75em}
+label{display:block;margin:10px 0 4px}input{width:100%;padding:10px;background:#000;border:1px solid #3a2a66;color:var(--txt);font:inherit;border-radius:6px}
+input:focus{outline:none;border-color:var(--neon)}.err{color:#ff5c5c;min-height:1.2em;font-size:.9em}.ok{color:var(--neon)}
+.trust{display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:center;border-top:1px solid #3a2a66;padding-top:14px;font-size:.9em}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.stat{border:1px solid #3a2a66;border-radius:8px;padding:10px;background:#000a;text-align:center}
+.stat .k{color:var(--mut);font-size:.8em;text-transform:uppercase;letter-spacing:1px}.stat .v{color:var(--neon);font-size:1.3em;font-weight:bold;text-shadow:0 0 6px #39ff1466}
+.timer{font-size:clamp(2.6rem,12vw,4.5rem);text-align:center;font-weight:bold;color:var(--cyan);text-shadow:0 0 14px var(--cyan);margin:6px 0}
+.timer.hot{color:var(--pink);text-shadow:0 0 18px var(--pink);animation:pulse .6s infinite alternate}
+@keyframes pulse{to{opacity:.6}}
+.bar{height:8px;background:#1a1033;border-radius:4px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--pink),var(--cyan));width:0}
+.holder{text-align:center;font-size:1.1em;margin:8px 0}.holder b{color:var(--pink)}.you{color:var(--neon)!important;text-shadow:0 0 8px var(--neon)}
+.gs{display:none;text-align:center;color:#000;background:var(--warn);font-weight:bold;border-radius:6px;padding:6px;margin-bottom:8px}
+.log{max-height:260px;overflow:auto;font-size:.85em;border:1px solid #3a2a66;border-radius:6px;padding:8px;background:#000a}
+.log div{border-bottom:1px dashed #1f1640;padding:2px 0}
+table{width:100%;border-collapse:collapse;font-size:.85em}th,td{padding:5px;border-bottom:1px solid #1f1640;text-align:right}th:first-child,td:first-child,th:nth-child(2),td:nth-child(2){text-align:left}th{color:var(--cyan)}
+.tablewrap{overflow-x:auto}.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:#000;border:2px solid var(--neon);color:var(--neon);padding:10px 16px;border-radius:8px;display:none;z-index:9;max-width:92vw;text-align:center}
+
+/* ---- mobile / CTA fixes ---- */
+@media (hover:none){.btn:hover,.btn:hover:not(:disabled){background:transparent;color:var(--neon)}.btn.alt:hover,.btn.alt:hover:not(:disabled){background:transparent;color:var(--pink)}.btn.on:hover{background:var(--cyan)!important;color:#000!important}}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html,body{max-width:100%;overflow-x:hidden}
+*,*::before,*::after{box-sizing:border-box}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;text-decoration:none;white-space:nowrap;line-height:1.2;text-align:center;-webkit-tap-highlight-color:transparent;max-width:100%}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 4px}.cta .btn{margin:0}
+img,canvas,table{max-width:100%}
+input{font-size:16px} /* prevents iOS zoom-on-focus */
+@media (max-width:600px){
+ .wrap{padding:14px}
+ .card{padding:14px;margin:14px 0}
+ .cta{flex-direction:column;gap:10px}.cta .btn{width:100%;padding:12px 16px}
+ h2{font-size:1.25rem}
+ #sub{width:100%}
+}
+.err:empty{min-height:0;margin:0}.soon,.sim{white-space:nowrap}
+
+.btn.sm{min-height:44px;min-width:44px;padding:6px 12px}
+.big{white-space:normal}
+.stat{min-width:0}.stat .v{font-size:clamp(1rem,4.6vw,1.3em);overflow-wrap:anywhere}
+.log div,.holder{overflow-wrap:anywhere}
+.tablewrap{-webkit-overflow-scrolling:touch}
+@media (max-width:600px){
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .stat{padding:8px 6px}
+ .row{flex-direction:column;align-items:stretch;text-align:center}
+ .banner{font-size:.85rem;padding:8px 10px}
+ table{font-size:.78em}th,td{padding:4px 3px}
+ .btn.big{min-height:56px;font-size:1.05em}
+}
+</style><!-- Social preview (relative image: ../og/hot-seat.png) -->
+<link rel="canonical" href="https://yoloboydelis.github.io/netnet-games/hot-seat/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Games">
+<meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/hot-seat/"><meta property="og:title" content="🔥 HOT SEAT · NetNet Capital (play money)"><meta property="og:description" content="Take the seat, hold it when the timer hits zero, win the pot. No randomness. Free play-money prototype. Join the waitlist.">
+<meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/hot-seat.png"><meta property="og:image:secure_url" content="https://yoloboydelis.github.io/netnet-games/og/hot-seat.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="🔥 HOT SEAT · NetNet Capital (play money)">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="🔥 HOT SEAT · NetNet Capital (play money)"><meta name="twitter:description" content="Take the seat, hold it when the timer hits zero, win the pot. No randomness. Free play-money prototype. Join the waitlist."><meta name="twitter:image" content="https://yoloboydelis.github.io/netnet-games/og/hot-seat.png">
+<link rel="image_src" href="../og/hot-seat.png">
+</head><body><div class="wrap">
+<!--
+  =========================================================================
+  CONFIG
+  FORM_ENDPOINT: leave "" to store signups in this browser's localStorage only.
+  Free Formspree setup:
+    1. Sign up at https://formspree.io (free plan), click "New form".
+    2. Copy the endpoint, e.g. https://formspree.io/f/abcdwxyz
+    3. Paste it into FORM_ENDPOINT below. Done (JSON POST is supported).
+  Google Apps Script: deploy a web app with doPost(e) that appends
+  JSON.parse(e.postData.contents) to a Sheet; paste the /exec URL.
+  (Apps Script needs no-cors -> set ENDPOINT_NO_CORS = true.)
+  =========================================================================
+-->
+<div class="banner" role="note">⚠ PLAY MONEY ONLY · No real USDG, no deposits, no prizes. The real version is pending legal review and is not available.</div>
+<header><div class="brand">NETNET CAPITAL</div>
+<h1>HOT SEAT</h1>
+<p>Take the seat. Hold it when the clock hits zero. Win the pot. <b>No randomness:</b> no hidden explosion, no dice, no random jackpot. The only thing that decides a round is when players choose to take the seat.</p>
+<div class="cta"><a class="btn" href="#play">Play (free)</a><a class="btn alt" href="#how">How it works</a><a class="btn alt" href="#waitlist">Join the waitlist</a></div></header>
+
+<section id="play" class="card">
+<div class="row"><h2 style="margin:0">Round <span id="rnd">1</span></h2>
+<div><span class="mut">Sim speed</span> <button class="btn sm on" data-sp="1">1×</button><button class="btn sm" data-sp="5">5×</button><button class="btn sm" data-sp="20">20×</button></div></div>
+<div class="gs" id="gsBanner">★ GRAND SLAM ROUND · Grand Slam reserve added to this pot ★</div>
+<div class="timer" id="timer">--:--</div>
+<div class="bar"><i id="barI"></i></div>
+<div class="holder" id="holder">Waiting for the first take…</div>
+<div class="grid">
+<div class="stat"><div class="k">Live pot</div><div class="v" id="pot">$0.00</div></div>
+<div class="stat"><div class="k">Take price</div><div class="v" id="price">$1.00</div></div>
+<div class="stat"><div class="k">Holder wins (75%)</div><div class="v" id="winNow">$0.00</div></div>
+<div class="stat"><div class="k">Seeds next (25%)</div><div class="v" id="seedNow">$0.00</div></div>
+<div class="stat"><div class="k">Takes this round</div><div class="v" id="takes">0</div></div>
+</div>
+<p style="margin-top:14px"><button class="btn big" id="takeBtn">TAKE THE SEAT · $1.00</button></p>
+<p class="err" id="takeErr" style="text-align:center"></p>
+<div class="row"><span>Your play-money wallet: <b class="ok" id="bal">$100.00</b> USDG <span class="sim">PLAY MONEY</span></span>
+<span class="mut">Your takes <b id="myTakes">0</b> · wins <b id="myWins">0</b> · P/L <b id="myPL">$0.00</b></span>
+<button class="btn sm alt" id="resetBtn">Reset to $100</button></div>
+<p class="mut">Rivals marked <span class="sim">SIM</span> are <b>simulated bot players</b> running in your browser so you can see a live round. They are not real people.</p>
+</section>
+
+<section class="card"><h2>Where every take goes</h2>
+<div class="grid">
+<div class="stat"><div class="k">Total taken</div><div class="v" id="tVol">$0.00</div></div>
+<div class="stat"><div class="k">NetNet treasury (10%)</div><div class="v" id="tTre">$0.00</div></div>
+<div class="stat"><div class="k">NET buyback (4%)</div><div class="v" id="tBuy">$0.00</div></div>
+<div class="stat"><div class="k">Grand Slam reserve (3%)</div><div class="v" id="tGs">$0.00</div></div>
+<div class="stat"><div class="k">Ops (1%)</div><div class="v" id="tOps">$0.00</div></div>
+<div class="stat"><div class="k">Paid to winners</div><div class="v" id="tPaid">$0.00</div></div>
+</div>
+<p class="mut">82% of every take goes to the pot. Next Grand Slam: round <b id="nextGs">25</b> (fixed, every 25th round). The treasury and buyback counters only go up. They are skimmed before any payout.</p>
+</section>
+
+<section class="card"><h2>Take log</h2><div class="log" id="log"><div class="mut">No takes yet.</div></div></section>
+
+<section class="card"><h2>Round history</h2><div class="tablewrap"><table><thead><tr><th>Rnd</th><th>Winner</th><th>Takes</th><th>Pot</th><th>Won (75%)</th><th>Seed (25%)</th></tr></thead><tbody id="hist"><tr><td colspan="6" class="mut" style="text-align:center">No finished rounds yet.</td></tr></tbody></table></div></section>
+
+<section id="how" class="card"><h2>How it works</h2>
+<ol>
+<li><b>Take the seat.</b> The first take of a round costs <b>$1 USDG</b>. Every take after that costs <b>2% more</b> than the one before.</li>
+<li><b>The clock resets.</b> Every take resets the countdown to <b>60 seconds</b>. A take in the <b>last 10 seconds</b> gets <b>+15 seconds</b> on top (75s total), so sniping the final second doesn't pay off.</li>
+<li><b>No back-to-back.</b> The current holder can't take the seat again. Someone else has to take it first.</li>
+<li><b>Split of every take:</b> 82% pot · 10% NetNet treasury (USDG) · 4% NET buyback · 3% Grand Slam reserve · 1% ops.</li>
+<li><b>Clock hits zero:</b> the holder wins <b>75%</b> of the pot. The other <b>25%</b> seeds the next round, so a pot never starts at zero.</li>
+<li><b>Grand Slam:</b> every <b>25th round</b> (fixed, never random) starts with the whole Grand Slam reserve added to its pot.</li>
+<li><b>No randomness anywhere.</b> No hidden explosion odds, no random bonus. The result depends only on when players choose to take the seat.</li>
+</ol>
+<p class="mut">The real version is <span class="soon">PENDING LEGAL REVIEW</span>. All parameters, eligibility (18+, restricted regions) and availability are subject to that review. Nothing on this page is an offer, an investment or a prize.</p>
+</section>
+
+<section id="waitlist" class="card"><h2>Join the waitlist</h2>
+<form id="wl" novalidate>
+<label for="wallet">Robinhood Chain wallet address *</label><input id="wallet" placeholder="0x…" autocomplete="off" spellcheck="false">
+<label for="xh">X handle (optional)</label><input id="xh" placeholder="@yourhandle">
+<label for="em">Email (optional)</label><input id="em" type="email" placeholder="you@example.com">
+<p class="mut">Your play-money stats (takes, wins, P/L) are included automatically.</p>
+<div class="err" id="ferr"></div><button class="btn" type="submit" id="sub">Join waitlist</button><p id="fok" class="ok"></p></form></section>
+
+<footer class="trust"><a href="https://docs.netnet.capital/official-channels" target="_blank" rel="noopener">✔ Official channels</a><span>✔ Play money only</span><span>✔ No randomness</span><span>✔ Not available in restricted regions</span><span class="mut">NetNet Capital · prototype</span></footer>
+</div>
+<div class="toast" id="toast"></div>
+
+<script id="engine">
+/*ENGINE-START*/
+// Pure, deterministic HOT SEAT rules. Amounts are integer micro-USDG (1 USDG = 1,000,000) to avoid float drift.
+const HotSeat = (() => {
+  const U = 1000000;
+  const P = Object.freeze({
+    START_PRICE: 1 * U,        // $1 USDG
+    STEP_NUM: 102, STEP_DEN: 100, // +2% per take
+    TIMER_MS: 60000,           // 60s reset on every take
+    SNIPE_WINDOW_MS: 10000,    // take in the last 10s ...
+    SNIPE_BONUS_MS: 15000,     // ... adds +15s on top of the reset
+    SPLIT_BPS: Object.freeze({ pot: 8200, treasury: 1000, buyback: 400, grand: 300, ops: 100 }),
+    WIN_BPS: 7500,             // holder wins 75%, 25% seeds next round
+    GS_EVERY: 25               // fixed Grand Slam every 25th round
+  });
+  function create() {
+    return { round: 1, pot: 0, price: P.START_PRICE, holder: null, deadline: null, takes: 0,
+      grandSlam: false, gsAdded: 0, gsReserve: 0,
+      totals: { volume: 0, pot: 0, treasury: 0, buyback: 0, grand: 0, ops: 0, paid: 0, seeded: 0 },
+      history: [] };
+  }
+  function split(cost) {
+    const b = P.SPLIT_BPS;
+    const treasury = Math.floor(cost * b.treasury / 10000), buyback = Math.floor(cost * b.buyback / 10000),
+      grand = Math.floor(cost * b.grand / 10000), ops = Math.floor(cost * b.ops / 10000);
+    return { pot: cost - treasury - buyback - grand - ops, treasury, buyback, grand, ops }; // rounding dust -> pot
+  }
+  function ended(s, now) { return s.holder !== null && now >= s.deadline; }
+  function remaining(s, now) { return s.deadline === null ? null : Math.max(0, s.deadline - now); }
+  function take(s, who, now) {
+    if (ended(s, now)) return { ok: false, err: 'Round over: waiting for settlement.' };
+    if (s.holder === who) return { ok: false, err: 'You already hold the seat: someone else must take it first.' };
+    const cost = s.price, sp = split(cost);
+    const rem = remaining(s, now);
+    const snipe = rem !== null && rem <= P.SNIPE_WINDOW_MS;
+    s.pot += sp.pot; s.gsReserve += sp.grand;
+    const t = s.totals; t.volume += cost; t.pot += sp.pot; t.treasury += sp.treasury; t.buyback += sp.buyback; t.grand += sp.grand; t.ops += sp.ops;
+    s.deadline = now + P.TIMER_MS + (snipe ? P.SNIPE_BONUS_MS : 0);
+    s.holder = who; s.takes++;
+    s.price = Math.floor(s.price * P.STEP_NUM / P.STEP_DEN);
+    return { ok: true, cost, split: sp, snipe, remainingBefore: rem, deadline: s.deadline, nextPrice: s.price, takeNo: s.takes };
+  }
+  function settle(s, now) {
+    if (!ended(s, now)) return null;
+    const win = Math.floor(s.pot * P.WIN_BPS / 10000), seed = s.pot - win;
+    const rec = { round: s.round, winner: s.holder, takes: s.takes, pot: s.pot, win, seed, grandSlam: s.grandSlam, gsAdded: s.gsAdded, endedAt: s.deadline };
+    s.history.unshift(rec); s.totals.paid += win; s.totals.seeded += seed;
+    s.round++; s.pot = seed; s.price = P.START_PRICE; s.holder = null; s.deadline = null; s.takes = 0;
+    s.grandSlam = s.round % P.GS_EVERY === 0; s.gsAdded = 0;
+    if (s.grandSlam) { s.gsAdded = s.gsReserve; s.pot += s.gsReserve; s.gsReserve = 0; }
+    return rec;
+  }
+  function nextGrandSlam(s) { return s.grandSlam ? s.round : Math.ceil((s.round + 1) / P.GS_EVERY) * P.GS_EVERY; }
+  return { U, P, create, split, take, settle, ended, remaining, nextGrandSlam };
+})();
+if (typeof module !== 'undefined') module.exports = HotSeat;
+/*ENGINE-END*/
+</script>
+
+<script>
+// ===== CONFIG =====
+const FORM_ENDPOINT = "";        // e.g. "https://formspree.io/f/abcdwxyz"
+const ENDPOINT_NO_CORS = false;  // true for Google Apps Script
+const START_BALANCE = 100;       // play-money USDG
+const BOT_SEED = 4663;           // seeds the simulated rivals' behaviour (simulation only, not game rules)
+const $ = id => document.getElementById(id), U = HotSeat.U;
+const fmt = m => '$' + (m / U).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+// ===== state =====
+const S = HotSeat.create();
+let simNow = 0, speed = 1, lastReal = performance.now();
+const ME = 'YOU';
+const me = JSON.parse(localStorage.getItem('hs_me') || 'null') || { bal: START_BALANCE * U, takes: 0, wins: 0, spent: 0, won: 0 };
+const saveMe = () => localStorage.setItem('hs_me', JSON.stringify(me));
+// ===== simulated rivals (clearly labelled SIM; behaviour only, rules stay deterministic) =====
+function rng(a){return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const R = rng(BOT_SEED), rr = (a, b) => a + (b - a) * R();
+const BOTS = [
+  { name: 'SIM·EarlyBird', d: [3, 25], max: [1.3, 2.5] },
+  { name: 'SIM·Steady',    d: [20, 45], max: [2, 4] },
+  { name: 'SIM·Patient',   d: [40, 56], max: [2, 5] },
+  { name: 'SIM·Sniper',    d: [51, 59], max: [3, 6] },
+  { name: 'SIM·Whale',     d: [30, 58], max: [4, 8] },
+  { name: 'SIM·Casual',    d: [10, 70], max: [1.2, 2] }
+];
+function rollBots() { BOTS.forEach(b => { b.cap = rr(b.max[0], b.max[1]) * U; }); }
+let lastTakeAt = 0;
+function planBots() { // after each take (or at round start) every rival picks the moment it would take next
+  BOTS.forEach(b => { b.at = S.holder === null ? simNow + rr(2, 12) * 1000 : lastTakeAt + rr(b.d[0], b.d[1]) * 1000; });
+}
+rollBots(); planBots();
+// ===== actions =====
+function doTake(who) {
+  const r = HotSeat.take(S, who, simNow);
+  if (!r.ok) return r;
+  lastTakeAt = simNow; addLog(who, r); planBots(); return r;
+}
+function userTake() {
+  $('takeErr').textContent = '';
+  if (me.bal < S.price) return $('takeErr').textContent = 'Not enough play money. Use “Reset to $100”.';
+  const cost = S.price, r = doTake(ME);
+  if (!r.ok) return $('takeErr').textContent = r.err;
+  me.bal -= cost; me.takes++; me.spent += cost; saveMe(); render();
+}
+function addLog(who, r) {
+  const el = $('log'); if (el.firstChild && el.firstChild.classList && el.firstChild.classList.contains('mut')) el.innerHTML = '';
+  const d = document.createElement('div');
+  d.innerHTML = `<span class="mut">R${S.round} #${r.takeNo}</span> <b class="${who === ME ? 'you' : ''}">${esc(who)}</b> took for ${fmt(r.cost)} · pot +${fmt(r.split.pot)} · timer ${r.snipe ? '<b style="color:var(--pink)">75s (+15s anti-snipe)</b>' : '60s'}`;
+  el.prepend(d); while (el.children.length > 60) el.lastChild.remove();
+}
+function sysLog(html) { const el = $('log'); const d = document.createElement('div'); d.innerHTML = html; el.prepend(d); }
+function toast(t) { const el = $('toast'); el.textContent = t; el.style.display = 'block'; clearTimeout(toast.h); toast.h = setTimeout(() => el.style.display = 'none', 4000); }
+// ===== loop =====
+function step() {
+  const now = performance.now(); simNow += (now - lastReal) * speed; lastReal = now;
+  // rivals act in order of their planned moment (one take per tick, mimics one per block)
+  if (!HotSeat.ended(S, simNow)) {
+    const due = BOTS.filter(b => b.at <= simNow && b.name !== S.holder && S.price <= b.cap).sort((a, b) => a.at - b.at)[0];
+    if (due) doTake(due.name);
+  }
+  if (HotSeat.ended(S, simNow)) {
+    const rec = HotSeat.settle(S, simNow);
+    if (rec.winner === ME) { me.bal += rec.win; me.wins++; me.won += rec.win; saveMe(); toast('🔥 You held the seat. You won ' + fmt(rec.win) + ' play money!'); }
+    sysLog(`<b class="ok">■ Round ${rec.round} over:</b> ${esc(rec.winner)} wins ${fmt(rec.win)} · ${fmt(rec.seed)} seeds round ${S.round}` + (S.grandSlam ? ` · <b style="color:var(--warn)">★ GRAND SLAM +${fmt(S.gsAdded)}</b>` : ''));
+    addHist(rec); rollBots(); planBots();
+  }
+  render();
+}
+function addHist(rec) {
+  const tb = $('hist'); if (tb.querySelector('td[colspan]')) tb.innerHTML = '';
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td>${rec.round}${rec.grandSlam ? ' ★' : ''}</td><td class="${rec.winner === ME ? 'you' : ''}">${esc(rec.winner)}</td><td>${rec.takes}</td><td>${fmt(rec.pot)}</td><td>${fmt(rec.win)}</td><td>${fmt(rec.seed)}</td>`;
+  tb.prepend(tr); while (tb.children.length > 30) tb.lastChild.remove();
+}
+function render() {
+  const rem = HotSeat.remaining(S, simNow);
+  $('rnd').textContent = S.round;
+  $('gsBanner').style.display = S.grandSlam ? 'block' : 'none';
+  if (rem === null) { $('timer').textContent = '--:--'; $('timer').classList.remove('hot'); $('barI').style.width = '0'; }
+  else { const s = rem / 1000; $('timer').textContent = String(Math.floor(s / 60)).padStart(2, '0') + ':' + (s % 60).toFixed(1).padStart(4, '0');
+    $('timer').classList.toggle('hot', rem <= HotSeat.P.SNIPE_WINDOW_MS); $('barI').style.width = Math.min(100, rem / 750) + '%'; }
+  $('holder').innerHTML = S.holder === null ? 'Waiting for the first take… the clock starts when someone takes the seat.' :
+    S.holder === ME ? '<b class="you">🔥 YOU HOLD THE SEAT 🔥</b>' : 'Current holder: <b>' + esc(S.holder) + '</b> <span class="sim">SIMULATED</span>';
+  $('pot').textContent = fmt(S.pot); $('price').textContent = fmt(S.price);
+  const win = Math.floor(S.pot * HotSeat.P.WIN_BPS / 10000);
+  $('winNow').textContent = fmt(win); $('seedNow').textContent = fmt(S.pot - win); $('takes').textContent = S.takes;
+  const tb = $('takeBtn'); tb.textContent = S.holder === ME ? 'YOU HOLD IT · HANG ON…' : 'TAKE THE SEAT · ' + fmt(S.price);
+  tb.disabled = S.holder === ME || me.bal < S.price;
+  $('bal').textContent = fmt(me.bal); $('myTakes').textContent = me.takes; $('myWins').textContent = me.wins;
+  const pl = me.won - me.spent; $('myPL').textContent = (pl < 0 ? '-' : '') + fmt(Math.abs(pl));
+  const t = S.totals; $('tVol').textContent = fmt(t.volume); $('tTre').textContent = fmt(t.treasury); $('tBuy').textContent = fmt(t.buyback);
+  $('tGs').textContent = fmt(S.gsReserve); $('tOps').textContent = fmt(t.ops); $('tPaid').textContent = fmt(t.paid);
+  $('nextGs').textContent = HotSeat.nextGrandSlam(S) + (S.grandSlam ? ' (this round!)' : '');
+}
+$('takeBtn').onclick = userTake;
+$('resetBtn').onclick = () => { Object.assign(me, { bal: START_BALANCE * U, takes: 0, wins: 0, spent: 0, won: 0 }); saveMe(); render(); };
+document.querySelectorAll('[data-sp]').forEach(b => b.onclick = () => { speed = +b.dataset.sp; document.querySelectorAll('[data-sp]').forEach(x => x.classList.toggle('on', x === b)); });
+addEventListener('keydown', e => { if (e.target.tagName !== 'INPUT' && e.key === ' ') { e.preventDefault(); userTake(); } });
+render(); setInterval(step, 100);
+// ===== waitlist =====
+$('wl').addEventListener('submit', async e => { e.preventDefault(); $('ferr').textContent = ''; $('fok').textContent = '';
+  const wallet = $('wallet').value.trim(), xh = $('xh').value.trim().replace(/^@/, ''), em = $('em').value.trim();
+  if (!/^0x[0-9a-fA-F]{40}$/.test(wallet)) return $('ferr').textContent = 'Enter a valid wallet address: 0x followed by 40 hex characters.';
+  if (xh && !/^[A-Za-z0-9_]{1,15}$/.test(xh)) return $('ferr').textContent = 'X handle: letters, numbers, underscore, max 15.';
+  if (em && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) return $('ferr').textContent = 'That email looks invalid.';
+  const data = { wallet, x_handle: xh ? '@' + xh : '', email: em, product: 'hot-seat', play_takes: me.takes, play_wins: me.wins,
+    play_pl_usdg: (me.won - me.spent) / U, rounds_seen: S.round, ts: new Date().toISOString(), ref: document.referrer || '', page: location.href };
+  $('sub').disabled = true;
+  try { if (FORM_ENDPOINT) { const r = await fetch(FORM_ENDPOINT, { method: 'POST', mode: ENDPOINT_NO_CORS ? 'no-cors' : 'cors', headers: ENDPOINT_NO_CORS ? { 'Content-Type': 'text/plain' } : { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data) });
+      if (!ENDPOINT_NO_CORS && !r.ok) throw new Error('HTTP ' + r.status); }
+    else { const a = JSON.parse(localStorage.getItem('hs_waitlist') || '[]'); a.push(data); localStorage.setItem('hs_waitlist', JSON.stringify(a)); }
+    localStorage.setItem('hs_joined', '1'); $('fok').textContent = "You're on the waitlist. We'll announce launch only via official channels."; $('wl').reset(); }
+  catch (err) { $('ferr').textContent = 'Could not submit right now (' + err.message + '). Please try again.'; }
+  finally { $('sub').disabled = false; } });
+</script></body></html>
