@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>NetNet Capital · HOT SEAT (Play-Money Prototype)</title>
-<meta name="description" content="Play-money prototype: take the Hot Seat, hold it when the timer hits zero, win the pot. No randomness. Join the waitlist for the NetNet version.">
+<meta name="description" content="Play-money prototype: take the Hot Seat, hold it when the timer hits zero, win the pot. No randomness. Prototype for the NetNet community &amp; devs.">
 <style>
 :root{--bg:#07040f;--neon:#39ff14;--pink:#ff2bd6;--cyan:#00e5ff;--txt:#e8e6ff;--mut:#9a95c0;--warn:#ffb000}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0,#1a0b33,var(--bg) 60%);color:var(--txt);font-family:"Courier New",ui-monospace,monospace;line-height:1.5}
@@ -70,29 +70,16 @@ input{font-size:16px} /* prevents iOS zoom-on-focus */
 </style><!-- Social preview (relative image: ../og/hot-seat.png) -->
 <link rel="canonical" href="https://yoloboydelis.github.io/netnet-games/hot-seat/">
 <meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Games">
-<meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/hot-seat/"><meta property="og:title" content="🔥 HOT SEAT · NetNet Capital (play money)"><meta property="og:description" content="Take the seat, hold it when the timer hits zero, win the pot. No randomness. Free play-money prototype. Join the waitlist.">
+<meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/hot-seat/"><meta property="og:title" content="🔥 HOT SEAT · NetNet Capital (play money)"><meta property="og:description" content="Take the seat, hold it when the timer hits zero, win the pot. No randomness. Free play-money prototype. Prototype for the NetNet community &amp; devs, feedback welcome.">
 <meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/hot-seat.png"><meta property="og:image:secure_url" content="https://yoloboydelis.github.io/netnet-games/og/hot-seat.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="🔥 HOT SEAT · NetNet Capital (play money)">
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="🔥 HOT SEAT · NetNet Capital (play money)"><meta name="twitter:description" content="Take the seat, hold it when the timer hits zero, win the pot. No randomness. Free play-money prototype. Join the waitlist."><meta name="twitter:image" content="https://yoloboydelis.github.io/netnet-games/og/hot-seat.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="🔥 HOT SEAT · NetNet Capital (play money)"><meta name="twitter:description" content="Take the seat, hold it when the timer hits zero, win the pot. No randomness. Free play-money prototype. Prototype for the NetNet community &amp; devs, feedback welcome."><meta name="twitter:image" content="https://yoloboydelis.github.io/netnet-games/og/hot-seat.png">
 <link rel="image_src" href="../og/hot-seat.png">
 </head><body><div class="wrap">
-<!--
-  =========================================================================
-  CONFIG
-  FORM_ENDPOINT: leave "" to store signups in this browser's localStorage only.
-  Free Formspree setup:
-    1. Sign up at https://formspree.io (free plan), click "New form".
-    2. Copy the endpoint, e.g. https://formspree.io/f/abcdwxyz
-    3. Paste it into FORM_ENDPOINT below. Done (JSON POST is supported).
-  Google Apps Script: deploy a web app with doPost(e) that appends
-  JSON.parse(e.postData.contents) to a Sheet; paste the /exec URL.
-  (Apps Script needs no-cors -> set ENDPOINT_NO_CORS = true.)
-  =========================================================================
--->
 <div class="banner" role="note">⚠ PLAY MONEY ONLY · No real USDG, no deposits, no prizes. The real version is pending legal review and is not available.</div>
 <header><div class="brand">NETNET CAPITAL</div>
 <h1>HOT SEAT</h1>
 <p>Take the seat. Hold it when the clock hits zero. Win the pot. <b>No randomness:</b> no hidden explosion, no dice, no random jackpot. The only thing that decides a round is when players choose to take the seat.</p>
-<div class="cta"><a class="btn" href="#play">Play (free)</a><a class="btn alt" href="#how">How it works</a><a class="btn alt" href="#waitlist">Join the waitlist</a></div></header>
+<div class="cta"><a class="btn" href="#play">Play (free)</a><a class="btn alt" href="#how">How it works</a></div><p class="mut">Prototype for the NetNet community &amp; devs, feedback welcome.</p></header>
 
 <section id="play" class="card">
 <div class="row"><h2 style="margin:0">Round <span id="rnd">1</span></h2>
@@ -144,14 +131,6 @@ input{font-size:16px} /* prevents iOS zoom-on-focus */
 </ol>
 <p class="mut">The real version is <span class="soon">PENDING LEGAL REVIEW</span>. All parameters, eligibility (18+, restricted regions) and availability are subject to that review. Nothing on this page is an offer, an investment or a prize.</p>
 </section>
-
-<section id="waitlist" class="card"><h2>Join the waitlist</h2>
-<form id="wl" novalidate>
-<label for="wallet">Robinhood Chain wallet address *</label><input id="wallet" placeholder="0x…" autocomplete="off" spellcheck="false">
-<label for="xh">X handle (optional)</label><input id="xh" placeholder="@yourhandle">
-<label for="em">Email (optional)</label><input id="em" type="email" placeholder="you@example.com">
-<p class="mut">Your play-money stats (takes, wins, P/L) are included automatically.</p>
-<div class="err" id="ferr"></div><button class="btn" type="submit" id="sub">Join waitlist</button><p id="fok" class="ok"></p></form></section>
 
 <footer class="trust"><a href="https://docs.netnet.capital/official-channels" target="_blank" rel="noopener">✔ Official channels</a><span>✔ Play money only</span><span>✔ No randomness</span><span>✔ Not available in restricted regions</span><span class="mut">NetNet Capital · prototype</span></footer>
 </div>
@@ -218,8 +197,6 @@ if (typeof module !== 'undefined') module.exports = HotSeat;
 
 <script>
 // ===== CONFIG =====
-const FORM_ENDPOINT = "";        // e.g. "https://formspree.io/f/abcdwxyz"
-const ENDPOINT_NO_CORS = false;  // true for Google Apps Script
 const START_BALANCE = 100;       // play-money USDG
 const BOT_SEED = 4663;           // seeds the simulated rivals' behaviour (simulation only, not game rules)
 const $ = id => document.getElementById(id), U = HotSeat.U;
@@ -316,19 +293,4 @@ $('resetBtn').onclick = () => { Object.assign(me, { bal: START_BALANCE * U, take
 document.querySelectorAll('[data-sp]').forEach(b => b.onclick = () => { speed = +b.dataset.sp; document.querySelectorAll('[data-sp]').forEach(x => x.classList.toggle('on', x === b)); });
 addEventListener('keydown', e => { if (e.target.tagName !== 'INPUT' && e.key === ' ') { e.preventDefault(); userTake(); } });
 render(); setInterval(step, 100);
-// ===== waitlist =====
-$('wl').addEventListener('submit', async e => { e.preventDefault(); $('ferr').textContent = ''; $('fok').textContent = '';
-  const wallet = $('wallet').value.trim(), xh = $('xh').value.trim().replace(/^@/, ''), em = $('em').value.trim();
-  if (!/^0x[0-9a-fA-F]{40}$/.test(wallet)) return $('ferr').textContent = 'Enter a valid wallet address: 0x followed by 40 hex characters.';
-  if (xh && !/^[A-Za-z0-9_]{1,15}$/.test(xh)) return $('ferr').textContent = 'X handle: letters, numbers, underscore, max 15.';
-  if (em && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) return $('ferr').textContent = 'That email looks invalid.';
-  const data = { wallet, x_handle: xh ? '@' + xh : '', email: em, product: 'hot-seat', play_takes: me.takes, play_wins: me.wins,
-    play_pl_usdg: (me.won - me.spent) / U, rounds_seen: S.round, ts: new Date().toISOString(), ref: document.referrer || '', page: location.href };
-  $('sub').disabled = true;
-  try { if (FORM_ENDPOINT) { const r = await fetch(FORM_ENDPOINT, { method: 'POST', mode: ENDPOINT_NO_CORS ? 'no-cors' : 'cors', headers: ENDPOINT_NO_CORS ? { 'Content-Type': 'text/plain' } : { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data) });
-      if (!ENDPOINT_NO_CORS && !r.ok) throw new Error('HTTP ' + r.status); }
-    else { const a = JSON.parse(localStorage.getItem('hs_waitlist') || '[]'); a.push(data); localStorage.setItem('hs_waitlist', JSON.stringify(a)); }
-    localStorage.setItem('hs_joined', '1'); $('fok').textContent = "You're on the waitlist. We'll announce launch only via official channels."; $('wl').reset(); }
-  catch (err) { $('ferr').textContent = 'Could not submit right now (' + err.message + '). Please try again.'; }
-  finally { $('sub').disabled = false; } });
 </script></body></html>

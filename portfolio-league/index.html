@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>NetNet Portfolio League · Weekly risk-adjusted portfolio competition (prototype)</title>
-<meta name="description" content="Pick up to 5 tokenized stocks, gold and T-bills. Ranked weekly on risk-adjusted return. Top 10% paid in USDG. Prototype with simulated data. Join the waitlist.">
+<meta name="description" content="Pick up to 5 tokenized stocks, gold and T-bills. Ranked weekly on risk-adjusted return. Top 10% paid in USDG. Prototype with simulated data for the NetNet community &amp; devs.">
 <link rel="canonical" href="https://yoloboydelis.github.io/netnet-games/portfolio-league/">
 <meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Games">
 <meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/portfolio-league/">
 <meta property="og:title" content="NetNet Portfolio League · Skill, not luck. Paid in USDG.">
-<meta property="og:description" content="A weekly portfolio competition for people who know markets. Pick 5 assets, get ranked on risk-adjusted return, top 10% share the prize pool. Free paper league. Join the waitlist.">
+<meta property="og:description" content="A weekly portfolio competition for people who know markets. Pick 5 assets, get ranked on risk-adjusted return, top 10% share the prize pool. Free paper league. Prototype for the NetNet community &amp; devs, feedback welcome.">
 <meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/portfolio-league.png"><meta property="og:image:secure_url" content="https://yoloboydelis.github.io/netnet-games/og/portfolio-league.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="NetNet Portfolio League: weekly risk-adjusted portfolio competition">
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="NetNet Portfolio League · Skill, not luck. Paid in USDG."><meta name="twitter:description" content="Pick 5 assets, get ranked on risk-adjusted return, top 10% share the prize pool. Free paper league. Join the waitlist."><meta name="twitter:image" content="https://yoloboydelis.github.io/netnet-games/og/portfolio-league.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="NetNet Portfolio League · Skill, not luck. Paid in USDG."><meta name="twitter:description" content="Pick 5 assets, get ranked on risk-adjusted return, top 10% share the prize pool. Free paper league. Prototype for the NetNet community &amp; devs, feedback welcome."><meta name="twitter:image" content="https://yoloboydelis.github.io/netnet-games/og/portfolio-league.png">
 <link rel="image_src" href="../og/portfolio-league.png">
 <meta name="theme-color" content="#0a1220">
 <style>
@@ -103,7 +103,7 @@ footer{padding:28px 0 60px;color:var(--mut);font-size:13px}
   <div class="eyebrow">Weekly skill competition · paid in USDG</div>
   <h1>Your portfolio. <em>Ranked on risk, not luck.</em></h1>
   <p class="lead">Pick up to 5 tokenized stocks, gold and T-bills. Each week we rank every portfolio on <b>risk-adjusted return</b>, so a reckless all-in can't beat a disciplined allocation. The top 10% split the prize pool.</p>
-  <div class="cta"><a class="btn" href="#build">Build a demo portfolio</a><a class="btn ghost" href="#waitlist">Join the waitlist</a></div>
+  <div class="cta"><a class="btn" href="#build">Build a demo portfolio</a><a class="btn ghost" href="#how">How it works</a></div>
   <div class="kpis">
     <div class="kpi"><div class="k">Entry</div><div class="v num">Free · $25 · $250</div></div>
     <div class="kpi"><div class="k">Paid out</div><div class="v num">Top 10%</div></div>
@@ -212,20 +212,6 @@ footer{padding:28px 0 60px;color:var(--mut);font-size:13px}
   </div>
 </div></section>
 
-<section id="waitlist"><div class="wrap">
-  <h2>Join the waitlist</h2><p class="mut">Get first access to the Paper League and launch details. No spam, announcements only via official channels.</p>
-  <form class="card" id="wl" novalidate>
-    <label for="em" style="margin-top:0">Email</label><input id="em" type="email" autocomplete="email" required placeholder="you@company.com">
-    <label for="lg">Which league interests you?</label><select id="lg"><option value="paper">Paper League (free)</option><option value="standard" selected>Standard League ($25)</option><option value="pro">Pro League ($250)</option></select>
-    <label for="ct">Country of residence</label><select id="ct"><option value="">Select…</option><option>Belgium</option><option>Netherlands</option><option>Germany</option><option>France</option><option>United Kingdom</option><option>Switzerland</option><option>United States</option><option>Other EU/EEA</option><option>Other</option></select>
-    <label class="check"><input type="checkbox" id="age"> I am 18 or older.</label>
-    <label class="check"><input type="checkbox" id="cons"> I understand this is a prototype and paid leagues will only open where legally permitted.</label>
-    <div class="err" id="ferr" role="alert"></div>
-    <button class="btn" type="submit" style="width:100%">Join the waitlist</button>
-    <div class="ok" id="fok" role="status"></div>
-  </form>
-</div></section>
-
 <section id="legal" style="border-bottom:0"><div class="wrap">
   <div class="note">
     <p style="margin-top:0"><b>Prototype. No deposits, no prizes, no real money.</b> All prices, players and results on this page are <b>simulated demo data</b> from a seeded generator. They are not real market prices and not a forecast.</p>
@@ -234,16 +220,10 @@ footer{padding:28px 0 60px;color:var(--mut);font-size:13px}
   </div>
 </div></section>
 </main>
-<footer><div class="wrap">NetNet Capital · Portfolio League prototype · <a href="../">More NetNet prototypes</a></div></footer>
+<footer><div class="wrap">Prototype for the NetNet community &amp; devs, feedback welcome. NetNet Capital · Portfolio League prototype · <a href="../">More NetNet prototypes</a></div></footer>
 
 <script src="engine.js"></script>
 <script>
-/*
-  FORM_ENDPOINT: leave "" to store signups in this browser's localStorage only.
-  To collect signups for real: create a free form at formspree.io (or similar),
-  paste its endpoint below (JSON POST supported).
-*/
-const FORM_ENDPOINT = "";
 (function(){
 'use strict';
 const $=id=>document.getElementById(id);
@@ -340,18 +320,6 @@ function renderPayout(){const n=Math.max(1,Math.floor(+$('pn').value||1)),f=Math
 function renderRev(){const g=(+$('rs').value||0)*(+$('rsf').value||0)+(+$('rp').value||0)*(+$('rpf').value||0);
  $('rg').textContent=fmt$(g);$('rpz').textContent=fmt$(g*R.split.prize);$('rsd').textContent=fmt$(g*R.split.seed);$('rtw').textContent=fmt$(g*R.split.treasury);$('rty').textContent=fmt$(g*R.split.treasury*52);}
 ['rs','rsf','rp','rpf'].forEach(id=>$(id).addEventListener('input',renderRev));
-
-// Waitlist
-$('wl').addEventListener('submit',async e=>{e.preventDefault();$('ferr').textContent='';$('fok').textContent='';
- const em=$('em').value.trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){$('ferr').textContent='Please enter a valid email.';return;}
- if(!$('ct').value){$('ferr').textContent='Please select your country.';return;}
- if(!$('age').checked){$('ferr').textContent='You must be 18 or older to join.';return;}
- if(!$('cons').checked){$('ferr').textContent='Please confirm you understand this is a prototype.';return;}
- const data={email:em,league:$('lg').value,country:$('ct').value,product:'portfolio-league',ts:new Date().toISOString()};
- try{if(FORM_ENDPOINT){const r=await fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)});if(!r.ok)throw 0;}
-  else{const a=JSON.parse(localStorage.getItem('nn_pl_waitlist')||'[]');a.push(data);localStorage.setItem('nn_pl_waitlist',JSON.stringify(a));}
-  $('fok').textContent="You're on the waitlist. Launch news only via official NetNet channels.";$('wl').reset();
- }catch(_){$('ferr').textContent='Something went wrong. Please try again.';}});
 
 window.addEventListener('resize',()=>drawChart(result?PL.STEPS:0));
 renderSeasons();renderTick();renderAll();drawChart(0);renderBoard();renderPayout();renderRev();
