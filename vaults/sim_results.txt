@@ -1,0 +1,24 @@
+NETNET LIQUIDITY VAULTS · BACKTEST SIMULATION (synthetic seeded paths, assumed fee yields)
+180 days, hourly steps, $10,000 start, 50/50. Values before the 10% performance fee.
+
+pool       regime         price |     HOLD |    NAIVE    fees    cost  reb | ZERO-SWAP    fees   cost  reb inRng
+----------------------------------------------------------------------------------------------------------------
+NET/USDG   random_walk   -40.5% |     7973 |     7945    1156      55    1 |      7623    1280    2.5   50   99%
+NET/USDG   mean_revert    -6.8% |     9658 |    10814    1194       0    0 |     10814    1194    0.0    0  100%
+NET/USDG   trend_up     +166.5% |    18327 |    11981    1348     344    4 |     12725    2538    5.6  112   97%
+NET/USDG   trend_down    -79.7% |     6015 |     3316     872     204    5 |      3144    1040   10.6  211   95%
+NVDA/USDG  random_walk    -9.1% |     9544 |     8870     345      32    3 |      8478     604    6.0  121   97%
+NVDA/USDG  mean_revert    +6.5% |    10324 |    10230     392      13    1 |     10261     418    0.4    9  100%
+NVDA/USDG  trend_up      +32.5% |    11624 |    11125     418      27    2 |     10623     656    4.2   85   98%
+NVDA/USDG  trend_down    -35.4% |     8228 |     6965     317      50    5 |      6234     546   11.1  222   95%
+
+FEE SPLIT AT EXAMPLE TVL (zero-swap fee yield, annualised, avg of 4 regimes; diluted by
+assumed competing liquidity: pool fees are fixed by volume, the vault only earns its share)
+  NET/USDG   TVL $  1,000,000: LP fees $204,542/yr (sim fee yield 30.7%) (diluted) -> 10% perf fee $20,454: treasury $10,227, net_liquidity_layer $6,136, founder_vested $4,091
+  NET/USDG   TVL $ 10,000,000: LP fees $511,355/yr (sim fee yield 30.7%) (diluted) -> 10% perf fee $51,136: treasury $25,568, net_liquidity_layer $15,341, founder_vested $10,227
+  NVDA/USDG  TVL $  1,000,000: LP fees $93,928/yr (sim fee yield 11.3%) (diluted) -> 10% perf fee $9,393: treasury $4,696, net_liquidity_layer $2,818, founder_vested $1,879
+  NVDA/USDG  TVL $ 10,000,000: LP fees $375,712/yr (sim fee yield 11.3%) (diluted) -> 10% perf fee $37,571: treasury $18,786, net_liquidity_layer $11,271, founder_vested $7,514
+
+RANGE-WIDTH SENSITIVITY (avg final value of 4 regimes, $10,000 start; HOLD avg shown)
+  NET/USDG   HOLD 10,493 | +/-5%: naive 581 / zero 480 | +/-10%: naive 2,997 / zero 2,233 | +/-20%: naive 6,275 / zero 5,000 | +/-40%: naive 8,514 / zero 8,576 | +/-80%: naive 9,314 / zero 9,053
+  NVDA/USDG  HOLD 9,930 | +/-5%: naive 6,936 / zero 5,513 | +/-10%: naive 8,606 / zero 7,821 | +/-20%: naive 9,719 / zero 9,266 | +/-40%: naive 9,797 / zero 9,829 | +/-80%: naive 9,997 / zero 9,997
