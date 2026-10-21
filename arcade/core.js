@@ -22,11 +22,12 @@
   A.acct = function () {
     var a = J('nna_acct', null), now = Date.now();
     if (!a) { a = { handle: 'player' + Math.floor(1000 + Math.random() * 9000), created: now, credits: CFG.start, lastRefill: now, ach: {}, wallet: null }; P('nna_acct', a); }
+    if (!a.secret) { var u = new Uint8Array(16); (W.crypto || {}).getRandomValues ? crypto.getRandomValues(u) : u.forEach(function (_, i) { u[i] = Math.random() * 256; }); a.secret = Array.prototype.map.call(u, function (b) { return ('0' + b.toString(16)).slice(-2); }).join(''); P('nna_acct', a); }
     if (now - a.lastRefill >= DAY) { if (a.credits < CFG.start) a.credits = CFG.start; a.lastRefill = now; P('nna_acct', a); }
     return a;
   };
   A.save = function (a) { P('nna_acct', a); A.bar(); };
-  A.setHandle = function (h) { var a = A.acct(); h = String(h || '').replace(/[^A-Za-z0-9_]/g, '').slice(0, 15); if (h.length < 3) return false; a.handle = h; A.save(a); return true; };
+  A.setHandle = function (h) { var a = A.acct(); h = String(h || '').replace(/[^A-Za-z0-9_]/g, '').slice(0, 15); if (h.length < 3) return false; a.handle = h; A.save(a); A.sync(); return true; };
   A.nextRefill = function () { var a = A.acct(); return a.lastRefill + DAY; };
   // ---------------- ledger: entry fee -> treasury cut FIRST, rest to that game's weekly pool (pools funded only by entries)
   A.pools = function () { return J('nna_pools', {}); };
@@ -41,7 +42,9 @@
   A.find = function (id) { return A.runs().filter(function (r) { return r.id === id; })[0]; };
   A.submit = function (game, rec) {
     var a = A.acct(), run = { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), game: game, week: rec.week || S.weekId(), seed: rec.seed, log: rec.log, wallMs: Math.round(rec.wallMs || 0), hidden: !!rec.hidden, claimed: rec.claimed, ranked: !!rec.ranked, handle: a.handle, at: Date.now() };
-    var v = S.verify(run); run.v = v; run.score = v.score; A.store(run); A.award(run); A.bar(); return run;
+    var v = S.verify(run); run.v = v; run.score = v.score; A.store(run); A.award(run); A.bar();
+    if (rec.tok) run.srv = Promise.resolve(rec.tok).then(function (t) { return A.srvSubmit(t, run); }).then(function (x) { if (x) { var rs = A.runs(); rs.forEach(function (q) { if (q.id === run.id) { q.srv = { id: x.id, verified: x.verified, rank: x.rank, reasons: x.reasons }; q.ranked = x.ranked; } }); P('nna_runs', rs); } A.sync(); return x; });
+    return run;
   };
   A.encode = function (r) { return btoa(unescape(encodeURIComponent(JSON.stringify({ g: r.game, w: r.week, s: r.seed, l: r.log, m: r.wallMs, h: r.handle, c: r.score })))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); };
   A.decode = function (x) { var o = JSON.parse(decodeURIComponent(escape(atob(x.replace(/-/g, '+').replace(/_/g, '/'))))); return { game: o.g, week: o.w, seed: o.s, log: o.l, wallMs: o.m, handle: o.h, claimed: o.c }; };
@@ -82,25 +85,40 @@
     ACH.forEach(function (x) { if (!a.ach[x[0]] && x[3](r, all)) { a.ach[x[0]] = Date.now(); got.push(x); } }); A.save(a);
     got.forEach(function (x) { A.toast('Achievement unlocked: ' + x[1]); }); return got; };
   A.toast = function (t) { var d = document.createElement('div'); d.className = 'nna-toast'; d.textContent = t; document.body.appendChild(d); setTimeout(function () { d.remove(); }, 3500); };
-  // ---------------- optional score server (Cloudflare Worker in /server). Off until NN_SCORE_SERVER is set.
-  A.SERVER = W.NN_SCORE_SERVER || J('nna_server', null);
-  A.srvStart = function (game) { if (!A.SERVER) return Promise.resolve(null); return fetch(A.SERVER + '/v1/start', { method: 'POST', body: JSON.stringify({ game: game }) }).then(function (r) { return r.json(); }).catch(function () { return null; }); };
-  A.srvSubmit = function (tok, run) { if (!A.SERVER || !tok) return Promise.resolve(null); return fetch(A.SERVER + '/v1/runs', { method: 'POST', body: JSON.stringify({ game: run.game, week: tok.week, seed: tok.seed, t0: tok.t0, sig: tok.sig, log: run.log, wallMs: run.wallMs, hidden: run.hidden, handle: run.handle }) }).then(function (r) { return r.json(); }).catch(function () { return null; }); };
+  // ---------------- score server (Cloudflare Worker in /server). Credits + boards are authoritative there.
+  A.SERVER = J('nna_server', null) || W.NN_SCORE_SERVER || null;
+  function post(path, body) { return fetch(A.SERVER + path, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) }).then(function (r) { return r.json(); }); }
+  A.online = null;
+  A.sync = function () { if (!A.SERVER) return Promise.resolve(null); var a = A.acct();
+    return post('/v1/account', { secret: a.secret, handle: a.handle }).then(function (x) { if (x && x.credits != null) { var b = A.acct(); b.credits = x.credits; b.lastRefill = x.nextRefill - DAY; A.online = true; A.save(b); } return x; }).catch(function () { A.online = false; A.bar(); return null; }); };
+  A.srvStart = function (game, ranked) { if (!A.SERVER) return Promise.resolve(null); var a = A.acct();
+    return post('/v1/start', { game: game, ranked: !!ranked, secret: a.secret, handle: a.handle }).then(function (t) { if (!t || !t.sig) return null; var b = A.acct(); b.credits = t.account.credits; A.save(b); return t; }).catch(function () { return null; }); };
+  A.srvSubmit = function (tok, run) { if (!A.SERVER || !tok) return Promise.resolve(null); var a = A.acct();
+    return post('/v1/runs', { game: run.game, week: tok.week, seed: tok.seed, t0: tok.t0, sig: tok.sig, ranked: tok.ranked, log: run.log, wallMs: run.wallMs, hidden: run.hidden, secret: a.secret }).catch(function () { return null; }); };
+  A.fetchBoard = function (game) { return fetch(A.SERVER + '/v1/board?game=' + game).then(function (r) { if (!r.ok) throw 0; return r.json(); }); };
+  A.boardServerHTML = function (game, d) { var g = S.games[game], me = A.acct().handle, p = d.pool || { entries: 0, pool: 0, treasury: 0 };
+    var h = '<div class="nna-board"><div class="nna-bh"><b>WEEKLY BOARD <span class="nna-ok">🌐 GLOBAL</span></b> <span class="nna-mut">' + A.weekLabel() + '</span></div>' +
+      '<div class="nna-mut">Pool ' + Math.round(p.pool).toLocaleString() + ' test credits from ' + p.entries + ' entries · treasury cut taken first: ' + Math.round(p.treasury).toLocaleString() + '</div><table class="nn-lb">';
+    if (!d.rows.length) h += '<tr><td class="nna-mut">No verified ranked runs yet this week. Be first.</td></tr>';
+    d.rows.slice(0, 20).forEach(function (r, i) { h += '<tr class="' + (r.handle === me ? 'me' : '') + '"><td>#' + (i + 1) + '</td><td>' + esc(r.handle) + ' <span class="nna-ok" title="Re-simulated by the score server">✔ Verified</span></td><td style="text-align:right">' + r.score + ' ' + g.unit + '</td><td><a href="' + A.root + 'replay/?id=' + encodeURIComponent(r.id) + '">replay ▶</a></td></tr>'; });
+    return h + '</table><div class="nna-mut" style="font-size:11px">Shared board from the NetNet Arcade score server. Every score was re-simulated server-side.</div></div>'; };
+  // render the global board into el, falling back to this device's board
+  A.renderBoard = function (game, el) { if (!el) return; el.innerHTML = A.boardHTML(game); if (!A.SERVER) return;
+    A.fetchBoard(game).then(function (d) { el.innerHTML = A.boardServerHTML(game, d); }).catch(function () { el.insertAdjacentHTML('afterbegin', '<div class="nna-mut">⚠ Score server unreachable, showing this device only.</div>'); }); };
   // ---------------- real-time runner (fixed-step, same stepping as the verifier)
   A.runner = function (game, o) {
     var g = S.games[game], R = { game: game, state: null, log: [], on: false };
     R.start = function (ranked) {
       R.week = S.weekId(); R.seed = S.seedFor(game, R.week); R.state = g.create(R.seed); R.log = []; R.hidden = false;
-      R.ranked = ranked !== false && A.enter(game); R.tok = A.srvStart(game); R.t0 = performance.now(); R.on = true; R.raf = requestAnimationFrame(loop); A.bar(); return R;
+      R.ranked = false; var want = ranked !== false; R.tok = A.srvStart(game, want).then(function (t) { if (t) R.ranked = t.ranked; else R.ranked = want && A.enter(game); return t; }); R.t0 = performance.now(); R.on = true; R.raf = requestAnimationFrame(loop); A.bar(); return R;
     };
     R.input = function (a) { if (!R.on || R.state.done) return; R.log.push([R.state.tick, a]); g.input(R.state, a); if (o.onInput) o.onInput(R.state, a); if (R.state.done) end(); };
     function loop(t) { if (!R.on) return; var want = Math.floor((performance.now() - R.t0) / 1000 * g.tps);
       while (R.state.tick < want && !R.state.done) { g.step(R.state); if (R.state.tick >= g.maxTicks) R.state.done = true; }
       if (o.onFrame) o.onFrame(R.state); if (R.state.done) return end(); R.raf = requestAnimationFrame(loop); }
     function end() { if (!R.on) return; R.on = false; cancelAnimationFrame(R.raf); var wall = performance.now() - R.t0;
-      var run = A.submit(game, { week: R.week, seed: R.seed, log: R.log, wallMs: wall, hidden: R.hidden, claimed: g.score(R.state), ranked: R.ranked });
-      if (o.onFrame) o.onFrame(R.state); if (o.onEnd) o.onEnd(run, R.state); A.result(run);
-      if (A.SERVER) R.tok.then(function (t) { return A.srvSubmit(t, run); }).then(function (x) { if (x) A.toast(x.verified ? 'Score server verified: ' + x.score : 'Score server rejected: ' + (x.reasons || []).join('; ')); }); }
+      var run = A.submit(game, { week: R.week, seed: R.seed, log: R.log, wallMs: wall, hidden: R.hidden, claimed: g.score(R.state), ranked: R.ranked, tok: R.tok });
+      if (o.onFrame) o.onFrame(R.state); if (o.onEnd) o.onEnd(run, R.state); A.result(run); }
     document.addEventListener('visibilitychange', function () { if (document.hidden && R.on) { R.hidden = true; } });
     return R;
   };
@@ -112,8 +130,11 @@
     var status = run.v.ok ? (run.ranked ? '<span class="nna-ok">✔ VERIFIED</span> replay re-simulated: ' + run.score + ' ' + g.unit + (rk ? ' · weekly rank #' + rk : '') : '<span class="nna-ok">✔ VERIFIED</span> practice run (unranked, no credits left for an entry)')
       : '<span class="nna-bad">✘ NOT VERIFIED</span> ' + esc(run.v.reasons.join('; '));
     m.innerHTML = '<div class="box"><div class="nn-sub">' + G.n + '</div><div class="nn-big">' + (dnf ? 'DNF' : run.score) + '</div><div class="nn-sub">' + g.unit + ' · ' + run.log.length + ' inputs</div><p style="font-size:13px">' + status + '</p>' +
-      '<div class="nn-row"><button class="nn-btn" id="nna-again">Play again</button><a class="nn-btn ghost" href="' + A.replayURL(run) + '">Watch replay ▶</a><button class="nn-btn ghost" id="nna-copy">Copy replay link</button></div>' + A.boardHTML(run.game) + '</div>';
+      (run.srv ? '<p style="font-size:13px" id="nna-srv">🌐 Checking with the score server…</p>' : '') + '<div class="nn-row"><button class="nn-btn" id="nna-again">Play again</button><a class="nn-btn ghost" href="' + A.replayURL(run) + '">Watch replay ▶</a><button class="nn-btn ghost" id="nna-copy">Copy replay link</button></div><div id="nna-mboard">' + A.boardHTML(run.game) + '</div></div>';
     m.classList.add('on');
+    if (run.srv) run.srv.then(function (x) { var e = document.getElementById('nna-srv'); if (!e) return;
+      e.innerHTML = !x ? '⚠ Score server unreachable: kept on this device only.' : x.verified ? (x.ranked ? '🌐 <span class="nna-ok">✔ SERVER VERIFIED</span> ' + x.score + ' ' + g.unit + (x.rank ? ' · global weekly rank #' + x.rank : '') : '🌐 <span class="nna-ok">✔ SERVER VERIFIED</span> practice run (unranked)') : '🌐 <span class="nna-bad">✘ SERVER REJECTED</span> ' + esc((x.reasons || []).join('; '));
+      A.renderBoard(run.game, document.getElementById('nna-mboard')); });
     document.getElementById('nna-again').onclick = function () { m.classList.remove('on'); if (A.onAgain) A.onAgain(); };
     document.getElementById('nna-copy').onclick = function () { var u = new URL(A.replayURL(run), location.href).toString(); (navigator.clipboard ? navigator.clipboard.writeText(u) : Promise.reject()).then(function () { A.toast('Replay link copied'); }, function () { prompt('Replay link', u); }); };
   };
@@ -122,7 +143,7 @@
     var b = document.getElementById('nna-bar'); if (!b) return; var a = A.acct();
     b.innerHTML = '<a class="nna-logo" href="' + A.root + '">NETNET<b>ARCADE</b></a><span class="nna-sp"></span>' +
       '<a href="' + A.root + 'profile/" title="Your profile">👤 ' + esc(a.handle) + '</a><a href="' + A.root + 'profile/" title="Test credits, refill to ' + CFG.start.toLocaleString() + ' every 24h. Not money.">🪙 ' + Math.floor(a.credits).toLocaleString() + ' <small>TEST</small></a>' +
-      '<a href="' + A.root + 'boards/">🏆 Boards</a><a href="' + A.root + 'stats/">📊 Stats</a>';
+      (A.online === true ? '<span title="Score server online" style="color:#39ff88">🌐</span>' : A.online === false ? '<span title="Score server offline, local mode" style="color:#ff5f6d">⚠</span>' : '') + '<a href="' + A.root + 'boards/">🏆 Boards</a><a href="' + A.root + 'stats/">📊 Stats</a>';
   };
   A.gate = function () {
     if (J('nna_gate', 0)) return; var m = document.createElement('div'); m.className = 'nn-modal on'; m.id = 'nna-gate';
@@ -138,7 +159,7 @@
     try { var acc = await W.ethereum.request({ method: 'eth_requestAccounts' }); a.wallet = acc[0]; A.save(a); A.toast('Wallet linked (beta, read-only): ' + a.wallet.slice(0, 6) + '…'); return a.wallet; } catch (e) { A.toast('Wallet connect cancelled'); return null; } };
   A.foot = function () { var f = document.createElement('footer'); f.className = 'nn-foot';
     f.innerHTML = 'NetNet Arcade prototype for the community &amp; devs · <b>Test credits only, not money, no cash value</b> · Skill-only, same weekly level for everyone · 18+ · Not available in prohibited or sanctioned regions · <a href="' + A.root + '">All cabinets</a>'; document.body.appendChild(f); };
-  A.boot = function () { A.acct(); var b = document.createElement('nav'); b.id = 'nna-bar'; document.body.insertBefore(b, document.body.firstChild); A.bar(); A.gate(); };
+  A.boot = function () { A.acct(); var b = document.createElement('nav'); b.id = 'nna-bar'; document.body.insertBefore(b, document.body.firstChild); A.bar(); A.gate(); A.sync(); };
   W.NNA = A;
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', A.boot); else A.boot();
 })(window);

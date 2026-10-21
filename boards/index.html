@@ -5,7 +5,7 @@
 <meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/home.png"><meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#070b16"><link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css">
 <style>:root{--c:#38f5ff}</style><script src="../dip-dash/engine.js"></script><script src="../portfolio-league/engine.js"></script>
-<script src="../arcade/sims.js"></script><script src="../arcade/core.js"></script></head><body>
+<script src="../arcade/sims.js"></script><script>window.NN_SCORE_SERVER="https://netnet-arcade-verifier.netnetarcade.workers.dev"</script><script src="../arcade/core.js"></script></head><body>
 <div class="nn-wrap" style="max-width:760px"><h1 class="nn-title">WEEKLY BOARDS</h1><p class="nn-sub" id="wk"></p><div id="all"></div></div>
-<script>document.addEventListener('DOMContentLoaded',()=>{document.getElementById('wk').textContent=NNA.weekLabel()+' · resets every Sunday 00:00 UTC · only replay-verified scores';
-document.getElementById('all').innerHTML=Object.keys(NNA.GAMES).map(g=>'<div class="nn-card" style="border-color:'+NNA.GAMES[g].c+'"><h3 style="color:'+NNA.GAMES[g].c+'">'+NNA.GAMES[g].n+' <a style="float:right;font-size:13px;color:var(--c)" href="../'+NNA.GAMES[g].path+'">play →</a></h3>'+NNA.boardHTML(g)+'</div>').join('');NNA.foot()});</script></body></html>
+<script>document.addEventListener('DOMContentLoaded',()=>{document.getElementById('wk').textContent=NNA.weekLabel()+' · resets every Sunday 00:00 UTC · only replay-verified scores · '+(NNA.SERVER?'global board from the score server (falls back to this device if offline)':'this device');
+document.getElementById('all').innerHTML=Object.keys(NNA.GAMES).map(g=>'<div class="nn-card" style="border-color:'+NNA.GAMES[g].c+'"><h3 style="color:'+NNA.GAMES[g].c+'">'+NNA.GAMES[g].n+' <a style="float:right;font-size:13px;color:var(--c)" href="../'+NNA.GAMES[g].path+'">play →</a></h3>'+'<div id="b-'+g+'"></div></div>').join('');Object.keys(NNA.GAMES).forEach(g=>NNA.renderBoard(g,document.getElementById('b-'+g)));NNA.foot()});</script></body></html>
