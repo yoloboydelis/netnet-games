@@ -1,6 +1,6 @@
 # NetNet Arcade score server (Cloudflare Worker)
 
-**Status: written and tested offline, NOT deployed** (no Cloudflare account yet).
+**Status: LIVE** at https://netnet-arcade-verifier.netnetarcade.workers.dev (deployed 2026-10-21). KV namespace `RUNS`, secret `SIGNING_KEY` set, per-IP rate limits via Cloudflare Rate Limiting bindings (writes 30/min, reads 240/min). CORS allows https://yoloboydelis.github.io (+ localhost:8765 for testing).
 
 It re-simulates every submitted run with the *same* game code the cabinets run in the browser
 (`arcade/sims.js` + `dip-dash/engine.js` + `portfolio-league/engine.js`, bundled by `build.mjs`),
@@ -16,14 +16,22 @@ so a faked score cannot get on the board.
 | Real-time pacing: wall time ≈ simulated time (no speed-hack), no pause/stall, tab not hidden | `NNS.verify` |
 | **Server clock**: `/v1/start` issues an HMAC-signed start time; submit is rejected if the client claims more or less time than the server saw | `src/index.js` |
 
+## Server-side TEST-credit ledger
+Each browser has a random secret; the server stores `acct:<sha(secret)>` with handle, credits (10,000, topped back up every 24 h), entries.
+A ranked `/v1/start` charges 100: 10 to the treasury first, 90 to `pool:<game>:<week>`. Start tokens are HMAC-signed over game|week|seed|t0|account|ranked and single-use.
+
 ## API
-- `POST /v1/start {game}` → `{game, week, seed, t0, sig}`
-- `POST /v1/runs {game, week, seed, t0, sig, log, wallMs, hidden, handle}` → `{id, verified, score, reasons}`
+- `POST /v1/account {secret, handle}` → `{handle, credits, nextRefill, entries}`
+- `POST /v1/start {game, ranked, secret, handle}` → `{game, week, seed, t0, sig}`
+- `POST /v1/runs {game, week, seed, t0, sig, ranked, log, wallMs, hidden, secret}` → `{id, verified, score, reasons}`
 - `GET /v1/board?game=rent-rush[&week=20261018]` → best verified score per handle
 - `GET /v1/run/<id>` → full run (for the replay viewer)
 - `GET /v1/stats[?week=]` → runs / verified per game
 
-## Go live (≈10 minutes)
+## Redeploy
+`CLOUDFLARE_API_TOKEN=… npm run deploy` (runs build.mjs first). Rotate the key: `openssl rand -hex 32 | npx wrangler secret put SIGNING_KEY`.
+
+## Original go-live steps (done)
 1. Create a free Cloudflare account (use a project/team email, not a personal one).
 2. `cd server && npm install`
 3. `npx wrangler login`
