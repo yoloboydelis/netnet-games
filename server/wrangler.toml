@@ -1,10 +1,26 @@
 name = "netnet-arcade-verifier"
 main = "src/index.js"
 compatibility_date = "2026-10-01"
+account_id = "d3bf516b5ec656f2dd3999ee3ca9436d"
+workers_dev = true
 
-# Create with:  npx wrangler kv namespace create RUNS   and paste the id below
 [[kv_namespaces]]
 binding = "RUNS"
-id = "REPLACE_WITH_KV_NAMESPACE_ID"
+id = "01be533cb489484db024ebb5132db660"
 
-# Secret (not in this file):  npx wrangler secret put SIGNING_KEY
+# Per-IP rate limits (Cloudflare Rate Limiting binding)
+[[ratelimits]]
+name = "RL_WRITE"
+namespace_id = "4663001"
+  [ratelimits.simple]
+  limit = 30
+  period = 60
+
+[[ratelimits]]
+name = "RL_READ"
+namespace_id = "4663002"
+  [ratelimits.simple]
+  limit = 240
+  period = 60
+
+# Secret (not in this file): SIGNING_KEY  (set with: openssl rand -hex 32 | npx wrangler secret put SIGNING_KEY)
