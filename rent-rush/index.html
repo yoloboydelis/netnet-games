@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>RENT RUSH · NetNet Arcade (prototype)</title><meta name="description" content="45-second tokenized real-estate tycoon. Buy flats, shops and towers, stack USDG rent, beat the clock.">
+<link rel="canonical" href="https://yoloboydelis.github.io/netnet-games/rent-rush/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Arcade"><meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/rent-rush/">
+<meta property="og:title" content="RENT RUSH · NetNet Arcade"><meta property="og:description" content="45-second tokenized real-estate tycoon. Buy flats, shops and towers, stack USDG rent, beat the clock. Prototype for the NetNet community &amp; devs, feedback welcome.">
+<meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/rent-rush.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="RENT RUSH · NetNet Arcade"><meta name="twitter:description" content="45-second tokenized real-estate tycoon. Buy flats, shops and towers, stack USDG rent, beat the clock."><meta name="twitter:image" content="https://yoloboydelis.github.io/netnet-games/og/rent-rush.png">
+<meta name="theme-color" content="#070b16"><link rel="stylesheet" href="../_template/arcade.css">
+<style>:root{--c:#39ff88}</style>
+<script>window.NN_GAME={game:"rent-rush",title:"RENT RUSH",color:"#39ff88",unit:"USDG",higherIsBetter:true,demoBase:9000};</script>
+<script src="../_template/arcade.js"></script></head><body>
+<div class="nn-wrap"><div class="nn-top"><a href="../">← NETNET ARCADE</a><span class="nn-pill">CABINET 06 · PROTOTYPE</span></div>
+<h1 class="nn-title">RENT RUSH</h1>
+<p class="nn-sub">45 seconds. Buy tokenized properties, and they pay rent every tick. Score = all rent earned. Same prices for everyone; the skill is in the build order.</p>
+<div class="nn-hud"><span id="tm">45.0s</span><span id="cash">$500</span><span id="rps">+$0/s</span></div>
+<div class="nn-stage"><div id="shop"></div><div class="nn-row"><button class="nn-btn full" id="go">START · 45s</button></div><div class="nn-sub" id="earned" style="text-align:center;margin:0">Rent earned: $0</div></div>
+<div class="nn-card" id="forge"></div></div>
+<script>
+const P=[{k:"flat",n:"🏠 Studio flat",c:100,r:4},{k:"shop",n:"🏪 Corner shop",c:700,r:32},{k:"office",n:"🏢 Office floor",c:3500,r:180},{k:"tower",n:"🌆 Tower",c:16000,r:900}];
+let cash,own,earned,t0,run=false,acc;
+function cost(p){return Math.round(p.c*Math.pow(1.17,own[p.k]))}
+function rate(){return P.reduce((s,p)=>s+p.r*own[p.k],0)}
+function render(){if(!shop.children.length)shop.innerHTML=P.map(p=>'<button class="nn-btn ghost full" style="justify-content:space-between;margin:6px 0" data-k="'+p.k+'"><span></span><span></span></button>').join("");
+ P.forEach((p,i)=>{const b=shop.children[i],s=b.children;b.disabled=!run||cash<cost(p);s[0].textContent=p.n+" ×"+own[p.k];s[1].textContent="$"+cost(p).toLocaleString()+" · +$"+p.r+"/s"});
+ cash_.textContent="$"+Math.floor(cash).toLocaleString();rps.textContent="+$"+rate()+"/s";earned_.textContent="Rent earned: $"+Math.floor(earned).toLocaleString()}
+const cash_=document.getElementById("cash"),earned_=document.getElementById("earned");
+shop.addEventListener("click",e=>{const b=e.target.closest("button");if(!b||!run)return;const p=P.find(q=>q.k==b.dataset.k),c=cost(p);if(cash>=c){cash-=c;own[p.k]++;NN.track("buy",{k:p.k});render()}});
+function reset(){cash=500;earned=0;own={flat:0,shop:0,office:0,tower:0};run=false;tm.textContent="45.0s";go.style.display="";render()}
+go.onclick=()=>{reset();run=true;go.style.display="none";t0=performance.now();acc=0;NN.track("start");render();requestAnimationFrame(loop)};
+// fixed 10Hz simulation steps => identical economics on every device
+function loop(t){if(!run)return;const el=(t-t0)/1000;const steps=Math.min(450,Math.floor(el*10));while(acc<steps){const r=rate()/10;cash+=r;earned+=r;acc++}
+ tm.textContent=Math.max(0,45-el).toFixed(1)+"s";render();if(el>=45){run=false;render();NN.end({score:Math.floor(earned),detail:Object.values(own).reduce((a,b)=>a+b,0)+" properties",line:"Earned $"+Math.floor(earned).toLocaleString()+" rent in 45s"});return}requestAnimationFrame(loop)}
+NN.onRestart=()=>{reset();go.onclick()};NN.boot();reset();NN.forge(document.getElementById("forge"),{coin:"$RENT"});NN.footer();
+</script></body></html>
