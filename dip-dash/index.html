@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>DIP DASH · NetNet Arcade Cabinet 04 · Buy the dip on real-world assets</title>
 <meta name="description" content="NetNet Arcade Cabinet 04. A 24-second reflex game on tokenized gold, stocks, bonds and real estate. Hold to go long, buy the dip, dodge liquidation. Same daily tape for everyone. Beat my score.">
 <link rel="canonical" href="https://yoloboydelis.github.io/netnet-games/dip-dash/">
@@ -118,7 +118,8 @@ footer{text-align:center;color:var(--mut);font-size:13px;margin-top:20px}
 <footer>Prototype for the NetNet community &amp; devs, feedback welcome.<br>NetNet Arcade · Cabinet 04 · <a href="../">all cabinets</a></footer>
 </div>
 <div class="toast" id="toast"></div>
-<script src="engine.js"></script>
+<div style="max-width:900px;margin:0 auto;padding:0 14px"><div class="nn-card" id="nnaBoard"></div><label class="nna-mut" style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="ranked" checked> Ranked entry: 100 <span class="nna-test">TEST</span> credits (10 to treasury first, 90 to the weekly pool). Ranked runs use this week's tape.</label></div>
+<script src="engine.js"></script><script src="../arcade/sims.js"></script><script src="../arcade/core.js"></script>
 <script>
 (function(){'use strict';
 const $=id=>document.getElementById(id);
@@ -130,7 +131,8 @@ const BASE=location.origin+location.pathname;
 
 // ---- tape + challenge params
 const q=new URLSearchParams(location.search);
-let day=DD.utcDay(), chal=null;
+let day=NNS.weekId(), chal=null;const WEEK=day;let nnaT0=0,nnaRanked=false,nnaHidden=false;document.addEventListener('visibilitychange',()=>{if(document.hidden&&state==='play')nnaHidden=true});
+function nnaBoard(){const e=document.getElementById('nnaBoard');if(e)e.innerHTML=NNA.boardHTML('dip-dash')}document.addEventListener('DOMContentLoaded',nnaBoard);
 const qt=+q.get('t');
 if(qt>=20261001&&qt<=20991231){day=qt;}
 const tape=DD.makeTape(day);
@@ -169,7 +171,7 @@ addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;const s=KEYS
 addEventListener('keyup',e=>{const s=KEYS[e.key];if(s)release(s,'k'+e.key);});
 addEventListener('blur',()=>{held.s.clear();held.l.clear();setWant();});
 
-function start(){run=DD.createRun(tape);changes=[];lastWant=0;state='play';acc=0;lastT=performance.now();$('ov').classList.add('hide');$('after').style.display='none';beep(660,.12,'square',.06);buzz(15);}
+function start(){nnaT0=performance.now();nnaHidden=false;nnaRanked=day===WEEK&&document.getElementById('ranked').checked&&NNA.enter('dip-dash');run=DD.createRun(tape);changes=[];lastWant=0;state='play';acc=0;lastT=performance.now();$('ov').classList.add('hide');$('after').style.display='none';beep(660,.12,'square',.06);buzz(15);}
 function reset(){held.s.clear();held.l.clear();want=0;setWant();run=null;result=null;state='idle';
   $('ov').innerHTML='<div class="big blink" style="color:var(--neon)">HOLD TO PLAY</div><div class="sub">Same tape, new run. First press starts.</div>';$('ov').classList.remove('hide');$('after').style.display='none';hud();draw();}
 $('againBtn').onclick=reset;
@@ -186,6 +188,7 @@ function finish(){state='over';overAt=performance.now();result=run.result();held
   const strip=DD.strip(result),best=bestRun();let isBest=false;
   if(!best||result.score>best.score){localStorage.setItem('dd_best_'+day,JSON.stringify({score:result.score,r:DD.encode(changes),strip}));isBest=true;}
   lastReplay=DD.encode(changes);
+  if(day===WEEK){const nr=NNA.submit('dip-dash',{week:WEEK,seed:WEEK,log:changes.map(c=>[c[0]-1,c[1]]),wallMs:performance.now()-nnaT0,hidden:nnaHidden,claimed:result.score,ranked:nnaRanked});NNA.toast(nr.v.ok?'✔ Verified by replay: '+nr.score+'%':'✘ Not verified: '+nr.v.reasons.join('; '));nnaBoard();window.__lastRun=nr;}
   if(result.liquidated){shake=18;beep(110,.6,'sawtooth',.08);buzz([90,40,90,40,160]);}else{beep(988,.12);setTimeout(()=>beep(1319,.25),120);buzz([20,30,20]);}
   const rows=boardRows(),me=rows.find(r=>r.me);
   let vs='';if(chal){vs=result.score>chal.score?`<div class="sub" style="color:var(--neon)">🏆 You beat @${esc(chal.tag)} by ${(result.score-chal.score).toFixed(2)} pts!</div>`:`<div class="sub" style="color:var(--gold)">@${esc(chal.tag)} still leads by ${(chal.score-result.score).toFixed(2)} pts. Again?</div>`;}
@@ -254,7 +257,7 @@ function cardCanvas(){const c=document.createElement('canvas');c.width=1200;c.he
   x.fillStyle=result.liquidated?'#ff3b5c':result.score>=0?'#39ff14':'#ffd23f';x.shadowColor=x.fillStyle;x.shadowBlur=24;x.font='900 120px Courier New,monospace';x.fillText(result.liquidated?'LIQUIDATED':pct(result.score),600,345);x.shadowBlur=0;
   x.font='64px sans-serif';x.fillText(DD.strip(result),600,435);
   x.fillStyle='#eae6ff';x.font='bold 32px Courier New,monospace';x.fillText(`@${myTag()} · Tape #${tape.no} · can you beat it?`,600,510);
-  x.fillStyle='#ffd23f';x.font='22px Courier New,monospace';x.fillText('Simulated tape · play money prototype · yoloboydelis.github.io/netnet-games',600,565);return c;}
+  x.fillStyle='#ffd23f';x.font='22px Courier New,monospace';x.fillText('Simulated tape · test credits prototype · NetNet Arcade',600,565);return c;}
 const cardBlob=()=>new Promise(res=>cardCanvas().toBlob(res,'image/png'));
 $('shareBtn').onclick=async()=>{if(!result)return;const url=shareURL(),text=shareText();
   try{const blob=await cardBlob();const file=new File([blob],'dip-dash-score.png',{type:'image/png'});

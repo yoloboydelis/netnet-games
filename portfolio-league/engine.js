@@ -91,9 +91,9 @@
   }
 
   // 20 simulated players with seeded, rule-compliant portfolios
-  var NAMES = ['QuantKarel', 'BondDesk_Ann', 'GhentValue', 'DividendDad', 'MacroMira', 'ThetaTom', 'IndexIris',
+  var NAMES = ['QuantKarel', 'BondDesk_Ann', 'ValueVince', 'DividendDad', 'MacroMira', 'ThetaTom', 'IndexIris',
     'VolSeller', 'BuffettFan88', 'GoldBugGerd', 'CFA_Level3', 'DeltaNeutral', 'NasdaqNina', 'RiskParityRik',
-    'TreasuryTess', 'AlphaAntwerp', 'SharpeShooter', 'LongOnlyLeo', 'CarryTradeCo', 'MomentumMo'];
+    'TreasuryTess', 'AlphaAnya', 'SharpeShooter', 'LongOnlyLeo', 'CarryTradeCo', 'MomentumMo'];
   function botPortfolios(seed) {
     var r = mulberry32((seed ^ 0x9E3779B9) >>> 0);
     return NAMES.map(function (name, idx) {

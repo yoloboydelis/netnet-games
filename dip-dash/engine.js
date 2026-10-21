@@ -90,8 +90,8 @@
   }
   var BOTS = [['TapeReaderTom','mom',20,9],['GoldBugGerd','dip',15,10],['BondVigilante','mom',30,12],['RentSeeker','long',10,8],['DiamondHands','hold',0,0],
     ['DipBuyer_BE','dip',25,9],['ScalpQueen','mom',10,7],['CPI_Sniper','mom',15,8],['REIT_Ruben','long',20,11],['Macro_Mira','mom',40,14],
-    ['ThetaTom','dip',10,12],['GhentQuant','mom',25,10],['VolSeller','dip',30,13],['T-Bill_Tess','long',30,15],['LiquidationLarry','mom',6,6],
-    ['BuffettFan88','hold',0,0],['NasdaqNina','mom',18,9],['AlphaAntwerp','long',14,9],['SharpeShooter','dip',20,11],['CarryTradeCo','mom',35,13]];
+    ['ThetaTom','dip',10,12],['QuantQuinn','mom',25,10],['VolSeller','dip',30,13],['T-Bill_Tess','long',30,15],['LiquidationLarry','mom',6,6],
+    ['BuffettFan88','hold',0,0],['NasdaqNina','mom',18,9],['AlphaAnya','long',14,9],['SharpeShooter','dip',20,11],['CarryTradeCo','mom',35,13]];
   function demoBoard(tape) {
     return BOTS.map(function (b, idx) { var r = simulate(tape, botChanges(tape, b[1], b[2], b[3]));
       return { name: b[0], score: r.score, liquidated: r.liquidated, strip: strip(r), at: idx }; });

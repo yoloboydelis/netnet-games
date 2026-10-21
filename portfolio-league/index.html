@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>NetNet Portfolio League · Weekly risk-adjusted portfolio competition (prototype)</title>
 <meta name="description" content="Pick up to 5 tokenized stocks, gold and T-bills. Ranked weekly on risk-adjusted return. Top 10% paid in USDG. Prototype with simulated data for the NetNet community &amp; devs.">
 <link rel="canonical" href="https://yoloboydelis.github.io/netnet-games/portfolio-league/">
@@ -94,7 +94,7 @@ input[type=number],input[type=email],select{width:100%;min-height:48px;padding:0
 footer{padding:28px 0 60px;color:var(--mut);font-size:13px}
 .seg{display:flex;gap:6px;flex-wrap:wrap}.seg .chip{min-width:auto}
 .hide{display:none}
-</style></head><body>
+.tick{overflow:hidden;max-width:100vw}html,body{overflow-x:hidden}</style></head><body>
 <header class="top"><div class="wrap"><a class="logo" href="../">NETNET <span>Portfolio League</span></a><span class="pill"><i></i>Prototype · simulated data</span></div></header>
 <div class="tick" aria-hidden="true"><div class="in mono" id="tick"></div></div>
 
@@ -222,7 +222,8 @@ footer{padding:28px 0 60px;color:var(--mut);font-size:13px}
 </main>
 <footer><div class="wrap">Prototype for the NetNet community &amp; devs, feedback welcome. NetNet Capital · Portfolio League prototype · <a href="../">More NetNet prototypes</a></div></footer>
 
-<script src="engine.js"></script>
+<div style="max-width:1000px;margin:0 auto;padding:0 14px"><div class="nn-card" id="nnaBoard"></div><label class="nna-mut" style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="ranked" checked> Ranked entry on <b>This week</b>: 100 <span class="nna-test">TEST</span> credits (10 to treasury first, 90 to the weekly pool).</label></div>
+<script src="engine.js"></script><script src="../arcade/sims.js"></script><script src="../arcade/core.js"></script>
 <script>
 (function(){
 'use strict';
@@ -230,7 +231,8 @@ const $=id=>document.getElementById(id);
 const fmt$=(x,d=0)=>'$'+Number(x).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
 const pct=(x,d=2)=>(x>=0?'+':'')+x.toFixed(d)+'%';
 const A=PL.ASSETS,R=PL.RULES;
-const SEASONS=[{id:20261019,label:'Week A'},{id:20261026,label:'Week B'},{id:20261102,label:'Week C'}];
+const WEEK=NNS.weekId();const SEASONS=[{id:WEEK,label:'This week (ranked)'},{id:20261019,label:'Practice A'},{id:20261026,label:'Practice B'}];
+function nnaBoard(){const e=document.getElementById('nnaBoard');if(e)e.innerHTML=NNA.boardHTML('portfolio-league')}document.addEventListener('DOMContentLoaded',nnaBoard);
 let season=SEASONS[0].id, paths=PL.pricePaths(season);
 let weights={NVDA:30,MSFT:25,GOLD:20,TBILL:25};
 let result=null, animT=null;
@@ -292,7 +294,7 @@ function showKpis(n){if(!result)return;const v=result.values.slice(0,n+1);let pk
  $('kscore').textContent=(r-R.ddPenalty*dd*100).toFixed(2);}
 function play(){if(!result)return;clearInterval(animT);let n=0;$('krank').textContent='…';animT=setInterval(()=>{n++;drawChart(n);showKpis(n);if(n>=PL.STEPS){clearInterval(animT);finish();}},70);}
 function finish(){clearInterval(animT);drawChart(PL.STEPS);showKpis(PL.STEPS);renderBoard();}
-$('lock').onclick=()=>{const v=PL.validate(weights);if(!v.ok)return;result=PL.evaluate(weights,paths);document.getElementById('replay').scrollIntoView({behavior:'smooth'});setTimeout(play,350);};
+$('lock').onclick=()=>{const v=PL.validate(weights);if(!v.ok)return;result=PL.evaluate(weights,paths);if(season===WEEK){const w={};for(const k in weights)if(weights[k]>0)w[k]=weights[k];const nr=NNA.submit('portfolio-league',{week:WEEK,seed:WEEK,log:[[0,w]],claimed:Math.round(result.score*100)/100,ranked:document.getElementById('ranked').checked&&NNA.enter('portfolio-league')});NNA.toast(nr.v.ok?'✔ Verified: score '+nr.score:'✘ '+nr.v.reasons.join('; '));nnaBoard();window.__lastRun=nr;}document.getElementById('replay').scrollIntoView({behavior:'smooth'});setTimeout(play,350);};
 $('play').onclick=()=>{if(!result){$('lock').click();return;}play();};
 $('skip').onclick=()=>{if(!result){const v=PL.validate(weights);if(!v.ok)return;result=PL.evaluate(weights,paths);}finish();};
 
