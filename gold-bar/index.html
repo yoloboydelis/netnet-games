@@ -5,7 +5,7 @@
 <meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/gold-bar.png"><meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#070b16"><link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css">
 <style>:root{--c:#f5c542}</style>
-<script src="../arcade/sims.js"></script><script src="../arcade/core.js"></script></head><body>
+<script src="../arcade/sims.js"></script><script>window.NN_SCORE_SERVER="https://netnet-arcade-verifier.netnetarcade.workers.dev"</script><script src="../arcade/core.js"></script></head><body>
 <div class="nn-wrap"><div class="nn-top"><a href="../">← LOBBY</a><span class="nn-pill">CABINET 05 · <span class="nna-ok">✔ REPLAY-VERIFIED</span></span></div>
 <h1 class="nn-title">GOLD BAR</h1><p class="nn-sub">Tap to stop the needle inside the <b style="color:var(--gold)">gold zone</b>. Dead centre scores 3. Three misses and you are out; waiting 5 s counts as a miss. Same zones for everyone this week.</p>
 <div class="nn-hud"><span id="sc">0 pts</span><span id="lv">❤❤❤</span><span id="st">streak 0</span></div>
@@ -13,7 +13,7 @@
 <button class="nn-btn full" id="tap" style="min-height:120px;font-size:26px;border-radius:0 0 14px 14px">START</button></div><label class="nna-mut" style="display:block;margin:8px 0"><input type="checkbox" id="ranked" checked> Ranked entry: 100 <span class="nna-test">TEST</span> credits (10 to treasury first, 90 to this week's pool). Untick for free practice.</label><div class="nn-card" id="board"></div><div class="nn-card"><h3>HOW SCORES ARE VERIFIED</h3><p class="nn-sub" style="font-size:13px">Everyone gets the same level this week (seed from the UTC week). Your inputs are recorded tick by tick; at game over the shared verifier re-plays them from scratch and only the re-simulated score counts. Runs that go faster than real time, pause, hide the tab, or exceed the input-rate cap are rejected.</p></div></div>
 <script>
 const GAME='gold-bar';
-const $=id=>document.getElementById(id);function board(){$('board').innerHTML=NNA.boardHTML(GAME)}
+const $=id=>document.getElementById(id);function board(){NNA.renderBoard(GAME,$('board'))}
 document.addEventListener('DOMContentLoaded',()=>{board();NNA.foot()});
 const cv=$('cv'),x=cv.getContext('2d');let flash=0,lastMsg='';
 function draw(s){x.fillStyle="#0f1729";x.fillRect(0,0,600,260);x.fillStyle="#1b2944";x.fillRect(30,110,540,40);

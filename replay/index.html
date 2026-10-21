@@ -5,14 +5,16 @@
 <meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/home.png"><meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#070b16"><link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css">
 <style>:root{--c:#38f5ff}</style><script src="../dip-dash/engine.js"></script><script src="../portfolio-league/engine.js"></script>
-<script src="../arcade/sims.js"></script><script src="../arcade/core.js"></script></head><body>
+<script src="../arcade/sims.js"></script><script>window.NN_SCORE_SERVER="https://netnet-arcade-verifier.netnetarcade.workers.dev"</script><script src="../arcade/core.js"></script></head><body>
 <div class="nn-wrap" style="max-width:760px"><h1 class="nn-title">REPLAY VIEWER</h1><p class="nn-sub" id="meta">Loading…</p>
 <div class="nn-stage" style="padding:0;overflow:hidden"><canvas id="cv" width="600" height="400" style="width:100%;height:auto"></canvas></div>
 <div class="nn-row"><button class="nn-btn" id="play">▶ Play</button><button class="nn-btn ghost" id="sp">Speed 1x</button><a class="nn-btn ghost" id="cab" href="../">Play this cabinet</a></div>
 <div class="nn-card" id="ver"></div></div>
 <script>
 const $=id=>document.getElementById(id),cv=$('cv'),x=cv.getContext('2d');let run,G,speed=1,timer=null;
-try{run=NNA.decode(new URLSearchParams(location.search).get('r')||'')}catch(e){}
+const QS=new URLSearchParams(location.search);try{if(QS.get('r'))run=NNA.decode(QS.get('r'))}catch(e){}
+(async()=>{if(!run&&QS.get('id')&&NNA.SERVER){try{const x=await (await fetch(NNA.SERVER+'/v1/run/'+encodeURIComponent(QS.get('id')))).json();if(x.game)run={game:x.game,week:x.week,seed:x.seed,log:x.log,wallMs:x.wallMs,handle:x.handle,claimed:x.score,srv:x}}catch(e){}}init()})();
+function init(){
 function txt(t,y,c,f){x.fillStyle=c||'#eaf0fb';x.font=f||'bold 22px system-ui';x.textAlign='center';x.fillText(t,300,y)}
 const RD={
  'snake':s=>{x.fillStyle='#000';x.fillRect(0,0,600,400);const o=100,c=20;x.fillStyle='#ff2bd6';x.fillRect(o+s.food.x*c+3,s.food.y*c+3,c-6,c-6);s.sn.forEach((p,i)=>{x.fillStyle=i?'#39ff14':'#b6ff9e';x.fillRect(o+p.x*c+1,p.y*c+1,c-2,c-2)});x.strokeStyle='#39ff1455';x.strokeRect(o,0,400,400)},
@@ -30,6 +32,7 @@ if(!run||!NNS.games[run.game]){$('meta').textContent='No replay found in this li
  $('ver').innerHTML=v.ok?'<span class="nna-ok">✔ VERIFIED</span> Re-simulated in your browser from the seed + input log: <b>'+v.score+' '+G.unit+'</b>'+(run.claimed!=null&&run.claimed!==v.score?' (link claimed '+NNA.esc(run.claimed)+', ignored)':'')+'.<br><span class="nna-mut">Same code the score server runs. Anti-bot: input rate, real-time pacing, no pause, weekly seed.</span>':'<span class="nna-bad">✘ NOT VERIFIED</span> '+NNA.esc(v.reasons.join('; '));
  let i=0;const draw=()=>{const f=F[Math.min(i,F.length-1)];RD[run.game](f)};draw();
  $('play').onclick=()=>{clearInterval(timer);i=0;if(G.noPacing){draw();return}timer=setInterval(()=>{i+=speed;draw();if(i>=F.length-1)clearInterval(timer)},1000/G.tps)};
- $('sp').onclick=()=>{speed=speed>=4?1:speed*2;$('sp').textContent='Speed '+speed+'x'};}
+ $('sp').onclick=()=>{speed=speed>=4?1:speed*2;$('sp').textContent='Speed '+speed+'x'};
+ if(run.srv)$('ver').insertAdjacentHTML('beforeend','<br>🌐 '+(run.srv.verified?'<span class="nna-ok">✔ SERVER VERIFIED</span> stored on the score server':'<span class="nna-bad">✘ SERVER REJECTED</span> '+NNA.esc(run.srv.reasons.join('; '))));}}
 document.addEventListener('DOMContentLoaded',()=>NNA.foot());
 </script></body></html>
