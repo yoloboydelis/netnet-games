@@ -18,7 +18,7 @@ import math, random, json, sys
 STEPS_PER_DAY = 24
 DAYS = 180
 PERF_FEE = 0.10                     # 10% of earned LP fees only
-SPLIT = {"treasury": 0.05, "net_liquidity_layer": 0.03, "founder_vested": 0.02}
+SPLIT = {"treasury": 0.05, "net_liquidity_layer": 0.03, "builders_fund_vested": 0.02}
 
 POOLS = {
     # vol = annualised volatility of the simulated path; base_fee_apr = ASSUMED fee yield earned by
