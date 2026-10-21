@@ -1,0 +1,22 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>STATS · NetNet Arcade</title><meta name="description" content="Public NetNet Arcade stats: plays, verified runs, pools and the example treasury cut.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Arcade"><meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/stats/">
+<meta property="og:title" content="STATS · NetNet Arcade"><meta property="og:description" content="Public NetNet Arcade stats: plays, verified runs, pools and the example treasury cut.">
+<meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/home.png"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#070b16"><link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css">
+<style>:root{--c:#38f5ff}</style><script src="../dip-dash/engine.js"></script><script src="../portfolio-league/engine.js"></script>
+<script src="../arcade/sims.js"></script><script src="../arcade/core.js"></script></head><body>
+<div class="nn-wrap" style="max-width:760px"><h1 class="nn-title">ARCADE STATS</h1><p class="nn-sub">Plays and pools recorded on this device while the arcade runs locally. When the score server goes live this page reads the global numbers from it. <span class="nna-test">TEST CREDITS</span></p>
+<div class="nn-card"><table class="nn-lb" id="t"></table></div>
+<div class="nn-card"><h3>EXAMPLE: TREASURY CUT COMES FIRST</h3><p class="nna-mut">Pools are funded only by entries. The treasury takes its cut before anything goes to prizes, so the treasury never risks its own capital.</p>
+<div class="nn-row"><label class="nna-mut">Entries / week<input id="e" type="number" value="2000" min="0" style="width:100%;min-height:44px;background:#0b1022;color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:0 8px"></label><label class="nna-mut">Entry fee<input id="f" type="number" value="1" min="0" step="0.5" style="width:100%;min-height:44px;background:#0b1022;color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:0 8px"></label><label class="nna-mut">Treasury cut %<input id="c" type="number" value="10" min="0" max="50" style="width:100%;min-height:44px;background:#0b1022;color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:0 8px"></label></div><div id="calc"></div></div></div>
+<script>
+const $=id=>document.getElementById(id),wk=NNS.weekId();
+function t(){const rs=NNA.runs(),P=NNA.pools();let T={n:0,v:0,ent:0,pool:0,tr:0};
+ const rows=Object.keys(NNA.GAMES).map(g=>{const r=rs.filter(x=>x.game===g),v=r.filter(x=>x.v&&x.v.ok).length,p=P[g+':'+wk]||{entries:0,pool:0,treasury:0},b=NNA.board(g)[0];T.n+=r.length;T.v+=v;T.ent+=p.entries;T.pool+=p.pool;T.tr+=p.treasury;
+  return '<tr><td>'+NNA.GAMES[g].n+'</td><td>'+r.length+'</td><td>'+v+'</td><td>'+p.entries+'</td><td>'+Math.round(p.pool)+'</td><td>'+Math.round(p.treasury)+'</td><td>'+(b?NNA.esc(b.handle)+' '+b.score:'·')+'</td></tr>'}).join('');
+ $('t').innerHTML='<tr class="nna-mut"><td>Cabinet</td><td>Plays</td><td>Verified</td><td>Entries (wk)</td><td>Pool</td><td>Treasury</td><td>#1 this week</td></tr>'+rows+'<tr style="font-weight:800"><td>TOTAL</td><td>'+T.n+'</td><td>'+T.v+'</td><td>'+T.ent+'</td><td>'+Math.round(T.pool)+'</td><td>'+Math.round(T.tr)+'</td><td></td></tr>'}
+function c(){const e=+$('e').value||0,f=+$('f').value||0,k=(+$('c').value||0)/100,g=e*f,tr=g*k,p=g-tr,fm=v=>'$'+v.toLocaleString('en-US',{maximumFractionDigits:2});
+ $('calc').innerHTML='<div class="nn-kv"><span>Gross entries</span><b>'+fm(g)+'</b></div><div class="nn-kv"><span>1. Treasury cut (first)</span><b>'+fm(tr)+'</b></div><div class="nn-kv"><span>2. Prize pool (rest)</span><b>'+fm(p)+'</b></div><div class="nn-kv"><span>Paid to top 3 (50/30/20)</span><b>'+fm(p*.5)+' / '+fm(p*.3)+' / '+fm(p*.2)+'</b></div><div class="nn-kv"><span>Treasury per year (×52, per cabinet)</span><b>'+fm(tr*52)+'</b></div><p class="nna-mut">Illustrative example, not live and not an offer.</p>'}
+['e','f','c'].forEach(i=>$(i).oninput=c);document.addEventListener('DOMContentLoaded',()=>{t();c();NNA.foot()});
+</script></body></html>

@@ -1,0 +1,35 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>REPLAY · NetNet Arcade</title><meta name="description" content="Watch a replay-verified NetNet Arcade run.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Arcade"><meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/replay/">
+<meta property="og:title" content="REPLAY · NetNet Arcade"><meta property="og:description" content="Watch a replay-verified NetNet Arcade run.">
+<meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/home.png"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#070b16"><link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css">
+<style>:root{--c:#38f5ff}</style><script src="../dip-dash/engine.js"></script><script src="../portfolio-league/engine.js"></script>
+<script src="../arcade/sims.js"></script><script src="../arcade/core.js"></script></head><body>
+<div class="nn-wrap" style="max-width:760px"><h1 class="nn-title">REPLAY VIEWER</h1><p class="nn-sub" id="meta">Loading…</p>
+<div class="nn-stage" style="padding:0;overflow:hidden"><canvas id="cv" width="600" height="400" style="width:100%;height:auto"></canvas></div>
+<div class="nn-row"><button class="nn-btn" id="play">▶ Play</button><button class="nn-btn ghost" id="sp">Speed 1x</button><a class="nn-btn ghost" id="cab" href="../">Play this cabinet</a></div>
+<div class="nn-card" id="ver"></div></div>
+<script>
+const $=id=>document.getElementById(id),cv=$('cv'),x=cv.getContext('2d');let run,G,speed=1,timer=null;
+try{run=NNA.decode(new URLSearchParams(location.search).get('r')||'')}catch(e){}
+function txt(t,y,c,f){x.fillStyle=c||'#eaf0fb';x.font=f||'bold 22px system-ui';x.textAlign='center';x.fillText(t,300,y)}
+const RD={
+ 'snake':s=>{x.fillStyle='#000';x.fillRect(0,0,600,400);const o=100,c=20;x.fillStyle='#ff2bd6';x.fillRect(o+s.food.x*c+3,s.food.y*c+3,c-6,c-6);s.sn.forEach((p,i)=>{x.fillStyle=i?'#39ff14':'#b6ff9e';x.fillRect(o+p.x*c+1,p.y*c+1,c-2,c-2)});x.strokeStyle='#39ff1455';x.strokeRect(o,0,400,400)},
+ 'gold-bar':s=>{x.fillStyle='#0f1729';x.fillRect(0,0,600,400);x.fillStyle='#1b2944';x.fillRect(30,180,540,40);const z=s.zone;x.fillStyle='#f5c542';x.fillRect(30+(z.c-z.w/2)*540,180,z.w*540,40);x.fillStyle='#38f5ff';x.fillRect(26+Math.max(0,s.pos)*540,160,8,80);txt(s.msg||'round '+(s.round+1),120);txt(s.score+' pts · lives '+s.lives,300,'#8b9bb8')},
+ 'rent-rush':s=>{const g=NNS.games['rent-rush'];x.fillStyle='#0f1729';x.fillRect(0,0,600,400);g.P.forEach((p,i)=>{x.fillStyle='#1b2944';x.fillRect(150,70+i*60,400,36);x.fillStyle='#39ff88';x.fillRect(150,70+i*60,Math.min(400,s.own[i]*20),36);x.fillStyle='#eaf0fb';x.font='18px system-ui';x.textAlign='left';x.fillText(p.n+' ×'+s.own[i],10,94+i*60)});txt('$'+Math.floor(s.earned).toLocaleString()+' rent · '+(45-s.tick/10).toFixed(1)+'s left',40);txt('cash $'+Math.floor(s.cash)+' · +$'+g.rate(s)+'/s',350,'#8b9bb8')},
+ 'rebalance':s=>{x.fillStyle='#0f1729';x.fillRect(0,0,600,400);s.w.forEach((v,i)=>{x.fillStyle='#1b2944';x.fillRect(160,70+i*60,400,30);x.fillStyle='#38f5ff';x.fillRect(160,70+i*60,v*4,30);x.fillStyle='#fff';x.fillRect(160+s.tgt[i]*4,64+i*60,3,42);x.fillStyle='#eaf0fb';x.font='17px system-ui';x.textAlign='left';x.fillText(NNS.games.rebalance.A[i]+' '+v+'%',10,92+i*60)});txt('Level '+Math.min(5,s.lv+1)+'/5 · '+(s.tick/10+s.extra*2).toFixed(1)+'s',40)},
+ 'dip-dash':s=>{x.fillStyle='#0a0618';x.fillRect(0,0,600,400);const p=s.path,lo=Math.min(...p),hi=Math.max(...p,lo+1);x.strokeStyle='#ff2bd6';x.lineWidth=2;x.beginPath();p.forEach((v,i)=>{const X=20+560*i/DD.TICKS,Y=360-300*(v-lo)/(hi-lo);i?x.lineTo(X,Y):x.moveTo(X,Y)});x.stroke();txt('equity $'+Math.round(s.eq).toLocaleString()+' · position '+(s.pos>0?'LONG':s.pos<0?'SHORT':'FLAT'),36)},
+ 'portfolio-league':s=>{x.fillStyle='#0f1729';x.fillRect(0,0,600,400);if(!s.res)return;const v=s.res.values,lo=Math.min(...v),hi=Math.max(...v);x.strokeStyle='#f5a623';x.lineWidth=3;x.beginPath();v.forEach((y,i)=>{const X=20+560*i/(v.length-1),Y=360-280*(y-lo)/((hi-lo)||1);i?x.lineTo(X,Y):x.moveTo(X,Y)});x.stroke();txt('return '+s.res.ret.toFixed(2)+'% · max DD '+s.res.maxDD.toFixed(2)+'% · score '+s.res.score.toFixed(2),36)}};
+function frames(){const out=[];const g=NNS.games[run.game];if(g.noPacing){out.push(NNS.simulate(run.game,run.seed,run.log));return out}
+ const s0=g.create(run.seed);out.push(JSON.parse(JSON.stringify(s0,(k,v)=>k==='r'?undefined:v)));
+ NNS.simulate(run.game,run.seed,run.log,s=>{if(run.game==='dip-dash'){out.push({path:s.path.slice(),eq:s.eq,pos:s.pos})}else out.push(JSON.parse(JSON.stringify(s,(k,v)=>k==='r'?undefined:v)))});return out}
+if(!run||!NNS.games[run.game]){$('meta').textContent='No replay found in this link.'}else{
+ G=NNS.games[run.game];const v=NNS.verify(Object.assign({},run,{claimed:null}));const F=frames();$('cab').href='../'+NNA.GAMES[run.game].path;
+ $('meta').innerHTML='<b>'+NNA.esc(run.handle||'anon')+'</b> · '+NNA.GAMES[run.game].n+' · '+NNA.weekLabel(run.week)+' · '+run.log.length+' inputs';
+ $('ver').innerHTML=v.ok?'<span class="nna-ok">✔ VERIFIED</span> Re-simulated in your browser from the seed + input log: <b>'+v.score+' '+G.unit+'</b>'+(run.claimed!=null&&run.claimed!==v.score?' (link claimed '+NNA.esc(run.claimed)+', ignored)':'')+'.<br><span class="nna-mut">Same code the score server runs. Anti-bot: input rate, real-time pacing, no pause, weekly seed.</span>':'<span class="nna-bad">✘ NOT VERIFIED</span> '+NNA.esc(v.reasons.join('; '));
+ let i=0;const draw=()=>{const f=F[Math.min(i,F.length-1)];RD[run.game](f)};draw();
+ $('play').onclick=()=>{clearInterval(timer);i=0;if(G.noPacing){draw();return}timer=setInterval(()=>{i+=speed;draw();if(i>=F.length-1)clearInterval(timer)},1000/G.tps)};
+ $('sp').onclick=()=>{speed=speed>=4?1:speed*2;$('sp').textContent='Speed '+speed+'x'};}
+document.addEventListener('DOMContentLoaded',()=>NNA.foot());
+</script></body></html>
