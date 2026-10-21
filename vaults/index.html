@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>NetNet Liquidity Vaults · Concentrated-liquidity vaults on Robinhood Chain (prototype)</title>
 <meta name="description" content="Design prototype: automated NET/USDG and tokenized-stock/USDG liquidity vaults with zero-swap rebalancing, a 10% fee on earned LP fees only, and wsNET staker tiers. Simulated data, nothing live onchain.">
 <link rel="canonical" href="https://yoloboydelis.github.io/netnet-games/vaults/">
@@ -39,7 +39,7 @@ table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:10px 6px;
 ul.risk li{margin:6px 0}
 footer{padding:26px 0 40px;color:var(--mut);font-size:13px;text-align:center}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:10px;border:1px solid var(--line);color:var(--txt);text-decoration:none;font-weight:700}
-</style></head><body>
+</style><script src="../arcade/sims.js"></script><script src="../arcade/core.js"></script></head><body>
 <header><div class="wrap"><a class="logo" href="../">← NETNET ARCADE</a><span class="sim">SIMULATED · NOT LIVE</span></div></header>
 <div class="banner"><div class="wrap">Design prototype. No contracts deployed, no deposits possible. All figures come from a seeded simulation.</div></div>
 <main class="wrap">
@@ -63,7 +63,7 @@ footer{padding:26px 0 40px;color:var(--mut);font-size:13px;text-align:center}
 
 <section id="fees"><h2>Fee split</h2><p class="mut">10% of <b>LP fees earned</b> (high-water mark on fees only, never on your principal or price moves). No deposit, withdrawal or management fee.</p>
 <div class="bar"><div style="flex:5;background:var(--acc)">Treasury 5%</div><div style="flex:3;background:var(--blue)">NET POL 3%</div><div style="flex:2;background:var(--pur)">Team 2%</div></div>
-<div class="grid"><div class="card"><h3>Treasury · 5%</h3><p class="mut small">Paid first into the NetNet USDG treasury.</p></div><div class="card"><h3>NET liquidity layer · 3%</h3><p class="mut small">Protocol-owned NET/USDG liquidity.</p></div><div class="card"><h3>Founder / team · 2%</h3><p class="mut small">Goes to a public onchain vesting contract (planned: 12-month cliff, 36-month linear vest). Anyone can check it.</p></div></div>
+<div class="grid"><div class="card"><h3>Treasury · 5%</h3><p class="mut small">Paid first into the NetNet USDG treasury.</p></div><div class="card"><h3>NET liquidity layer · 3%</h3><p class="mut small">Protocol-owned NET/USDG liquidity.</p></div><div class="card"><h3>Builders &amp; ops fund · 2%</h3><p class="mut small">Funds development and audits through a public onchain vesting contract. Anyone can check it.</p></div></div>
 <p class="small mut" id="tvlrev"></p></section>
 
 <section id="tiers"><h2>wsNET staker tiers</h2>

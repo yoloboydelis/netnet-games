@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Forge Hub · Build, remix and earn on NetNet (prototype)</title>
 <meta name="description" content="Clickable prototype of Forge Hub: a GitHub-style social builder layer on NetNet rails. Game pages, one-tap remix with royalties, bounties, builder profiles. Demo data.">
 <link rel="canonical" href="https://yoloboydelis.github.io/netnet-games/hub/">
@@ -18,7 +18,7 @@ nav.tabs a.on{border-color:var(--c);color:var(--c);font-weight:800}
 .split{display:flex;height:28px;border-radius:8px;overflow:hidden;font-size:11px;font-weight:800;color:#111}.split div{display:flex;align-items:center;justify-content:center}
 .demo{background:#3a2a05;color:#ffd27a;border-bottom:1px solid #7a5a12;font-size:13px;text-align:center;padding:7px 10px}
 .feed div{padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
-</style></head><body>
+</style><script src="../arcade/sims.js"></script><script src="../arcade/core.js"></script></head><body>
 <div class="demo">DEMO DATA · clickable prototype · nothing onchain, no accounts. Real cabinets are playable; stats, earnings and builders are made up.</div>
 <div class="nn-wrap"><div class="nn-top"><a href="../">← NETNET ARCADE</a><span class="nn-pill">NETNET PRODUCTS · FORGE HUB</span></div>
 <h1 class="nn-title">FORGE HUB</h1><p class="nn-sub">Build, remix and earn on NetNet rails. Every game is a repo, and every remix pays its parent.</p>
@@ -27,13 +27,13 @@ nav.tabs a.on{border-color:var(--c);color:var(--c);font-weight:800}
 <footer class="nn-foot">Prototype for the NetNet community &amp; devs, feedback welcome · Demo data · <a href="../">More cabinets</a></footer>
 <script>
 const REPO="https://github.com/yoloboydelis/netnet-games/tree/main/";
-const B={delis:{n:"delis",role:"NetNet founder",rep:980},mowgli:{n:"mowgli.bot",role:"Studio agent",rep:640},pixelpaul:{n:"pixelpaul (demo)",role:"Indie dev",rep:410},goldbug:{n:"goldbug (demo)",role:"Commodities nerd",rep:230},bxl_dev:{n:"bxl_dev (demo)",role:"Brussels builder",rep:155}};
+const B={core:{n:"netnet_core",role:"NetNet core team",rep:980},mowgli:{n:"mowgli.bot",role:"Studio agent",rep:640},pixelpaul:{n:"pixelpaul (demo)",role:"Indie dev",rep:410},goldbug:{n:"goldbug (demo)",role:"Commodities nerd",rep:230},bxl_dev:{n:"bxl_dev (demo)",role:"Brussels builder",rep:155}};
 // real cabinets + demo remixes. parent = forked from
 const G=[
-{id:"dip-dash",t:"DIP DASH",e:"📉",by:"mowgli",team:{mowgli:60,delis:40},coin:"$DIP",plays:18400,d1:31,remixes:2,genre:"Arcade reflex",play:"../dip-dash/"},
-{id:"portfolio-league",t:"PORTFOLIO LEAGUE",e:"📈",by:"delis",team:{delis:70,mowgli:30},coin:"$LEAGUE",plays:6200,d1:24,genre:"Strategy",play:"../portfolio-league/"},
-{id:"hot-seat",t:"HOT SEAT",e:"🔥",by:"delis",team:{delis:100},coin:"$SEAT",plays:9100,d1:19,genre:"PvP",play:"../hot-seat/"},
-{id:"snake",t:"SNAKE HIGH-SCORE",e:"🐍",by:"delis",team:{delis:100},coin:"$SNAKE",plays:12800,d1:22,genre:"Arcade",play:"../snake/"},
+{id:"dip-dash",t:"DIP DASH",e:"📉",by:"mowgli",team:{mowgli:60,core:40},coin:"$DIP",plays:18400,d1:31,remixes:2,genre:"Arcade reflex",play:"../dip-dash/"},
+{id:"portfolio-league",t:"PORTFOLIO LEAGUE",e:"📈",by:"core",team:{core:70,mowgli:30},coin:"$LEAGUE",plays:6200,d1:24,genre:"Strategy",play:"../portfolio-league/"},
+{id:"hot-seat",t:"HOT SEAT",e:"🔥",by:"core",team:{core:100},coin:"$SEAT",plays:9100,d1:19,genre:"PvP",play:"../hot-seat/"},
+{id:"snake",t:"SNAKE HIGH-SCORE",e:"🐍",by:"core",team:{core:100},coin:"$SNAKE",plays:12800,d1:22,genre:"Arcade",play:"../snake/"},
 {id:"gold-bar",t:"GOLD BAR",e:"🥇",by:"mowgli",team:{mowgli:100},coin:"$GBAR",plays:3900,d1:28,genre:"Arcade reflex",play:"../gold-bar/",isNew:1},
 {id:"rent-rush",t:"RENT RUSH",e:"🏠",by:"mowgli",team:{mowgli:100},coin:"$RENT",plays:2700,d1:26,genre:"Idle tycoon",play:"../rent-rush/",isNew:1},
 {id:"rebalance",t:"REBALANCE",e:"⚖️",by:"mowgli",team:{mowgli:100},coin:"$REBAL",plays:2100,d1:21,genre:"Puzzle",play:"../rebalance/",isNew:1},
@@ -42,7 +42,7 @@ const G=[
 {id:"dip-dash-night",t:"DIP DASH: NIGHT SESSION",e:"🌙",by:"pixelpaul",parent:"dip-dash",team:{pixelpaul:70,goldbug:30},coin:"$NIGHT",plays:1500,d1:20,genre:"Arcade reflex",demo:1},
 {id:"tower-rush",t:"TOWER RUSH",e:"🌆",by:"bxl_dev",parent:"rent-rush",team:{bxl_dev:100},coin:"$TOWER",plays:300,d1:12,genre:"Idle tycoon",demo:1},
 {id:"oil-bar-hard",t:"OIL BAR HARDCORE",e:"💀",by:"bxl_dev",parent:"oil-bar",team:{bxl_dev:100},coin:"$HARD",plays:120,d1:9,genre:"Arcade reflex",demo:1}];
-const IDEAS=[{t:"Bond ladder puzzle: build a T-bill ladder before rates move",b:2500,s:"open",by:"goldbug"},{t:"Replay verifier for DIP DASH scores (anti-bot)",b:5000,s:"in progress · pixelpaul",by:"delis"},{t:"Break the Vault: Liquidity Vaults bug bounty",b:"up to 25,000",s:"open (when testnet ships)",by:"delis"},{t:"Two-phone PvP mode for GOLD BAR",b:1500,s:"open",by:"bxl_dev"},{t:"Cabinet Kit: Unity WebGL wrapper",b:3000,s:"open",by:"mowgli"}];
+const IDEAS=[{t:"Bond ladder puzzle: build a T-bill ladder before rates move",b:2500,s:"open",by:"goldbug"},{t:"Replay verifier for DIP DASH scores (anti-bot)",b:5000,s:"in progress · pixelpaul",by:"core"},{t:"Break the Vault: Liquidity Vaults bug bounty",b:"up to 25,000",s:"open (when testnet ships)",by:"core"},{t:"Two-phone PvP mode for GOLD BAR",b:1500,s:"open",by:"bxl_dev"},{t:"Cabinet Kit: Unity WebGL wrapper",b:3000,s:"open",by:"mowgli"}];
 const ROY=0.20; // EXAMPLE: parent gets 20% of the remix creator's tax share
 const g=id=>G.find(x=>x.id==id),kids=id=>G.filter(x=>x.parent==id),fmt=n=>n.toLocaleString("en-US");
 const fee=x=>Math.round(x.plays*1.9); // demo creator-share earnings in wsNET

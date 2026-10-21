@@ -4,7 +4,7 @@
 > Inspired by the category MaxFi (maxfi.tech) works in. This is not a partnership, and no MaxFi code, branding or text is used.
 
 ## 1. What it is
-These are automated concentrated-liquidity vaults on Robinhood Chain (chain 4663). A user deposits tokens into one vault per pool. A keeper keeps the position in range. The vault takes a performance fee **only on LP fees earned** and pays it out in this order: **treasury, NET liquidity layer, founder (vested)**.
+These are automated concentrated-liquidity vaults on Robinhood Chain (chain 4663). A user deposits tokens into one vault per pool. A keeper keeps the position in range. The vault takes a performance fee **only on LP fees earned** and pays it out in this order: **treasury, NET liquidity layer, builders & ops fund (vested)**.
 
 Launch pools:
 1. **NET/USDG** first. It feeds the NET liquidity layer and gives NET holders a native yield product.
@@ -27,7 +27,7 @@ Launch pools:
 | Performance fee (on LP fees earned only) | **10%** | split below |
 | ↳ Treasury | 5% | NetNet USDG treasury, taken **first**, before any other payout |
 | ↳ NET liquidity layer (POL) | 3% | protocol-owned NET/USDG liquidity |
-| ↳ Founder / team | 2% | **public onchain vesting contract** (for example a 12-month cliff and 36-month linear vest; address published, no admin withdraw) |
+| ↳ Builders & ops fund | 2% | **public onchain vesting contract** (for example a 12-month cliff and 36-month linear vest; address published, no admin withdraw) |
 | Deposit / withdraw fee | 0% | n/a |
 
 There is no management fee. The split is a constant enforced by the contract. Changes go through the timelock.
@@ -40,7 +40,7 @@ There is no management fee. The split is a constant enforced by the contract. Ch
 | Silver | ≥ 10,000 | 5% |
 | Gold | ≥ 50,000 | 0% on the first $25k deposited, then 5% |
 
-The discount shrinks all three buckets proportionally, so the founder never earns more than the treasury share ratio. A balance is measured as the minimum held over the last N days, to stop flash-staking. Thresholds are placeholders (open question).
+The discount shrinks all three buckets proportionally, so the builders fund never earns more than the treasury share ratio. A balance is measured as the minimum held over the last N days, to stop flash-staking. Thresholds are placeholders (open question).
 
 ## 5. Security plan
 1. Internal review, a fuzz/invariant suite (share accounting, withdraw-always-works, fee ≤ 10% of fees) and a testnet soak test.
@@ -63,13 +63,13 @@ The discount shrinks all three buckets proportionally, so the founder never earn
 - Treasury revenue is modest and **diluted as TVL grows**, because pool fees are fixed by volume. With assumed inputs: at $1M TVL, about $10k/yr to the treasury (NET pool) or about $5k/yr (NVDA pool). At $10M, about $26k/yr or about $19k/yr.
 - Implications: show no APY promises, use volatility-scaled wide ranges, and start with a cap.
 
-## 8. Legal flags (MiCA / Belgium). Get counsel before mainnet.
+## 8. Legal flags (MiCA / EU). Get counsel before mainnet.
 - Offering vaults to EU users may count as a crypto-asset service (portfolio management, or reception/transmission of orders) under MiCA. That may require CASP authorisation or a fully non-custodial, decentralised setup.
 - Tokenized stock pools may touch MiFID II (financial instruments), not only MiCA.
 - The NET token's own MiCA status (white paper, ART/EMT questions) matters if NET is marketed together with the vaults.
-- Fee flows to a founder may raise marketing/inducement questions. Public vesting helps transparency but is not compliance.
-- The Belgian FSMA has issued consumer warnings on yield products. Avoid "APY", "guaranteed", and so on. Consider geofencing.
-- These vaults are investment products, **not games**. They are kept separate from the Belgian Gaming Act arcade cabinets.
+- Fee flows to a team fund may raise marketing/inducement questions. Public vesting helps transparency but is not compliance.
+- EU regulators have issued consumer warnings on yield products. Avoid "APY", "guaranteed", and so on. Consider geofencing.
+- These vaults are investment products, **not games**. They are kept separate from the skill-game arcade cabinets.
 
 ## 9. DEX facts on chain 4663: NOT independently verified (open)
 Third-party sources (the GitHub repo `nirholas/robinhood-toolkit` `dex/DEPLOYMENTS.md`, RobinScreener, Voxelithic) report the following. I could not confirm them against a public RPC. Treat all of them as **unverified**:
@@ -82,7 +82,7 @@ Third-party sources (the GitHub repo `nirholas/robinhood-toolkit` `dex/DEPLOYMEN
 1. Verify every address above from official Robinhood or Uniswap sources and an RPC.
 2. Does a NET/USDG CL pool exist yet, and on V3 or V4? V4 hooks would change the architecture (it could even be a hook-native vault).
 3. Real volume and fee data per pool, to replace the assumed fee yields.
-4. Tier thresholds, founder vesting terms, cap ramp schedule.
+4. Tier thresholds, builders-fund vesting terms, cap ramp schedule.
 5. Keeper: our own bot, or Gelato/Chainlink-style automation on 4663?
 6. Choice of auditors and bounty size.
 7. MiCA/MiFID legal opinion and geofencing policy.
