@@ -1,0 +1,3 @@
+{ "name": "netnet-arcade-verifier", "private": true, "type": "module",
+  "scripts": { "bundle": "node build.mjs", "test": "node build.mjs && node test.mjs", "dev": "node build.mjs && wrangler dev", "deploy": "node build.mjs && wrangler deploy" },
+  "devDependencies": { "wrangler": "^4" } }
