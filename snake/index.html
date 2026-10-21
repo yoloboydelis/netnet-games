@@ -1,124 +1,35 @@
-<!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NetNet Capital · Verifiable Snake High-Score (Free Practice)</title>
-<meta name="description" content="Free practice: retro Snake with replay-verified scores. Prototype for the NetNet community &amp; devs.">
-<style>
-:root{--bg:#07040f;--neon:#39ff14;--pink:#ff2bd6;--cyan:#00e5ff;--txt:#e8e6ff;--mut:#9a95c0}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0,#1a0b33,var(--bg) 60%);color:var(--txt);font-family:"Courier New",ui-monospace,monospace;line-height:1.5}
-a{color:var(--cyan)}.wrap{max-width:900px;margin:0 auto;padding:20px}
-.brand{font-weight:bold;letter-spacing:4px;color:var(--pink);text-shadow:0 0 8px var(--pink)}
-h1{font-size:clamp(1.6rem,5vw,2.6rem);color:var(--neon);text-shadow:0 0 10px var(--neon),0 0 30px #39ff1455;margin:.4em 0}
-h2{color:var(--cyan);text-shadow:0 0 8px var(--cyan)}
-.card{border:1px solid #3a2a66;border-radius:10px;padding:18px;margin:18px 0;background:#0d0820cc;box-shadow:0 0 18px #ff2bd622}
-.btn{background:transparent;border:2px solid var(--neon);color:var(--neon);padding:10px 16px;font:inherit;font-weight:bold;border-radius:6px;cursor:pointer;margin:4px 4px 4px 0}
-.btn:hover{background:var(--neon);color:#000}.btn.alt{border-color:var(--pink);color:var(--pink)}.btn.alt:hover{background:var(--pink);color:#000}
-canvas{display:block;width:100%;max-width:400px;aspect-ratio:1;margin:10px auto;border:2px solid var(--cyan);box-shadow:0 0 20px var(--cyan);touch-action:none;background:#000}
-.stats{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}.stats b{color:var(--neon)}
-code{word-break:break-all;color:var(--pink)}.mut{color:var(--mut);font-size:.9em}
-.soon{display:inline-block;border:1px solid var(--pink);color:var(--pink);padding:2px 8px;border-radius:4px;font-size:.8em}
-label{display:block;margin:10px 0 4px}input{width:100%;padding:10px;background:#000;border:1px solid #3a2a66;color:var(--txt);font:inherit;border-radius:6px}
-input:focus{outline:none;border-color:var(--neon)}.err{color:#ff5c5c;min-height:1.2em;font-size:.9em}.ok{color:var(--neon)}
-.trust{display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:center;border-top:1px solid #3a2a66;padding-top:14px;font-size:.9em}
-.dpad{display:none;grid-template-columns:repeat(3,56px);gap:6px;justify-content:center}.dpad button{height:48px}
-@media (pointer:coarse){.dpad{display:grid}}
-
-/* ---- mobile / CTA fixes ---- */
-@media (hover:none){.btn:hover,.btn:hover:not(:disabled){background:transparent;color:var(--neon)}.btn.alt:hover,.btn.alt:hover:not(:disabled){background:transparent;color:var(--pink)}.btn.on:hover{background:var(--cyan)!important;color:#000!important}}
-html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
-html,body{max-width:100%;overflow-x:hidden}
-*,*::before,*::after{box-sizing:border-box}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;text-decoration:none;white-space:nowrap;line-height:1.2;text-align:center;-webkit-tap-highlight-color:transparent;max-width:100%}
-.cta{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 4px}.cta .btn{margin:0}
-img,canvas,table{max-width:100%}
-input{font-size:16px} /* prevents iOS zoom-on-focus */
-@media (max-width:600px){
- .wrap{padding:14px}
- .card{padding:14px;margin:14px 0}
- .cta{flex-direction:column;gap:10px}.cta .btn{width:100%;padding:12px 16px}
- h2{font-size:1.25rem}
- #sub{width:100%}
-}
-.err:empty{min-height:0;margin:0}.soon,.sim{white-space:nowrap}
-
-.dpad button{min-height:48px;min-width:48px}
-</style><!-- Social preview (relative image: ../og/snake.png) -->
-<link rel="canonical" href="https://yoloboydelis.github.io/netnet-games/snake/">
-<meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Games">
-<meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/snake/"><meta property="og:title" content="🐍 Retro Snake. Real pot. Zero luck. · NetNet Capital"><meta property="og:description" content="Free practice: retro Snake with replay-verified scores. Beat the record, take the pot. Prototype for the NetNet community &amp; devs, feedback welcome.">
-<meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/snake.png"><meta property="og:image:secure_url" content="https://yoloboydelis.github.io/netnet-games/og/snake.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="🐍 Retro Snake. Real pot. Zero luck. · NetNet Capital">
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="🐍 Retro Snake. Real pot. Zero luck. · NetNet Capital"><meta name="twitter:description" content="Free practice: retro Snake with replay-verified scores. Beat the record, take the pot. Prototype for the NetNet community &amp; devs, feedback welcome."><meta name="twitter:image" content="https://yoloboydelis.github.io/netnet-games/og/snake.png">
-<link rel="image_src" href="../og/snake.png">
-</head><body><div class="wrap">
-<header><div class="brand">NETNET CAPITAL</div>
-<h1 id="headline">Retro Snake. Real pot. Zero luck.</h1>
-<p>Free practice mode for the <b>Verifiable Snake High-Score</b>. No tokens, no fees, no wallet needed to play. Every run produces a replay code anyone can re-run to check the score.</p>
-<div class="cta"><a class="btn" href="#play">Play free</a></div><p class="mut">Prototype for the NetNet community &amp; devs, feedback welcome.</p></header>
-
-<section id="play" class="card"><h2>Free practice</h2>
-<div class="stats"><span>Score <b id="score">0</b></span><span>Local best <b id="best">0</b></span><span>Seed <b id="seedv">-</b></span></div>
-<canvas id="c" width="400" height="400" aria-label="Snake game"></canvas>
-<div style="text-align:center"><button class="btn" id="startBtn">Start run</button><button class="btn alt" id="replayBtn" disabled>Watch replay</button></div>
-<div class="dpad"><span></span><button class="btn" data-d="0,-1">▲</button><span></span><button class="btn" data-d="-1,0">◀</button><span></span><button class="btn" data-d="1,0">▶</button><span></span><button class="btn" data-d="0,1">▼</button><span></span></div>
-<p class="mut" style="text-align:center">Arrows / WASD, or swipe on the board. Food spawns from a fixed seed: same seed + same inputs = same score, every time.</p>
-<p>Replay code: <code id="rcode">play a run first</code></p><p id="verify" class="mut"></p></section>
-
-<section class="card"><h2>How the real-pot version will work <span class="soon">COMING SOON</span></h2>
-<ul><li><b>Entry in wsNET:</b> each attempt costs a small wsNET fee.</li>
-<li><b>Pot grows:</b> most of every fee goes into the jackpot pot; it keeps growing until someone beats the record.</li>
-<li><b>Beat the record to win:</b> only a score above the current high score takes the pot. Each new record becomes the next target.</li>
-<li><b>Treasury share:</b> a share of each fee funds the NetNet Capital treasury, and a reserve re-seeds the next pot.</li>
-<li><b>Skill only:</b> seeded food, no random drops, no luck.</li>
-<li><b>Replay-verified:</b> winning runs are re-simulated from their input log before payout. No API-call leaderboards.</li></ul>
-<p class="mut">Not live. Final parameters, eligibility and availability are subject to legal review. Nothing on this page is an offer.</p></section>
-
-<footer class="trust"><a href="https://docs.netnet.capital/official-channels" target="_blank" rel="noopener">✔ Official channels</a><span>✔ Free practice, no purchase</span><span>✔ Not available in restricted regions</span><span class="mut">NetNet Capital · prototype</span></footer>
-</div>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SNAKE · NetNet Arcade</title><meta name="description" content="Neon snake on a shared weekly seed. Every food spawn is the same for everyone. Replay-verified.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Arcade"><meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/snake/">
+<meta property="og:title" content="SNAKE · NetNet Arcade"><meta property="og:description" content="Neon snake on a shared weekly seed. Every food spawn is the same for everyone. Replay-verified.">
+<meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/snake.png"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#070b16"><link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css">
+<style>:root{--c:#39ff14}</style><style>.dpad{display:grid;grid-template-columns:repeat(3,64px);gap:6px;justify-content:center;margin:10px 0}.dpad button{min-height:56px}#c{width:100%;aspect-ratio:1;image-rendering:pixelated;border-radius:10px}</style>
+<script src="../arcade/sims.js"></script><script src="../arcade/core.js"></script></head><body>
+<div class="nn-wrap"><div class="nn-top"><a href="../">← LOBBY</a><span class="nn-pill">CABINET 02 · <span class="nna-ok">✔ REPLAY-VERIFIED</span></span></div>
+<h1 class="nn-title">SNAKE</h1><p class="nn-sub">Arrow keys / WASD, swipe on the board, or use the pad. Food spawns are identical for everyone this week. 9 moves per second, no pausing.</p>
+<div class="nn-hud"><span id="score">0 pts</span><span id="len">length 3</span></div>
+<div class="nn-stage"><canvas id="c" width="400" height="400"></canvas>
+<div class="dpad"><span></span><button class="nn-btn ghost" data-d="0">▲</button><span></span><button class="nn-btn ghost" data-d="3">◀</button><button class="nn-btn" id="go">START</button><button class="nn-btn ghost" data-d="1">▶</button><span></span><button class="nn-btn ghost" data-d="2">▼</button><span></span></div></div><label class="nna-mut" style="display:block;margin:8px 0"><input type="checkbox" id="ranked" checked> Ranked entry: 100 <span class="nna-test">TEST</span> credits (10 to treasury first, 90 to this week's pool). Untick for free practice.</label><div class="nn-card" id="board"></div><div class="nn-card"><h3>HOW SCORES ARE VERIFIED</h3><p class="nn-sub" style="font-size:13px">Everyone gets the same level this week (seed from the UTC week). Your inputs are recorded tick by tick; at game over the shared verifier re-plays them from scratch and only the re-simulated score counts. Runs that go faster than real time, pause, hide the tab, or exceed the input-rate cap are rejected.</p></div></div>
 <script>
-// ===== CONFIG =====
-const SEED = 20261017;           // practice seed (same for all visitors)
-const $=id=>document.getElementById(id);
-// ===== deterministic engine =====
-function rng(a){return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
-function fnv(s){let h=0x811c9dc5;for(const ch of s){h^=ch.charCodeAt(0);h=Math.imul(h,16777619)>>>0}return h.toString(16).padStart(8,'0')}
-async function sha(s){try{if(window.crypto&&crypto.subtle){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}}catch(e){}return 'fnv-'+fnv(s)}
-const N=20,CS=20,ctx=$('c').getContext('2d');
-function newGame(seed){const g={r:rng(seed),sn:[{x:10,y:10},{x:9,y:10},{x:8,y:10}],dir:{x:1,y:0},tick:0,score:0,dead:false};placeFood(g);return g}
-function placeFood(g){do{g.food={x:Math.floor(g.r()*N),y:Math.floor(g.r()*N)}}while(g.sn.some(s=>s.x==g.food.x&&s.y==g.food.y))}
-function stepGame(g,turn){g.tick++;if(turn&&!(turn[0]==-g.dir.x&&turn[1]==-g.dir.y))g.dir={x:turn[0],y:turn[1]};
- const h={x:g.sn[0].x+g.dir.x,y:g.sn[0].y+g.dir.y};
- if(h.x<0||h.y<0||h.x>=N||h.y>=N||g.sn.some(s=>s.x==h.x&&s.y==h.y)){g.dead=true;return}
- g.sn.unshift(h);if(h.x==g.food.x&&h.y==g.food.y){g.score++;placeFood(g)}else g.sn.pop()}
-function draw(g,label){ctx.fillStyle='#000';ctx.fillRect(0,0,400,400);ctx.strokeStyle='#14082a';for(let i=0;i<=N;i++){ctx.beginPath();ctx.moveTo(i*CS,0);ctx.lineTo(i*CS,400);ctx.moveTo(0,i*CS);ctx.lineTo(400,i*CS);ctx.stroke()}
- if(!g){ctx.fillStyle='#39ff14';ctx.font='bold 20px Courier New';ctx.textAlign='center';ctx.fillText('PRESS START',200,200);return}
- ctx.shadowBlur=12;ctx.shadowColor='#ff2bd6';ctx.fillStyle='#ff2bd6';ctx.fillRect(g.food.x*CS+3,g.food.y*CS+3,CS-6,CS-6);
- ctx.shadowColor='#39ff14';g.sn.forEach((s,i)=>{ctx.fillStyle=i?'#39ff14':'#b6ff9e';ctx.fillRect(s.x*CS+1,s.y*CS+1,CS-2,CS-2)});ctx.shadowBlur=0;
- if(label){ctx.fillStyle='#00e5ff';ctx.font='bold 18px Courier New';ctx.textAlign='center';ctx.fillText(label,200,30)}}
-// ===== live play =====
-let game=null,timer=null,pending=null,log=[],last=null,mode='idle';
-let best=+localStorage.getItem('nn_best')||0,bestCode=localStorage.getItem('nn_bestcode')||'';
-function showBest(){$('best').textContent=best}showBest();$('seedv').textContent=SEED;
-function start(){if(mode!=='idle')return;game=newGame(SEED);log=[];pending=null;mode='play';$('score').textContent=0;$('verify').textContent='';$('replayBtn').disabled=true;timer=setInterval(tick,110)}
-function tick(){let t=null;if(pending){t=pending;pending=null;
- if(!(t[0]==-game.dir.x&&t[1]==-game.dir.y)&&!(t[0]==game.dir.x&&t[1]==game.dir.y))log.push([game.tick+1,t[0],t[1]]);else t=null}
- stepGame(game,t);$('score').textContent=game.score;if(game.dead){finish();return}draw(game)}
-async function finish(){clearInterval(timer);mode='idle';
- const code=await sha(JSON.stringify({seed:SEED,log}));last={seed:SEED,log:log.slice(),score:game.score,code};
- $('rcode').textContent=code.slice(0,16)+'… ('+game.score+' pts, '+log.length+' inputs)';$('rcode').title=code;
- if(game.score>best){best=game.score;bestCode=code;localStorage.setItem('nn_best',best);localStorage.setItem('nn_bestcode',code);localStorage.setItem('nn_bestrun',JSON.stringify(last));showBest()}
- draw(game,'GAME OVER · '+game.score);$('replayBtn').disabled=false}
-function turn(x,y){if(mode==='play')pending=[x,y]}
-// ===== replay: re-run input log from seed and verify =====
-async function replay(){if(!last||mode!=='idle')return;mode='replay';const g=newGame(last.seed);const m=new Map(last.log.map(e=>[e[0],[e[1],e[2]]]));
- const code=await sha(JSON.stringify({seed:last.seed,log:last.log}));
- timer=setInterval(()=>{stepGame(g,m.get(g.tick+1));if(g.dead){clearInterval(timer);mode='idle';const ok=g.score===last.score&&code===last.code;
-  draw(g,ok?'VERIFIED · '+g.score:'MISMATCH');$('verify').innerHTML=ok?'<span class="ok">✔ Replay re-simulated: score '+g.score+' matches, hash matches.</span>':'✘ Replay mismatch.';return}
-  draw(g,'REPLAY · '+g.score)},45)}
-$('startBtn').onclick=start;$('replayBtn').onclick=replay;
-const K={ArrowUp:[0,-1],ArrowDown:[0,1],ArrowLeft:[-1,0],ArrowRight:[1,0],w:[0,-1],s:[0,1],a:[-1,0],d:[1,0],W:[0,-1],S:[0,1],A:[-1,0],D:[1,0]};
-addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;const k=K[e.key];if(k){e.preventDefault();turn(...k)}else if(e.key===' '&&mode==='idle'){e.preventDefault();start()}});
+const GAME='snake';
+const $=id=>document.getElementById(id);function board(){$('board').innerHTML=NNA.boardHTML(GAME)}
+document.addEventListener('DOMContentLoaded',()=>{board();NNA.foot()});
+const ctx=$('c').getContext('2d'),CS=20;
+function draw(s){ctx.fillStyle='#000';ctx.fillRect(0,0,400,400);ctx.strokeStyle='#14082a';for(let i=0;i<=20;i++){ctx.beginPath();ctx.moveTo(i*CS,0);ctx.lineTo(i*CS,400);ctx.moveTo(0,i*CS);ctx.lineTo(400,i*CS);ctx.stroke()}
+ ctx.shadowBlur=12;ctx.shadowColor='#ff2bd6';ctx.fillStyle='#ff2bd6';ctx.fillRect(s.food.x*CS+3,s.food.y*CS+3,CS-6,CS-6);
+ ctx.shadowColor='#39ff14';s.sn.forEach((p,i)=>{ctx.fillStyle=i?'#39ff14':'#b6ff9e';ctx.fillRect(p.x*CS+1,p.y*CS+1,CS-2,CS-2)});ctx.shadowBlur=0;
+ if(!R.on&&!s.tick){ctx.fillStyle='#39ff14';ctx.font='bold 22px Courier New';ctx.textAlign='center';ctx.fillText('PRESS START',200,190)}
+ $('score').textContent=s.score+' pts';$('len').textContent='length '+s.sn.length}
+const R=NNA.runner(GAME,{onFrame:draw,onEnd:()=>board()});
+draw(NNS.games[GAME].create(NNS.seedFor(GAME)));
+function start(){if(!R.on)R.start($('ranked').checked)}
+function turn(d){if(R.on)R.input(d)}
+$('go').onclick=start;
+const K={ArrowUp:0,ArrowRight:1,ArrowDown:2,ArrowLeft:3,w:0,d:1,s:2,a:3,W:0,D:1,S:2,A:3};
+addEventListener('keydown',e=>{if(document.querySelector('.nn-modal.on'))return;const k=K[e.key];if(k!=null){e.preventDefault();turn(k)}else if(e.key===' '){e.preventDefault();start()}});
 let tx,ty;const cv=$('c');cv.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY;e.preventDefault()},{passive:false});
 cv.addEventListener('touchmove',e=>e.preventDefault(),{passive:false});
-cv.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;if(Math.max(Math.abs(dx),Math.abs(dy))<20){if(mode==='idle')start();return}Math.abs(dx)>Math.abs(dy)?turn(Math.sign(dx),0):turn(0,Math.sign(dy))});
-document.querySelectorAll('.dpad button').forEach(b=>b.onclick=()=>turn(...b.dataset.d.split(',').map(Number)));
-draw(null);
+cv.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;if(Math.max(Math.abs(dx),Math.abs(dy))<20){start();return}turn(Math.abs(dx)>Math.abs(dy)?(dx>0?1:3):(dy>0?2:0))});
+document.querySelectorAll('.dpad button[data-d]').forEach(b=>b.addEventListener('pointerdown',e=>{e.preventDefault();turn(+b.dataset.d)}));
 </script></body></html>

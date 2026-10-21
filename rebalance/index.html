@@ -1,34 +1,26 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>REBALANCE · NetNet Arcade (prototype)</title><meta name="description" content="Speed puzzle: drag a tokenized-asset portfolio back to its target weights in as few moves as possible. Five levels, beat the clock.">
-<link rel="canonical" href="https://yoloboydelis.github.io/netnet-games/rebalance/">
+<title>REBALANCE · NetNet Arcade</title><meta name="description" content="Rebalance 5 portfolios to target weights as fast as you can. Same targets for everyone. Replay-verified.">
 <meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Arcade"><meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/rebalance/">
-<meta property="og:title" content="REBALANCE · NetNet Arcade"><meta property="og:description" content="Speed puzzle: drag a tokenized-asset portfolio back to its target weights in as few moves as possible. Five levels, beat the clock. Prototype for the NetNet community &amp; devs, feedback welcome.">
-<meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/rebalance.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="REBALANCE · NetNet Arcade"><meta name="twitter:description" content="Speed puzzle: drag a tokenized-asset portfolio back to its target weights in as few moves as possible. Five levels, beat the clock."><meta name="twitter:image" content="https://yoloboydelis.github.io/netnet-games/og/rebalance.png">
-<meta name="theme-color" content="#070b16"><link rel="stylesheet" href="../_template/arcade.css">
-<style>:root{--c:#a78bfa}</style>
-<script>window.NN_GAME={game:"rebalance",title:"REBALANCE",color:"#a78bfa",unit:"sec",higherIsBetter:false,demoBase:40};</script>
-<script src="../_template/arcade.js"></script></head><body>
-<div class="nn-wrap"><div class="nn-top"><a href="../">← NETNET ARCADE</a><span class="nn-pill">CABINET 07 · PROTOTYPE</span></div>
-<h1 class="nn-title">REBALANCE</h1>
-<p class="nn-sub">Tap an <b>overweight</b> asset, then an <b>underweight</b> one, to move 5%. Match every target to clear a level. 5 levels; each extra move beyond the minimum costs +2s. Lowest time wins.</p>
-<div class="nn-hud"><span id="lvl">Level 1/5</span><span id="clock">0.0s</span><span id="mv">moves 0</span></div>
-<div class="nn-stage"><div id="bars"></div><div class="nn-row"><button class="nn-btn full" id="go">START</button></div></div>
-<div class="nn-card" id="forge"></div></div>
+<meta property="og:title" content="REBALANCE · NetNet Arcade"><meta property="og:description" content="Rebalance 5 portfolios to target weights as fast as you can. Same targets for everyone. Replay-verified.">
+<meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/rebalance.png"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#070b16"><link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css">
+<style>:root{--c:#38f5ff}</style>
+<script src="../arcade/sims.js"></script><script src="../arcade/core.js"></script></head><body>
+<div class="nn-wrap"><div class="nn-top"><a href="../">← LOBBY</a><span class="nn-pill">CABINET 07 · <span class="nna-ok">✔ REPLAY-VERIFIED</span></span></div>
+<h1 class="nn-title">REBALANCE</h1><p class="nn-sub">Tap an asset that is <b style="color:var(--dn)">overweight</b>, then one that is <b style="color:var(--gold)">underweight</b> to move 5%. Hit all targets in 5 portfolios. Time + 2 s per extra move; lowest wins. Same targets for everyone this week.</p>
+<div class="nn-hud"><span id="clock">0.0s</span><span id="lvl">Level 1/5</span><span id="mv">moves 0</span></div>
+<div class="nn-stage"><div id="bars"></div><button class="nn-btn full" id="go" style="margin-top:8px">START</button></div><label class="nna-mut" style="display:block;margin:8px 0"><input type="checkbox" id="ranked" checked> Ranked entry: 100 <span class="nna-test">TEST</span> credits (10 to treasury first, 90 to this week's pool). Untick for free practice.</label><div class="nn-card" id="board"></div><div class="nn-card"><h3>HOW SCORES ARE VERIFIED</h3><p class="nn-sub" style="font-size:13px">Everyone gets the same level this week (seed from the UTC week). Your inputs are recorded tick by tick; at game over the shared verifier re-plays them from scratch and only the re-simulated score counts. Runs that go faster than real time, pause, hide the tab, or exceed the input-rate cap are rejected.</p></div></div>
 <script>
-const A=["🥇 GOLD","💻 NVDA","🏛 T-BILL","🏠 HOUSE","🛢 OIL"];
-let R,lvN,w,tgt,sel,moves,minMoves,extra,t0,run=false;
-function split(n){let u=Array(n).fill(1),left=20-n;while(left>0){u[Math.floor(R()*n)]++;left--}return u.map(v=>v*5)}
-function level(){const n=Math.min(5,3+Math.floor(lvN/2));do{w=split(n);tgt=split(n)}while(w.every((v,i)=>v==tgt[i]));sel=-1;moves=0;minMoves=w.reduce((s,v,i)=>s+Math.max(0,v-tgt[i]),0)/5;draw()}
-function draw(){bars.innerHTML=w.map((v,i)=>{const d=v-tgt[i];return '<button class="nn-btn ghost full" data-i="'+i+'" style="display:block;text-align:left;margin:6px 0;padding:8px 12px;height:auto;'+(sel==i?"border-color:var(--c);":"")+'"><div style="display:flex;justify-content:space-between"><span>'+A[i]+'</span><span style="color:'+(d==0?"var(--up)":d>0?"var(--dn)":"var(--gold)")+'">'+v+'% → '+tgt[i]+'%</span></div><div style="position:relative;height:10px;background:#1b2944;border-radius:5px;margin-top:6px"><div style="height:100%;width:'+v*2+'%;max-width:100%;background:var(--c);border-radius:5px"></div><div style="position:absolute;top:-3px;left:'+Math.min(99,tgt[i]*2)+'%;width:3px;height:16px;background:#fff"></div></div></button>'}).join("");
- lvl.textContent="Level "+(lvN+1)+"/5";mv.textContent="moves "+moves+" (min "+minMoves+")"}
-bars.addEventListener("click",e=>{const b=e.target.closest("button");if(!b||!run)return;const i=+b.dataset.i;
- if(sel<0){if(w[i]>0){sel=i;draw()}return}if(sel==i){sel=-1;draw();return}
- w[sel]-=5;w[i]+=5;moves++;sel=-1;draw();
- if(w.every((v,k)=>v==tgt[k])){extra+=Math.max(0,moves-minMoves);lvN++;if(navigator.vibrate)navigator.vibrate(20);if(lvN>=5)return finish();level()}});
-function tick(){if(!run)return;clock.textContent=((performance.now()-t0)/1000+extra*2).toFixed(1)+"s";requestAnimationFrame(tick)}
-function finish(){run=false;const s=+(((performance.now()-t0)/1000)+extra*2).toFixed(1);go.style.display="";NN.end({score:s,detail:extra+" extra moves",line:"Rebalanced 5 portfolios in "+s+"s"})}
-function reset(){R=NN.rng(NN.seed());lvN=0;extra=0;level();clock.textContent="0.0s"}
-go.onclick=()=>{reset();run=true;go.style.display="none";t0=performance.now();NN.track("start");tick()};
-NN.onRestart=()=>go.onclick();NN.boot();reset();NN.forge(document.getElementById("forge"),{coin:"$REBAL"});NN.footer();
+const GAME='rebalance';
+const $=id=>document.getElementById(id);function board(){$('board').innerHTML=NNA.boardHTML(GAME)}
+document.addEventListener('DOMContentLoaded',()=>{board();NNA.foot()});
+const g=NNS.games[GAME],A=g.A;let sel=-1;
+function draw(s){$('bars').innerHTML=s.w.map((v,i)=>{const d=v-s.tgt[i];return '<button class="nn-btn ghost full" data-i="'+i+'" style="display:block;text-align:left;margin:6px 0;padding:8px 12px;height:auto;'+(sel==i?'border-color:var(--c);box-shadow:0 0 12px var(--c);':'')+'"><div style="display:flex;justify-content:space-between"><span>'+A[i]+'</span><span style="color:'+(d==0?'var(--up)':d>0?'var(--dn)':'var(--gold)')+'">'+v+'% → '+s.tgt[i]+'%</span></div><div style="position:relative;height:10px;background:#1b2944;border-radius:5px;margin-top:6px"><div style="height:100%;width:'+Math.min(100,v*2)+'%;background:var(--c);border-radius:5px"></div><div style="position:absolute;top:-3px;left:'+Math.min(99,s.tgt[i]*2)+'%;width:3px;height:16px;background:#fff"></div></div></button>'}).join('');
+ $('lvl').textContent='Level '+Math.min(5,s.lv+1)+'/5';$('mv').textContent='moves '+s.moves+' (min '+s.minMoves+')';}
+let lastTick=-1;
+const R=NNA.runner(GAME,{onFrame:s=>{$('clock').textContent=(s.tick/10+s.extra*2).toFixed(1)+'s';if(s.lv!==lastTick){lastTick=s.lv;draw(s)}},onInput:s=>{draw(s)},onEnd:()=>{$('go').style.display='';board()}});
+draw(g.create(NNS.seedFor(GAME)));
+$('bars').addEventListener('click',e=>{const b=e.target.closest('button');if(!b||!R.on)return;const i=+b.dataset.i,s=R.state;
+ if(sel<0){if(s.w[i]>0){sel=i;draw(s)}return}if(sel==i){sel=-1;draw(s);return}const f=sel;sel=-1;R.input(f*10+i);if(R.on)draw(R.state)});
+$('go').onclick=()=>{sel=-1;lastTick=-1;R.start($('ranked').checked);$('go').style.display='none';draw(R.state)};
 </script></body></html>
