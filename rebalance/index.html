@@ -5,14 +5,14 @@
 <meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/rebalance.png"><meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#070b16"><link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css">
 <style>:root{--c:#38f5ff}</style>
-<script src="../arcade/sims.js"></script><script src="../arcade/core.js"></script></head><body>
+<script src="../arcade/sims.js"></script><script>window.NN_SCORE_SERVER="https://netnet-arcade-verifier.netnetarcade.workers.dev"</script><script src="../arcade/core.js"></script></head><body>
 <div class="nn-wrap"><div class="nn-top"><a href="../">← LOBBY</a><span class="nn-pill">CABINET 07 · <span class="nna-ok">✔ REPLAY-VERIFIED</span></span></div>
 <h1 class="nn-title">REBALANCE</h1><p class="nn-sub">Tap an asset that is <b style="color:var(--dn)">overweight</b>, then one that is <b style="color:var(--gold)">underweight</b> to move 5%. Hit all targets in 5 portfolios. Time + 2 s per extra move; lowest wins. Same targets for everyone this week.</p>
 <div class="nn-hud"><span id="clock">0.0s</span><span id="lvl">Level 1/5</span><span id="mv">moves 0</span></div>
 <div class="nn-stage"><div id="bars"></div><button class="nn-btn full" id="go" style="margin-top:8px">START</button></div><label class="nna-mut" style="display:block;margin:8px 0"><input type="checkbox" id="ranked" checked> Ranked entry: 100 <span class="nna-test">TEST</span> credits (10 to treasury first, 90 to this week's pool). Untick for free practice.</label><div class="nn-card" id="board"></div><div class="nn-card"><h3>HOW SCORES ARE VERIFIED</h3><p class="nn-sub" style="font-size:13px">Everyone gets the same level this week (seed from the UTC week). Your inputs are recorded tick by tick; at game over the shared verifier re-plays them from scratch and only the re-simulated score counts. Runs that go faster than real time, pause, hide the tab, or exceed the input-rate cap are rejected.</p></div></div>
 <script>
 const GAME='rebalance';
-const $=id=>document.getElementById(id);function board(){$('board').innerHTML=NNA.boardHTML(GAME)}
+const $=id=>document.getElementById(id);function board(){NNA.renderBoard(GAME,$('board'))}
 document.addEventListener('DOMContentLoaded',()=>{board();NNA.foot()});
 const g=NNS.games[GAME],A=g.A;let sel=-1;
 function draw(s){$('bars').innerHTML=s.w.map((v,i)=>{const d=v-s.tgt[i];return '<button class="nn-btn ghost full" data-i="'+i+'" style="display:block;text-align:left;margin:6px 0;padding:8px 12px;height:auto;'+(sel==i?'border-color:var(--c);box-shadow:0 0 12px var(--c);':'')+'"><div style="display:flex;justify-content:space-between"><span>'+A[i]+'</span><span style="color:'+(d==0?'var(--up)':d>0?'var(--dn)':'var(--gold)')+'">'+v+'% → '+s.tgt[i]+'%</span></div><div style="position:relative;height:10px;background:#1b2944;border-radius:5px;margin-top:6px"><div style="height:100%;width:'+Math.min(100,v*2)+'%;background:var(--c);border-radius:5px"></div><div style="position:absolute;top:-3px;left:'+Math.min(99,s.tgt[i]*2)+'%;width:3px;height:16px;background:#fff"></div></div></button>'}).join('');

@@ -223,7 +223,7 @@ footer{padding:28px 0 60px;color:var(--mut);font-size:13px}
 <footer><div class="wrap">Prototype for the NetNet community &amp; devs, feedback welcome. NetNet Capital · Portfolio League prototype · <a href="../">More NetNet prototypes</a></div></footer>
 
 <div style="max-width:1000px;margin:0 auto;padding:0 14px"><div class="nn-card" id="nnaBoard"></div><label class="nna-mut" style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="ranked" checked> Ranked entry on <b>This week</b>: 100 <span class="nna-test">TEST</span> credits (10 to treasury first, 90 to the weekly pool).</label></div>
-<script src="engine.js"></script><script src="../arcade/sims.js"></script><script src="../arcade/core.js"></script>
+<script src="engine.js"></script><script src="../arcade/sims.js"></script><script>window.NN_SCORE_SERVER="https://netnet-arcade-verifier.netnetarcade.workers.dev"</script><script src="../arcade/core.js"></script>
 <script>
 (function(){
 'use strict';
@@ -232,7 +232,7 @@ const fmt$=(x,d=0)=>'$'+Number(x).toLocaleString('en-US',{minimumFractionDigits:
 const pct=(x,d=2)=>(x>=0?'+':'')+x.toFixed(d)+'%';
 const A=PL.ASSETS,R=PL.RULES;
 const WEEK=NNS.weekId();const SEASONS=[{id:WEEK,label:'This week (ranked)'},{id:20261019,label:'Practice A'},{id:20261026,label:'Practice B'}];
-function nnaBoard(){const e=document.getElementById('nnaBoard');if(e)e.innerHTML=NNA.boardHTML('portfolio-league')}document.addEventListener('DOMContentLoaded',nnaBoard);
+function nnaBoard(){const e=document.getElementById('nnaBoard');NNA.renderBoard('portfolio-league',e)}document.addEventListener('DOMContentLoaded',nnaBoard);
 let season=SEASONS[0].id, paths=PL.pricePaths(season);
 let weights={NVDA:30,MSFT:25,GOLD:20,TBILL:25};
 let result=null, animT=null;
@@ -294,7 +294,7 @@ function showKpis(n){if(!result)return;const v=result.values.slice(0,n+1);let pk
  $('kscore').textContent=(r-R.ddPenalty*dd*100).toFixed(2);}
 function play(){if(!result)return;clearInterval(animT);let n=0;$('krank').textContent='…';animT=setInterval(()=>{n++;drawChart(n);showKpis(n);if(n>=PL.STEPS){clearInterval(animT);finish();}},70);}
 function finish(){clearInterval(animT);drawChart(PL.STEPS);showKpis(PL.STEPS);renderBoard();}
-$('lock').onclick=()=>{const v=PL.validate(weights);if(!v.ok)return;result=PL.evaluate(weights,paths);if(season===WEEK){const w={};for(const k in weights)if(weights[k]>0)w[k]=weights[k];const nr=NNA.submit('portfolio-league',{week:WEEK,seed:WEEK,log:[[0,w]],claimed:Math.round(result.score*100)/100,ranked:document.getElementById('ranked').checked&&NNA.enter('portfolio-league')});NNA.toast(nr.v.ok?'✔ Verified: score '+nr.score:'✘ '+nr.v.reasons.join('; '));nnaBoard();window.__lastRun=nr;}document.getElementById('replay').scrollIntoView({behavior:'smooth'});setTimeout(play,350);};
+$('lock').onclick=()=>{const v=PL.validate(weights);if(!v.ok)return;result=PL.evaluate(weights,paths);if(season===WEEK){const w={};for(const k in weights)if(weights[k]>0)w[k]=weights[k];const nr=NNA.submit('portfolio-league',{week:WEEK,seed:WEEK,log:[[0,w]],claimed:Math.round(result.score*100)/100,ranked:false,tok:(()=>{const want=document.getElementById('ranked').checked;return NNA.srvStart('portfolio-league',want).then(t=>t||(want&&NNA.enter('portfolio-league'),null))})()});NNA.toast(nr.v.ok?'✔ Verified: score '+nr.score:'✘ '+nr.v.reasons.join('; '));nnaBoard();if(nr.srv)nr.srv.then(x=>{NNA.toast(!x?'Score server unreachable':x.verified?'🌐 Server verified '+x.score+(x.rank?' · global rank #'+x.rank:''):'🌐 Server rejected: '+(x.reasons||[]).join('; '));nnaBoard()});window.__lastRun=nr;}document.getElementById('replay').scrollIntoView({behavior:'smooth'});setTimeout(play,350);};
 $('play').onclick=()=>{if(!result){$('lock').click();return;}play();};
 $('skip').onclick=()=>{if(!result){const v=PL.validate(weights);if(!v.ok)return;result=PL.evaluate(weights,paths);}finish();};
 
