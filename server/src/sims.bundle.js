@@ -358,17 +358,26 @@
       else { s.len -= s.hold ? 9 / s.hold.w : 12; if (s.len <= 30) { s.len = 30; if (s.hold) { s.score += s.hold.v; s.got.push(s.hold.k); s.last = s.hold; } s.hold = null; s.mode = 0; if (s.items.filter(function (o) { return o.k !== 'dump'; }).length < 3) g.wave(s); } }
       if (s.tick >= 30 * 60) s.done = true; },
     score: function (s) { return s.score; } };
-  // ---------------- PENTHOUSE PILOT: flyer, 60 ticks/s. action 1 = jetpack on, 0 = off. Fly through tower gaps, grab tokens. 5 min cap.
-  G['penthouse-pilot'] = { tps: 60, maxTicks: 60 * 300, maxIps: 10, higher: true, unit: 'pts', actions: function (a) { return a === 0 || a === 1; },
-    create: function (seed) { var s = { r: rng(seed), tick: 0, y: 180, vy: 0, th: 0, dist: 0, gates: 0, tokens: 0, cols: [], nextX: 520, done: false }; return s; },
-    input: function (s, a) { s.th = a; },
-    step: function (s) { s.tick++; var sp = 3.4 + Math.min(3, s.tick / 1800); s.dist += sp; s.vy += s.th ? -0.42 : 0.32; s.vy = Math.max(-6.5, Math.min(7, s.vy)); s.y += s.vy;
-      if (s.y < 14 || s.y > 346) { s.done = true; return; }
-      s.nextX -= sp; if (s.nextX <= 680) { var gap = Math.max(96, 150 - s.gates * 1.6), c = 70 + gap / 2 + s.r() * (290 - gap); var tk = s.r(); s.cols.push({ x: s.nextX, c: c, gap: gap, w: 58, tok: tk < 0.55 ? (tk < 0.12 ? 'net' : tk < 0.32 ? 'gold' : 'tbill') : null, ty: c + (s.r() - 0.5) * gap * 0.5 }); s.nextX += 230 - Math.min(40, s.gates); }
+  // ---------------- PENTHOUSE PILOT v2: classic flappy, 60 ticks/s, portrait 360x640. action 1 = flap (instant upward impulse).
+  // Gravity + terminal velocity, forgiving round hitbox, constant spacing, gap shrinks gently. First flap is logged at tick 0. 5 min cap.
+  G['penthouse-pilot'] = { tps: 60, maxTicks: 60 * 300, maxIps: 15, higher: true, unit: 'pts', V: 2, W: 360, H: 640, GROUND: 580, BX: 110, HR: 12, PW: 64,
+    actions: function (a) { return a === 1; },
+    create: function (seed) { return { r: rng(seed), tick: 0, y: 300, vy: 0, dist: 0, gates: 0, tokens: 0, cols: [], nextX: 420, flaps: 0, done: false }; },
+    input: function (s, a) { if (a === 1) { s.vy = -7.6; s.flaps++; s.lastFlap = s.tick; } },
+    step: function (s) { var g = G['penthouse-pilot']; s.tick++; var sp = 2.5 + Math.min(0.9, s.gates * 0.03); s.dist += sp;
+      s.vy = Math.min(9.5, s.vy + 0.42); s.y += s.vy; if (s.y < g.HR) { s.y = g.HR; if (s.vy < 0) s.vy = 0; }
+      if (s.y + g.HR >= g.GROUND) { s.y = g.GROUND - g.HR; s.done = true; s.crash = true; return; }
+      s.nextX -= sp; if (s.nextX <= g.W + 40) { var gap = Math.max(138, 178 - s.gates * 1.2), lo = 90 + gap / 2, hi = g.GROUND - 70 - gap / 2, c = lo + s.r() * (hi - lo);
+        if (s.cols.length) { var pc = s.cols[s.cols.length - 1].c; c = Math.max(pc - 190, Math.min(pc + 190, c)); }
+        var tk = s.r(); s.cols.push({ x: s.nextX, c: c, gap: gap, w: g.PW, tok: tk < 0.5 ? (tk < 0.1 ? 'net' : tk < 0.28 ? 'gold' : 'tbill') : null }); s.nextX += 215; }
       for (var i = 0; i < s.cols.length; i++) { var o = s.cols[i]; o.x -= sp;
-        if (o.x - 16 < 150 && o.x + o.w + 16 > 150 && (s.y - 14 < o.c - o.gap / 2 || s.y + 14 > o.c + o.gap / 2)) { s.done = true; s.crash = true; return; }
-        if (!o.passed && o.x + o.w < 150) { o.passed = 1; s.gates++; }
-        if (o.tok && !o.took && Math.abs(o.x + o.w / 2 - 150) < 24 && Math.abs(o.ty - s.y) < 26) { o.took = 1; s.tokens += o.tok === 'net' ? 5 : o.tok === 'gold' ? 3 : 2; } }
+        // circle vs the two tower rects
+        var nx = Math.max(o.x, Math.min(g.BX, o.x + o.w)), top = o.c - o.gap / 2, bot = o.c + o.gap / 2;
+        if (Math.abs(nx - g.BX) < g.HR) { var dx = nx - g.BX;
+          var ny1 = Math.min(s.y, top), ny2 = Math.max(s.y, bot);
+          if (dx * dx + (ny1 - s.y) * (ny1 - s.y) < g.HR * g.HR || dx * dx + (ny2 - s.y) * (ny2 - s.y) < g.HR * g.HR || ((s.y < top || s.y > bot) && o.x <= g.BX && g.BX <= o.x + o.w)) { s.done = true; s.crash = true; return; } }
+        if (!o.passed && o.x + o.w < g.BX) { o.passed = 1; s.gates++; }
+        if (o.tok && !o.took && Math.abs(o.x + o.w / 2 - g.BX) < 22 && Math.abs(o.c - s.y) < 30) { o.took = 1; s.tokens += o.tok === 'net' ? 5 : o.tok === 'gold' ? 3 : 2; } }
       s.cols = s.cols.filter(function (o) { return o.x + o.w > -20; }); },
     score: function (s) { return s.gates * 10 + s.tokens * 10; } };
 
