@@ -14,7 +14,7 @@
 <div class="nn-card" id="board"></div>
 <div class="nn-card"><h3>ABOUT THIS CABINET</h3><p class="nn-sub" style="font-size:13px">An original NetNet game starring aidunlap, the NetNet mascot. Everyone gets the same level this week (seed from the UTC week, Sunday to Sunday). Your inputs are recorded tick by tick and the score server re-plays them from scratch; only the re-simulated score counts. Runs that go faster than real time, pause, hide the tab or exceed the input-rate cap are rejected. Tokens in the game are game items, not real assets or prices. Test credits only, not money.</p></div></div>
 <script>
-const GAME='bear-siege',$=id=>document.getElementById(id),cv=$('c'),ctx=cv.getContext('2d'),g=NNS.games[GAME];
+const GAME='bear-siege',$=id=>document.getElementById(id),cv=$('c'),ctx=NND.hidpi(cv).getContext('2d'),g=NNS.games[GAME];
 function board(){NNA.renderBoard(GAME,$('board'))}
 document.addEventListener('DOMContentLoaded',()=>{board();NNA.foot()});
 let want=null,sent=null,lastT=-99,Q=[];const GAP=3;
@@ -25,11 +25,9 @@ const R=NNA.runner(GAME,{onFrame:s=>{pump(s);draw(s,performance.now())},onEnd:()
 function start(){want=8;sent=8;lastT=-99;Q=[];R.start($('ranked').checked);$('go').style.display='none'}
 NNA.onAgain=start;$('go').onclick=e=>{e.preventDefault();start()};
 function idle(now){if(!R.on){draw(R.state&&R.state.done?R.state:preview,now)}requestAnimationFrame(idle)}
-function label(t1,t2){ctx.fillStyle='rgba(10,10,10,.62)';ctx.fillRect(0,0,cv.width,cv.height);ctx.textAlign='center';ctx.fillStyle='#f5d77a';ctx.font='bold 30px system-ui';ctx.fillText(t1,cv.width/2,cv.height/2-10);ctx.fillStyle='#9a927c';ctx.font='15px system-ui';ctx.fillText(t2,cv.width/2,cv.height/2+22)}
+function label(t1,t2){NND.panel(ctx,cv.width,cv.height,t1,t2)}
 
-function bear(x,y,big,t){const r=big?17:11;ctx.fillStyle=big?'#5a1a1a':'#3a1414';ctx.beginPath();ctx.arc(x-r*0.7,y-r*0.8,r*0.38,0,7);ctx.arc(x+r*0.7,y-r*0.8,r*0.38,0,7);ctx.fill();
- ctx.beginPath();ctx.arc(x,y,r,0,7);ctx.fill();ctx.strokeStyle='#ff5f6d';ctx.lineWidth=big?2.5:1.5;ctx.stroke();ctx.fillStyle='#d8d0c4';ctx.beginPath();ctx.ellipse(x,y+r*0.3,r*0.45,r*0.32,0,0,7);ctx.fill();
- ctx.fillStyle='#ff5f6d';ctx.font='bold '+Math.round(r*0.9)+'px system-ui';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('▼',x,y-r*0.15);ctx.textBaseline='alphabetic'}
+function bear(x,y,big,t){NND.draw(ctx,x,y+(big?19:13),big?44:30,{v:'bear',pose:'run',t:t+x*9})}
 function draw(s,now){ctx.fillStyle='#0d0d0d';ctx.fillRect(0,0,640,360);ctx.strokeStyle='#1c1c1c';ctx.lineWidth=1;for(let x=0;x<640;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,360);ctx.stroke()}for(let y=0;y<360;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(640,y);ctx.stroke()}
  ctx.strokeStyle='rgba(212,175,55,.35)';ctx.lineWidth=2;ctx.beginPath();ctx.arc(320,180,70,0,7);ctx.stroke();ctx.fillStyle='rgba(212,175,55,.08)';ctx.font='bold 40px system-ui';ctx.textAlign='center';ctx.fillText('NET',320,195);
  for(const e of s.en)bear(e.x,e.y,e.big,now);

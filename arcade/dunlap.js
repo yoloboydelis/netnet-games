@@ -1,52 +1,149 @@
-/* NetNet aidunlap character pack. Original drawn suit bodies + the official head cutout.
- Usage: NND.ready.then(()=>NND.draw(ctx,x,y,h,{v:'dunlap',pose:'stand'|'run'|'win'|'fail',t:ms,flip:false}))
- x,y = feet position, h = total height in px. Variants: dunlap, trader, banker, boss, bear. */
+/* NetNet aidunlap character pack v2 - an original cartoon mascot drawn 100% in code (no photos).
+ Usage: NND.draw(ctx,x,y,h,{v:'dunlap',pose:'stand'|'run'|'win'|'fail'|'fly'|'flap',t:ms,flip:false})
+ x,y = feet position, h = total height in px. Variants: dunlap, trader, banker, boss, bear.
+ NND.hidpi(canvas) makes a fixed-size game canvas render crisp on retina screens (keeps logical width/height). */
 (function(){
-var HEAD='data:image/webp;base64,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';
-var C={k0:'#0a0a0a',k1:'#0d0d0d',ch:'#2a2a2a',gold:'#d4af37',lg:'#f5d77a',taupe:'#9a927c',white:'#f4f1ea'};
-var V={dunlap:{suit:'#0d0d0d',lapel:'#2a2a2a',tie:'#0a0a0a',shirt:C.white,acc:null},
- trader:{suit:'#2a2a2a',lapel:'#0d0d0d',tie:C.gold,shirt:C.white,acc:'badge'},
- banker:{suit:'#4a4636',lapel:'#2a2a2a',tie:'#0a0a0a',shirt:C.white,acc:'bowtie'},
- boss:{suit:'#1a1608',lapel:C.gold,tie:C.gold,shirt:C.white,acc:'crown'},
- bear:{suit:'#3a1414',lapel:'#1d0a0a',tie:'#ff5f6d',shirt:'#d8d0c4',acc:'ears'}};
-var img=new Image(),ok=false;
-var ready=new Promise(function(r){img.onload=function(){ok=true;r()};img.onerror=function(){r()};img.src=HEAD});
+var C={k0:'#0a0a0a',k1:'#0d0d0d',ch:'#2a2a2a',gold:'#d4af37',lg:'#f5d77a',taupe:'#9a927c',white:'#f4f1ea',ink:'#07070a',skin:'#f2c9a5',skinS:'#d9a582'};
+var V={
+ dunlap:{suit:'#26262c',suitS:'#17171b',lapel:'#34343b',tie:'#0a0a0a',tieS:'#2a2a2a',shirt:C.white,pants:'#141417',hair:'slick',hc:'#0d0d0f',face:'smug',pocket:C.gold,skin:C.skin},
+ trader:{suit:'#3a3a40',suitS:'#26262b',lapel:'#4a4a52',tie:C.gold,tieS:'#a8862a',shirt:'#dfe9f5',pants:'#2a2a2f',hair:'spiky',hc:'#6b4426',face:'grin',acc:'headset',skin:'#e8b892'},
+ banker:{suit:'#6e6852',suitS:'#4f4a3a',lapel:'#857e64',tie:'#7a1f2b',tieS:'#561520',shirt:C.white,pants:'#4f4a3a',hair:'bald',hc:'#cfcac0',face:'glasses',acc:'bowtie',skin:'#f0c39f'},
+ boss:{suit:'#1a1608',suitS:'#0d0b04',lapel:C.gold,tie:C.gold,tieS:'#a8862a',shirt:C.white,pants:'#120f05',hair:'silver',hc:'#e6e3dc',face:'beard',acc:'crown',pocket:C.lg,skin:'#eec29c'},
+ bear:{suit:'#3a1414',suitS:'#260b0b',lapel:'#4e1c1c',tie:'#ff5f6d',tieS:'#c23a48',shirt:'#e5ddd0',pants:'#260b0b',hair:'bear',hc:'#6b3f24',face:'bear',skin:'#8a5634'}};
+var ready=Promise.resolve();
 function rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath()}
-function draw(c,x,y,h,o){o=o||{};var v=V[o.v||'dunlap']||V.dunlap,t=(o.t||0)/1000,pose=o.pose||'stand',u=h/100;
- c.save();c.translate(x,y);if(o.flip)c.scale(-1,1);c.lineCap='round';
- var sw=pose==='run'?Math.sin(t*14):0,bob=pose==='run'?Math.abs(Math.sin(t*14))*2*u:(pose==='win'?-Math.abs(Math.sin(t*8))*6*u:0);
- if(pose==='fail')c.rotate(0.25);
- c.translate(0,bob);
+function draw(c,x,y,h,o){o=o||{};var v=V[o.v||'dunlap']||V.dunlap,t=(o.t||0)/1000,pose=o.pose||'stand',u=h/100,L=Math.max(1,2.4*u);
+ function fs(f){c.fillStyle=f;c.fill();c.strokeStyle=C.ink;c.lineWidth=L;c.stroke()}
+ c.save();c.translate(x,y);if(o.flip)c.scale(-1,1);c.lineCap='round';c.lineJoin='round';
+ // ground shadow
+ if(pose!=='fly'&&pose!=='flap'){c.fillStyle='rgba(0,0,0,.35)';c.beginPath();c.ellipse(0,0,20*u,3.5*u,0,0,7);c.fill()}
+ var ph=t*(pose==='run'?13:2),sw=pose==='run'?Math.sin(ph):0,bob=0,tilt=0;
+ if(pose==='stand')bob=Math.sin(t*2.4)*0.8*u;
+ if(pose==='run'){bob=-Math.abs(Math.sin(ph))*3*u;tilt=0.08}
+ if(pose==='win')bob=-Math.abs(Math.sin(t*7))*6*u;
+ if(pose==='fail')tilt=-0.35;
+ if(pose==='fly'||pose==='flap'){tilt=0.12;bob=Math.sin(t*5)*1.5*u}
+ c.translate(0,bob);c.translate(0,-22*u);c.rotate(tilt);c.translate(0,22*u);
  // legs
- c.strokeStyle=v.suit;c.lineWidth=9*u;
- c.beginPath();c.moveTo(-5*u,-38*u);c.lineTo(-5*u+sw*9*u,-4*u);c.moveTo(5*u,-38*u);c.lineTo(5*u-sw*9*u,-4*u);c.stroke();
- c.fillStyle=C.k0;c.beginPath();c.ellipse(-5*u+sw*9*u+3*u,-2*u,6*u,3*u,0,0,7);c.ellipse(5*u-sw*9*u+3*u,-2*u,6*u,3*u,0,0,7);c.fill();
- // arms back
- var ar=pose==='win'?-2.6:(pose==='run'?-sw*0.9:0.15),al=pose==='win'?2.6:(pose==='run'?sw*0.9:-0.15);
- function arm(sx,a){c.save();c.translate(sx,-66*u);c.rotate(a);c.strokeStyle=v.suit;c.lineWidth=8*u;c.beginPath();c.moveTo(0,0);c.lineTo(0,24*u);c.stroke();c.fillStyle=v.shirt;c.fillRect(-4*u,22*u,8*u,3*u);c.fillStyle='#d9a98a';c.beginPath();c.arc(0,28*u,3.6*u,0,7);c.fill();c.restore()}
- arm(-13*u,al);
+ function leg(sx,a){c.save();c.translate(sx,-24*u);c.rotate(a);rr(c,-4.6*u,-1*u,9.2*u,21*u,4*u);fs(v.pants);
+  c.beginPath();c.ellipse(2.2*u,21*u,7*u,3.6*u,0,0,7);fs(C.k0);c.fillStyle='rgba(255,255,255,.25)';c.beginPath();c.ellipse(3.5*u,19.8*u,3*u,1*u,0,0,7);c.fill();c.restore()}
+ var la=sw*0.7,ra=-sw*0.7;if(pose==='fly'||pose==='flap'){la=0.5;ra=0.25}if(pose==='win'){la=-0.12;ra=0.12}
+ leg(-5.5*u,la);leg(5.5*u,ra);
+ // arms
+ var fA=0.25,bA=-0.25;
+ if(pose==='run'){fA=-sw*1.0;bA=sw*1.0}
+ if(pose==='win'){fA=-2.7+Math.sin(t*7)*0.15;bA=2.7-Math.sin(t*7)*0.15}
+ if(pose==='fail'){fA=-1.9;bA=1.9}
+ if(pose==='fly'){fA=-1.35;bA=1.2}
+ if(pose==='flap'){var fl=Math.sin(t*16);fA=-1.2-fl*0.7;bA=1.2+fl*0.7}
+ function arm(sx,a,front){c.save();c.translate(sx,-45*u);c.rotate(a);rr(c,-4*u,-2*u,8*u,19*u,4*u);fs(front?v.suit:v.suitS);
+  c.fillStyle=v.shirt;c.fillRect(-3.4*u,15.5*u,6.8*u,2.6*u);if(v.pocket){c.fillStyle=C.gold;c.fillRect(-1*u,15.8*u,2*u,2*u)}
+  c.beginPath();c.arc(0,21*u,4*u,0,7);fs(v.face==='bear'?v.skin:v.skin);c.restore()}
+ arm(-11*u,bA,false);
  // torso
- c.fillStyle=v.suit;rr(c,-15*u,-72*u,30*u,38*u,7*u);c.fill();
- c.fillStyle=v.shirt;c.beginPath();c.moveTo(-6*u,-72*u);c.lineTo(6*u,-72*u);c.lineTo(0,-50*u);c.fill();
- c.fillStyle=v.lapel;c.beginPath();c.moveTo(-7*u,-72*u);c.lineTo(0,-50*u);c.lineTo(-10*u,-60*u);c.fill();c.beginPath();c.moveTo(7*u,-72*u);c.lineTo(0,-50*u);c.lineTo(10*u,-60*u);c.fill();
- if(v.acc==='bowtie'){c.fillStyle=v.tie;c.beginPath();c.moveTo(0,-69*u);c.lineTo(-5*u,-72*u);c.lineTo(-5*u,-66*u);c.lineTo(5*u,-72*u);c.lineTo(5*u,-66*u);c.fill()}
- else{c.fillStyle=v.tie;c.beginPath();c.moveTo(-2*u,-71*u);c.lineTo(2*u,-71*u);c.lineTo(3*u,-56*u);c.lineTo(0,-52*u);c.lineTo(-3*u,-56*u);c.fill()}
- if(v.acc==='badge'){c.fillStyle=C.gold;c.fillRect(6*u,-62*u,6*u,4*u)}
- c.fillStyle=C.gold;c.fillRect(-15*u,-38*u,30*u,1.5*u);
- arm(13*u,ar);
- // head
- var hw=26*u,hh=hw*1.4,hy=-72*u-hh+5*u;
- if(ok)c.drawImage(img,-hw/2,hy,hw,hh);else{c.fillStyle='#d9a98a';c.beginPath();c.ellipse(0,hy+hh/2,hw/2,hh/2,0,0,7);c.fill();c.fillStyle=C.k0;c.fillRect(-hw/2,hy,hw,hh*0.25)}
- if(v.acc==='crown'){c.fillStyle=C.gold;c.beginPath();c.moveTo(-9*u,hy+2*u);c.lineTo(-9*u,hy-6*u);c.lineTo(-4*u,hy-1*u);c.lineTo(0,hy-8*u);c.lineTo(4*u,hy-1*u);c.lineTo(9*u,hy-6*u);c.lineTo(9*u,hy+2*u);c.fill()}
- if(v.acc==='ears'){c.fillStyle='#5a2a1a';c.beginPath();c.arc(-10*u,hy+3*u,4*u,0,7);c.arc(10*u,hy+3*u,4*u,0,7);c.fill()}
- c.restore()}
+ c.beginPath();c.moveTo(-12*u,-48*u);c.quadraticCurveTo(-14*u,-30*u,-13*u,-21*u);c.quadraticCurveTo(0,-18*u,13*u,-21*u);c.quadraticCurveTo(14*u,-30*u,12*u,-48*u);c.quadraticCurveTo(0,-51*u,-12*u,-48*u);c.closePath();fs(v.suit);
+ c.save();c.clip();c.fillStyle=v.suitS;c.fillRect(-14*u,-52*u,7*u,34*u);c.restore();
+ // shirt V + tie
+ c.beginPath();c.moveTo(-6.5*u,-49.5*u);c.lineTo(6.5*u,-49.5*u);c.lineTo(0,-33*u);c.closePath();fs(v.shirt);
+ if(v.acc==='bowtie'){c.beginPath();c.moveTo(0,-46*u);c.lineTo(-6*u,-49.5*u);c.lineTo(-6*u,-42.5*u);c.closePath();c.moveTo(0,-46*u);c.lineTo(6*u,-49.5*u);c.lineTo(6*u,-42.5*u);c.closePath();fs(v.tie);c.beginPath();c.arc(0,-46*u,1.8*u,0,7);fs(v.tieS)}
+ else{c.beginPath();c.moveTo(-2.2*u,-48.5*u);c.lineTo(2.2*u,-48.5*u);c.lineTo(1.4*u,-45.5*u);c.lineTo(3.2*u,-33*u);c.lineTo(0,-29.5*u);c.lineTo(-3.2*u,-33*u);c.lineTo(-1.4*u,-45.5*u);c.closePath();fs(v.tie);
+  if(v.o!=='x'){c.strokeStyle=v.tieS;c.lineWidth=0.9*u;c.beginPath();c.moveTo(-1.6*u,-41*u);c.lineTo(2*u,-38*u);c.moveTo(-2.2*u,-36*u);c.lineTo(2.4*u,-33*u);c.stroke()}
+  if(o.v==='dunlap'||!o.v){c.fillStyle=C.gold;c.fillRect(-3*u,-40.5*u,6*u,1.3*u)}}
+ // lapels
+ c.beginPath();c.moveTo(-7*u,-49.5*u);c.lineTo(-10.5*u,-43*u);c.lineTo(-7*u,-41.5*u);c.lineTo(-0.6*u,-30*u);c.closePath();fs(v.lapel);
+ c.beginPath();c.moveTo(7*u,-49.5*u);c.lineTo(10.5*u,-43*u);c.lineTo(7*u,-41.5*u);c.lineTo(0.6*u,-30*u);c.closePath();fs(v.lapel);
+ // buttons / pocket square / badge
+ c.fillStyle=C.gold;c.beginPath();c.arc(0,-25.5*u,1.3*u,0,7);c.fill();
+ if(v.pocket){c.beginPath();c.moveTo(5.5*u,-38*u);c.lineTo(10*u,-38*u);c.lineTo(9*u,-41.5*u);c.lineTo(7.8*u,-39.5*u);c.lineTo(6.6*u,-41.5*u);c.closePath();c.fillStyle=v.pocket;c.fill()}
+ if(o.v==='trader'){rr(c,5*u,-39*u,6*u,4.2*u,1*u);fs(C.gold)}
+ arm(11*u,fA,true);
+ // HEAD
+ c.save();c.translate(0,-67*u);var ht=pose==='fail'?-0.15:(pose==='win'?0.06*Math.sin(t*7):Math.sin(t*1.6)*0.03);c.rotate(ht);
+ var HR=19*u;
+ if(v.face==='bear'){ // bear head
+  c.beginPath();c.arc(-13*u,-14*u,6*u,0,7);fs(v.hc);c.beginPath();c.arc(13*u,-14*u,6*u,0,7);fs(v.hc);
+  c.fillStyle='#c48a6a';c.beginPath();c.arc(-13*u,-14*u,3*u,0,7);c.arc(13*u,-14*u,3*u,0,7);c.fill();
+  c.beginPath();c.ellipse(0,0,HR*1.05,HR*0.95,0,0,7);fs(v.hc);
+  c.beginPath();c.ellipse(0,6*u,9*u,6.5*u,0,0,7);fs('#c9a080');
+  c.beginPath();c.ellipse(0,3*u,3.4*u,2.4*u,0,0,7);c.fillStyle=C.ink;c.fill();
+  c.strokeStyle=C.ink;c.lineWidth=L*0.8;c.beginPath();c.moveTo(0,5*u);c.lineTo(0,8*u);c.moveTo(-3.5*u,10*u);c.quadraticCurveTo(0,7.5*u,3.5*u,10*u);c.stroke();
+  // angry brows + eyes
+  c.fillStyle=C.ink;c.beginPath();c.arc(-7*u,-3*u,2*u,0,7);c.arc(7*u,-3*u,2*u,0,7);c.fill();
+  c.lineWidth=L*1.1;c.beginPath();c.moveTo(-11*u,-9*u);c.lineTo(-4*u,-6*u);c.moveTo(11*u,-9*u);c.lineTo(4*u,-6*u);c.stroke();
+  c.restore();c.restore();return}
+ // ears
+ c.beginPath();c.ellipse(-HR*0.98,2*u,3.4*u,4.6*u,0,0,7);fs(v.skin);c.beginPath();c.ellipse(HR*0.98,2*u,3.4*u,4.6*u,0,0,7);fs(v.skin);
+ // face
+ c.beginPath();c.moveTo(-HR*0.95,-6*u);c.bezierCurveTo(-HR*1.02,10*u,-9*u,HR*1.0,0,HR*1.0);c.bezierCurveTo(9*u,HR*1.0,HR*1.02,10*u,HR*0.95,-6*u);c.bezierCurveTo(HR*0.9,-HR*1.05,-HR*0.9,-HR*1.05,-HR*0.95,-6*u);c.closePath();fs(v.skin);
+ c.save();c.clip();c.fillStyle='rgba(120,60,30,.12)';c.beginPath();c.ellipse(-HR*0.9,4*u,7*u,HR,0,0,7);c.fill();c.restore();
+ // cheeks
+ c.fillStyle='rgba(230,120,100,.22)';c.beginPath();c.ellipse(-10*u,7*u,3.6*u,2.2*u,0,0,7);c.ellipse(10*u,7*u,3.6*u,2.2*u,0,0,7);c.fill();
+ // hair
+ c.lineWidth=L;c.strokeStyle=C.ink;
+ if(v.hair==='slick'){
+  c.beginPath();c.moveTo(-HR*1.0,-1*u);c.bezierCurveTo(-HR*1.2,-HR*1.5,HR*0.7,-HR*1.65,HR*1.04,-6*u);c.bezierCurveTo(HR*0.95,-HR*0.55,HR*0.3,-HR*0.75,-4*u,-HR*0.62);c.bezierCurveTo(-10*u,-HR*0.55,-HR*0.8,-8*u,-HR*0.86,0);c.closePath();fs(v.hc);
+  c.strokeStyle='rgba(255,255,255,.22)';c.lineWidth=1.1*u;c.beginPath();c.moveTo(-12*u,-HR*0.75);c.quadraticCurveTo(0,-HR*1.3,14*u,-HR*0.7);c.moveTo(-9*u,-HR*0.62);c.quadraticCurveTo(2*u,-HR*1.05,13*u,-HR*0.5);c.moveTo(-14*u,-HR*0.5);c.quadraticCurveTo(-6*u,-HR*1.25,6*u,-HR*1.2);c.stroke();
+  c.fillStyle='rgba(255,255,255,.18)';c.beginPath();c.ellipse(-3*u,-HR*0.98,6*u,1.4*u,-0.15,0,7);c.fill()}
+ else if(v.hair==='spiky'){c.beginPath();c.moveTo(-HR,0);var sp=[[-21,-12],[-16,-19],[-15,-27],[-7,-22],[-2,-30],[3,-22],[9,-28],[11,-19],[18,-20],[19,-8],[19,0]];c.lineTo(-18*u,-6*u);for(var i=0;i<sp.length;i++)c.lineTo(sp[i][0]*u,sp[i][1]*u);c.quadraticCurveTo(10*u,-12*u,-11*u,-9*u);c.closePath();fs(v.hc)}
+ else if(v.hair==='bald'){c.beginPath();c.ellipse(-HR*0.88,-3*u,4.5*u,8*u,0.2,0,7);fs(v.hc);c.beginPath();c.ellipse(HR*0.88,-3*u,4.5*u,8*u,-0.2,0,7);fs(v.hc);
+  c.fillStyle='rgba(255,255,255,.35)';c.beginPath();c.ellipse(-4*u,-HR*0.75,5*u,2*u,-0.3,0,7);c.fill()}
+ else if(v.hair==='silver'){c.beginPath();c.moveTo(-HR*1.0,0);c.bezierCurveTo(-HR*1.1,-HR*1.3,HR*1.1,-HR*1.3,HR*1.0,0);c.bezierCurveTo(HR*0.8,-HR*0.6,-HR*0.8,-HR*0.6,-HR*1.0,0);c.closePath();fs(v.hc);
+  c.strokeStyle='rgba(0,0,0,.18)';c.lineWidth=1*u;c.beginPath();c.moveTo(-8*u,-HR*0.85);c.quadraticCurveTo(0,-HR*1.05,8*u,-HR*0.85);c.stroke()}
+ // face features
+ c.strokeStyle=C.ink;c.fillStyle=C.ink;var ex=6.8*u,ey=1*u;
+ var blink=(pose==='stand'&&(t%3.7)<0.12);
+ if(pose==='fail'){c.lineWidth=L;[-ex,ex].forEach(function(e){c.beginPath();c.moveTo(e-2.4*u,ey-2.4*u);c.lineTo(e+2.4*u,ey+2.4*u);c.moveTo(e+2.4*u,ey-2.4*u);c.lineTo(e-2.4*u,ey+2.4*u);c.stroke()});
+  c.beginPath();c.ellipse(0,11*u,3*u,2.4*u,0,0,7);c.fill()}
+ else{
+  if(blink){c.lineWidth=L;c.beginPath();c.moveTo(-ex-2.6*u,ey);c.lineTo(-ex+2.6*u,ey);c.moveTo(ex-2.6*u,ey);c.lineTo(ex+2.6*u,ey);c.stroke()}
+  else{[-ex,ex].forEach(function(e){c.fillStyle='#fff';c.beginPath();c.ellipse(e,ey,3*u,3.2*u,0,0,7);c.fill();c.fillStyle=C.ink;c.beginPath();c.arc(e+0.6*u,ey+0.5*u,1.9*u,0,7);c.fill();c.fillStyle='#fff';c.beginPath();c.arc(e+1.3*u,ey-0.4*u,0.7*u,0,7);c.fill()});
+   if(v.face==='smug'||v.face==='beard'){ // heavy half-lids = the calm, unflappable look
+    c.fillStyle=v.skin;[-ex,ex].forEach(function(e){c.beginPath();c.rect(e-3.6*u,ey-4*u,7.2*u,3.6*u);c.fill()});
+    c.lineWidth=L;c.beginPath();c.moveTo(-ex-3.2*u,ey-0.5*u);c.lineTo(-ex+3*u,ey-0.3*u);c.moveTo(ex-3*u,ey-0.3*u);c.lineTo(ex+3.2*u,ey-0.5*u);c.stroke()}}
+  // brows
+  c.lineWidth=L*1.15;c.strokeStyle=v.hair==='silver'||v.hair==='bald'?'#8d877c':C.ink;c.beginPath();
+  if(v.face==='smug'){c.moveTo(-ex-3.5*u,-4.5*u);c.lineTo(-ex+3*u,-4*u);c.moveTo(ex-3*u,-5*u);c.quadraticCurveTo(ex+1*u,-7.5*u,ex+3.8*u,-6*u)}
+  else{c.moveTo(-ex-3*u,-5.5*u);c.quadraticCurveTo(-ex,-7*u,-ex+3*u,-5.5*u);c.moveTo(ex-3*u,-5.5*u);c.quadraticCurveTo(ex,-7*u,ex+3*u,-5.5*u)}c.stroke();
+  // glasses
+  if(v.face==='glasses'){c.strokeStyle=C.gold;c.lineWidth=1.3*u;c.beginPath();c.arc(-ex,ey,4.4*u,0,7);c.moveTo(ex+4.4*u,ey);c.arc(ex,ey,4.4*u,0,7);c.moveTo(-ex+4.4*u,ey);c.lineTo(ex-4.4*u,ey);c.stroke();
+   c.fillStyle='#8d877c';c.beginPath();c.moveTo(-6*u,9*u);c.quadraticCurveTo(0,6*u,6*u,9*u);c.quadraticCurveTo(0,11*u,-6*u,9*u);c.fill()}
+  // mouth
+  c.strokeStyle=C.ink;c.lineWidth=L*0.9;c.beginPath();
+  if(pose==='win'||v.face==='grin'){c.moveTo(-5*u,10*u);c.quadraticCurveTo(0,16*u,5*u,10*u);c.closePath();c.fillStyle='#fff';c.fill();c.stroke()}
+  else if(v.face==='smug'){c.moveTo(-4.5*u,11.5*u);c.quadraticCurveTo(1*u,12.8*u,5.5*u,9.5*u);c.stroke()}
+  else if(v.face==='beard'){}
+  else{c.moveTo(-3*u,11*u);c.quadraticCurveTo(0,12.5*u,3*u,11*u);c.stroke()}
+  if(v.face==='beard'){c.beginPath();c.moveTo(-HR*0.9,4*u);c.bezierCurveTo(-HR*0.8,HR*1.2,HR*0.8,HR*1.2,HR*0.9,4*u);c.bezierCurveTo(HR*0.5,10*u,-HR*0.5,10*u,-HR*0.9,4*u);c.closePath();fs(v.hc);
+   c.strokeStyle=C.ink;c.lineWidth=L*0.8;c.beginPath();c.moveTo(-3.5*u,11*u);c.quadraticCurveTo(1*u,12.5*u,4.5*u,10*u);c.stroke()}
+ }
+ // nose
+ c.strokeStyle='rgba(120,60,30,.55)';c.lineWidth=1.2*u;c.beginPath();c.moveTo(0.5*u,3*u);c.quadraticCurveTo(2.2*u,6.5*u,-0.5*u,7*u);c.stroke();
+ // accessories
+ if(v.acc==='crown'){c.beginPath();c.moveTo(-10*u,-HR*0.92);c.lineTo(-11*u,-HR*1.45);c.lineTo(-5*u,-HR*1.12);c.lineTo(0,-HR*1.6);c.lineTo(5*u,-HR*1.12);c.lineTo(11*u,-HR*1.45);c.lineTo(10*u,-HR*0.92);c.closePath();fs(C.gold);
+  c.fillStyle='#ff5f6d';c.beginPath();c.arc(0,-HR*1.1,1.5*u,0,7);c.fill();c.fillStyle=C.lg;c.fillRect(-9*u,-HR*1.02,18*u,1.2*u)}
+ if(v.acc==='headset'){c.strokeStyle=C.ink;c.lineWidth=L*1.2;c.beginPath();c.arc(0,-2*u,HR*1.08,Math.PI*1.08,Math.PI*1.92);c.stroke();rr(c,-HR*1.2,-3*u,5*u,8*u,2*u);fs(C.ch);rr(c,HR*1.2-5*u,-3*u,5*u,8*u,2*u);fs(C.ch);
+  c.strokeStyle=C.ch;c.lineWidth=1.3*u;c.beginPath();c.moveTo(-HR*1.1,4*u);c.quadraticCurveTo(-HR*0.9,13*u,-5*u,12*u);c.stroke();c.fillStyle=C.gold;c.beginPath();c.arc(-5*u,12*u,1.5*u,0,7);c.fill()}
+ c.restore();c.restore()}
+function panel(c,W,H,t1,t2){c.save();c.fillStyle='rgba(6,6,8,.72)';c.fillRect(0,0,W,H);
+ var f="system-ui,-apple-system,'Segoe UI',Roboto,sans-serif",ts=Math.max(18,Math.min(30,W/18));c.font='800 '+ts+'px '+f;var tw=c.measureText(t1).width;c.font='500 '+Math.round(ts*0.5)+'px '+f;var sw=c.measureText(t2||'').width;
+ var w=Math.min(W-24,Math.max(tw,sw)+56),h=ts*2.9,x=(W-w)/2,y=(H-h)/2;rr(c,x,y,w,h,14);var g=c.createLinearGradient(0,y,0,y+h);g.addColorStop(0,'#1a1a1d');g.addColorStop(1,'#0e0e10');c.fillStyle=g;c.fill();c.strokeStyle='rgba(212,175,55,.7)';c.lineWidth=1.5;c.stroke();
+ c.fillStyle=C.gold;c.fillRect(W/2-18,y+10,36,2);c.textAlign='center';c.textBaseline='middle';c.font='800 '+ts+'px '+f;var tg=c.createLinearGradient(0,y+h*0.25,0,y+h*0.55);tg.addColorStop(0,C.lg);tg.addColorStop(1,C.gold);c.fillStyle=tg;c.fillText(t1,W/2,y+h*0.42,w-24);
+ c.font='500 '+Math.round(ts*0.5)+'px '+f;c.fillStyle=C.taupe;c.fillText(t2||'',W/2,y+h*0.74,w-24);c.restore()}
 function badge(c,x,y,r,kind){ // RWA token icons, all drawn
  var K={gold:[C.gold,'Au'],tbill:['#9fc8a8','T'],estate:['#c9b48a','RE'],stock:['#8fb4e0','EQ'],net:[C.lg,'N'],dump:['#ff5f6d','▼']}[kind]||[C.taupe,'?'];
- c.save();c.translate(x,y);
- if(kind==='gold'){c.fillStyle=C.gold;c.beginPath();c.moveTo(-r,r*0.5);c.lineTo(r,r*0.5);c.lineTo(r*0.65,-r*0.5);c.lineTo(-r*0.65,-r*0.5);c.fill();c.fillStyle=C.lg;c.fillRect(-r*0.5,-r*0.4,r,r*0.2)}
- else{c.fillStyle=K[0];c.beginPath();c.arc(0,0,r,0,7);c.fill();c.strokeStyle='rgba(0,0,0,.35)';c.lineWidth=Math.max(1,r*0.12);c.stroke();
-  c.fillStyle='#0a0a0a';c.font='bold '+Math.round(r*(K[1].length>1?0.8:1.1))+'px system-ui';c.textAlign='center';c.textBaseline='middle';c.fillText(K[1],0,r*0.06)}
+ c.save();c.translate(x,y);c.lineJoin='round';
+ if(kind==='gold'){c.beginPath();c.moveTo(-r,r*0.5);c.lineTo(r,r*0.5);c.lineTo(r*0.65,-r*0.5);c.lineTo(-r*0.65,-r*0.5);c.closePath();var gr=c.createLinearGradient(0,-r*0.5,0,r*0.5);gr.addColorStop(0,C.lg);gr.addColorStop(1,'#a8862a');c.fillStyle=gr;c.fill();c.strokeStyle='rgba(60,40,0,.7)';c.lineWidth=Math.max(1,r*0.1);c.stroke();c.fillStyle='rgba(255,255,255,.45)';c.fillRect(-r*0.45,-r*0.35,r*0.9,r*0.14)}
+ else{var g2=c.createRadialGradient(-r*0.35,-r*0.35,r*0.1,0,0,r);g2.addColorStop(0,'#fff');g2.addColorStop(0.25,K[0]);g2.addColorStop(1,K[0]);c.fillStyle=g2;c.beginPath();c.arc(0,0,r,0,7);c.fill();c.strokeStyle='rgba(0,0,0,.45)';c.lineWidth=Math.max(1,r*0.12);c.stroke();
+  c.strokeStyle='rgba(0,0,0,.18)';c.lineWidth=Math.max(0.6,r*0.06);c.beginPath();c.arc(0,0,r*0.78,0,7);c.stroke();
+  c.fillStyle='#0a0a0a';c.font='800 '+Math.round(r*(K[1].length>1?0.8:1.1))+'px system-ui,-apple-system,Segoe UI,sans-serif';c.textAlign='center';c.textBaseline='middle';c.fillText(K[1],0,r*0.06)}
  c.restore()}
-function avatar(size,v){var cv=document.createElement('canvas');cv.width=cv.height=size;var c=cv.getContext('2d');draw(c,size/2,size*0.98,size*0.95,{v:v});return cv}
-window.NND={ready:ready,draw:draw,badge:badge,avatar:avatar,colors:C,variants:Object.keys(V),HEAD:HEAD};
+function avatar(size,v){var d=Math.min(2,window.devicePixelRatio||1),cv=document.createElement('canvas');cv.width=cv.height=size*d;cv.style.width=cv.style.height=size+'px';var c=cv.getContext('2d');c.scale(d,d);draw(c,size/2,size*0.98,size*0.95,{v:v});return cv}
+function hidpi(cv){var d=Math.min(2,window.devicePixelRatio||1);if(d<=1||cv._nnd)return cv;var W=cv.width,H=cv.height,P=HTMLCanvasElement.prototype,wd=Object.getOwnPropertyDescriptor(P,'width'),hd=Object.getOwnPropertyDescriptor(P,'height');
+ wd.set.call(cv,Math.round(W*d));hd.set.call(cv,Math.round(H*d));cv._nnd=d;
+ Object.defineProperty(cv,'width',{get:function(){return W},set:function(n){W=n;wd.set.call(cv,Math.round(n*d));fix()},configurable:true});
+ Object.defineProperty(cv,'height',{get:function(){return H},set:function(n){H=n;hd.set.call(cv,Math.round(n*d));fix()},configurable:true});
+ var ctx=cv.getContext('2d'),st=ctx.setTransform.bind(ctx),rs=ctx.resetTransform&&ctx.resetTransform.bind(ctx);
+ ctx.setTransform=function(a,b,cc,dd,e,f){if(typeof a==='object')return st(a);st(a*d,b*d,cc*d,dd*d,e*d,f*d)};ctx.resetTransform=function(){st(d,0,0,d,0,0)};
+ function fix(){st(d,0,0,d,0,0);ctx.imageSmoothingQuality='high'}fix();return cv}
+window.NND={ready:ready,draw:draw,badge:badge,avatar:avatar,hidpi:hidpi,panel:panel,colors:C,variants:Object.keys(V),poses:['stand','run','win','fail','fly','flap']};
 })();

@@ -14,7 +14,7 @@
 <div class="nn-card" id="board"></div>
 <div class="nn-card"><h3>ABOUT THIS CABINET</h3><p class="nn-sub" style="font-size:13px">An original NetNet game starring aidunlap, the NetNet mascot. Everyone gets the same level this week (seed from the UTC week, Sunday to Sunday). Your inputs are recorded tick by tick and the score server re-plays them from scratch; only the re-simulated score counts. Runs that go faster than real time, pause, hide the tab or exceed the input-rate cap are rejected. Tokens in the game are game items, not real assets or prices. Test credits only, not money.</p></div></div>
 <script>
-const GAME='deep-vault',$=id=>document.getElementById(id),cv=$('c'),ctx=cv.getContext('2d'),g=NNS.games[GAME];
+const GAME='deep-vault',$=id=>document.getElementById(id),cv=$('c'),ctx=NND.hidpi(cv).getContext('2d'),g=NNS.games[GAME];
 function board(){NNA.renderBoard(GAME,$('board'))}
 document.addEventListener('DOMContentLoaded',()=>{board();NNA.foot()});
 let want=null,sent=null,lastT=-99,Q=[];const GAP=8;
@@ -25,7 +25,7 @@ const R=NNA.runner(GAME,{onFrame:s=>{pump(s);draw(s,performance.now())},onEnd:()
 function start(){want=null;sent=null;lastT=-99;Q=[];R.start($('ranked').checked);$('go').style.display='none'}
 NNA.onAgain=start;$('go').onclick=e=>{e.preventDefault();start()};
 function idle(now){if(!R.on){draw(R.state&&R.state.done?R.state:preview,now)}requestAnimationFrame(idle)}
-function label(t1,t2){ctx.fillStyle='rgba(10,10,10,.62)';ctx.fillRect(0,0,cv.width,cv.height);ctx.textAlign='center';ctx.fillStyle='#f5d77a';ctx.font='bold 30px system-ui';ctx.fillText(t1,cv.width/2,cv.height/2-10);ctx.fillStyle='#9a927c';ctx.font='15px system-ui';ctx.fillText(t2,cv.width/2,cv.height/2+22)}
+function label(t1,t2){NND.panel(ctx,cv.width,cv.height,t1,t2)}
 
 const VAL={gold:100,tbill:40,estate:250,stock:60,net:150,dump:5};
 function item(o,x,y){if(o.k==='dump'){ctx.fillStyle='#3a1414';ctx.strokeStyle='#ff5f6d';ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y,o.r,0,7);ctx.fill();ctx.stroke();ctx.fillStyle='#ff5f6d';ctx.font='bold 10px system-ui';ctx.textAlign='center';ctx.fillText('DUMP',x,y+4)}
