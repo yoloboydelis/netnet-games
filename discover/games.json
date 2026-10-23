@@ -14,7 +14,8 @@
    "added": "2026-10-23",
    "tags": [
     "runner",
-    "aidunlap"
+    "aidunlap",
+    "ranked"
    ],
    "genre": "NetNet Original",
    "pitch": "Run Wall Street, grab gold, T-bills and NET, dodge the dumps.",
@@ -33,7 +34,8 @@
    "added": "2026-10-23",
    "tags": [
     "puzzle",
-    "aidunlap"
+    "aidunlap",
+    "ranked"
    ],
    "genre": "NetNet Original",
    "pitch": "Merge from a T-bill up to a dynasty.",
@@ -57,6 +59,66 @@
    "genre": "NetNet Original",
    "pitch": "Close deals and build an RWA empire. Game money only.",
    "thumbnail": "../og/dunlap-empire.png",
+   "status": "ok",
+   "kind": "original"
+  },
+  {
+   "slug": "bear-siege",
+   "title": "Bear Siege",
+   "creator": "NetNet",
+   "credit": "NetNet Originals",
+   "x_post": "",
+   "play_url": "../bear-siege/",
+   "posted": "2026-10-23",
+   "added": "2026-10-23",
+   "tags": [
+    "survival",
+    "aidunlap",
+    "ranked"
+   ],
+   "genre": "NetNet Original",
+   "pitch": "Hold the trading floor against 90 seconds of bears. Ranked weekly.",
+   "thumbnail": "../og/bear-siege.png",
+   "status": "ok",
+   "kind": "original"
+  },
+  {
+   "slug": "deep-vault",
+   "title": "Deep Vault",
+   "creator": "NetNet",
+   "credit": "NetNet Originals",
+   "x_post": "",
+   "play_url": "../deep-vault/",
+   "posted": "2026-10-23",
+   "added": "2026-10-23",
+   "tags": [
+    "casual",
+    "aidunlap",
+    "ranked"
+   ],
+   "genre": "NetNet Original",
+   "pitch": "Drop the gold claw for deeds, gold, T-bills and NET. Ranked weekly.",
+   "thumbnail": "../og/deep-vault.png",
+   "status": "ok",
+   "kind": "original"
+  },
+  {
+   "slug": "penthouse-pilot",
+   "title": "Penthouse Pilot",
+   "creator": "NetNet",
+   "credit": "NetNet Originals",
+   "x_post": "",
+   "play_url": "../penthouse-pilot/",
+   "posted": "2026-10-23",
+   "added": "2026-10-23",
+   "tags": [
+    "flying",
+    "aidunlap",
+    "ranked"
+   ],
+   "genre": "NetNet Original",
+   "pitch": "Jetpack through the tower gaps and grab tokens. Ranked weekly.",
+   "thumbnail": "../og/penthouse-pilot.png",
    "status": "ok",
    "kind": "original"
   }

@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>PENTHOUSE PILOT · NetNet Arcade</title><meta name="description" content="aidunlap straps on a gold jetpack and threads the gaps between towers, grabbing tokens on the way up. Same skyline for everyone each week. Replay-verified.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Arcade"><meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/penthouse-pilot/">
+<meta property="og:title" content="PENTHOUSE PILOT · NetNet Arcade"><meta property="og:description" content="aidunlap straps on a gold jetpack and threads the gaps between towers, grabbing tokens on the way up. Same skyline for everyone each week. Replay-verified."><meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/penthouse-pilot.png"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a0a0a"><link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css">
+<style>:root{--c:#9a927c;--bg:#0a0a0a;--panel:#121212;--line:#2a2a2a}canvas{width:100%;max-width:900px;margin:0 auto;border-radius:12px;display:block;touch-action:none;background:#0d0d0d;user-select:none;-webkit-user-select:none}.row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.row .nn-btn{flex:1}</style>
+<script src="../arcade/sims.js"></script><script>window.NN_SCORE_SERVER="https://netnet-arcade-verifier.netnetarcade.workers.dev"</script><script src="../arcade/core.js"></script><script src="../arcade/dunlap.js"></script></head><body>
+<div class="nn-wrap"><div class="nn-top"><a href="../">← LOBBY</a><span class="nn-pill">CABINET 13 · <span class="nna-ok">✔ REPLAY-VERIFIED</span></span></div>
+<h1 class="nn-title">PENTHOUSE PILOT</h1><p class="nn-sub">Hold the screen, Space or ↑ to fire the jetpack; let go to drop. Fly through the gaps between towers. Each tower cleared +10; tokens in the gaps: T-bill +20, gold +30, NET +50. Touch a tower, the street or the clouds and the flight ends.</p>
+<div class="nn-hud"><span id="h1">0 pts</span><span id="h2"></span><span id="h3"></span></div>
+<canvas id="c" width="640" height="360"></canvas>
+<div class="row"><button class="nn-btn" id="go">START</button></div>
+<label class="nna-mut" style="display:block;margin:8px 0"><input type="checkbox" id="ranked" checked> Ranked entry: 100 <span class="nna-test">TEST</span> credits (10 to treasury first, 90 to this week's pool). Untick for free practice.</label>
+<div class="nn-card" id="board"></div>
+<div class="nn-card"><h3>ABOUT THIS CABINET</h3><p class="nn-sub" style="font-size:13px">An original NetNet game starring aidunlap, the NetNet mascot. Everyone gets the same level this week (seed from the UTC week, Sunday to Sunday). Your inputs are recorded tick by tick and the score server re-plays them from scratch; only the re-simulated score counts. Runs that go faster than real time, pause, hide the tab or exceed the input-rate cap are rejected. Tokens in the game are game items, not real assets or prices. Test credits only, not money.</p></div></div>
+<script>
+const GAME='penthouse-pilot',$=id=>document.getElementById(id),cv=$('c'),ctx=cv.getContext('2d'),g=NNS.games[GAME];
+function board(){NNA.renderBoard(GAME,$('board'))}
+document.addEventListener('DOMContentLoaded',()=>{board();NNA.foot()});
+let want=null,sent=null,lastT=-99,Q=[];const GAP=7;
+function pump(s){if(!R.on)return;if(Q.length&&s.tick-lastT>=GAP){lastT=s.tick;R.input(Q.shift());return}if(want!==null&&want!==sent&&s.tick-lastT>=GAP){sent=want;lastT=s.tick;R.input(want)}}
+function tap(a){if(!R.on)return;if(Q.length<3)Q.push(a);pump(R.state)}
+let preview=g.create(NNS.seedFor(GAME));
+const R=NNA.runner(GAME,{onFrame:s=>{pump(s);draw(s,performance.now())},onEnd:()=>{$('go').style.display='';board()}});
+function start(){want=0;sent=0;lastT=-99;Q=[];R.start($('ranked').checked);$('go').style.display='none'}
+NNA.onAgain=start;$('go').onclick=e=>{e.preventDefault();start()};
+function idle(now){if(!R.on){draw(R.state&&R.state.done?R.state:preview,now)}requestAnimationFrame(idle)}
+function label(t1,t2){ctx.fillStyle='rgba(10,10,10,.62)';ctx.fillRect(0,0,cv.width,cv.height);ctx.textAlign='center';ctx.fillStyle='#f5d77a';ctx.font='bold 30px system-ui';ctx.fillText(t1,cv.width/2,cv.height/2-10);ctx.fillStyle='#9a927c';ctx.font='15px system-ui';ctx.fillText(t2,cv.width/2,cv.height/2+22)}
+
+function draw(s,now){const sky=ctx.createLinearGradient(0,0,0,360);sky.addColorStop(0,'#0a0a0a');sky.addColorStop(1,'#141414');ctx.fillStyle=sky;ctx.fillRect(0,0,640,360);
+ ctx.fillStyle='#161616';const off=(s.dist*0.3)%120;for(let i=-1;i<7;i++){const bh=90+((i+Math.floor(s.dist*0.3/120))*41%5+5)%5*22;ctx.fillRect(i*120-off,360-bh,90,bh)}
+ ctx.fillStyle='#2a2a2a';ctx.fillRect(0,0,640,10);ctx.fillRect(0,350,640,10);ctx.fillStyle='#d4af37';ctx.fillRect(0,349,640,1);
+ for(const o of s.cols){const t=o.c-o.gap/2,b=o.c+o.gap/2;ctx.fillStyle='#232323';ctx.fillRect(o.x,0,o.w,t);ctx.fillRect(o.x,b,o.w,360-b);ctx.fillStyle='#d4af37';ctx.fillRect(o.x-4,t-8,o.w+8,8);ctx.fillRect(o.x-4,b,o.w+8,8);
+  ctx.fillStyle='rgba(245,215,122,.22)';for(let y=t-24;y>0;y-=18)for(let x=o.x+8;x<o.x+o.w-6;x+=14)ctx.fillRect(x,y,5,8);for(let y=b+18;y<350;y+=18)for(let x=o.x+8;x<o.x+o.w-6;x+=14)ctx.fillRect(x,y,5,8);
+  if(o.tok&&!o.took)NND.badge(ctx,o.x+o.w/2,o.ty,11,o.tok)}
+ const y=s.y;ctx.fillStyle='#2a2a2a';ctx.fillRect(132,y-22,9,22);ctx.fillStyle='#d4af37';ctx.fillRect(132,y-22,9,3);
+ if(s.th&&R.on){ctx.fillStyle=Math.floor(now/60)%2?'#f5d77a':'#d4af37';ctx.beginPath();ctx.moveTo(133,y);ctx.lineTo(140,y);ctx.lineTo(136.5,y+12+Math.random()*6);ctx.fill()}
+ NND.draw(ctx,150,y+28,58,{v:'dunlap',pose:s.crash||(s.done&&s.tick<g.maxTicks)?'fail':(s.th?'win':'stand'),t:now});
+ const sc=g.score(s);$('h1').textContent=sc+' pts';$('h2').textContent=s.gates+' towers';$('h3').textContent=(s.tick/60).toFixed(1)+'s';
+ if(!R.on)label(s.done?'LANDED · '+sc+' PTS':'PENTHOUSE PILOT',s.done?'Press START to fly again':'Press START · hold to fire the jetpack')}
+const on=()=>{want=1},off=()=>{want=0};
+cv.addEventListener('pointerdown',e=>{e.preventDefault();on()});['pointerup','pointercancel','pointerleave'].forEach(t=>cv.addEventListener(t,off));
+addEventListener('keydown',e=>{if(e.key===' '||e.key==='ArrowUp'||e.key==='w'){e.preventDefault();on()}});addEventListener('keyup',e=>{if(e.key===' '||e.key==='ArrowUp'||e.key==='w')off()});
+
+NND.ready.then(()=>requestAnimationFrame(idle));
+</script></body></html>

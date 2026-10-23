@@ -29,3 +29,11 @@ console.log('rate limited after 30/min ->', rl, 'of 40 blocked');
 console.log('stats ->', JSON.stringify((await call('/v1/stats')).games['rent-rush']));
 const pass = ok.verified && ok.rank === 1 && !reuse.verified && !fast.verified && !nosig.verified && rl === 10 && st.account.credits === 9900 && board.rows.length === 1;
 console.log(pass ? 'PASS' : 'FAIL'); if (!pass) process.exit(1);
+// aidunlap originals: each new ranked cabinet must be known to the worker bundle and verify a simple run
+{ const NNS = (await import('./src/sims.bundle.js')).default; let okAll = true;
+  for (const game of ['dunlap-dash', 'merge-mogul', 'bear-siege', 'deep-vault', 'penthouse-pilot']) { const g = NNS.games[game], seed = NNS.seedFor(game), log = game === 'merge-mogul' ? [[0, 2], [5, 3], [10, 2]] : game === 'bear-siege' ? [[0, 2], [30, 4]] : [[30, 1]];
+    const s = NNS.simulate(game, seed, log), v = NNS.verify({ game, week: NNS.weekId(), seed, log, wallMs: s.tick / g.tps * 1000 });
+    const forged = NNS.verify({ game, week: NNS.weekId(), seed: seed + 1, log, wallMs: s.tick / g.tps * 1000 });
+    console.log(game, '->', v.ok, v.score, v.reasons.join(';'), '| wrong seed rejected:', !forged.ok); okAll = okAll && v.ok && !forged.ok; }
+  const st2 = await call('/v1/start', { game: 'bear-siege', secret, ranked: true }); console.log('bear-siege start ->', !!st2.sig, st2.account.credits);
+  if (!okAll || !st2.sig) { console.log('FAIL originals'); process.exit(1); } console.log('PASS originals'); }
