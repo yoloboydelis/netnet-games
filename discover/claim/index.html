@@ -1,0 +1,63 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>CLAIM OR REMOVE A LISTING · NetNet Arcade</title><meta name="description" content="Creators: prove you made a game listed in NetNet Community Discoveries, opt in to NetNet rails, or remove your listing instantly.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Arcade"><meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/discover/claim/">
+<meta property="og:title" content="CLAIM OR REMOVE A LISTING · NetNet Arcade"><meta property="og:description" content="Creators: prove you made a game listed in NetNet Community Discoveries, opt in to NetNet rails, or remove your listing instantly.">
+<meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/home.png"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#070b16"><link rel="stylesheet" href="../../_template/arcade.css"><link rel="stylesheet" href="../../arcade/arcade.css">
+<style>:root{--c:#38f5ff}</style><style>:root{--c:#38f5ff}
+.dg{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin:14px 0}
+.gc{display:flex;flex-direction:column;gap:6px;background:linear-gradient(160deg,#121a30,#0b1022);border:1px solid #223152;border-radius:18px;padding:14px;position:relative}
+.gc .ti{display:flex;gap:10px;align-items:center}.gc .em{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;flex:0 0 48px}
+.gc h3{margin:0;font-size:18px}.gc .cr a{color:#38f5ff;text-decoration:none;font-size:13px}
+.gc .meta{display:flex;gap:10px;font-size:12px;color:var(--mut);flex-wrap:wrap}.gc .act{display:flex;gap:6px;margin-top:auto}.gc .act .nn-btn{flex:1;min-height:46px;font-size:14px;padding:0 10px}
+.chip{display:inline-block;border-radius:999px;padding:1px 8px;font-size:11px;font-weight:800;border:1px solid #2c3d63;color:#8b9bb8}
+.chip.cl{border-color:#1d7a4a;color:#39ff88;background:#0b3320}.chip.down{border-color:#7a1d2a;color:#ff5f6d}
+.flt{display:flex;gap:6px;overflow-x:auto;padding:4px 0}.flt button{flex:0 0 auto;min-height:40px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--txt);font:inherit;font-weight:700;padding:0 12px;cursor:pointer}.flt button.on{background:#38f5ff;color:#05070f;border-color:#38f5ff}
+.vin{min-height:48px;border-radius:12px;border:1px solid var(--line);background:#0b1022;color:var(--txt);padding:0 12px;font:inherit;width:100%}
+.notrails{border:2px dashed #f5c542;border-radius:16px;padding:12px 14px;background:#1d1606;color:#ffe7a3;font-size:14px}
+.code{font:900 22px ui-monospace,monospace;letter-spacing:.08em;color:#39ff88;background:#04140c;border:1px solid #1d7a4a;border-radius:12px;padding:10px;text-align:center;user-select:all}
+.step{display:flex;gap:10px;align-items:flex-start;margin:8px 0}.step b.n{flex:0 0 28px;height:28px;border-radius:50%;background:#38f5ff;color:#05070f;display:flex;align-items:center;justify-content:center}
+</style>
+<script src="../../arcade/sims.js"></script><script>window.NN_SCORE_SERVER="https://netnet-arcade-verifier.netnetarcade.workers.dev"</script><script src="../../arcade/core.js"></script></head><body>
+<div class="nn-wrap" style="max-width:720px">
+<div class="nn-top"><a href="../">← COMMUNITY DISCOVERIES</a><span class="nn-pill">FOR CREATORS</span></div>
+<h1 class="nn-title">CLAIM OR REMOVE</h1>
+<p class="nn-sub">Made one of these games? Prove it in a minute, and you control the listing. Unclaimed games earn nothing, and we never host or copy your game.</p>
+<div class="nn-card"><label class="nna-mut">Your game</label><select id="g" class="vin"></select><div id="gi" class="nna-mut" style="margin-top:6px"></div></div>
+<div class="nn-card" id="claimed" hidden></div>
+<div class="nn-card" id="claimbox"><h3>1 · PROVE IT'S YOURS</h3>
+<div class="step"><b class="n">1</b><div style="flex:1">Get your personal claim code (tied to your NetNet ID <b id="me"></b>).<br><button class="nn-btn" id="getc" style="margin-top:6px">Get my code</button><div id="codebox" style="margin-top:8px"></div></div></div>
+<div class="step"><b class="n">2</b><div style="flex:1"><b>Option A · X post</b> (easiest): post the code from <b id="hh"></b>, the same account that posted the game. <a id="intent" class="nn-btn ghost" target="_blank" rel="noopener" style="margin:6px 0;display:none">Open X with the code ↗</a><br>Then paste the link to that post:<input id="purl" class="vin" placeholder="https://x.com/you/status/…" style="margin:6px 0"><button class="nn-btn full" data-m="x">Verify X post</button></div></div>
+<div class="step"><b class="n">·</b><div style="flex:1"><b>Option B · your site</b>: put the code anywhere on your game page (e.g. an HTML comment), or in a file at <code>/netnet-claim.txt</code> on the same domain. <button class="nn-btn ghost full" data-m="site" style="margin-top:6px">Verify my game page</button></div></div>
+<div id="vmsg" style="margin-top:6px"></div><p class="nna-mut" style="font-size:12px">We only read your public post (via X's public embed) or your public page, once, when you press Verify. You can delete the post afterwards.</p></div>
+<div class="nn-card" style="border-color:#f5c542"><h3>2 · BRING IT TO NETNET RAILS <span class="nna-test">OPTIONAL · TEST CREDITS</span></h3>
+<p class="nna-mut" style="font-size:14px">Once claimed, you can opt in to a ranked version with the Cabinet Kit: same weekly seed for everyone, replay-verified scores, entry fees in test credits. Your game stays yours; nothing goes live without your build.</p>
+<div style="font-weight:900;color:#f5c542;margin:6px 0">LAUNCH RATE <span class="nna-test">EXAMPLE</span></div>
+<div class="nn-kv"><span>1. NetNet platform / treasury (taken first)</span><b>5%</b></div><div class="nn-kv"><span>2. Player prize pool</span><b>10%</b></div><div class="nn-kv"><span>3. You, the creator</span><b style="color:#39ff88">85%</b></div>
+<p style="font-weight:800;margin:8px 0">Small fee, big volume: creators keep the most of any arcade.</p>
+<div class="nn-kv"><span>Accrued to your account</span><b id="acc">0 test credits</b></div>
+<button class="nn-btn full" id="optin" disabled>Claim first to opt in</button><div class="nna-mut" style="font-size:12px;margin-top:6px">Unclaimed games never earn anything, and nothing is collected on their behalf. Fees only start once a claimed creator opts in, and accrue to that creator's account in test credits only.</div></div>
+<div class="nn-card" style="border-color:#ff5f6d"><h3>3 · REMOVE THIS LISTING</h3><p class="nna-mut" style="font-size:14px">Don't want to be listed? Removal is <b>instant</b>, no proof needed.</p>
+<input id="why" class="vin" placeholder="Reason (optional)" maxlength="300"><button class="nn-btn full" id="rm" style="margin-top:8px;background:#ff5f6d;border-color:#ff5f6d">Remove listing now</button><div id="rmsg" class="nna-mut" style="margin-top:6px"></div></div>
+</div>
+<script>
+const $=id=>document.getElementById(id),E=NNA.esc;let G=[],ST={claims:{},hidden:[]};
+const post=(p,b)=>fetch(NNA.SERVER+p,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(Object.assign({secret:NNA.acct().secret},b))}).then(async r=>Object.assign(await r.json(),{_s:r.status}));
+const mine=()=>JSON.parse(localStorage.getItem('nna_myclaims')||'[]');
+function cur(){return G.find(x=>x.slug===$('g').value)}
+function show(){const g=cur();if(!g)return;const c=ST.claims[g.slug],own=mine().includes(g.slug),hid=ST.hidden.includes(g.slug);
+ $('gi').innerHTML='Posted by <b>@'+E(g.handle)+'</b> · <a style="color:var(--c)" target="_blank" rel="noopener" href="'+g.post+'">launch post ↗</a> · <a style="color:var(--c)" target="_blank" rel="noopener noreferrer" href="'+E(g.play)+'">game ↗</a>'+(hid?' · <span class="chip down">REMOVED</span>':'');
+ $('hh').textContent='@'+g.handle;$('me').textContent='@'+NNA.acct().handle;$('codebox').innerHTML='';$('intent').style.display='none';$('vmsg').innerHTML='';
+ $('claimed').hidden=!c;$('claimbox').hidden=!!c;if(c)$('claimed').innerHTML='<span class="nna-ok">✔ CLAIMED</span> by @'+E(c.handle)+(own?' (this is you)':'')+(c.optin?' · opted in to NetNet rails':'');
+ $('optin').disabled=!(c&&own);$('optin').textContent=!c?'Claim first to opt in':!own?'Only the creator can opt in':c.optin?'✔ Opted in · tap to opt out':'Opt in to NetNet rails';$('acc').textContent=(c?c.accrued:0)+' test credits'}
+async function load(){ST=await (await fetch(NNA.SERVER+'/v1/discover/state')).json();show()}
+$('getc').onclick=async()=>{const r=await post('/v1/discover/claim/start',{game:cur().slug});if(r.code){$('codebox').innerHTML='<div class="code">'+r.code+'</div>';
+ const t='Claiming my game "'+cur().title+'" on NetNet Community Discoveries: '+r.code;$('intent').href='https://x.com/intent/post?text='+encodeURIComponent(t);$('intent').style.display='inline-flex'}else $('codebox').innerHTML='<span class="nna-bad">✘</span> '+E(r.error)};
+document.querySelectorAll('[data-m]').forEach(b=>b.onclick=async()=>{$('vmsg').textContent='Checking…';const r=await post('/v1/discover/claim/verify',{game:cur().slug,method:b.dataset.m,url:$('purl').value.trim()});
+ if(r.ok){localStorage.setItem('nna_myclaims',JSON.stringify([...new Set([...mine(),cur().slug])]));$('vmsg').innerHTML='<span class="nna-ok">✔ Verified</span> The listing is now yours.';load()}else $('vmsg').innerHTML='<span class="nna-bad">✘</span> '+E(r.error||'failed')});
+$('optin').onclick=async()=>{const c=ST.claims[cur().slug];const r=await post('/v1/discover/optin',{game:cur().slug,on:!(c&&c.optin)});NNA.toast(r.ok?(r.optin?'Opted in to NetNet rails':'Opted out'):'✘ '+r.error);load()};
+$('rm').onclick=async()=>{if(!confirm('Remove "'+cur().title+'" from Community Discoveries now?'))return;const r=await post('/v1/discover/takedown',{game:cur().slug,reason:$('why').value});$('rmsg').innerHTML=r.ok?'<span class="nna-ok">✔ Removed</span> The listing is hidden for everyone, effective now.':'✘ '+E(r.error);load()};
+$('g').onchange=show;
+document.addEventListener('DOMContentLoaded',async()=>{NNA.foot();G=await (await fetch('../games.json')).json();$('g').innerHTML=G.map(g=>'<option value="'+g.slug+'">'+E(g.title)+' · @'+E(g.handle)+'</option>').join('');
+ const q=new URLSearchParams(location.search).get('g');if(q)$('g').value=q;await NNA.sync();load()});
+</script></body></html>
