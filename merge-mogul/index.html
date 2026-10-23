@@ -1,0 +1,49 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MERGE MOGUL · NetNet Arcade</title><meta name="description" content="Merge RWA tiles from T-bills to gold vaults to towers to a full Dunlap dynasty.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Arcade"><meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/merge-mogul/">
+<meta property="og:title" content="MERGE MOGUL · NetNet Arcade"><meta property="og:description" content="Merge RWA tiles from T-bills to gold vaults to towers to a full Dunlap dynasty."><meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/merge-mogul.png"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a0a0a"><link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css">
+<style>:root{--c:#f5d77a;--bg:#0a0a0a;--panel:#121212;--line:#2a2a2a}canvas{width:100%;border-radius:12px;display:block;touch-action:none;background:#0d0d0d}.casual{display:inline-block;border:1px solid #9a927c;color:#f5d77a;border-radius:6px;padding:1px 7px;font-size:12px;letter-spacing:.06em}.row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.row .nn-btn{flex:1}</style>
+<script src="../arcade/sims.js"></script><script>window.NN_SCORE_SERVER="https://netnet-arcade-verifier.netnetarcade.workers.dev"</script><script src="../arcade/core.js"></script><script src="../arcade/dunlap.js"></script></head><body>
+<div class="nn-wrap"><div class="nn-top"><a href="../">← LOBBY</a><span class="nn-pill">CABINET 09 · <span class="casual">CASUAL · UNRANKED</span></span></div>
+<h1 class="nn-title">MERGE MOGUL</h1><p class="nn-sub">Swipe on the board, use the arrow keys / WASD or the buttons. Two identical assets merge into the next level: T-bill → bond → gold bar → vault → condo → tower → blue chip → index → fund → empire → dynasty.</p>
+<div class="nn-hud"><span id="score">0 pts</span><span id="best">best 0</span></div>
+<canvas id="c" width="440" height="560"></canvas>
+<div class="row"><button class="nn-btn ghost" data-d="3">◀</button><button class="nn-btn ghost" data-d="0">▲</button><button class="nn-btn ghost" data-d="2">▼</button><button class="nn-btn ghost" data-d="1">▶</button></div>
+<div class="row"><button class="nn-btn" id="new">NEW GAME</button></div>
+<div class="nn-card"><h3>ABOUT THIS CABINET</h3><p class="nn-sub" style="font-size:13px">An original NetNet game starring aidunlap, the NetNet mascot. Casual and unranked: no credits, no entries, no prizes. Your best score is saved only in this browser. The tokens in the game are game items, not real assets or prices.</p></div></div>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{window.NNA&&NNA.foot&&NNA.foot()});
+const $=id=>document.getElementById(id);
+
+const cv=$('c'),ctx=cv.getContext('2d'),N=4,BK='nnd-merge-best';
+const T=[['T-BILL','tbill'],['BOND','tbill'],['GOLD BAR','gold'],['VAULT','gold'],['CONDO','estate'],['TOWER','estate'],['BLUE CHIP','stock'],['INDEX','stock'],['FUND','net'],['EMPIRE','net'],['DYNASTY','net']];
+let B,score,best=+localStorage.getItem(BK)||0,over,msg='';
+function add(){const e=[];B.forEach((r,y)=>r.forEach((v,x)=>{if(v<0)e.push([x,y])}));if(!e.length)return;const [x,y]=e[Math.floor(Math.random()*e.length)];B[y][x]=Math.random()<.9?0:1}
+function newGame(){B=[...Array(N)].map(()=>Array(N).fill(-1));score=0;over=false;add();add();draw()}
+function slide(row){const a=row.filter(v=>v>=0),o=[];for(let i=0;i<a.length;i++){if(a[i]===a[i+1]){o.push(a[i]+1);score+=Math.pow(2,a[i]+2);i++}else o.push(a[i])}while(o.length<N)o.push(-1);return o}
+function move(d){if(over)return;const before=JSON.stringify(B);
+ for(let i=0;i<N;i++){let line=[];for(let j=0;j<N;j++)line.push(d===3?B[i][j]:d===1?B[i][N-1-j]:d===0?B[j][i]:B[N-1-j][i]);line=slide(line);
+  for(let j=0;j<N;j++){if(d===3)B[i][j]=line[j];else if(d===1)B[i][N-1-j]=line[j];else if(d===0)B[j][i]=line[j];else B[N-1-j][i]=line[j]}}
+ if(JSON.stringify(B)!==before){add();if(!canMove()){over=true}if(score>best){best=score;localStorage.setItem(BK,best)}}draw()}
+function canMove(){for(let y=0;y<N;y++)for(let x=0;x<N;x++){const v=B[y][x];if(v<0)return true;if(x<N-1&&B[y][x+1]===v)return true;if(y<N-1&&B[y+1][x]===v)return true}return false}
+function topV(){return Math.max(...B.flat())}
+function draw(){const now=performance.now();ctx.fillStyle='#0d0d0d';ctx.fillRect(0,0,440,560);
+ // header: aidunlap + current top asset
+ const tv=topV();NND.draw(ctx,56,118,108,{v:tv>=8?'boss':'dunlap',pose:over?'fail':'stand',t:now});
+ ctx.fillStyle='#9a927c';ctx.font='13px system-ui';ctx.textAlign='left';ctx.fillText('TOP ASSET',110,48);ctx.fillStyle='#f5d77a';ctx.font='bold 26px system-ui';ctx.fillText(tv>=0?T[Math.min(tv,T.length-1)][0]:'-',110,80);
+ ctx.fillStyle='#9a927c';ctx.font='13px system-ui';ctx.fillText('Merge two of a kind to level up the asset',110,104);
+ const S=100,G=8,ox=16,oy=128;ctx.fillStyle='#1a1a1a';ctx.fillRect(ox-6,oy-6,N*(S+G)+4,N*(S+G)+4);
+ for(let y=0;y<N;y++)for(let x=0;x<N;x++){const v=B[y][x],px=ox+x*(S+G),py=oy+y*(S+G);ctx.fillStyle=v<0?'#141414':(v>=8?'#2a2408':'#222');ctx.fillRect(px,py,S,S);
+  if(v>=0){ctx.strokeStyle=v>=6?'#d4af37':'#3a3a3a';ctx.lineWidth=2;ctx.strokeRect(px+1,py+1,S-2,S-2);const t=T[Math.min(v,T.length-1)];NND.badge(ctx,px+S/2,py+40,20+Math.min(v,6)*1.5,t[1]);
+   ctx.fillStyle='#f5d77a';ctx.font='bold 13px system-ui';ctx.textAlign='center';ctx.fillText(t[0],px+S/2,py+82);ctx.fillStyle='#9a927c';ctx.font='10px system-ui';ctx.fillText('LVL '+(v+1),px+S/2,py+96)}}
+ if(over){ctx.fillStyle='rgba(10,10,10,.75)';ctx.fillRect(0,0,440,560);ctx.fillStyle='#f5d77a';ctx.textAlign='center';ctx.font='bold 28px system-ui';ctx.fillText('BOARD FULL · '+score,220,280);ctx.font='15px system-ui';ctx.fillStyle='#9a927c';ctx.fillText('Tap NEW GAME to go again',220,310)}
+ $('score').textContent=score+' pts';$('best').textContent='best '+best}
+newGame();NND.ready.then(draw);
+$('new').onclick=newGame;
+document.querySelectorAll('[data-d]').forEach(b=>b.addEventListener('pointerdown',e=>{e.preventDefault();move(+b.dataset.d)}));
+const K={ArrowUp:0,ArrowRight:1,ArrowDown:2,ArrowLeft:3,w:0,d:1,s:2,a:3};
+addEventListener('keydown',e=>{const k=K[e.key];if(k!=null){e.preventDefault();move(k)}});
+let sx,sy;cv.addEventListener('pointerdown',e=>{sx=e.clientX;sy=e.clientY});cv.addEventListener('pointerup',e=>{const dx=e.clientX-sx,dy=e.clientY-sy;if(Math.max(Math.abs(dx),Math.abs(dy))<24)return;move(Math.abs(dx)>Math.abs(dy)?(dx>0?1:3):(dy>0?2:0))});
+
+</script></body></html>
