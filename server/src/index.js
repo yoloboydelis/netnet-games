@@ -26,11 +26,12 @@ async function limited(env, ip, bucket) {
 async function account(env, secret, handle) {
   if (!secret || String(secret).length < 16) return null;
   const id = await sha('acct:' + secret), k = 'acct:' + id, now = Date.now();
-  let a = await getJ(env, k, null);
-  if (!a) a = { id, handle: cleanHandle(handle), credits: CFG.start, lastRefill: now, created: now, entries: 0 };
-  if (now - a.lastRefill >= CFG.day) { if (a.credits < CFG.start) a.credits = CFG.start; a.lastRefill = now; }
-  if (handle) a.handle = cleanHandle(handle);
-  await putJ(env, k, a); return a;
+  let a = await getJ(env, k, null), dirty = false;
+  if (!a) { a = { id, handle: cleanHandle(handle), credits: CFG.start, lastRefill: now, created: now, entries: 0 }; dirty = true; }
+  if (now - a.lastRefill >= CFG.day) { if (a.credits < CFG.start) a.credits = CFG.start; a.lastRefill = now; dirty = true; }
+  if (handle && cleanHandle(handle) !== a.handle) { a.handle = cleanHandle(handle); dirty = true; }
+  if (dirty) await putJ(env, k, a); // only write when something changed (free-tier KV write budget)
+  return a;
 }
 const pub = a => ({ handle: a.handle, credits: a.credits, nextRefill: a.lastRefill + CFG.day, entries: a.entries });
 
@@ -40,7 +41,7 @@ export default {
     const url = new URL(req.url), p = url.pathname, ip = req.headers.get('cf-connecting-ip') || 'local';
     if (req.method === 'OPTIONS') return new Response(null, { headers: C });
     try {
-      const bucket = p === '/v1/start' ? 'start' : p === '/v1/runs' ? 'runs' : p === '/v1/account' ? 'account' : 'read';
+      const bucket = req.method === 'POST' ? 'write' : 'read';
       if (await limited(env, ip, bucket)) return json({ error: 'rate limited, slow down' }, 429);
 
       if (p === '/v1/account' && req.method === 'POST') {
@@ -105,8 +106,84 @@ export default {
         for (const game of Object.keys(NNS.games)) out[game] = Object.assign({ runs: 0, verified: 0, rejected: 0 }, st[game], { pool: await getJ(env, `pool:${game}:${week}`, { entries: 0, pool: 0, treasury: 0 }) });
         return json({ week, games: out });
       }
+      // Voices: posts, votes, bounties live in one SQLite Durable Object (no KV writes, strongly consistent)
+      if (p.startsWith('/v1/voices/')) {
+        let body = null, acct = null;
+        if (req.method === 'POST') { body = await req.json(); acct = await account(env, body.secret); if (!acct) return json({ error: 'bad account secret' }, 400); }
+        const stub = env.VOICES.get(env.VOICES.idFromName('voices-v1'));
+        if (body && p === '/v1/voices/posts') body.oembed = await oembed(body.url);
+        const r = await stub.fetch('https://do' + p + url.search, { method: req.method, body: body ? JSON.stringify({ ...body, secret: undefined, acct: acct && { id: acct.id, handle: acct.handle } }) : undefined });
+        return new Response(r.body, { status: r.status, headers: { 'content-type': 'application/json', ...C } });
+      }
       if (p === '/' || p === '/v1/health') return json({ ok: true, service: 'netnet-arcade-verifier', version: NNS.VERSION, week: NNS.weekId(), credits: 'TEST credits only' });
       return json({ error: 'not found' }, 404);
     } catch (e) { return json({ error: 'bad request', detail: String(e && e.message || e) }, 400); }
   }
 };
+
+// ---------------- Voices ----------------
+const X_RE = /^https:\/\/(?:www\.|mobile\.)?(?:x|twitter)\.com\/([A-Za-z0-9_]{1,15})\/status\/(\d{5,25})/;
+async function oembed(u) { // public X oEmbed: proves the post exists + gives author/text. No metrics (those are EXAMPLE values).
+  const m = X_RE.exec(String(u || '')); if (!m) return null;
+  try { const r = await fetch('https://publish.twitter.com/oembed?omit_script=1&dnt=true&url=' + encodeURIComponent('https://x.com/' + m[1] + '/status/' + m[2]), { cf: { cacheTtl: 3600 } });
+    if (!r.ok) return { ok: false, status: r.status };
+    const j = await r.json(), text = String(j.html || '').replace(/<a[^>]*>(.*?)<\/a>/g, '$1').replace(/<[^>]+>/g, ' ').replace(/&mdash;.*$/s, '').replace(/&[a-z#0-9]+;/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 280);
+    return { ok: true, author: j.author_name || m[1], text };
+  } catch (e) { return { ok: false, status: 0 }; } }
+const weekOf = ms => NNS.weekId(ms);
+const BOUNTIES = [
+  { id: 'net-backing', title: "Best thread explaining NET's backing", brief: 'Explain in plain words what backs NET (USDG + tokenized RWAs in the treasury) and why it matters. Thread, no shilling, no price talk.', reward: 5000, ends: '2026-11-01' },
+  { id: 'arcade-clip', title: 'Best NetNet Arcade clip', brief: 'Post a short clip or screenshot of your best verified run with the replay link.', reward: 2500, ends: '2026-11-01' },
+  { id: 'tradfi-eli5', title: 'Explain RWAs to your bank-app friend', brief: 'One post a TradFi person would understand: tokenized gold/T-bills/real estate on NetNet, no jargon.', reward: 3000, ends: '2026-11-08' }
+];
+function exampleMetrics(id) { let h = 2166136261; for (const c of id) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619) >>> 0; }
+  const r = n => { h = Math.imul(h ^ (h >>> 13), 0x5bd1e995) >>> 0; return h % n; };
+  const views = 400 + r(24000), likes = Math.round(views * (0.01 + r(50) / 1000)), reposts = Math.round(likes * (0.1 + r(30) / 100)), replies = Math.round(likes * (0.05 + r(20) / 100));
+  return { views, likes, reposts, replies, example: true }; }
+
+export class VoicesDO {
+  constructor(state) { this.sql = state.storage.sql;
+    this.sql.exec(`CREATE TABLE IF NOT EXISTS posts(id TEXT PRIMARY KEY, url TEXT, xuser TEXT, text TEXT, acct TEXT, handle TEXT, week INTEGER, at INTEGER, votes INTEGER DEFAULT 0, bounty TEXT, verified INTEGER DEFAULT 0);
+      CREATE TABLE IF NOT EXISTS votes(post TEXT, acct TEXT, at INTEGER, PRIMARY KEY(post, acct));
+      CREATE TABLE IF NOT EXISTS bvotes(bounty TEXT, acct TEXT, post TEXT, at INTEGER, PRIMARY KEY(bounty, acct));
+      CREATE INDEX IF NOT EXISTS pw ON posts(week);`); }
+  rows(q, ...a) { return [...this.sql.exec(q, ...a)]; }
+  post(r) { const { acct, ...o } = r; return { ...o, metrics: exampleMetrics(r.id) }; }
+  async fetch(req) {
+    const u = new URL(req.url), p = u.pathname.replace('/v1/voices', ''), j = (o, s = 200) => new Response(JSON.stringify(o), { status: s }), now = Date.now(), wk = weekOf(now);
+    const b = req.method === 'POST' ? await req.json() : null;
+    if (p === '/posts' && req.method === 'POST') {
+      const m = X_RE.exec(String(b.url || '')); if (!m) return j({ error: 'Paste a link like https://x.com/name/status/123…' }, 400);
+      const id = m[2]; if (this.rows('SELECT id FROM posts WHERE id=?', id).length) return j({ error: 'This post is already on Voices', id }, 409);
+      const mine = this.rows('SELECT COUNT(*) n FROM posts WHERE acct=? AND at>?', b.acct.id, now - 864e5)[0].n; if (mine >= 5) return j({ error: 'Max 5 posts per account per day' }, 429);
+      const o = b.oembed, bounty = BOUNTIES.some(x => x.id === b.bounty) ? b.bounty : null;
+      if (o && o.ok === false && o.status === 404) return j({ error: 'X says this post does not exist (or is private/deleted)' }, 400);
+      this.sql.exec('INSERT INTO posts(id,url,xuser,text,acct,handle,week,at,votes,bounty,verified) VALUES(?,?,?,?,?,?,?,?,0,?,?)', id, 'https://x.com/' + m[1] + '/status/' + id, o && o.ok ? o.author : m[1], o && o.ok ? o.text : '', b.acct.id, b.acct.handle, wk, now, bounty, o && o.ok ? 1 : 0);
+      return j({ ok: true, post: this.post(this.rows('SELECT * FROM posts WHERE id=?', id)[0]) });
+    }
+    if (p === '/posts') { const w = +u.searchParams.get('week') || wk, by = u.searchParams.get('handle');
+      const r = by ? this.rows('SELECT * FROM posts WHERE handle=? ORDER BY at DESC LIMIT 50', by) : this.rows('SELECT * FROM posts WHERE week=? ORDER BY votes DESC, at ASC LIMIT 200', w);
+      return j({ week: w, posts: r.map(x => this.post(x)) }); }
+    if (p === '/vote' && req.method === 'POST') {
+      const post = this.rows('SELECT * FROM posts WHERE id=?', String(b.post))[0]; if (!post) return j({ error: 'unknown post' }, 404);
+      if (post.acct === b.acct.id) return j({ error: "You can't vote for your own post" }, 403);
+      if (this.rows('SELECT 1 FROM votes WHERE post=? AND acct=?', post.id, b.acct.id).length) return j({ error: 'Already voted for this post (one vote per account)' }, 409);
+      const today = this.rows('SELECT COUNT(*) n FROM votes WHERE acct=? AND at>?', b.acct.id, now - 864e5)[0].n; if (today >= 30) return j({ error: 'Max 30 votes per account per day' }, 429);
+      this.sql.exec('INSERT INTO votes VALUES(?,?,?)', post.id, b.acct.id, now); this.sql.exec('UPDATE posts SET votes=votes+1 WHERE id=?', post.id);
+      return j({ ok: true, votes: post.votes + 1 }); }
+    if (p === '/myvotes' && req.method === 'POST') return j({ posts: this.rows('SELECT post FROM votes WHERE acct=?', b.acct.id).map(r => r.post), bounties: this.rows('SELECT bounty, post FROM bvotes WHERE acct=?', b.acct.id) });
+    if (p === '/board') { const w = +u.searchParams.get('week') || wk;
+      return j({ week: w, rows: this.rows('SELECT handle, SUM(votes) votes, COUNT(*) posts, MAX(votes) best FROM posts WHERE week=? GROUP BY acct ORDER BY votes DESC, MIN(at) ASC LIMIT 100', w) }); }
+    if (p === '/raid') { const r = this.rows('SELECT * FROM posts WHERE at>? ORDER BY votes DESC, at DESC LIMIT 3', now - 2 * 864e5);
+      return j({ posts: (r.length ? r : this.rows('SELECT * FROM posts ORDER BY at DESC LIMIT 3')).map(x => this.post(x)) }); }
+    if (p === '/bounties') return j({ bounties: BOUNTIES.map(x => ({ ...x, entries: this.rows('SELECT p.id,p.url,p.handle,p.xuser,p.text,p.votes, (SELECT COUNT(*) FROM bvotes v WHERE v.bounty=? AND v.post=p.id) bvotes FROM posts p WHERE p.bounty=? ORDER BY bvotes DESC, p.at ASC', x.id, x.id) })) });
+    if (p === '/bounties/vote' && req.method === 'POST') {
+      const e = this.rows('SELECT * FROM posts WHERE id=? AND bounty=?', String(b.post), String(b.bounty))[0]; if (!e) return j({ error: 'unknown entry' }, 404);
+      if (e.acct === b.acct.id) return j({ error: "You can't vote for your own entry" }, 403);
+      if (this.rows('SELECT 1 FROM bvotes WHERE bounty=? AND acct=?', e.bounty, b.acct.id).length) return j({ error: 'You already picked a winner for this bounty (one per account)' }, 409);
+      this.sql.exec('INSERT INTO bvotes VALUES(?,?,?,?)', e.bounty, b.acct.id, e.id, now); return j({ ok: true }); }
+    if (p === '/creator') { const h = u.searchParams.get('handle'), ps = this.rows('SELECT * FROM posts WHERE handle=? ORDER BY votes DESC', h);
+      return j({ handle: h, posts: ps.length, votes: ps.reduce((a, x) => a + x.votes, 0), best: ps[0] ? this.post(ps[0]) : null, weekVotes: ps.filter(x => x.week === wk).reduce((a, x) => a + x.votes, 0) }); }
+    return j({ error: 'not found' }, 404);
+  }
+}

@@ -1,6 +1,6 @@
 name = "netnet-arcade-verifier"
 main = "src/index.js"
-compatibility_date = "2026-10-01"
+compatibility_date = "2026-05-01"
 account_id = "d3bf516b5ec656f2dd3999ee3ca9436d"
 workers_dev = true
 
@@ -24,3 +24,11 @@ namespace_id = "4663002"
   period = 60
 
 # Secret (not in this file): SIGNING_KEY  (set with: openssl rand -hex 32 | npx wrangler secret put SIGNING_KEY)
+
+[[durable_objects.bindings]]
+name = "VOICES"
+class_name = "VoicesDO"
+
+[[migrations]]
+tag = "v1-voices"
+new_sqlite_classes = ["VoicesDO"]

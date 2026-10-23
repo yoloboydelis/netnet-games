@@ -47,3 +47,11 @@ A ranked `/v1/start` charges 100: 10 to the treasury first, 90 to `pool:<game>:<
 - Replay verification proves the score came from *legal inputs at human speed*; it can't fully stop a well-built bot that plays at human speed. Add rate limits per IP, wallet-linked accounts and outlier review before real prizes.
 - Credits/pools are still local (test credits). A server ledger is needed before anything has value.
 - Portfolio League is a one-shot pick (no real-time element), so only rule validation + re-scoring apply.
+
+## Voices (creator leaderboard) — LIVE
+Stored in one SQLite-backed Durable Object `VoicesDO` (free tier, strongly consistent, no KV writes per vote).
+Account = the same arcade secret. Rate limited by the same per-IP limiter (30 writes/min).
+- `POST /v1/voices/posts {secret, url, bounty?}` — X link; existence + author + text via X's public oEmbed (server-side). Max 5/account/day. Views/likes are deterministic EXAMPLE metrics (X metrics need an X API key).
+- `POST /v1/voices/vote {secret, post}` — one vote per account per post, no self-votes, max 30/day.
+- `POST /v1/voices/myvotes {secret}`, `GET /v1/voices/posts[?week|handle]`, `GET /v1/voices/board[?week]`, `GET /v1/voices/raid`, `GET /v1/voices/creator?handle=`
+- `GET /v1/voices/bounties`, `POST /v1/voices/bounties/vote {secret, bounty, post}` — one winner pick per account per bounty.
