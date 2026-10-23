@@ -143,7 +143,7 @@
     var b = document.getElementById('nna-bar'); if (!b) return; var a = A.acct();
     b.innerHTML = '<a class="nna-logo" href="' + A.root + '">NETNET<b>ARCADE</b></a><span class="nna-sp"></span>' +
       '<a href="' + A.root + 'profile/" title="Your profile">👤 ' + esc(a.handle) + '</a><a href="' + A.root + 'profile/" title="Test credits, refill to ' + CFG.start.toLocaleString() + ' every 24h. Not money.">🪙 ' + Math.floor(a.credits).toLocaleString() + ' <small>TEST</small></a>' +
-      (A.online === true ? '<span title="Score server online" style="color:#39ff88">🌐</span>' : A.online === false ? '<span title="Score server offline, local mode" style="color:#ff5f6d">⚠</span>' : '') + '<a href="' + A.root + 'boards/">🏆 Boards</a><a href="' + A.root + 'stats/">📊 Stats</a>';
+      (A.online === true ? '<span title="Score server online" style="color:#39ff88">🌐</span>' : A.online === false ? '<span title="Score server offline, local mode" style="color:#ff5f6d">⚠</span>' : '') + '<a href="' + A.root + 'apps/">🧩 Apps</a><a href="' + A.root + 'boards/">🏆 Boards</a><a href="' + A.root + 'stats/">📊 Stats</a>';
   };
   A.gate = function () {
     if (J('nna_gate', 0)) return; var m = document.createElement('div'); m.className = 'nn-modal on'; m.id = 'nna-gate';
