@@ -55,3 +55,9 @@ Account = the same arcade secret. Rate limited by the same per-IP limiter (30 wr
 - `POST /v1/voices/vote {secret, post}` — one vote per account per post, no self-votes, max 30/day.
 - `POST /v1/voices/myvotes {secret}`, `GET /v1/voices/posts[?week|handle]`, `GET /v1/voices/board[?week]`, `GET /v1/voices/raid`, `GET /v1/voices/creator?handle=`
 - `GET /v1/voices/bounties`, `POST /v1/voices/bounties/vote {secret, bounty, post}` — one winner pick per account per bounty.
+
+## Community Discoveries (/v1/discover/*)
+Third-party games listed off-rails (link-out only). Owners claim with a code `NETNET-CLAIM-XXXXXXXX`
+(HMAC of account+slug) posted from the same X handle (checked via public oEmbed) or placed on the game page
+or `/netnet-claim.txt`. Claimed owners may opt in to NetNet rails at the launch rate: 85% creator, 5% NetNet, 10% player pool
+(test credits only). `takedown` hides a listing instantly; only the verified owner can `restore`.
