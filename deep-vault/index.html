@@ -1,0 +1,51 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>DEEP VAULT · NetNet Arcade</title><meta name="description" content="aidunlap drops a gold claw into the deep vault: tokenized gold, T-bills, real estate deeds and NET. Heavy treasure reels slower. 60 seconds, same vault for everyone each week. Replay-verified.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Arcade"><meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/deep-vault/">
+<meta property="og:title" content="DEEP VAULT · NetNet Arcade"><meta property="og:description" content="aidunlap drops a gold claw into the deep vault: tokenized gold, T-bills, real estate deeds and NET. Heavy treasure reels slower. 60 seconds, same vault for everyone each week. Replay-verified."><meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/deep-vault.png"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a0a0a"><link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css">
+<style>:root{--c:#f5d77a;--bg:#0a0a0a;--panel:#121212;--line:#2a2a2a}canvas{width:100%;max-width:900px;margin:0 auto;border-radius:12px;display:block;touch-action:none;background:#0d0d0d;user-select:none;-webkit-user-select:none}.row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.row .nn-btn{flex:1}</style>
+<script src="../arcade/sims.js"></script><script>window.NN_SCORE_SERVER="https://netnet-arcade-verifier.netnetarcade.workers.dev"</script><script src="../arcade/core.js"></script><script src="../arcade/dunlap.js"></script></head><body>
+<div class="nn-wrap"><div class="nn-top"><a href="../">← LOBBY</a><span class="nn-pill">CABINET 12 · <span class="nna-ok">✔ REPLAY-VERIFIED</span></span></div>
+<h1 class="nn-title">DEEP VAULT</h1><p class="nn-sub">The claw swings from the dock. Tap the screen, Space or ↓ to drop it. It grabs the first thing it touches and reels it up: heavy items take longer. Real estate deed 250, NET 150, gold 100, stock 60, T-bill 40. DUMP anchors are worth 5 and waste your time. 60 seconds.</p>
+<div class="nn-hud"><span id="h1">0 pts</span><span id="h2"></span><span id="h3"></span></div>
+<canvas id="c" width="640" height="360"></canvas>
+<div class="row"><button class="nn-btn" id="go">START</button></div>
+<label class="nna-mut" style="display:block;margin:8px 0"><input type="checkbox" id="ranked" checked> Ranked entry: 100 <span class="nna-test">TEST</span> credits (10 to treasury first, 90 to this week's pool). Untick for free practice.</label>
+<div class="nn-card" id="board"></div>
+<div class="nn-card"><h3>ABOUT THIS CABINET</h3><p class="nn-sub" style="font-size:13px">An original NetNet game starring aidunlap, the NetNet mascot. Everyone gets the same level this week (seed from the UTC week, Sunday to Sunday). Your inputs are recorded tick by tick and the score server re-plays them from scratch; only the re-simulated score counts. Runs that go faster than real time, pause, hide the tab or exceed the input-rate cap are rejected. Tokens in the game are game items, not real assets or prices. Test credits only, not money.</p></div></div>
+<script>
+const GAME='deep-vault',$=id=>document.getElementById(id),cv=$('c'),ctx=cv.getContext('2d'),g=NNS.games[GAME];
+function board(){NNA.renderBoard(GAME,$('board'))}
+document.addEventListener('DOMContentLoaded',()=>{board();NNA.foot()});
+let want=null,sent=null,lastT=-99,Q=[];const GAP=8;
+function pump(s){if(!R.on)return;if(Q.length&&s.tick-lastT>=GAP){lastT=s.tick;R.input(Q.shift());return}if(want!==null&&want!==sent&&s.tick-lastT>=GAP){sent=want;lastT=s.tick;R.input(want)}}
+function tap(a){if(!R.on)return;if(Q.length<3)Q.push(a);pump(R.state)}
+let preview=g.create(NNS.seedFor(GAME));
+const R=NNA.runner(GAME,{onFrame:s=>{pump(s);draw(s,performance.now())},onEnd:()=>{$('go').style.display='';board()}});
+function start(){want=null;sent=null;lastT=-99;Q=[];R.start($('ranked').checked);$('go').style.display='none'}
+NNA.onAgain=start;$('go').onclick=e=>{e.preventDefault();start()};
+function idle(now){if(!R.on){draw(R.state&&R.state.done?R.state:preview,now)}requestAnimationFrame(idle)}
+function label(t1,t2){ctx.fillStyle='rgba(10,10,10,.62)';ctx.fillRect(0,0,cv.width,cv.height);ctx.textAlign='center';ctx.fillStyle='#f5d77a';ctx.font='bold 30px system-ui';ctx.fillText(t1,cv.width/2,cv.height/2-10);ctx.fillStyle='#9a927c';ctx.font='15px system-ui';ctx.fillText(t2,cv.width/2,cv.height/2+22)}
+
+const VAL={gold:100,tbill:40,estate:250,stock:60,net:150,dump:5};
+function item(o,x,y){if(o.k==='dump'){ctx.fillStyle='#3a1414';ctx.strokeStyle='#ff5f6d';ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y,o.r,0,7);ctx.fill();ctx.stroke();ctx.fillStyle='#ff5f6d';ctx.font='bold 10px system-ui';ctx.textAlign='center';ctx.fillText('DUMP',x,y+4)}
+ else if(o.k==='estate'){ctx.fillStyle='#c9b48a';ctx.fillRect(x-o.r,y-o.r*0.4,o.r*2,o.r*1.3);ctx.beginPath();ctx.moveTo(x-o.r-4,y-o.r*0.4);ctx.lineTo(x,y-o.r*1.2);ctx.lineTo(x+o.r+4,y-o.r*0.4);ctx.fill();ctx.fillStyle='#0a0a0a';ctx.fillRect(x-5,y+o.r*0.3,10,o.r*0.6);ctx.font='bold 10px system-ui';ctx.textAlign='center';ctx.fillText('DEED',x,y+2)}
+ else NND.badge(ctx,x,y,o.r,o.k)}
+function draw(s,now){const sky=ctx.createLinearGradient(0,0,0,360);sky.addColorStop(0,'#121212');sky.addColorStop(0.2,'#0d0d0d');sky.addColorStop(1,'#050505');ctx.fillStyle=sky;ctx.fillRect(0,0,640,360);
+ ctx.fillStyle='#1a1a1a';for(let i=0;i<8;i++){const bx=i*86,bh=28+(i*29)%30;ctx.fillRect(bx,70-bh,58,bh)}
+ ctx.fillStyle='#2a2a2a';ctx.fillRect(0,70,640,6);ctx.fillStyle='#d4af37';ctx.fillRect(0,76,640,1.5);
+ ctx.fillStyle='rgba(212,175,55,.05)';for(let i=0;i<30;i++){ctx.fillRect((i*97+now/40)%640,90+(i*53)%260,2,2)}
+ ctx.strokeStyle='#1d1d1d';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(0,352);for(let x=0;x<=640;x+=32)ctx.lineTo(x,350+(x/32%2)*6);ctx.stroke();
+ for(const o of s.items)item(o,o.x,o.y);
+ NND.draw(ctx,300,70,62,{v:'dunlap',pose:s.mode===2&&s.hold&&s.hold.k!=='dump'?'win':'stand',t:now});
+ const p=g.tip(s);ctx.strokeStyle='#9a927c';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(320,70);ctx.lineTo(p.x,p.y);ctx.stroke();
+ if(s.hold)item(s.hold,p.x,p.y+s.hold.r*0.6);
+ ctx.strokeStyle='#d4af37';ctx.lineWidth=3;ctx.beginPath();ctx.arc(p.x,p.y+4,8,0.2,Math.PI-0.2);ctx.stroke();ctx.fillStyle='#f5d77a';ctx.beginPath();ctx.arc(p.x,p.y,3,0,7);ctx.fill();
+ if(s.last&&s.mode===0&&s.tick%999<999){}
+ $('h1').textContent=s.score+' pts';$('h2').textContent=(60-s.tick/30).toFixed(1)+'s left';$('h3').textContent=s.got.length+' hauls';
+ if(!R.on)label(s.done?'VAULT CLOSED · '+s.score+' PTS':'DEEP VAULT',s.done?'Press START to dive again':'Press START · tap / Space to drop the claw')}
+cv.addEventListener('pointerdown',e=>{e.preventDefault();if(R.on&&R.state.mode===0)tap(1)});
+addEventListener('keydown',e=>{if(e.key===' '||e.key==='ArrowDown'||e.key==='s'){if(!R.on)return;e.preventDefault();if(R.state.mode===0)tap(1)}});
+
+NND.ready.then(()=>requestAnimationFrame(idle));
+</script></body></html>

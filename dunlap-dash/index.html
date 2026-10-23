@@ -1,56 +1,44 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>DUNLAP DASH · NetNet Arcade</title><meta name="description" content="aidunlap sprints down the street grabbing tokenized gold, T-bills and NET while jumping the dumps. Same course for everyone each week.">
+<title>DUNLAP DASH · NetNet Arcade</title><meta name="description" content="aidunlap sprints down the street grabbing tokenized gold, T-bills and NET while jumping the dumps. Same course for everyone each week. Replay-verified.">
 <meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Arcade"><meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/dunlap-dash/">
-<meta property="og:title" content="DUNLAP DASH · NetNet Arcade"><meta property="og:description" content="aidunlap sprints down the street grabbing tokenized gold, T-bills and NET while jumping the dumps. Same course for everyone each week."><meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/dunlap-dash.png"><meta name="twitter:card" content="summary_large_image">
+<meta property="og:title" content="DUNLAP DASH · NetNet Arcade"><meta property="og:description" content="aidunlap sprints down the street grabbing tokenized gold, T-bills and NET while jumping the dumps. Same course for everyone each week. Replay-verified."><meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/dunlap-dash.png"><meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0a0a0a"><link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css">
-<style>:root{--c:#d4af37;--bg:#0a0a0a;--panel:#121212;--line:#2a2a2a}canvas{width:100%;border-radius:12px;display:block;touch-action:none;background:#0d0d0d}.casual{display:inline-block;border:1px solid #9a927c;color:#f5d77a;border-radius:6px;padding:1px 7px;font-size:12px;letter-spacing:.06em}.row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.row .nn-btn{flex:1}</style>
+<style>:root{--c:#d4af37;--bg:#0a0a0a;--panel:#121212;--line:#2a2a2a}canvas{width:100%;max-width:900px;margin:0 auto;border-radius:12px;display:block;touch-action:none;background:#0d0d0d;user-select:none;-webkit-user-select:none}.row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.row .nn-btn{flex:1}</style>
 <script src="../arcade/sims.js"></script><script>window.NN_SCORE_SERVER="https://netnet-arcade-verifier.netnetarcade.workers.dev"</script><script src="../arcade/core.js"></script><script src="../arcade/dunlap.js"></script></head><body>
-<div class="nn-wrap"><div class="nn-top"><a href="../">← LOBBY</a><span class="nn-pill">CABINET 08 · <span class="casual">CASUAL · UNRANKED</span></span></div>
-<h1 class="nn-title">DUNLAP DASH</h1><p class="nn-sub">Tap, Space or ↑ to jump (double jump in the air). Grab gold +10, T-bills +25, NET +50. Hit a DUMP crate and the run ends. The course is the same for everyone this week.</p>
-<div class="nn-hud"><span id="score">0 pts</span><span id="best">best 0</span></div>
+<div class="nn-wrap"><div class="nn-top"><a href="../">← LOBBY</a><span class="nn-pill">CABINET 08 · <span class="nna-ok">✔ REPLAY-VERIFIED</span></span></div>
+<h1 class="nn-title">DUNLAP DASH</h1><p class="nn-sub">Tap the screen, Space or ↑ to jump (double jump in the air). Gold +10, T-bills +25, NET +50, +1 per half second. Hit a DUMP crate and the run ends. Same course for everyone this week.</p>
+<div class="nn-hud"><span id="h1">0 pts</span><span id="h2"></span><span id="h3"></span></div>
 <canvas id="c" width="640" height="360"></canvas>
-<div class="row"><button class="nn-btn" id="go">START / JUMP</button></div>
-<div class="nn-card"><h3>ABOUT THIS CABINET</h3><p class="nn-sub" style="font-size:13px">An original NetNet game starring aidunlap, the NetNet mascot. Casual and unranked: no credits, no entries, no prizes. Your best score is saved only in this browser. The tokens in the game are game items, not real assets or prices.</p></div></div>
+<div class="row"><button class="nn-btn" id="go">START</button></div>
+<label class="nna-mut" style="display:block;margin:8px 0"><input type="checkbox" id="ranked" checked> Ranked entry: 100 <span class="nna-test">TEST</span> credits (10 to treasury first, 90 to this week's pool). Untick for free practice.</label>
+<div class="nn-card" id="board"></div>
+<div class="nn-card"><h3>ABOUT THIS CABINET</h3><p class="nn-sub" style="font-size:13px">An original NetNet game starring aidunlap, the NetNet mascot. Everyone gets the same level this week (seed from the UTC week, Sunday to Sunday). Your inputs are recorded tick by tick and the score server re-plays them from scratch; only the re-simulated score counts. Runs that go faster than real time, pause, hide the tab or exceed the input-rate cap are rejected. Tokens in the game are game items, not real assets or prices. Test credits only, not money.</p></div></div>
 <script>
-document.addEventListener('DOMContentLoaded',()=>{window.NNA&&NNA.foot&&NNA.foot()});
-const $=id=>document.getElementById(id);
+const GAME='dunlap-dash',$=id=>document.getElementById(id),cv=$('c'),ctx=cv.getContext('2d'),g=NNS.games[GAME];
+function board(){NNA.renderBoard(GAME,$('board'))}
+document.addEventListener('DOMContentLoaded',()=>{board();NNA.foot()});
+let want=null,sent=null,lastT=-99,Q=[];const GAP=8;
+function pump(s){if(!R.on)return;if(Q.length&&s.tick-lastT>=GAP){lastT=s.tick;R.input(Q.shift());return}if(want!==null&&want!==sent&&s.tick-lastT>=GAP){sent=want;lastT=s.tick;R.input(want)}}
+function tap(a){if(!R.on)return;if(Q.length<3)Q.push(a);pump(R.state)}
+let preview=g.create(NNS.seedFor(GAME));
+const R=NNA.runner(GAME,{onFrame:s=>{pump(s);draw(s,performance.now())},onEnd:()=>{$('go').style.display='';board()}});
+function start(){want=null;sent=null;lastT=-99;Q=[];R.start($('ranked').checked);$('go').style.display='none'}
+NNA.onAgain=start;$('go').onclick=e=>{e.preventDefault();start()};
+function idle(now){if(!R.on){draw(R.state&&R.state.done?R.state:preview,now)}requestAnimationFrame(idle)}
+function label(t1,t2){ctx.fillStyle='rgba(10,10,10,.62)';ctx.fillRect(0,0,cv.width,cv.height);ctx.textAlign='center';ctx.fillStyle='#f5d77a';ctx.font='bold 30px system-ui';ctx.fillText(t1,cv.width/2,cv.height/2-10);ctx.fillStyle='#9a927c';ctx.font='15px system-ui';ctx.fillText(t2,cv.width/2,cv.height/2+22)}
 
-const cv=$('c'),ctx=cv.getContext('2d'),W=640,H=360,GY=300,BK='nnd-dash-best';
-function wk(){return window.NNS?NNS.weekId():Math.floor(Date.now()/6048e5)}
-function rng(s){return function(){s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
-let S,last=0,best=+localStorage.getItem(BK)||0;$('best').textContent='best '+best;
-function reset(){S={on:false,over:false,t:0,x:0,vy:0,y:GY,jumps:0,score:0,spd:5,objs:[],next:60,r:rng((window.NNS?NNS.hash('dunlap-dash:'+wk()):wk())),fx:[]}}
-reset();
-function jump(){if(!S.on){if(S.over)reset();S.on=true;last=performance.now();return}if(S.jumps<2){S.vy=S.jumps?-10:-12.5;S.jumps++}}
-function spawn(){const r=S.r(),k=r<.42?'dump':r<.75?'gold':r<.93?'tbill':'net';const air=k!=='dump'&&S.r()<.5;
- S.objs.push({k,x:W+30,y:k==='dump'?GY-18:(air?GY-120-S.r()*60:GY-30),r:k==='dump'?18:14});S.next=Math.max(28,70-S.spd*3)+S.r()*50}
-function step(){S.t++;S.spd=5+S.t/600;S.x+=S.spd;S.vy+=0.6;S.y+=S.vy;if(S.y>=GY){S.y=GY;S.vy=0;S.jumps=0}
- if(--S.next<=0)spawn();
- for(const o of S.objs){o.x-=S.spd;const dx=o.x-120,dy=o.y-(S.y-45);if(!o.hit&&Math.abs(dx)<o.r+14&&Math.abs(dy)<o.r+40){o.hit=1;
-  if(o.k==='dump'){S.on=false;S.over=true;if(S.score>best){best=S.score;localStorage.setItem(BK,best)}$('best').textContent='best '+best}
-  else{const v={gold:10,tbill:25,net:50}[o.k];S.score+=v;S.fx.push({x:o.x,y:o.y,v,a:40})}}}
- S.objs=S.objs.filter(o=>o.x>-40&&!(o.hit&&o.k!=='dump'));if(S.t%30===0)S.score++;
- S.fx.forEach(f=>{f.y-=1;f.a--});S.fx=S.fx.filter(f=>f.a>0)}
-function draw(now){ctx.fillStyle='#0a0a0a';ctx.fillRect(0,0,W,H);
- // skyline (drawn columns, parallax)
- for(let L=0;L<2;L++){ctx.fillStyle=L?'#1a1a1a':'#121212';const off=(S.x*(L?0.5:0.2))%160;
-  for(let i=-1;i<6;i++){const bx=i*160-off+L*60,bh=L?120+((i*37+L*11)%5)*18:180+((i*53)%4)*20;ctx.fillRect(bx,GY-bh,L?70:110,bh);
-   ctx.fillStyle='rgba(212,175,55,.18)';for(let wy=GY-bh+12;wy<GY-10;wy+=18)for(let wx=bx+8;wx<bx+(L?62:102);wx+=14)ctx.fillRect(wx,wy,5,8);ctx.fillStyle=L?'#1a1a1a':'#121212'}}
- // columned exchange facade hint
+function draw(s,now){const W=640,H=360,GY=300;ctx.fillStyle='#0a0a0a';ctx.fillRect(0,0,W,H);
+ for(let L=0;L<2;L++){const col=L?'#1a1a1a':'#121212',off=(s.x*(L?0.5:0.2))%160;
+  for(let i=-1;i<6;i++){const bx=i*160-off+L*60,bh=L?120+((i*37+L*11)%5+5)%5*18:180+((i*53)%4+4)%4*20;ctx.fillStyle=col;ctx.fillRect(bx,GY-bh,L?70:110,bh);
+   ctx.fillStyle='rgba(212,175,55,.16)';for(let wy=GY-bh+12;wy<GY-10;wy+=18)for(let wx=bx+8;wx<bx+(L?62:102);wx+=14)ctx.fillRect(wx,wy,5,8)}}
  ctx.fillStyle='#2a2a2a';ctx.fillRect(0,GY,W,H-GY);ctx.fillStyle='#d4af37';ctx.fillRect(0,GY,W,2);
- ctx.fillStyle='#3a3a3a';for(let i=0;i<12;i++){const lx=(i*64-(S.x%64));ctx.fillRect(lx,GY+20,30,3)}
- for(const o of S.objs){if(o.k==='dump'){ctx.fillStyle='#3a1414';ctx.fillRect(o.x-18,o.y-18,36,36);ctx.strokeStyle='#ff5f6d';ctx.lineWidth=2;ctx.strokeRect(o.x-18,o.y-18,36,36);ctx.fillStyle='#ff5f6d';ctx.font='bold 11px system-ui';ctx.textAlign='center';ctx.fillText('DUMP',o.x,o.y+4)}
-  else NND.badge(ctx,o.x,o.y,o.r,o.k)}
- NND.draw(ctx,120,S.y,92,{v:'dunlap',pose:S.over?'fail':(S.y<GY?'win':(S.on?'run':'stand')),t:now});
- S.fx.forEach(f=>{ctx.globalAlpha=f.a/40;ctx.fillStyle='#f5d77a';ctx.font='bold 16px system-ui';ctx.textAlign='center';ctx.fillText('+'+f.v,f.x,f.y-20)});ctx.globalAlpha=1;
- if(!S.on){ctx.fillStyle='rgba(10,10,10,.6)';ctx.fillRect(0,0,W,H);ctx.fillStyle='#f5d77a';ctx.textAlign='center';ctx.font='bold 30px system-ui';
-  ctx.fillText(S.over?'DUMPED · '+S.score+' PTS':'DUNLAP DASH',W/2,140);ctx.font='16px system-ui';ctx.fillStyle='#9a927c';ctx.fillText(S.over?'Tap / Space to run again':'Tap / Space to start · tap again to jump (double jump)',W/2,175)}
- $('score').textContent=S.score+' pts'}
-function loop(now){if(S.on){let n=0;while(now-last>=1000/60&&n<5){step();last+=1000/60;n++}if(n===5)last=now}draw(now);requestAnimationFrame(loop)}
-NND.ready.then(()=>requestAnimationFrame(loop));
-$('go').onclick=e=>{e.preventDefault();jump()};
-cv.addEventListener('pointerdown',e=>{e.preventDefault();jump()});
-addEventListener('keydown',e=>{if(e.key===' '||e.key==='ArrowUp'||e.key==='w'){e.preventDefault();jump()}});
-document.addEventListener('visibilitychange',()=>{last=performance.now()});
+ ctx.fillStyle='#3a3a3a';for(let i=0;i<12;i++)ctx.fillRect(i*64-(s.x%64),GY+20,30,3);
+ for(const o of s.objs){if(o.hit&&o.k!=='dump')continue;if(o.k==='dump'){ctx.fillStyle='#3a1414';ctx.fillRect(o.x-18,o.y-18,36,36);ctx.strokeStyle='#ff5f6d';ctx.lineWidth=2;ctx.strokeRect(o.x-18,o.y-18,36,36);ctx.fillStyle='#ff5f6d';ctx.font='bold 11px system-ui';ctx.textAlign='center';ctx.fillText('DUMP',o.x,o.y+4)}else NND.badge(ctx,o.x,o.y,o.r,o.k)}
+ NND.draw(ctx,120,s.y,92,{v:'dunlap',pose:s.dumped?'fail':(s.y<GY?'win':(R.on?'run':'stand')),t:now});
+ $('h1').textContent=s.score+' pts';$('h2').textContent=(s.tick/60).toFixed(1)+'s';$('h3').textContent='tokens '+s.got;
+ if(!R.on)label(s.done?'DUMPED · '+s.score+' PTS':'DUNLAP DASH',s.done?'Press START to run again':'Press START · tap / Space to jump')}
+cv.addEventListener('pointerdown',e=>{e.preventDefault();tap(1)});
+addEventListener('keydown',e=>{if(e.key===' '||e.key==='ArrowUp'||e.key==='w'){e.preventDefault();if(!R.on&&$('go').style.display!=='none')return;tap(1)}});
 
+NND.ready.then(()=>requestAnimationFrame(idle));
 </script></body></html>
