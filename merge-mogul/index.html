@@ -14,7 +14,7 @@
 <div class="nn-card" id="board"></div>
 <div class="nn-card"><h3>ABOUT THIS CABINET</h3><p class="nn-sub" style="font-size:13px">An original NetNet game starring aidunlap, the NetNet mascot. Everyone gets the same level this week (seed from the UTC week, Sunday to Sunday). Your inputs are recorded tick by tick and the score server re-plays them from scratch; only the re-simulated score counts. Runs that go faster than real time, pause, hide the tab or exceed the input-rate cap are rejected. Tokens in the game are game items, not real assets or prices. Test credits only, not money.</p></div></div>
 <script>
-const GAME='merge-mogul',$=id=>document.getElementById(id),cv=$('c'),ctx=cv.getContext('2d'),g=NNS.games[GAME];
+const GAME='merge-mogul',$=id=>document.getElementById(id),cv=$('c'),ctx=NND.hidpi(cv).getContext('2d'),g=NNS.games[GAME];
 function board(){NNA.renderBoard(GAME,$('board'))}
 document.addEventListener('DOMContentLoaded',()=>{board();NNA.foot()});
 let want=null,sent=null,lastT=-99,Q=[];const GAP=2;

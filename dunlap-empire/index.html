@@ -17,7 +17,7 @@
 document.addEventListener('DOMContentLoaded',()=>{window.NNA&&NNA.foot&&NNA.foot()});
 const $=id=>document.getElementById(id);
 
-const cv=$('c'),ctx=cv.getContext('2d'),SK='nnd-empire-v1';
+const cv=$('c'),ctx=NND.hidpi(cv).getContext('2d'),SK='nnd-empire-v1';
 const A=[{id:'tbill',n:'T-Bill Desk',k:'tbill',c:15,r:0.5},{id:'gold',n:'Gold Vault',k:'gold',c:120,r:4},{id:'estate',n:'Rental Tower',k:'estate',c:1100,r:30},{id:'stock',n:'Equity Floor',k:'stock',c:12000,r:250},{id:'net',n:'NetNet HQ',k:'net',c:150000,r:2200}];
 const H=[{id:'trader',n:'Hire a Trader',d:'Deals pay x2',c:200},{id:'banker',n:'Hire a Banker',d:'All income x2',c:5000},{id:'boss',n:'Partner Boss',d:'All income x3',c:250000}];
 let G=JSON.parse(localStorage.getItem(SK)||'null')||{cash:0,total:0,own:{},hired:{},t:Date.now()};
