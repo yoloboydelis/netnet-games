@@ -5,6 +5,68 @@
  "feed_url": "https://yoloboydelis.github.io/netnet-games/discover/feed.json",
  "items": [
   {
+   "id": "toot-raft",
+   "url": "https://toot.honkpop.com/",
+   "external_url": "https://x.com/gourav_io/status/2113503358229365225",
+   "title": "Toot Raft by @gourav_io",
+   "content_text": "Up to four animals steer one river raft by tooting together. Play: https://toot.honkpop.com/ · X post: https://x.com/gourav_io/status/2113503358229365225",
+   "date_published": "2026-10-23T00:00:00Z",
+   "tags": [
+    "multiplayer",
+    "casual",
+    "3d",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "beepi",
+   "url": "https://beepi.pages.dev/",
+   "external_url": "https://x.com/Dieselweasels/status/2113464851934728491",
+   "title": "BEEPI by @Dieselweasels",
+   "content_text": "Hatch and raise tiny pixel pets whose care shapes what they become. Play: https://beepi.pages.dev/ · X post: https://x.com/Dieselweasels/status/2113464851934728491",
+   "date_published": "2026-10-23T00:00:00Z",
+   "tags": [
+    "casual",
+    "adventure"
+   ]
+  },
+  {
+   "id": "japa-life",
+   "url": "https://japa-life.com/",
+   "external_url": "https://x.com/JapaLifeaq/status/2113466132182991296",
+   "title": "Japa Life by @JapaLifeaq",
+   "content_text": "Hustle in Lagos, face the embassy and start a new life abroad. Play: https://japa-life.com/ · X post: https://x.com/JapaLifeaq/status/2113466132182991296",
+   "date_published": "2026-10-23T00:00:00Z",
+   "tags": [
+    "story",
+    "casual"
+   ]
+  },
+  {
+   "id": "hundy",
+   "url": "https://hundy.fun/",
+   "external_url": "https://x.com/bajamoji/status/2113426432022204693",
+   "title": "100. by @bajamoji",
+   "content_text": "Use seven dice once each to make exactly 100. Play: https://hundy.fun/ · X post: https://x.com/bajamoji/status/2113426432022204693",
+   "date_published": "2026-10-23T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "casual"
+   ]
+  },
+  {
+   "id": "the-tsotchke",
+   "url": "https://okcyb0rg.itch.io/the-tsotchke",
+   "external_url": "https://x.com/0kCyb0rg/status/2113497197656600620",
+   "title": "The Tsotchke by @0kCyb0rg",
+   "content_text": "A short retro horror visit to a resort that wants you to stay. Play: https://okcyb0rg.itch.io/the-tsotchke · X post: https://x.com/0kCyb0rg/status/2113497197656600620",
+   "date_published": "2026-10-23T00:00:00Z",
+   "tags": [
+    "story",
+    "3d"
+   ]
+  },
+  {
    "id": "roadster-rush",
    "url": "https://roadsterrush.fun/",
    "external_url": "https://x.com/RoadsterRush/status/2113291793848815894",
@@ -14,6 +76,103 @@
    "tags": [
     "racing",
     "3d"
+   ]
+  },
+  {
+   "id": "boda-rush",
+   "url": "https://boda-rush.vercel.app/",
+   "external_url": "https://x.com/NewLongMoney/status/2113285498613477701",
+   "title": "Boda Rush by @NewLongMoney",
+   "content_text": "Ride a boda boda through real OpenStreetMap streets of Nairobi. Play: https://boda-rush.vercel.app/ · X post: https://x.com/NewLongMoney/status/2113285498613477701",
+   "date_published": "2026-10-22T00:00:00Z",
+   "tags": [
+    "racing",
+    "3d"
+   ]
+  },
+  {
+   "id": "shadows-of-valor",
+   "url": "https://vermillion-pixie-1ad2db.netlify.app/",
+   "external_url": "https://x.com/Vulture5x/status/2113208292876898311",
+   "title": "Shadows of Valor by @Vulture5x",
+   "content_text": "Level a lone wanderer from new adventurer to hero. Play: https://vermillion-pixie-1ad2db.netlify.app/ · X post: https://x.com/Vulture5x/status/2113208292876898311",
+   "date_published": "2026-10-22T00:00:00Z",
+   "tags": [
+    "adventure",
+    "strategy"
+   ]
+  },
+  {
+   "id": "catching-halleys-comet",
+   "url": "https://catchinghalleyscomet07282061.grok.me/",
+   "external_url": "https://x.com/3DPixelPro/status/2113128804931485815",
+   "title": "Catching Halley's Comet by @3DPixelPro",
+   "content_text": "Fly a probe to catch Halley's Comet on its 2061 return. Play: https://catchinghalleyscomet07282061.grok.me/ · X post: https://x.com/3DPixelPro/status/2113128804931485815",
+   "date_published": "2026-10-22T00:00:00Z",
+   "tags": [
+    "arcade",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "lastover",
+   "url": "https://wavedash.com/games/lastover",
+   "external_url": "https://x.com/abhinaynatraj/status/2113072629829492744",
+   "title": "Last Over by @abhinaynatraj",
+   "content_text": "Six balls left: set your field and bowl the final T20 over. Play: https://wavedash.com/games/lastover · X post: https://x.com/abhinaynatraj/status/2113072629829492744",
+   "date_published": "2026-10-22T00:00:00Z",
+   "tags": [
+    "sports",
+    "strategy",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "eldenmarch",
+   "url": "https://www.eldenmarch.com/",
+   "external_url": "https://x.com/Eldenmarchgame/status/2113126952785883432",
+   "title": "Eldenmarch by @Eldenmarchgame",
+   "content_text": "Explore, build towns and lead mythical armies across Crownfall Vale. Play: https://www.eldenmarch.com/ · X post: https://x.com/Eldenmarchgame/status/2113126952785883432",
+   "date_published": "2026-10-22T00:00:00Z",
+   "tags": [
+    "strategy",
+    "adventure"
+   ]
+  },
+  {
+   "id": "pocket-rod",
+   "url": "https://pocketrod.app/",
+   "external_url": "https://x.com/pocketrodapp/status/2113290904404381769",
+   "title": "Pocket Rod by @pocketrodapp",
+   "content_text": "Your phone becomes the rod in a cosy mobile-browser fishing trip. Play: https://pocketrod.app/ · X post: https://x.com/pocketrodapp/status/2113290904404381769",
+   "date_published": "2026-10-22T00:00:00Z",
+   "tags": [
+    "casual",
+    "physics"
+   ]
+  },
+  {
+   "id": "work-in-progress",
+   "url": "https://jamiebirch.itch.io/work-in-progress",
+   "external_url": "https://x.com/your_vamp_dad/status/2113305328913895703",
+   "title": "Work In Progress by @your_vamp_dad (with Jamie Birch)",
+   "content_text": "Write a fic, tag it, post it, then read the comments. Play: https://jamiebirch.itch.io/work-in-progress · X post: https://x.com/your_vamp_dad/status/2113305328913895703",
+   "date_published": "2026-10-22T00:00:00Z",
+   "tags": [
+    "story",
+    "casual"
+   ]
+  },
+  {
+   "id": "tide-line",
+   "url": "https://hold-fast-ashen.vercel.app/tide-line",
+   "external_url": "https://x.com/jdcpe17/status/2113206774149075178",
+   "title": "Tide Line by @jdcpe17",
+   "content_text": "Walk the night dock and hop the swells with good timing. Play: https://hold-fast-ashen.vercel.app/tide-line · X post: https://x.com/jdcpe17/status/2113206774149075178",
+   "date_published": "2026-10-22T00:00:00Z",
+   "tags": [
+    "arcade",
+    "casual"
    ]
   },
   {
@@ -439,40 +598,6 @@
    "tags": [
     "3d",
     "racing"
-   ]
-  },
-  {
-   "id": "games-for-lili",
-   "url": "https://gamesforlili.xyz",
-   "external_url": "https://x.com/slopshipper/status/2103471134461112639",
-   "title": "Games for Lili by @slopshipper",
-   "content_text": "All-code game, no external assets, made with Opus. Play: https://gamesforlili.xyz · X post: https://x.com/slopshipper/status/2103471134461112639",
-   "date_published": "2026-09-25T00:00:00Z",
-   "tags": [
-    "arcade"
-   ]
-  },
-  {
-   "id": "thermopylae",
-   "url": "https://thermopylae-v2.vercel.app/",
-   "external_url": "https://x.com/linyutai120479/status/2103304809243918486",
-   "title": "Thermopylae by @linyutai120479",
-   "content_text": "Hold the pass as Leonidas: shield up, spear out. Play: https://thermopylae-v2.vercel.app/ · X post: https://x.com/linyutai120479/status/2103304809243918486",
-   "date_published": "2026-09-25T00:00:00Z",
-   "tags": [
-    "3d",
-    "action"
-   ]
-  },
-  {
-   "id": "paradrome-tcg",
-   "url": "https://Paradrometcg.com",
-   "external_url": "https://x.com/OfficialZanePal/status/2102553641882444137",
-   "title": "Paradrome TCG by @OfficialZanePal",
-   "content_text": "Vibe-coded trading card game, hit Play Now. Play: https://Paradrometcg.com · X post: https://x.com/OfficialZanePal/status/2102553641882444137",
-   "date_published": "2026-09-23T00:00:00Z",
-   "tags": [
-    "cards"
    ]
   }
  ]
