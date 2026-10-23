@@ -2,6 +2,7 @@
 // Re-simulates every submitted run with the exact code the cabinets run (sims.bundle.js),
 // keeps a server-side TEST-credit ledger, and applies basic per-IP rate limits.
 import NNS from './sims.bundle.js';
+import DGAMES from './discover-games.js';
 
 const ALLOWED = ['https://yoloboydelis.github.io', 'http://localhost:8765', 'http://127.0.0.1:8765'];
 const CFG = { start: 10000, fee: 100, treasury: 0.10, day: 864e5 };
@@ -107,11 +108,14 @@ export default {
         return json({ week, games: out });
       }
       // Voices: posts, votes, bounties live in one SQLite Durable Object (no KV writes, strongly consistent)
-      if (p.startsWith('/v1/voices/')) {
+      if (p.startsWith('/v1/voices/') || p.startsWith('/v1/discover/')) {
         let body = null, acct = null;
         if (req.method === 'POST') { body = await req.json(); acct = await account(env, body.secret); if (!acct) return json({ error: 'bad account secret' }, 400); }
         const stub = env.VOICES.get(env.VOICES.idFromName('voices-v1'));
         if (body && p === '/v1/voices/posts') body.oembed = await oembed(body.url);
+        if (body && p.startsWith('/v1/discover/claim/')) body.code = await claimCode(env, acct.id, String(body.game || ''));
+        if (body && p === '/v1/discover/claim/verify') { body.proof = await claimProof(body); if (body.proof.ok) body.proof.text = String(body.proof.text).includes(body.code) ? body.code : String(body.proof.text).slice(0, 300); }
+        if (p === '/v1/discover/takedown' && req.method === 'POST' && !acct) return json({ error: 'need account' }, 400);
         const r = await stub.fetch('https://do' + p + url.search, { method: req.method, body: body ? JSON.stringify({ ...body, secret: undefined, acct: acct && { id: acct.id, handle: acct.handle } }) : undefined });
         return new Response(r.body, { status: r.status, headers: { 'content-type': 'application/json', ...C } });
       }
@@ -128,9 +132,20 @@ async function oembed(u) { // public X oEmbed: proves the post exists + gives au
   try { const r = await fetch('https://publish.twitter.com/oembed?omit_script=1&dnt=true&url=' + encodeURIComponent('https://x.com/' + m[1] + '/status/' + m[2]), { cf: { cacheTtl: 3600 } });
     if (!r.ok) return { ok: false, status: r.status };
     const j = await r.json(), text = String(j.html || '').replace(/<a[^>]*>(.*?)<\/a>/g, '$1').replace(/<[^>]+>/g, ' ').replace(/&mdash;.*$/s, '').replace(/&[a-z#0-9]+;/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 280);
-    return { ok: true, author: j.author_name || m[1], text };
+    return { ok: true, author: j.author_name || m[1], authorHandle: String(j.author_url || '').split('/').pop().toLowerCase(), text };
   } catch (e) { return { ok: false, status: 0 }; } }
 const weekOf = ms => NNS.weekId(ms);
+// ---------------- Discover: claim proof (server-side fetches only; nothing of the creator's code is copied or hosted)
+const claimCode = async (env, acctId, slug) => 'NETNET-CLAIM-' + (await hmac(env.SIGNING_KEY, 'claim|' + acctId + '|' + slug)).slice(0, 8).toUpperCase();
+async function claimProof(b) {
+  const g = DGAMES.find(x => x.slug === b.game); if (!g) return { ok: false, why: 'unknown game' };
+  if (b.method === 'x') { const o = await oembed(b.url); if (!o || !o.ok) return { ok: false, why: 'could not read that X post (public posts only)' };
+    return { ok: true, handle: o.authorHandle, text: o.text, expect: g.handle.toLowerCase(), kind: 'x' }; }
+  if (b.method === 'site') { // the code must appear on the game's own page (or /netnet-claim.txt on the same host)
+    const base = new URL(g.play), urls = [g.play, base.origin + '/netnet-claim.txt'];
+    for (const u of urls) { try { const r = await fetch(u, { headers: { 'user-agent': 'NetNetDiscoverClaim/1.0' }, redirect: 'follow' }); if (r.ok) { const t = (await r.text()).slice(0, 2000000); if (t) return { ok: true, text: t.slice(0, 2000000), kind: 'site', where: u, scanned: true }; } } catch (e) {} }
+    return { ok: false, why: 'could not load the game page' }; }
+  return { ok: false, why: 'unknown method' }; }
 const BOUNTIES = [
   { id: 'net-backing', title: "Best thread explaining NET's backing", brief: 'Explain in plain words what backs NET (USDG + tokenized RWAs in the treasury) and why it matters. Thread, no shilling, no price talk.', reward: 5000, ends: '2026-11-01' },
   { id: 'arcade-clip', title: 'Best NetNet Arcade clip', brief: 'Post a short clip or screenshot of your best verified run with the replay link.', reward: 2500, ends: '2026-11-01' },
@@ -146,10 +161,13 @@ export class VoicesDO {
     this.sql.exec(`CREATE TABLE IF NOT EXISTS posts(id TEXT PRIMARY KEY, url TEXT, xuser TEXT, text TEXT, acct TEXT, handle TEXT, week INTEGER, at INTEGER, votes INTEGER DEFAULT 0, bounty TEXT, verified INTEGER DEFAULT 0);
       CREATE TABLE IF NOT EXISTS votes(post TEXT, acct TEXT, at INTEGER, PRIMARY KEY(post, acct));
       CREATE TABLE IF NOT EXISTS bvotes(bounty TEXT, acct TEXT, post TEXT, at INTEGER, PRIMARY KEY(bounty, acct));
-      CREATE INDEX IF NOT EXISTS pw ON posts(week);`); }
+      CREATE INDEX IF NOT EXISTS pw ON posts(week);
+      CREATE TABLE IF NOT EXISTS claims(game TEXT PRIMARY KEY, acct TEXT, handle TEXT, method TEXT, at INTEGER, optin INTEGER DEFAULT 0, accrued INTEGER DEFAULT 0);
+      CREATE TABLE IF NOT EXISTS hidden(game TEXT PRIMARY KEY, reason TEXT, at INTEGER);`); }
   rows(q, ...a) { return [...this.sql.exec(q, ...a)]; }
   post(r) { const { acct, ...o } = r; return { ...o, metrics: exampleMetrics(r.id) }; }
   async fetch(req) {
+    if (new URL(req.url).pathname.startsWith('/v1/discover/')) return this.discover(req);
     const u = new URL(req.url), p = u.pathname.replace('/v1/voices', ''), j = (o, s = 200) => new Response(JSON.stringify(o), { status: s }), now = Date.now(), wk = weekOf(now);
     const b = req.method === 'POST' ? await req.json() : null;
     if (p === '/posts' && req.method === 'POST') {
@@ -184,6 +202,31 @@ export class VoicesDO {
       this.sql.exec('INSERT INTO bvotes VALUES(?,?,?,?)', e.bounty, b.acct.id, e.id, now); return j({ ok: true }); }
     if (p === '/creator') { const h = u.searchParams.get('handle'), ps = this.rows('SELECT * FROM posts WHERE handle=? ORDER BY votes DESC', h);
       return j({ handle: h, posts: ps.length, votes: ps.reduce((a, x) => a + x.votes, 0), best: ps[0] ? this.post(ps[0]) : null, weekVotes: ps.filter(x => x.week === wk).reduce((a, x) => a + x.votes, 0) }); }
+    return j({ error: 'not found' }, 404);
+  }
+  async discover(req) {
+    const u = new URL(req.url), p = u.pathname.replace('/v1/discover', ''), j = (o, s = 200) => new Response(JSON.stringify(o), { status: s }), now = Date.now();
+    const b = req.method === 'POST' ? await req.json() : null, game = b && DGAMES.find(x => x.slug === b.game);
+    if (p === '/state') { const c = {}; this.rows('SELECT game, handle, optin, accrued, at FROM claims').forEach(r => c[r.game] = r);
+      return j({ claims: c, hidden: this.rows('SELECT game FROM hidden').map(r => r.game), split: { creator: 85, treasury: 5, pool: 10, label: 'launch rate', example: true } }); }
+    if (!b) return j({ error: 'not found' }, 404);
+    if (p !== '/takedown' && !game) return j({ error: 'unknown game' }, 404);
+    if (p === '/claim/start') { const c = this.rows('SELECT * FROM claims WHERE game=?', game.slug)[0]; if (c) return j({ error: 'Already claimed by @' + c.handle }, 409);
+      return j({ code: b.code, handle: game.handle, play: game.play }); }
+    if (p === '/claim/verify') {
+      const c = this.rows('SELECT * FROM claims WHERE game=?', game.slug)[0]; if (c) return j({ error: 'Already claimed' }, 409);
+      const pr = b.proof || {}; if (!pr.ok) return j({ error: pr.why || 'proof failed' }, 400);
+      if (pr.kind === 'x' && pr.handle !== game.handle.toLowerCase()) return j({ error: 'That post is by @' + pr.handle + ', but this game was posted by @' + game.handle + '. Post the code from the same account.' }, 403);
+      if (!String(pr.text || '').includes(b.code)) return j({ error: 'Code ' + b.code + ' not found ' + (pr.kind === 'x' ? 'in that post' : 'on the game page or /netnet-claim.txt') }, 403);
+      this.sql.exec('INSERT INTO claims(game,acct,handle,method,at) VALUES(?,?,?,?,?)', game.slug, b.acct.id, game.handle, pr.kind, now);
+      return j({ ok: true, claimed: game.slug, handle: game.handle }); }
+    if (p === '/optin') { const c = this.rows('SELECT * FROM claims WHERE game=?', game.slug)[0]; if (!c || c.acct !== b.acct.id) return j({ error: 'Only the verified creator can change this' }, 403);
+      this.sql.exec('UPDATE claims SET optin=? WHERE game=?', b.on ? 1 : 0, game.slug); return j({ ok: true, optin: !!b.on }); }
+    if (p === '/takedown') { // instant: hidden immediately, no questions; restoring needs the creator to claim + ask
+      const slug = String(b.game || ''); if (!DGAMES.some(x => x.slug === slug)) return j({ error: 'unknown game' }, 404);
+      this.sql.exec('INSERT OR REPLACE INTO hidden VALUES(?,?,?)', slug, String(b.reason || '').slice(0, 300), now); return j({ ok: true, hidden: slug }); }
+    if (p === '/restore') { const c = this.rows('SELECT * FROM claims WHERE game=?', game.slug)[0]; if (!c || c.acct !== b.acct.id) return j({ error: 'Only the verified creator can restore' }, 403);
+      this.sql.exec('DELETE FROM hidden WHERE game=?', game.slug); return j({ ok: true }); }
     return j({ error: 'not found' }, 404);
   }
 }
