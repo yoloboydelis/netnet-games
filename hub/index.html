@@ -1,0 +1,73 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Forge Hub · Build, remix and earn on NetNet (prototype)</title>
+<meta name="description" content="Clickable prototype of Forge Hub: a GitHub-style social builder layer on NetNet rails. Game pages, one-tap remix with royalties, bounties, builder profiles. Demo data.">
+<link rel="canonical" href="https://yoloboydelis.github.io/netnet-games/hub/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Arcade"><meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/hub/">
+<meta property="og:title" content="Forge Hub · Build, remix and earn on NetNet"><meta property="og:description" content="Fork a game in one tap, and the original creator earns a remix royalty. Bounties linked to NetNet Prizes. Demo prototype for the NetNet community &amp; devs, feedback welcome.">
+<meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/hub.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://yoloboydelis.github.io/netnet-games/og/hub.png">
+<meta name="theme-color" content="#070b16"><link rel="stylesheet" href="../_template/arcade.css">
+<style>
+:root{--c:#ff8a3d}.nn-wrap{max-width:860px}
+nav.tabs{display:flex;gap:6px;overflow-x:auto;margin:10px 0;padding-bottom:4px}nav.tabs a{flex:0 0 auto;min-height:44px;display:inline-flex;align-items:center;padding:0 14px;border:1px solid var(--line);border-radius:999px;color:var(--txt);text-decoration:none;font-size:14px}
+nav.tabs a.on{border-color:var(--c);color:var(--c);font-weight:800}
+.g{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.item{display:block;text-decoration:none;color:var(--txt);background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px;min-height:44px}
+.item h4{margin:0 0 4px;font-size:16px}.meta{font-size:12px;color:var(--mut)}.tag{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:1px 7px;margin-right:4px;color:var(--mut)}
+.tree{font-family:ui-monospace,Menlo,monospace;font-size:13px;line-height:1.9}.tree a{color:var(--c);display:inline-block;min-height:32px}
+.split{display:flex;height:28px;border-radius:8px;overflow:hidden;font-size:11px;font-weight:800;color:#111}.split div{display:flex;align-items:center;justify-content:center}
+.demo{background:#3a2a05;color:#ffd27a;border-bottom:1px solid #7a5a12;font-size:13px;text-align:center;padding:7px 10px}
+.feed div{padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+</style><script src="../arcade/sims.js"></script><script>window.NN_SCORE_SERVER="https://netnet-arcade-verifier.netnetarcade.workers.dev"</script><script src="../arcade/core.js"></script></head><body>
+<div class="demo">DEMO DATA · clickable prototype · nothing onchain, no accounts. Real cabinets are playable; stats, earnings and builders are made up.</div>
+<div class="nn-wrap"><div class="nn-top"><a href="../">← NETNET ARCADE</a><span class="nn-pill">NETNET PRODUCTS · FORGE HUB</span></div>
+<h1 class="nn-title">FORGE HUB</h1><p class="nn-sub">Build, remix and earn on NetNet rails. Every game is a repo, and every remix pays its parent.</p>
+<nav class="tabs" id="tabs"><a href="#trending">🔥 Trending</a><a href="#feed">🔀 Remix feed</a><a href="#ideas">💡 Ideas &amp; Bounties</a><a href="#builders">👷 Builders</a><a href="#how">⚙️ How it works</a></nav>
+<main id="view"></main></div>
+<footer class="nn-foot">Prototype for the NetNet community &amp; devs, feedback welcome · Demo data · <a href="../">More cabinets</a></footer>
+<script>
+const REPO="https://github.com/yoloboydelis/netnet-games/tree/main/";
+const B={core:{n:"netnet_core",role:"NetNet core team",rep:980},mowgli:{n:"mowgli.bot",role:"Studio agent",rep:640},pixelpaul:{n:"pixelpaul (demo)",role:"Indie dev",rep:410},goldbug:{n:"goldbug (demo)",role:"Commodities nerd",rep:230},bxl_dev:{n:"bxl_dev (demo)",role:"Brussels builder",rep:155}};
+// real cabinets + demo remixes. parent = forked from
+const G=[
+{id:"dip-dash",t:"DIP DASH",e:"📉",by:"mowgli",team:{mowgli:60,core:40},coin:"$DIP",plays:18400,d1:31,remixes:2,genre:"Arcade reflex",play:"../dip-dash/"},
+{id:"portfolio-league",t:"PORTFOLIO LEAGUE",e:"📈",by:"core",team:{core:70,mowgli:30},coin:"$LEAGUE",plays:6200,d1:24,genre:"Strategy",play:"../portfolio-league/"},
+{id:"hot-seat",t:"HOT SEAT",e:"🔥",by:"core",team:{core:100},coin:"$SEAT",plays:9100,d1:19,genre:"PvP",play:"../hot-seat/"},
+{id:"snake",t:"SNAKE HIGH-SCORE",e:"🐍",by:"core",team:{core:100},coin:"$SNAKE",plays:12800,d1:22,genre:"Arcade",play:"../snake/"},
+{id:"gold-bar",t:"GOLD BAR",e:"🥇",by:"mowgli",team:{mowgli:100},coin:"$GBAR",plays:3900,d1:28,genre:"Arcade reflex",play:"../gold-bar/",isNew:1},
+{id:"rent-rush",t:"RENT RUSH",e:"🏠",by:"mowgli",team:{mowgli:100},coin:"$RENT",plays:2700,d1:26,genre:"Idle tycoon",play:"../rent-rush/",isNew:1},
+{id:"rebalance",t:"REBALANCE",e:"⚖️",by:"mowgli",team:{mowgli:100},coin:"$REBAL",plays:2100,d1:21,genre:"Puzzle",play:"../rebalance/",isNew:1},
+{id:"oil-bar",t:"OIL BAR",e:"🛢",by:"goldbug",parent:"gold-bar",team:{goldbug:80,bxl_dev:20},coin:"$OILB",plays:640,d1:17,genre:"Arcade reflex",demo:1},
+{id:"nvda-bar",t:"NVDA BAR",e:"💻",by:"pixelpaul",parent:"gold-bar",team:{pixelpaul:100},coin:"$NVBAR",plays:410,d1:14,genre:"Arcade reflex",demo:1},
+{id:"dip-dash-night",t:"DIP DASH: NIGHT SESSION",e:"🌙",by:"pixelpaul",parent:"dip-dash",team:{pixelpaul:70,goldbug:30},coin:"$NIGHT",plays:1500,d1:20,genre:"Arcade reflex",demo:1},
+{id:"tower-rush",t:"TOWER RUSH",e:"🌆",by:"bxl_dev",parent:"rent-rush",team:{bxl_dev:100},coin:"$TOWER",plays:300,d1:12,genre:"Idle tycoon",demo:1},
+{id:"oil-bar-hard",t:"OIL BAR HARDCORE",e:"💀",by:"bxl_dev",parent:"oil-bar",team:{bxl_dev:100},coin:"$HARD",plays:120,d1:9,genre:"Arcade reflex",demo:1}];
+const IDEAS=[{t:"Bond ladder puzzle: build a T-bill ladder before rates move",b:2500,s:"open",by:"goldbug"},{t:"Replay verifier for DIP DASH scores (anti-bot)",b:5000,s:"in progress · pixelpaul",by:"core"},{t:"Break the Vault: Liquidity Vaults bug bounty",b:"up to 25,000",s:"open (when testnet ships)",by:"core"},{t:"Two-phone PvP mode for GOLD BAR",b:1500,s:"open",by:"bxl_dev"},{t:"Cabinet Kit: Unity WebGL wrapper",b:3000,s:"open",by:"mowgli"}];
+const ROY=0.20; // EXAMPLE: parent gets 20% of the remix creator's tax share
+const g=id=>G.find(x=>x.id==id),kids=id=>G.filter(x=>x.parent==id),fmt=n=>n.toLocaleString("en-US");
+const fee=x=>Math.round(x.plays*1.9); // demo creator-share earnings in wsNET
+function earn(u){let e=0;G.forEach(x=>{const f=fee(x),share=x.parent?f*(1-ROY):f;e+=share*(x.team[u]||0)/100;let p=x.parent?g(x.parent):null;if(p)e+=f*ROY*(p.team[u]||0)/100});return Math.round(e)}
+function card(x){return '<a class="item" href="#game/'+x.id+'"><h4>'+x.e+" "+x.t+(x.isNew?' <span class="nn-sim">NEW</span>':"")+'</h4><div class="meta">by @'+B[x.by].n+(x.parent?" · 🔀 remix of "+g(x.parent).t:"")+'</div><div class="meta" style="margin-top:6px"><span class="tag">'+x.genre+'</span><span class="tag">'+x.coin+' (sim)</span>'+(x.demo?'<span class="tag">demo entry</span>':"")+'</div><div class="meta" style="margin-top:6px">▶ '+fmt(x.plays)+" plays · D1 "+x.d1+"% · 🔀 "+kids(x.id).length+" remixes</div></a>"}
+function tree(id,pre=""){const x=g(id),k=kids(id);return k.map((c,i)=>{const last=i==k.length-1;return pre+(last?"└─ ":"├─ ")+'<a href="#game/'+c.id+'">'+c.e+" "+c.t+"</a> <span class='meta'>@"+B[c.by].n+"</span><br>"+tree(c.id,pre+(last?"&nbsp;&nbsp;&nbsp;":"│&nbsp;&nbsp;"))}).join("")}
+function root(x){while(x.parent)x=g(x.parent);return x}
+function splitBar(team){const col=["#ff8a3d","#38f5ff","#a78bfa","#39ff88"];return '<div class="split">'+Object.entries(team).map(([u,p],i)=>'<div style="flex:'+p+';background:'+col[i%4]+'">@'+B[u].n.split(" ")[0]+" "+p+"%</div>").join("")+"</div>"}
+const V={
+trending(){const s=[...G].sort((a,b)=>b.plays*b.d1-a.plays*a.d1);return '<h2>Trending <span class="nn-sim">DEMO STATS</span></h2><p class="nn-sub">Ranked by plays × D1 retention (bots inflate plays, not retention).</p><div class="g">'+s.map(card).join("")+"</div>"},
+feed(){const ev=[["2h","goldbug","forked","gold-bar","oil-bar"],["5h","bxl_dev","forked","oil-bar","oil-bar-hard"],["1d","pixelpaul","forked","dip-dash","dip-dash-night"],["1d","bxl_dev","forked","rent-rush","tower-rush"],["2d","pixelpaul","forked","gold-bar","nvda-bar"],["2d","mowgli","shipped","rebalance"],["2d","mowgli","shipped","rent-rush"],["2d","mowgli","shipped","gold-bar"]];
+ return '<h2>Remix feed <span class="nn-sim">DEMO</span></h2><div class="nn-card feed">'+ev.map(e=>"<div><span class='meta'>"+e[0]+" ago</span> · @"+B[e[1]].n+" "+e[2]+' <a href="#game/'+e[3]+'">'+g(e[3]).t+"</a>"+(e[4]?' → <a href="#game/'+e[4]+'">'+g(e[4]).t+"</a>":"")+"</div>").join("")+"</div>"},
+ideas(){return '<h2>Ideas &amp; Bounties <span class="nn-sim">DEMO</span></h2><p class="nn-sub">Bounties are funded and paid through <b>NetNet Prizes</b> (USDG, from a finite jar). Claim one by opening a PR on GitHub.</p>'+IDEAS.map(i=>'<div class="nn-card"><h3>'+i.t+'</h3><div class="nn-kv"><span>Bounty (NetNet Prizes)</span><b>'+(typeof i.b=="number"?fmt(i.b):i.b)+' USDG</b></div><div class="nn-kv"><span>Status</span><b>'+i.s+'</b></div><div class="nn-kv"><span>Posted by</span><b>@'+B[i.by].n+"</b></div></div>").join("")},
+builders(){return '<h2>Builders <span class="nn-sim">DEMO</span></h2><div class="g">'+Object.keys(B).map(u=>'<a class="item" href="#builder/'+u+'"><h4>@'+B[u].n+'</h4><div class="meta">'+B[u].role+'</div><div class="meta" style="margin-top:6px">⭐ rep '+B[u].rep+" · 🎮 "+G.filter(x=>x.team[u]&&!x.parent).length+" games · 🔀 "+G.filter(x=>x.team[u]&&x.parent).length+" remixes · 💰 "+fmt(earn(u))+" wsNET</div></a>").join("")+"</div>"},
+builder(u){const b=B[u],mine=G.filter(x=>x.team[u]);return '<a href="#builders" class="meta">← Builders</a><h2>@'+b.n+'</h2><p class="nn-sub">'+b.role+' · <span class="nn-sim">DEMO PROFILE</span></p><div class="nn-card"><div class="nn-kv"><span>Reputation</span><b>⭐ '+b.rep+'</b></div><div class="nn-kv"><span>Games (original)</span><b>'+mine.filter(x=>!x.parent).length+'</b></div><div class="nn-kv"><span>Remixes</span><b>'+mine.filter(x=>x.parent).length+'</b></div><div class="nn-kv"><span>Earnings incl. royalties (sim)</span><b>'+fmt(earn(u))+' wsNET</b></div></div><div class="g">'+mine.map(card).join("")+"</div>"},
+game(id){const x=g(id),f=fee(x),p=x.parent?g(x.parent):null,r=root(x);
+ return '<a href="#trending" class="meta">← Trending</a><h2>'+x.e+" "+x.t+'</h2><p class="nn-sub">by @'+B[x.by].n+(p?' · 🔀 remix of <a href="#game/'+p.id+'">'+p.t+"</a>":"")+(x.demo?' · <span class="nn-sim">DEMO ENTRY</span>':"")+'</p>'+
+ '<div class="nn-row">'+(x.play?'<a class="nn-btn" href="'+x.play+'">▶ Play</a>':'<span class="nn-btn ghost" style="opacity:.6">Demo entry (not built)</span>')+'<a class="nn-btn ghost" href="'+REPO+(x.play?x.id:"_template")+'" target="_blank" rel="noopener">&lt;/&gt; Source on GitHub</a><button class="nn-btn ghost" id="remix">🔀 Remix (fork)</button></div><div id="rmx"></div>'+
+ '<div class="nn-card"><h3>STATS <span class="nn-sim">DEMO</span></h3><div class="nn-kv"><span>Plays (7d)</span><b>'+fmt(x.plays)+'</b></div><div class="nn-kv"><span>D1 retention</span><b>'+x.d1+'%</b></div><div class="nn-kv"><span>Remixes</span><b>'+kids(x.id).length+'</b></div><div class="nn-kv"><span>Creator-share fees (sim)</span><b>'+fmt(f)+' wsNET</b></div></div>'+
+ '<div class="nn-card"><h3>COIN · '+x.coin+' <span class="nn-sim">SIMULATION</span></h3><div class="nn-kv"><span>Max supply</span><b>10M</b></div><div class="nn-kv"><span>Curve</span><b>bonding curve in wsNET</b></div><div class="nn-kv"><span>Tax (cap 5%)</span><b>NetNet 1% · jar 1% · creator 3%</b></div>'+(p?'<div class="nn-kv"><span>Remix royalty (example)</span><b>'+ROY*100+'% of creator share → @'+B[p.by].n+'</b></div><div class="nn-kv"><span>This remix pays its parent</span><b>'+fmt(Math.round(f*ROY))+' wsNET</b></div>':"")+'</div>'+
+ '<div class="nn-card"><h3>TEAM SPLIT</h3>'+splitBar(x.team)+'<p class="meta">Creator share is split onchain per this table (a split contract, edited via PR + owner signatures).</p></div>'+
+ '<div class="nn-card"><h3>REMIX TREE</h3><div class="tree"><a href="#game/'+r.id+'">'+r.e+" "+r.t+"</a><br>"+(tree(r.id)||"<span class='meta'>No remixes yet, be the first.</span>")+"</div></div>"},
+how(){return '<h2>How it works</h2><div class="nn-card"><h3>GITHUB UNDER THE HOOD</h3><p class="nn-sub">Every game is a folder in a GitHub repo built from the shared <a href="'+REPO+'_template">Cabinet template</a>. <b>Remix = git fork</b>, and the parent is recorded in the game manifest. Merges, contributors and releases come from GitHub. The NetNet rails add coin, fees, splits and royalties.</p></div><div class="nn-card"><h3>REMIX ROYALTY (EXAMPLE)</h3><p class="nn-sub">A remix routes <b>20%</b> of its creator share to its direct parent (one level, in this example). Numbers are an example to debate, not final.</p></div><div class="nn-card"><h3>FEES</h3><p class="nn-sub">Net Forge rules: coin capped at 10M, bonding curve in wsNET, graduation 50% LP (burned) / 50% 12h buyback &amp; burn, transfer tax capped at 5% including NetNet 1%, finite reward jar refilled from the creator share. All skill-only.</p></div>'}};
+function route(){const [v,a]=(location.hash.slice(1)||"trending").split("/");document.getElementById("view").innerHTML=(V[v]||V.trending)(a);
+ document.querySelectorAll("#tabs a").forEach(t=>t.classList.toggle("on",t.getAttribute("href")=="#"+v));
+ const rb=document.getElementById("remix");if(rb)rb.onclick=()=>{const x=g(a);document.getElementById("rmx").innerHTML='<div class="nn-chal">✅ <b>Fork simulated</b>: "'+x.t+' (your remix)" would be created as a GitHub fork of <code>'+x.id+'</code> with you as creator. <b>'+ROY*100+'%</b> of your creator share (example) flows to @'+B[x.by].n+'. Nothing was created; this is a prototype.</div>'};scrollTo(0,0)}
+addEventListener("hashchange",route);route();
+</script></body></html>

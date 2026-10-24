@@ -1,0 +1,24 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>PROFILE · NetNet Arcade</title><meta name="description" content="Your NetNet Arcade account: handle, test credits, achievements.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Arcade"><meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/profile/">
+<meta property="og:title" content="PROFILE · NetNet Arcade"><meta property="og:description" content="Your NetNet Arcade account: handle, test credits, achievements.">
+<meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/home.png"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#070b16"><link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css">
+<style>:root{--c:#38f5ff}</style><script src="../dip-dash/engine.js"></script><script src="../portfolio-league/engine.js"></script>
+<script src="../arcade/sims.js"></script><script>window.NN_SCORE_SERVER="https://netnet-arcade-verifier.netnetarcade.workers.dev"</script><script src="../arcade/core.js"></script></head><body>
+<div class="nn-wrap" style="max-width:760px"><h1 class="nn-title">YOUR ARCADE ID</h1>
+<div class="nn-card"><h3>HANDLE</h3><div class="nn-row"><input id="h" maxlength="15" style="flex:3;min-height:48px;border-radius:12px;border:1px solid var(--line);background:#0b1022;color:var(--txt);padding:0 12px;font:inherit"><button class="nn-btn" id="save">Save</button></div><div class="nna-mut">3–15 letters, numbers or _. Pick a nickname, not your real name.</div></div>
+<div class="nn-card"><h3>TEST CREDITS <span class="nna-test">NOT MONEY</span></h3><div class="nn-big" id="cr"></div><p class="nn-sub" style="font-size:13px" id="rf"></p><p class="nna-mut">Every new ID gets 10,000 free test credits; they top back up to 10,000 every 24 h. A ranked entry costs 100: 10 go to the (simulated) treasury first, 90 to that game's weekly pool. Test credits have no cash value and can't be bought, sold or withdrawn.</p></div>
+<div class="nn-card"><h3>WALLET <span class="nna-test">BETA</span></h3><p class="nna-mut">Optional. Read-only link of an address to your arcade ID for later. Nothing is signed or spent.</p><button class="nn-btn ghost" id="wal">Connect wallet (beta)</button> <span id="wa" class="nna-mut"></span></div>
+<div class="nn-card"><h3>ACHIEVEMENTS</h3><div id="ach"></div></div>
+<div class="nn-card"><h3>YOUR RECENT RUNS</h3><table class="nn-lb" id="runs"></table></div></div>
+<script>
+const $=id=>document.getElementById(id);
+function r(){const a=NNA.acct();$('h').value=a.handle;$('cr').textContent=Math.floor(a.credits).toLocaleString();const n=NNA.nextRefill()-Date.now();$('rf').textContent='Next top-up to 10,000 in '+Math.max(0,Math.floor(n/36e5))+'h '+Math.max(0,Math.floor(n%36e5/6e4))+'m';
+ $('wa').textContent=a.wallet?'Linked: '+a.wallet.slice(0,6)+'…'+a.wallet.slice(-4):'';
+ $('ach').innerHTML=NNA.ACH.map(x=>'<div class="nn-kv"><span>'+(a.ach[x[0]]?x[1]:'🔒 '+x[1].replace(/^\S+ /,''))+' <span class="nna-mut">'+x[2]+'</span></span><b>'+(a.ach[x[0]]?'✔':'')+'</b></div>').join('');
+ const rs=NNA.runs().slice(-15).reverse();$('runs').innerHTML=rs.length?rs.map(x=>'<tr><td>'+NNA.GAMES[x.game].n+'</td><td>'+x.score+'</td><td>'+(x.v.ok?'<span class="nna-ok">✔ Verified</span>':'<span class="nna-bad">✘</span>')+(x.ranked?'':' <span class="nna-mut">practice</span>')+'</td><td><a style="color:var(--c)" href="'+NNA.replayURL(x)+'">replay</a></td></tr>').join(''):'<tr><td class="nna-mut">No runs yet.</td></tr>'}
+$('save').onclick=()=>{if(NNA.setHandle($('h').value)){NNA.toast('Saved');r()}else NNA.toast('3–15 letters, numbers or _')};
+$('wal').onclick=async()=>{await NNA.wallet();r()};
+document.addEventListener('DOMContentLoaded',()=>{r();NNA.foot()});
+</script></body></html>

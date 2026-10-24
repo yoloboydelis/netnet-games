@@ -1,0 +1,34 @@
+name = "netnet-arcade-verifier"
+main = "src/index.js"
+compatibility_date = "2026-05-01"
+account_id = "d3bf516b5ec656f2dd3999ee3ca9436d"
+workers_dev = true
+
+[[kv_namespaces]]
+binding = "RUNS"
+id = "01be533cb489484db024ebb5132db660"
+
+# Per-IP rate limits (Cloudflare Rate Limiting binding)
+[[ratelimits]]
+name = "RL_WRITE"
+namespace_id = "4663001"
+  [ratelimits.simple]
+  limit = 30
+  period = 60
+
+[[ratelimits]]
+name = "RL_READ"
+namespace_id = "4663002"
+  [ratelimits.simple]
+  limit = 240
+  period = 60
+
+# Secret (not in this file): SIGNING_KEY  (set with: openssl rand -hex 32 | npx wrangler secret put SIGNING_KEY)
+
+[[durable_objects.bindings]]
+name = "VOICES"
+class_name = "VoicesDO"
+
+[[migrations]]
+tag = "v1-voices"
+new_sqlite_classes = ["VoicesDO"]
