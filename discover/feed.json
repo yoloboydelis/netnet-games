@@ -5,6 +5,132 @@
  "feed_url": "https://yoloboydelis.github.io/netnet-games/discover/feed.json",
  "items": [
   {
+   "id": "doodle-sports-day",
+   "url": "https://yurustudio.github.io/undoukai/",
+   "external_url": "https://x.com/apkderete/status/2113869309101711677",
+   "title": "Doodle Sports Day by @apkderete",
+   "content_text": "Draw a creature with your finger and it runs the race exactly as drawn. Play: https://yurustudio.github.io/undoukai/ · X post: https://x.com/apkderete/status/2113869309101711677",
+   "date_published": "2026-10-24T00:00:00Z",
+   "tags": [
+    "casual",
+    "physics",
+    "multiplayer"
+   ]
+  },
+  {
+   "id": "melody-machinations",
+   "url": "https://profugobarbatus.itch.io/melody-machinations",
+   "external_url": "https://x.com/ProfugoBarbatus/status/2113825117201416365",
+   "title": "Melody Machinations by @ProfugoBarbatus (with Lyssa_OhNo)",
+   "content_text": "A Ludum Dare 60 jam game built around music and machines. Play: https://profugobarbatus.itch.io/melody-machinations · X post: https://x.com/ProfugoBarbatus/status/2113825117201416365",
+   "date_published": "2026-10-24T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "casual"
+   ]
+  },
+  {
+   "id": "hanamino",
+   "url": "https://playgama.ai/play/6vij4uy2tilpun",
+   "external_url": "https://x.com/PoderosoMasterS/status/2113870806585606259",
+   "title": "Hanamino: Block Puzzle Garden by @PoderosoMasterS",
+   "content_text": "Fit flower blocks into a garden grid in a calm block puzzle. Play: https://playgama.ai/play/6vij4uy2tilpun · X post: https://x.com/PoderosoMasterS/status/2113870806585606259",
+   "date_published": "2026-10-24T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "casual"
+   ]
+  },
+  {
+   "id": "bearsky",
+   "url": "https://www.spawn.co/@fookamon/bearsky",
+   "external_url": "https://x.com/fookamon/status/2113619869446935028",
+   "title": "Bearsky by @fookamon",
+   "content_text": "A bear on a sports bike races an engine down a ramp-filled hill. Play: https://www.spawn.co/@fookamon/bearsky · X post: https://x.com/fookamon/status/2113619869446935028",
+   "date_published": "2026-10-23T00:00:00Z",
+   "tags": [
+    "racing",
+    "arcade",
+    "physics"
+   ]
+  },
+  {
+   "id": "ai-worms",
+   "url": "https://seymour8glass.itch.io/ai-worms",
+   "external_url": "https://x.com/DharmaHarrison/status/2113681890418799072",
+   "title": "AI Worms: They're Everywhere by @DharmaHarrison (itch: seymour8glass)",
+   "content_text": "A phone-friendly jam game about worms that just keep coming. Play: https://seymour8glass.itch.io/ai-worms · X post: https://x.com/DharmaHarrison/status/2113681890418799072",
+   "date_published": "2026-10-23T00:00:00Z",
+   "tags": [
+    "arcade",
+    "action",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "slow-beads",
+   "url": "https://slowbeads.niceday-app.com/",
+   "external_url": "https://x.com/whataniceb2n/status/2113704699463622788",
+   "title": "Slow Beads by @whataniceb2n",
+   "content_text": "Place fuse beads, iron them flat and watch them melt. No timer. Play: https://slowbeads.niceday-app.com/ · X post: https://x.com/whataniceb2n/status/2113704699463622788",
+   "date_published": "2026-10-23T00:00:00Z",
+   "tags": [
+    "casual",
+    "puzzle"
+   ]
+  },
+  {
+   "id": "autodrive-tycoon",
+   "url": "https://autodrive-tycoon.felixsd.workers.dev/",
+   "external_url": "https://x.com/AutoDriveTycoon/status/2113643695425692150",
+   "title": "AutoDrive Tycoon by @AutoDriveTycoon",
+   "content_text": "Grow from one subscriber to a worldwide self-driving taxi fleet. Play: https://autodrive-tycoon.felixsd.workers.dev/ · X post: https://x.com/AutoDriveTycoon/status/2113643695425692150",
+   "date_published": "2026-10-23T00:00:00Z",
+   "tags": [
+    "strategy",
+    "casual"
+   ]
+  },
+  {
+   "id": "draw-to-smash",
+   "url": "https://wavedash.com/games/draw-to-smash-1789364526634",
+   "external_url": "https://x.com/anulagarwal/status/2113570947102077333",
+   "title": "Draw To Smash by @anulagarwal",
+   "content_text": "Draw shapes on a whiteboard and drop them to crack the eggs. Play: https://wavedash.com/games/draw-to-smash-1789364526634 · X post: https://x.com/anulagarwal/status/2113570947102077333",
+   "date_published": "2026-10-23T00:00:00Z",
+   "tags": [
+    "physics",
+    "puzzle",
+    "casual"
+   ]
+  },
+  {
+   "id": "neon-ronin",
+   "url": "https://neon-ronin-blade.higgsfield.app/",
+   "external_url": "https://x.com/juliosilvaai/status/2113759852371800122",
+   "title": "Neon Ronin by @juliosilvaai",
+   "content_text": "A rainy neon samurai duel: parry, break posture, finish it. Play: https://neon-ronin-blade.higgsfield.app/ · X post: https://x.com/juliosilvaai/status/2113759852371800122",
+   "date_published": "2026-10-23T00:00:00Z",
+   "tags": [
+    "action",
+    "3d",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "last-torch",
+   "url": "https://mchatai.itch.io/last-torch",
+   "external_url": "https://x.com/mchataicom/status/2113696543761207568",
+   "title": "Last Torch by @mchataicom",
+   "content_text": "Find the stairs in five dark caverns before your torch burns out. Play: https://mchatai.itch.io/last-torch · X post: https://x.com/mchataicom/status/2113696543761207568",
+   "date_published": "2026-10-23T00:00:00Z",
+   "tags": [
+    "survival",
+    "adventure",
+    "vibe-coded"
+   ]
+  },
+  {
    "id": "toot-raft",
    "url": "https://toot.honkpop.com/",
    "external_url": "https://x.com/gourav_io/status/2113503358229365225",
@@ -484,120 +610,6 @@
    "tags": [
     "shooter",
     "space"
-   ]
-  },
-  {
-   "id": "molt",
-   "url": "https://knightfal3.itch.io/molt",
-   "external_url": "https://x.com/keysforthewin/status/2106369912868315645",
-   "title": "Molt by posted by @keysforthewin (made by a friend)",
-   "content_text": "First game by a non-coder, made in a few hours. Play: https://knightfal3.itch.io/molt · X post: https://x.com/keysforthewin/status/2106369912868315645",
-   "date_published": "2026-10-03T00:00:00Z",
-   "tags": [
-    "arcade"
-   ]
-  },
-  {
-   "id": "sykes-picot",
-   "url": "https://sykespicot.io",
-   "external_url": "https://x.com/Ned_Donovan/status/2106117192555065719",
-   "title": "Sykes-Picot by @Ned_Donovan",
-   "content_text": "Redraw the 1916 Middle East borders and see if you do better. Play: https://sykespicot.io · X post: https://x.com/Ned_Donovan/status/2106117192555065719",
-   "date_published": "2026-10-02T00:00:00Z",
-   "tags": [
-    "story",
-    "strategy"
-   ]
-  },
-  {
-   "id": "aetherflow",
-   "url": "https://physulis.itch.io/aetherflow",
-   "external_url": "https://x.com/Physulis1444/status/2105735165959880814",
-   "title": "Aetherflow by @Physulis1444",
-   "content_text": "Bend water, snow and steam; surf waves and freeze townsfolk. Play: https://physulis.itch.io/aetherflow · X post: https://x.com/Physulis1444/status/2105735165959880814",
-   "date_published": "2026-10-01T00:00:00Z",
-   "tags": [
-    "action"
-   ]
-  },
-  {
-   "id": "closing-time",
-   "url": "https://wavedash.com/games/closing-time",
-   "external_url": "https://x.com/chongdashu/status/2105266371135406524",
-   "title": "Closing Time by @chongdashu",
-   "content_text": "You're the bouncer: throw every last guest out at closing time. Play: https://wavedash.com/games/closing-time · X post: https://x.com/chongdashu/status/2105266371135406524",
-   "date_published": "2026-09-30T00:00:00Z",
-   "tags": [
-    "action"
-   ]
-  },
-  {
-   "id": "lost-marbles",
-   "url": "https://lostmarbles.io",
-   "external_url": "https://x.com/matthewkturner/status/2105157935286636923",
-   "title": "Lost Marbles by @matthewkturner",
-   "content_text": "A musician's first game: marbles, physics and sound. Play: https://lostmarbles.io · X post: https://x.com/matthewkturner/status/2105157935286636923",
-   "date_published": "2026-09-30T00:00:00Z",
-   "tags": [
-    "physics",
-    "puzzle"
-   ]
-  },
-  {
-   "id": "dust--lead",
-   "url": "https://inkstaid.github.io/dust-and-lead/",
-   "external_url": "https://x.com/inkstaid/status/2105380449875005813",
-   "title": "Dust & Lead by @inkstaid",
-   "content_text": "2D Wild West duels built with Three.js. Play: https://inkstaid.github.io/dust-and-lead/ · X post: https://x.com/inkstaid/status/2105380449875005813",
-   "date_published": "2026-09-30T00:00:00Z",
-   "tags": [
-    "shooter"
-   ]
-  },
-  {
-   "id": "stillwater",
-   "url": "https://wavedash.com/games/stillwater",
-   "external_url": "https://x.com/llama3dstudio/status/2105023298912620579",
-   "title": "Stillwater by @llama3dstudio",
-   "content_text": "Skip stones across a calm lake in Three.js. Play: https://wavedash.com/games/stillwater · X post: https://x.com/llama3dstudio/status/2105023298912620579",
-   "date_published": "2026-09-29T00:00:00Z",
-   "tags": [
-    "casual"
-   ]
-  },
-  {
-   "id": "emberglade",
-   "url": "https://emberglade.agentcell.app",
-   "external_url": "https://x.com/agentcelldotdev/status/2104893456028160336",
-   "title": "Emberglade by @agentcelldotdev",
-   "content_text": "Open-world browser game, 100% code, zero assets. Play: https://emberglade.agentcell.app · X post: https://x.com/agentcelldotdev/status/2104893456028160336",
-   "date_published": "2026-09-29T00:00:00Z",
-   "tags": [
-    "3d",
-    "adventure"
-   ]
-  },
-  {
-   "id": "biro-game",
-   "url": "https://thereale2o.github.io/birogame/",
-   "external_url": "https://x.com/The_real_E2O/status/2104882858641027265",
-   "title": "Biro Game by @The_real_E2O",
-   "content_text": "Pen-flick physics duels with AI or friend rooms. Play: https://thereale2o.github.io/birogame/ · X post: https://x.com/The_real_E2O/status/2104882858641027265",
-   "date_published": "2026-09-29T00:00:00Z",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "id": "night-cruise",
-   "url": "https://www.nightcruisegame.com/",
-   "external_url": "https://x.com/nightcruisegame/status/2104253373151334446",
-   "title": "Night Cruise by @nightcruisegame",
-   "content_text": "Drive Tokyo's expressways at night. No race, just vibes. Play: https://www.nightcruisegame.com/ · X post: https://x.com/nightcruisegame/status/2104253373151334446",
-   "date_published": "2026-09-27T00:00:00Z",
-   "tags": [
-    "3d",
-    "racing"
    ]
   }
  ]
