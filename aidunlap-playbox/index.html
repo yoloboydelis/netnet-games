@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>AIDUNLAP PLAYBOX · NetNet Arcade</title>
-<meta name="description" content="Wooden NetNet pinball playbox. Plunger, flippers, brass rails, RWA cups. aidunlap on the backglass. Replay-verified.">
+<meta name="description" content="Real wooden NetNet pinball cabinet. Layered plywood, lit marquee, brass rails, chrome ball, RWA cups. aidunlap on the backglass. Replay-verified.">
 <meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Arcade">
 <meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/aidunlap-playbox/">
 <meta property="og:title" content="AIDUNLAP PLAYBOX · NetNet Arcade">
@@ -11,8 +11,8 @@
 <style>
 :root{--c:#d4af37;--bg:#0a0a0a}
 html,body{overscroll-behavior:none;background:#0a0a0a}
-#stage{position:relative;margin:0 auto;width:min(100%,420px);aspect-ratio:360/580;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;border-radius:12px;overflow:hidden;background:#1a1208;cursor:pointer;box-shadow:0 0 48px rgba(212,175,55,.2)}
-#c{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;background:#1a1208}
+#stage{position:relative;margin:0 auto;width:min(100%,440px);aspect-ratio:360/580;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;border-radius:10px 10px 14px 14px;overflow:hidden;background:#3a2818;cursor:pointer;box-shadow:0 18px 50px rgba(0,0,0,.65),0 0 0 3px #2a1a0e,0 0 0 6px #6b4a2c,0 0 60px rgba(212,175,55,.28)}
+#c{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;background:#2a1c10}
 #hud{display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap;margin:8px 0;font:700 12px system-ui;color:#f5d77a}
 .pp-top{display:flex;gap:10px;align-items:center;justify-content:space-between;margin:6px 0;flex-wrap:wrap}
 #hint{text-align:center;font:12px system-ui;color:#9a927c;margin:6px 0 0;min-height:1.2em}
@@ -30,7 +30,7 @@ html,body{overscroll-behavior:none;background:#0a0a0a}
 <div id="hud"><span id="h1">0 pts</span><span id="h2">20 balls</span><span id="h3">COMBO 0</span><span id="h4">0/16</span></div>
 <div id="stage"><canvas id="c" width="360" height="580"></canvas></div>
 <div id="hint">Hold plunger to charge · Z/← left flip · /→ right flip · X/↑ kicker</div>
-<p class="nn-sub" style="margin-top:10px">Original NetNet wooden pinball playbox. Side plunger, bottom flippers, elevated brass rail, lit bumpers, RWA cups. aidunlap on the backglass. Same weekly board for everyone.</p>
+<p class="nn-sub" style="margin-top:10px">Original NetNet wooden pinball cabinet — layered plywood shell, lit backglass, winding brass rails, mechanical flippers, chrome ball, RWA cups. aidunlap on the marquee. Same weekly board for everyone.</p>
 <div class="nn-card"><span class="nna-mut" style="font-size:12px">Ranked: 100 test credits (10 treasury / 90 pool). Tokens are game items, not real assets.</span></div>
 <div class="nn-card" id="board"></div>
 <div class="nn-card"><h3>ABOUT</h3>
@@ -133,118 +133,289 @@ addEventListener('keydown',e=>{
 addEventListener('keyup',e=>{if((e.key===' '||e.key==='ArrowDown'||e.key==='s')&&charging)releaseShot()});
 NNA.onAgain=()=>{phase='ready'};
 function woodCabinet(now){
-  // layered plywood outer shell
+  // === REAL WOODEN ARCADE CABINET SHELL ===
+  // Outer lacquered plywood with warm grain
   const g1=ctx.createLinearGradient(0,0,W,0);
-  g1.addColorStop(0,'#2a1c10');g1.addColorStop(.15,'#6b4a2c');g1.addColorStop(.5,'#4a3220');g1.addColorStop(.85,'#6b4a2c');g1.addColorStop(1,'#2a1c10');
+  g1.addColorStop(0,'#1a1008');g1.addColorStop(.08,'#5a3c22');g1.addColorStop(.22,'#8a6238');
+  g1.addColorStop(.5,'#6b4a2c');g1.addColorStop(.78,'#8a6238');g1.addColorStop(.92,'#5a3c22');g1.addColorStop(1,'#1a1008');
   ctx.fillStyle=g1;ctx.fillRect(0,0,W,H);
-  // vertical slats
-  ctx.fillStyle='rgba(0,0,0,.18)';
-  for(let i=0;i<14;i++){ctx.fillRect(4+i*26,0,1.5,H)}
-  // lacquer sweep
-  const sw=((now/50)%(W+100))-50;ctx.fillStyle='rgba(245,215,122,.04)';ctx.fillRect(sw,0,36,H);
-  // ornate marquee / backglass
-  ctx.fillStyle='#1a1208';ctx.fillRect(28,6,W-56,52);
-  const led=ctx.createLinearGradient(28,6,28,58);led.addColorStop(0,'rgba(212,175,55,.35)');led.addColorStop(1,'rgba(10,10,10,.8)');
-  ctx.fillStyle=led;ctx.fillRect(28,6,W-56,52);
-  ctx.strokeStyle='#d4af37';ctx.lineWidth=2;ctx.strokeRect(28,6,W-56,52);
-  // LED dots under marquee
-  for(let i=0;i<18;i++){const on=((Math.floor(now/120)+i)%5)<3;ctx.beginPath();ctx.arc(40+i*16,54,2,0,7);ctx.fillStyle=on?'#f5d77a':'#5a4020';ctx.fill()}
-  txt('NETNET',W/2,24,10,'#9a927c');txt('AIDUNLAP PLAYBOX',W/2,42,13,'#f5d77a');
-  // playfield inset (lacquer charcoal)
-  ctx.fillStyle='#0a0a0a';ctx.fillRect(18,62,286,H-78);
-  const gloss=ctx.createLinearGradient(18,62,18,H);gloss.addColorStop(0,'rgba(245,215,122,.07)');gloss.addColorStop(.4,'rgba(255,255,255,.02)');gloss.addColorStop(1,'rgba(0,0,0,.35)');
-  ctx.fillStyle=gloss;ctx.fillRect(18,62,286,H-78);
-  // bevel
-  ctx.strokeStyle='rgba(212,175,55,.25)';ctx.lineWidth=2;ctx.strokeRect(18,62,286,H-78);
-  // rivets
-  [[22,66],[300,66],[22,H-20],[300,H-20],[22,H/2],[300,H/2]].forEach(([x,y])=>{ctx.beginPath();ctx.arc(x,y,2.2,0,7);ctx.fillStyle='#d4af37';ctx.fill()});
-  // plunger lane (right)
-  ctx.fillStyle='#12100c';ctx.fillRect(306,62,42,H-78);
-  ctx.strokeStyle='#d4af37';ctx.lineWidth=1.5;ctx.strokeRect(306,62,42,H-78);
-  ctx.fillStyle='rgba(245,215,122,.06)';ctx.fillRect(306,62,42,H-78);
-  txt('PLUNGER',327,80,7,'#9a927c');
+  // Horizontal plywood laminations (laser-cut layers)
+  for(let y=0;y<H;y+=7){
+    ctx.fillStyle=y%14===0?'rgba(20,10,4,.22)':'rgba(245,215,122,.035)';
+    ctx.fillRect(0,y,W,1.2);
+  }
+  // Vertical grain / slats
+  for(let i=0;i<22;i++){
+    const x=3+i*17;
+    ctx.fillStyle=i%3===0?'rgba(0,0,0,.14)':'rgba(255,220,140,.03)';
+    ctx.fillRect(x,0,1.2,H);
+  }
+  // Lacquer specular sweep
+  const sw=((now/40)%(W+140))-70;
+  const lac=ctx.createLinearGradient(sw,0,sw+50,0);
+  lac.addColorStop(0,'rgba(255,240,180,0)');lac.addColorStop(.5,'rgba(255,240,180,.07)');lac.addColorStop(1,'rgba(255,240,180,0)');
+  ctx.fillStyle=lac;ctx.fillRect(0,0,W,H);
+
+  // Side wall thickness (dark burnt laser edges)
+  ctx.fillStyle='#1a1008';ctx.fillRect(0,0,14,H);ctx.fillRect(W-14,0,14,H);
+  ctx.fillStyle='#4a3220';ctx.fillRect(14,0,4,H);ctx.fillRect(W-18,0,4,H);
+  // Decorative side arches / cutouts (cabinet ornament)
+  ctx.strokeStyle='rgba(212,175,55,.35)';ctx.lineWidth=1.5;
+  for(let i=0;i<5;i++){
+    const yy=90+i*90;
+    ctx.beginPath();ctx.arc(7,yy,5, -Math.PI/2, Math.PI/2);ctx.stroke();
+    ctx.beginPath();ctx.arc(W-7,yy,5, Math.PI/2, -Math.PI/2);ctx.stroke();
+  }
+
+  // === TALL ILLUMINATED BACKGLASS / MARQUEE ===
+  const mx=20, my=4, mw=W-40, mh=78;
+  // Marquee wood frame (raised)
+  ctx.fillStyle='#2a1a0c';ctx.fillRect(mx-4,my,mw+8,mh+6);
+  const mg=ctx.createLinearGradient(mx,my,mx,my+mh);
+  mg.addColorStop(0,'#7a542e');mg.addColorStop(.35,'#4a3220');mg.addColorStop(1,'#1a1008');
+  ctx.fillStyle=mg;ctx.fillRect(mx,my,mw,mh);
+  // Scalloped top edge
+  ctx.fillStyle='#6b4a2c';ctx.beginPath();ctx.moveTo(mx,my+8);
+  for(let i=0;i<10;i++){const sx=mx+i*(mw/10),cx=sx+mw/20;ctx.quadraticCurveTo(cx,my-2,sx+mw/10,my+8)}
+  ctx.lineTo(mx+mw,my+mh);ctx.lineTo(mx,my+mh);ctx.closePath();ctx.fill();
+  // Warm LED bloom under glass
+  const bloom=ctx.createRadialGradient(W/2,my+50,8,W/2,my+40,90);
+  bloom.addColorStop(0,'rgba(255,210,90,.55)');bloom.addColorStop(.45,'rgba(212,175,55,.22)');bloom.addColorStop(1,'rgba(10,10,10,0)');
+  ctx.fillStyle=bloom;ctx.fillRect(mx,my,mw,mh+20);
+  // Glass panel
+  ctx.fillStyle='rgba(10,8,4,.72)';ctx.fillRect(mx+6,my+14,mw-12,mh-22);
+  // Glass reflection streak
+  ctx.fillStyle='rgba(255,255,255,.08)';ctx.fillRect(mx+10,my+16,mw*0.28,mh-28);
+  ctx.strokeStyle='#d4af37';ctx.lineWidth=2;ctx.strokeRect(mx+6,my+14,mw-12,mh-22);
+  // LED strip under marquee (bloom onto playfield)
+  for(let i=0;i<22;i++){
+    const on=((Math.floor(now/110)+i)%6)<4;
+    const lx=mx+10+i*((mw-20)/21);
+    ctx.beginPath();ctx.arc(lx,my+mh+2,2.4,0,7);
+    ctx.fillStyle=on?'#ffe08a':'#5a4020';ctx.fill();
+    if(on&&!MOB){ctx.fillStyle='rgba(255,220,100,.15)';ctx.beginPath();ctx.arc(lx,my+mh+8,6,0,7);ctx.fill()}
+  }
+  // Lettering
+  softShadow(1,10);txt('NETNET',W/2,my+28,9,'#c8b87a');softShadow(0,0);
+  softShadow(1,14);txt('AIDUNLAP',W/2,my+48,16,'#f5d77a');softShadow(0,0);
+  txt('PLAYBOX',W/2,my+64,10,'#d4af37');
+  // Corner stars on marquee
+  [[mx+14,my+22],[mx+mw-14,my+22]].forEach(([x,y])=>{
+    ctx.fillStyle='#f5d77a';ctx.beginPath();
+    ctx.moveTo(x,y-5);ctx.lineTo(x+1.5,y-1.5);ctx.lineTo(x+5,y);ctx.lineTo(x+1.5,y+1.5);
+    ctx.lineTo(x,y+5);ctx.lineTo(x-1.5,y+1.5);ctx.lineTo(x-5,y);ctx.lineTo(x-1.5,y-1.5);ctx.closePath();ctx.fill();
+  });
+
+  // === PLAYFIELD INSET (felt / dark lacquer) ===
+  const px=18, py=92, pw=286, ph=H-110;
+  // Deep recess shadow
+  ctx.fillStyle='#0a0604';ctx.fillRect(px-2,py-2,pw+4,ph+4);
+  // Felt-charcoal playfield
+  const felt=ctx.createLinearGradient(px,py,px,py+ph);
+  felt.addColorStop(0,'#14100c');felt.addColorStop(.5,'#0c0a08');felt.addColorStop(1,'#080604');
+  ctx.fillStyle=felt;ctx.fillRect(px,py,pw,ph);
+  // Subtle etched starfield on floor
+  ctx.fillStyle='rgba(212,175,55,.06)';
+  for(let i=0;i<18;i++){
+    const sx=px+18+(i%6)*44, sy=py+30+Math.floor(i/6)*70;
+    ctx.beginPath();ctx.arc(sx,sy,1.2,0,7);ctx.fill();
+  }
+  // Gloss / glass over playfield
+  const gloss=ctx.createLinearGradient(px,py,px,py+ph);
+  gloss.addColorStop(0,'rgba(255,220,140,.1)');gloss.addColorStop(.2,'rgba(255,255,255,.03)');gloss.addColorStop(1,'rgba(0,0,0,.4)');
+  ctx.fillStyle=gloss;ctx.fillRect(px,py,pw,ph);
+  // Inner bevel (gold lip)
+  ctx.strokeStyle='rgba(212,175,55,.45)';ctx.lineWidth=2.5;ctx.strokeRect(px,py,pw,ph);
+  ctx.strokeStyle='rgba(0,0,0,.5)';ctx.lineWidth=1;ctx.strokeRect(px+3,py+3,pw-6,ph-6);
+
+  // Rivets + corner brackets
+  const rivets=[[px+4,py+4],[px+pw-4,py+4],[px+4,py+ph-4],[px+pw-4,py+ph-4],
+    [px+4,py+ph/3],[px+pw-4,py+ph/3],[px+4,py+2*ph/3],[px+pw-4,py+2*ph/3]];
+  rivets.forEach(([x,y])=>{
+    ctx.beginPath();ctx.arc(x,y,2.6,0,7);ctx.fillStyle='#8a6a28';ctx.fill();
+    ctx.beginPath();ctx.arc(x-0.6,y-0.6,1,0,7);ctx.fillStyle='#f5d77a';ctx.fill();
+  });
+  // L-brackets
+  ctx.strokeStyle='#d4af37';ctx.lineWidth=2;
+  [[px+2,py+2,1,1],[px+pw-2,py+2,-1,1],[px+2,py+ph-2,1,-1],[px+pw-2,py+ph-2,-1,-1]].forEach(([x,y,sx,sy])=>{
+    ctx.beginPath();ctx.moveTo(x,y+sy*12);ctx.lineTo(x,y);ctx.lineTo(x+sx*12,y);ctx.stroke();
+  });
+
+  // === PLUNGER LANE (right chrome channel) ===
+  ctx.fillStyle='#100c08';ctx.fillRect(306,py,42,ph);
+  const ch=ctx.createLinearGradient(306,0,348,0);
+  ch.addColorStop(0,'#2a2218');ch.addColorStop(.5,'#1a1610');ch.addColorStop(1,'#2a2218');
+  ctx.fillStyle=ch;ctx.fillRect(308,py+2,38,ph-4);
+  ctx.strokeStyle='#d4af37';ctx.lineWidth=1.8;ctx.strokeRect(306,py,42,ph);
+  // Lane guide rails
+  ctx.strokeStyle='rgba(200,180,120,.5)';ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.moveTo(312,py+8);ctx.lineTo(312,py+ph-60);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(342,py+8);ctx.lineTo(342,py+ph-60);ctx.stroke();
+  txt('PLUNGER',327,py+14,7,'#9a927c');
 }
 
 function drawRails(now,s){
   railGlowL*=0.9;railGlowR*=0.9;
-  // brass side rail left
   const gl=Math.max(railGlowL, s&&s.onRail?0.7:0);
-  ctx.fillStyle=gl>0.05?'#f5d77a':'#8a6a28';softShadow(gl>0.1,10*gl);ctx.fillRect(14,62,6,H-78);softShadow(0,0);
-  // elevated winding rail (brass wire look)
-  const rail=[[290,70],[240,55],[170,58],[110,75],[70,120],[55,180],[60,240],[90,280]];
-  ctx.lineWidth=5;ctx.strokeStyle='#9a927c';ctx.beginPath();rail.forEach((p,i)=>{if(i)ctx.lineTo(p[0],p[1]);else ctx.moveTo(p[0],p[1])});ctx.stroke();
-  ctx.lineWidth=2.5;ctx.strokeStyle=s&&s.onRail?'#f5d77a':'#d4af37';softShadow(s&&s.onRail,8);ctx.beginPath();rail.forEach((p,i)=>{if(i)ctx.lineTo(p[0],p[1]);else ctx.moveTo(p[0],p[1])});ctx.stroke();softShadow(0,0);
-  // rail posts
-  rail.forEach(p=>{ctx.beginPath();ctx.arc(p[0],p[1],3,0,7);ctx.fillStyle='#d4af37';ctx.fill()});
+  // Left side wall brass strip
+  ctx.fillStyle=gl>0.05?'#f5d77a':'#8a6a28';
+  softShadow(gl>0.1,12*gl);ctx.fillRect(14,92,5,H-110);softShadow(0,0);
+  ctx.fillStyle='rgba(255,240,180,.35)';ctx.fillRect(15,92,1.5,H-110);
+
+  // Elevated winding brass rail #1 (upper ramp)
+  const railA=[[292,100],[250,78],[190,72],[130,82],[85,115],[62,165],[55,220],[70,270],[105,300]];
+  // Secondary lower loop rail
+  const railB=[[280,130],[230,118],[175,125],[130,150],[105,190],[100,235]];
+  function strokeRail(pts,wOuter,wInner,lit){
+    // shadow under raised rail
+    ctx.lineWidth=wOuter+3;ctx.strokeStyle='rgba(0,0,0,.45)';ctx.lineCap='round';ctx.lineJoin='round';
+    ctx.beginPath();pts.forEach((p,i)=>{if(i)ctx.lineTo(p[0]+1,p[1]+2);else ctx.moveTo(p[0]+1,p[1]+2)});ctx.stroke();
+    // dark brass body
+    ctx.lineWidth=wOuter;ctx.strokeStyle='#6a5020';
+    ctx.beginPath();pts.forEach((p,i)=>{if(i)ctx.lineTo(p[0],p[1]);else ctx.moveTo(p[0],p[1])});ctx.stroke();
+    // bright highlight edge
+    ctx.lineWidth=wInner;ctx.strokeStyle=lit?'#fff6c8':'#d4af37';
+    softShadow(lit,10);ctx.beginPath();pts.forEach((p,i)=>{if(i)ctx.lineTo(p[0],p[1]);else ctx.moveTo(p[0],p[1])});ctx.stroke();softShadow(0,0);
+    // chrome specular dashes
+    ctx.strokeStyle='rgba(255,255,255,.55)';ctx.lineWidth=1;
+    for(let i=0;i<pts.length-1;i+=2){
+      const a=pts[i],b=pts[i+1];
+      ctx.beginPath();ctx.moveTo(a[0]-1,a[1]-1);ctx.lineTo((a[0]+b[0])/2-1,(a[1]+b[1])/2-1);ctx.stroke();
+    }
+    // support posts
+    pts.forEach((p,i)=>{if(i%2)return;
+      ctx.fillStyle='#3a2a14';ctx.fillRect(p[0]-2,p[1],4,8);
+      ctx.beginPath();ctx.arc(p[0],p[1],3.2,0,7);ctx.fillStyle='#d4af37';ctx.fill();
+      ctx.beginPath();ctx.arc(p[0]-1,p[1]-1,1.2,0,7);ctx.fillStyle='#fff6c8';ctx.fill();
+    });
+  }
+  strokeRail(railA,6,3,!!(s&&s.onRail));
+  strokeRail(railB,4.5,2.2,false);
+
+  // Lit score inserts along left (visual density / FX-style lanes)
+  const inserts=[[42,180,'×2'],[42,230,'×3'],[42,280,'200'],[268,200,'400'],[268,250,'600']];
+  inserts.forEach(([x,y,lab],i)=>{
+    const on=((Math.floor(now/160)+i)%5)<2 || (s&&s.combo>4&&i<2);
+    ctx.beginPath();ctx.arc(x,y,9,0,7);
+    ctx.fillStyle=on?'rgba(245,215,122,.35)':'rgba(40,30,18,.8)';ctx.fill();
+    ctx.strokeStyle=on?'#f5d77a':'#5a4020';ctx.lineWidth=on?2:1;softShadow(on,8);ctx.stroke();softShadow(0,0);
+    ctx.fillStyle=on?'#f5d77a':'#6a5a40';ctx.font='bold 7px system-ui';ctx.textAlign='center';ctx.fillText(lab,x,y+2.5);
+  });
 }
 
 function drawStars(s,now){
   if(!s.stars)return;
   for(const st of s.stars){
     const on=((Math.floor(now/90)+st.ph)%8)<3 || (s.pop>8);
-    ctx.beginPath();
-    // 4-point star approx with lines
-    const x=st.x,y=st.y,r=on?5:3.5;
+    const x=st.x,y=st.y,r=on?5.5:3.5;
+    // recessed LED insert plate
+    ctx.beginPath();ctx.arc(x,y,r+3,0,7);ctx.fillStyle='#100c08';ctx.fill();
     ctx.fillStyle=on?'#f5d77a':'#3a3020';
+    ctx.beginPath();
     ctx.moveTo(x,y-r);ctx.lineTo(x+r*0.35,y-r*0.35);ctx.lineTo(x+r,y);ctx.lineTo(x+r*0.35,y+r*0.35);
     ctx.lineTo(x,y+r);ctx.lineTo(x-r*0.35,y+r*0.35);ctx.lineTo(x-r,y);ctx.lineTo(x-r*0.35,y-r*0.35);ctx.closePath();ctx.fill();
+    if(on){softShadow(1,8);ctx.fill();softShadow(0,0)}
   }
 }
 
 function drawFlipper(px,py,ang,len,active){
   ctx.save();ctx.translate(px,py);ctx.rotate(ang);
-  ctx.fillStyle=active?'#f5d77a':'#2a2a2a';ctx.strokeStyle=active?'#fff':'#d4af37';ctx.lineWidth=2.5;
-  ctx.beginPath();ctx.moveTo(-5,0);ctx.lineTo(len,-7);ctx.lineTo(len,7);ctx.closePath();ctx.fill();ctx.stroke();
-  ctx.beginPath();ctx.arc(0,0,7,0,7);ctx.fillStyle='#d4af37';ctx.fill();
-  softShadow(active,12);if(active){ctx.beginPath();ctx.arc(0,0,7,0,7);ctx.fill()}softShadow(0,0);
+  // hinge base (mechanical pivot)
+  ctx.beginPath();ctx.arc(0,0,9,0,7);ctx.fillStyle='#2a2218';ctx.fill();
+  ctx.strokeStyle='#d4af37';ctx.lineWidth=2;ctx.stroke();
+  ctx.beginPath();ctx.arc(0,0,4,0,7);ctx.fillStyle=active?'#f5d77a':'#8a6a28';ctx.fill();
+  // arm body (tapered wood/metal)
+  const tip=len;
+  ctx.beginPath();
+  ctx.moveTo(2,-5);ctx.lineTo(tip-6,-8);ctx.lineTo(tip-6,8);ctx.lineTo(2,5);ctx.closePath();
+  const ag=ctx.createLinearGradient(0,-8,0,8);
+  if(active){ag.addColorStop(0,'#fff6c8');ag.addColorStop(.5,'#f5d77a');ag.addColorStop(1,'#a08030')}
+  else{ag.addColorStop(0,'#5a4a30');ag.addColorStop(.5,'#2a2a2a');ag.addColorStop(1,'#1a1a1a')}
+  ctx.fillStyle=ag;ctx.fill();
+  ctx.strokeStyle=active?'#fff':'#d4af37';ctx.lineWidth=1.8;ctx.stroke();
+  // rubber tip
+  ctx.beginPath();ctx.arc(tip-4,0,7,0,7);
+  ctx.fillStyle=active?'#f5d77a':'#1a1a1a';ctx.fill();
+  ctx.strokeStyle='#d4af37';ctx.lineWidth=1.5;ctx.stroke();
+  softShadow(active,14);
+  if(active){ctx.beginPath();ctx.arc(0,0,9,0,7);ctx.fillStyle='rgba(245,215,122,.4)';ctx.fill()}
+  softShadow(0,0);
   ctx.restore();
 }
 
 function hole(h,now,near){
-  ctx.beginPath();ctx.arc(h.x,h.y,h.rad+3,0,7);ctx.fillStyle='#100c08';ctx.fill();
+  // Recessed wooden/metal RWA cup
+  ctx.beginPath();ctx.arc(h.x,h.y,h.rad+5,0,7);ctx.fillStyle='#0a0604';ctx.fill();
+  // Wood rim
+  ctx.beginPath();ctx.arc(h.x,h.y,h.rad+3.5,0,7);
+  const rim=ctx.createRadialGradient(h.x-2,h.y-2,1,h.x,h.y,h.rad+4);
+  rim.addColorStop(0,'#8a6238');rim.addColorStop(1,'#3a2818');
+  ctx.fillStyle=rim;ctx.fill();
   ctx.beginPath();ctx.arc(h.x,h.y,h.rad,0,7);
   if(h.full){
-    ctx.fillStyle='#1a1a1a';ctx.fill();ctx.strokeStyle='#f5d77a';ctx.lineWidth=2.5;ctx.stroke();
+    ctx.fillStyle='#12100c';ctx.fill();
+    ctx.strokeStyle='#f5d77a';ctx.lineWidth=2.5;softShadow(1,10);ctx.stroke();softShadow(0,0);
     if(nndReady) try{NND.badge(ctx,h.x,h.y,11,['gold','stock','tbill','net'][h.t])}catch(e){ctx.fillStyle=TCOL[h.t];ctx.beginPath();ctx.arc(h.x,h.y,8,0,7);ctx.fill()}
   }else{
-    const rg=ctx.createRadialGradient(h.x-3,h.y-4,1,h.x,h.y,h.rad);rg.addColorStop(0,'#2a2218');rg.addColorStop(1,'#0a0a0a');
-    ctx.fillStyle=rg;ctx.fill();ctx.strokeStyle=near?'#f5d77a':TCOL[h.t];ctx.lineWidth=near?2.5:1.4;ctx.stroke();
-    ctx.globalAlpha=.6;ctx.fillStyle=TCOL[h.t];ctx.font='bold 6px system-ui';ctx.textAlign='center';ctx.fillText(TNAME[h.t],h.x,h.y+2);ctx.globalAlpha=1;
+    const rg=ctx.createRadialGradient(h.x-3,h.y-4,1,h.x,h.y,h.rad);
+    rg.addColorStop(0,'#2a2218');rg.addColorStop(.7,'#0c0a08');rg.addColorStop(1,'#050403');
+    ctx.fillStyle=rg;ctx.fill();
+    ctx.strokeStyle=near?'#f5d77a':TCOL[h.t];ctx.lineWidth=near?2.8:1.6;
+    softShadow(near,8);ctx.stroke();softShadow(0,0);
+    // Metal cup lip highlight
+    ctx.strokeStyle='rgba(255,240,180,.25)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.arc(h.x,h.y,h.rad-2,-2.2,-0.6);ctx.stroke();
+    ctx.globalAlpha=.7;ctx.fillStyle=TCOL[h.t];ctx.font='bold 6px system-ui';ctx.textAlign='center';
+    ctx.fillText(TNAME[h.t],h.x,h.y+2);ctx.globalAlpha=1;
   }
 }
 
 function drawBall(b){
-  for(let i=0;i<trail.length;i++){const t=trail[i],a=(i+1)/trail.length*.4;ctx.globalAlpha=a;ctx.beginPath();ctx.arc(t.x,t.y,t.r*(.55+a*.4),0,7);ctx.fillStyle='#c8d8e8';ctx.fill()}ctx.globalAlpha=1;
+  for(let i=0;i<trail.length;i++){const t=trail[i],a=(i+1)/trail.length*.45;ctx.globalAlpha=a;ctx.beginPath();ctx.arc(t.x,t.y,t.r*(.5+a*.45),0,7);ctx.fillStyle='#d0dce8';ctx.fill()}ctx.globalAlpha=1;
   const sp=b.squash||0,sx=1+(sp?0.16:0),sy=1-(sp?0.2:0);
   ctx.save();ctx.translate(b.x,b.y);ctx.rotate(b.spin||0);ctx.scale(sx,sy);
-  ctx.beginPath();ctx.arc(0,0,b.r+4,0,7);ctx.fillStyle='rgba(245,215,122,.12)';ctx.fill();
-  const rg=ctx.createRadialGradient(-2.2,-2.2,0.8,0,0,b.r);
-  rg.addColorStop(0,'#ffffff');rg.addColorStop(.3,'#e8eef4');rg.addColorStop(.7,'#8aa0b4');rg.addColorStop(1,'#2a3848');
+  // Soft ground shadow (no ellipse)
+  ctx.globalAlpha=.35;ctx.beginPath();ctx.arc(1.5,2.5,b.r*0.9,0,7);ctx.fillStyle='#000';ctx.fill();ctx.globalAlpha=1;
+  // Chrome sphere
+  ctx.beginPath();ctx.arc(0,0,b.r+3,0,7);ctx.fillStyle='rgba(245,215,122,.18)';ctx.fill();
+  const rg=ctx.createRadialGradient(-2.4,-2.6,0.6,0,0,b.r);
+  rg.addColorStop(0,'#ffffff');rg.addColorStop(.22,'#f0f4f8');rg.addColorStop(.55,'#9aafc0');rg.addColorStop(.85,'#4a5a6a');rg.addColorStop(1,'#1a2430');
   ctx.beginPath();ctx.arc(0,0,b.r,0,7);ctx.fillStyle=rg;ctx.fill();
-  // spin highlight as arc (no ellipse — old WebKit safe)
-  ctx.fillStyle='rgba(255,255,255,.6)';ctx.beginPath();ctx.arc(-2,-2.2,2.1,0,7);ctx.fill();
-  ctx.strokeStyle='rgba(245,215,122,.5)';ctx.lineWidth=1;ctx.beginPath();ctx.arc(0,0,b.r,0,7);ctx.stroke();
+  // Specular highlight (circle only — mobile-safe)
+  ctx.fillStyle='rgba(255,255,255,.85)';ctx.beginPath();ctx.arc(-2.2,-2.4,2.3,0,7);ctx.fill();
+  ctx.fillStyle='rgba(255,255,255,.35)';ctx.beginPath();ctx.arc(1.5,1.8,1.2,0,7);ctx.fill();
+  ctx.strokeStyle='rgba(212,175,55,.55)';ctx.lineWidth=1;ctx.beginPath();ctx.arc(0,0,b.r,0,7);ctx.stroke();
   ctx.restore();
 }
 
 function drawPlunger(pow){
   const pull=charging?Math.min(1,(pow-1)/9):0;
-  const y=530+pull*28;
-  ctx.fillStyle='#2a2a2a';ctx.fillRect(314,500,26,50);
-  ctx.strokeStyle='#d4af37';ctx.lineWidth=1.5;ctx.strokeRect(314,500,26,50);
+  const y=528+pull*30;
+  // Channel housing
+  ctx.fillStyle='#1a1610';ctx.fillRect(312,495,28,58);
+  ctx.strokeStyle='#d4af37';ctx.lineWidth=1.5;ctx.strokeRect(312,495,28,58);
+  // Chrome shaft
+  const shaft=ctx.createLinearGradient(318,0,334,0);
+  shaft.addColorStop(0,'#6a7a88');shaft.addColorStop(.4,'#e8eef4');shaft.addColorStop(.7,'#8aa0b0');shaft.addColorStop(1,'#3a4858');
+  ctx.fillStyle=shaft;ctx.fillRect(320,500,12,y-508);
+  // Coil spring
   ctx.strokeStyle='#9a927c';ctx.lineWidth=2;ctx.beginPath();
-  for(let i=0;i<7;i++){const yy=495+i*4+pull*3;ctx.moveTo(318,yy);ctx.quadraticCurveTo(327,yy+2,336,yy)}ctx.stroke();
-  ctx.beginPath();ctx.arc(327,y,11,0,7);ctx.fillStyle=charging?'#f5d77a':'#d4af37';ctx.fill();ctx.strokeStyle='#0a0a0a';ctx.lineWidth=2;ctx.stroke();
-  txt(charging?String(pow):'HOLD',327,y+3,charging?10:7,'#0a0a0a');
-  // next ball preview
-  if(preview||true){/* drawn from state */}
+  for(let i=0;i<8;i++){const yy=498+i*3.5+pull*2.5;ctx.moveTo(316,yy);ctx.quadraticCurveTo(326,yy+2.5,336,yy)}ctx.stroke();
+  // Brass knob / handle
+  const kg=ctx.createRadialGradient(324,y-3,1,327,y,12);
+  kg.addColorStop(0,charging?'#fff6c8':'#f5d77a');kg.addColorStop(1,charging?'#d4af37':'#6b4a2c');
+  ctx.beginPath();ctx.arc(327,y,12,0,7);ctx.fillStyle=kg;ctx.fill();
+  ctx.strokeStyle='#0a0a0a';ctx.lineWidth=2;ctx.stroke();
+  ctx.beginPath();ctx.arc(324,y-3,3.5,0,7);ctx.fillStyle='rgba(255,255,255,.5)';ctx.fill();
+  txt(charging?String(pow):'HOLD',327,y+3.5,charging?10:7,'#0a0a0a');
 }
 
 function drawBackglassMascot(now,s){
   if(!nndReady)return;
   try{
     const pose=s&&(s.cleared||(s.lastEvt==='line'&&s.pop>8))?'win':(s&&s.mode===1?'run':'stand');
-    NND.draw(ctx,W/2,56,36,{v:'dunlap',pose,t:now});
+    // Stand on marquee ledge
+    NND.draw(ctx,W/2,88,42,{v:'dunlap',pose,t:now});
   }catch(e){}
 }
 
@@ -271,11 +442,17 @@ function draw(now){
 
   // pegs
   for(const p of (s.pegs||[])){const on=p.flash>0;ctx.beginPath();ctx.arc(p.x,p.y,p.rad+(on?1:0),0,7);ctx.fillStyle=on?'#f5d77a':'#9a927c';ctx.fill();ctx.fillStyle='#f5d77a';ctx.beginPath();ctx.arc(p.x-1.2,p.y-1.2,1.3,0,7);ctx.fill()}
-  // bumpers (dramatic lit domes)
-  for(const b of (s.bump||[])){const on=b.hit>0;ctx.beginPath();ctx.arc(b.x,b.y,b.rad+(on?3:0),0,7);
-    const bg=ctx.createRadialGradient(b.x-3,b.y-4,2,b.x,b.y,b.rad+2);bg.addColorStop(0,on?'#fff6c8':'#5a4a28');bg.addColorStop(1,on?'#d4af37':'#2a2210');
-    ctx.fillStyle=bg;ctx.fill();ctx.strokeStyle='#f5d77a';ctx.lineWidth=on?3:1.5;softShadow(on,14);ctx.stroke();softShadow(0,0);
-    ctx.fillStyle='#0a0a0a';ctx.font='bold 9px system-ui';ctx.textAlign='center';ctx.fillText('⚡',b.x,b.y+3)}
+  // bumpers — lit wooden/chrome domes with metal ring
+  for(const b of (s.bump||[])){
+    const on=b.hit>0, R=b.rad+(on?3:0);
+    ctx.beginPath();ctx.arc(b.x,b.y,R+3,0,7);ctx.fillStyle='rgba(0,0,0,.35)';ctx.fill();
+    const bg=ctx.createRadialGradient(b.x-4,b.y-5,2,b.x,b.y,R+2);
+    bg.addColorStop(0,on?'#ffffff':'#7a6a40');bg.addColorStop(.45,on?'#f5d77a':'#4a3a20');bg.addColorStop(1,on?'#a08020':'#1a1408');
+    ctx.beginPath();ctx.arc(b.x,b.y,R,0,7);ctx.fillStyle=bg;ctx.fill();
+    ctx.strokeStyle='#d4af37';ctx.lineWidth=on?3.2:2;softShadow(on,16);ctx.stroke();softShadow(0,0);
+    ctx.beginPath();ctx.arc(b.x-3,b.y-4,R*0.28,0,7);ctx.fillStyle='rgba(255,255,255,.45)';ctx.fill();
+    ctx.fillStyle=on?'#0a0a0a':'#2a2210';ctx.font='bold 10px system-ui';ctx.textAlign='center';ctx.fillText('⚡',b.x,b.y+3.5);
+  }
 
   // flippers
   const aL=(s.flipL|0)>0?-0.85-(10-s.flipL)*0.14:-0.35;
@@ -292,7 +469,7 @@ function draw(now){
   if(s.ball)drawBall(s.ball);
 
   // aidunlap near drain (cabinet attendant)
-  if(nndReady){try{NND.draw(ctx,55,555,40,{v:'dunlap',pose:(s.cleared?'win':s.mode===1?'run':'stand'),t:now})}catch(e){}}
+  if(nndReady){try{NND.draw(ctx,52,552,38,{v:'dunlap',pose:(s.cleared?'win':s.mode===1?'run':'stand'),t:now})}catch(e){}}
 
   drawPlunger(chargePow||1);
   if((s.balls|0)>0&&s.mode===0){ctx.globalAlpha=.65;ctx.beginPath();ctx.arc(327,548,5,0,7);const pr=ctx.createRadialGradient(326,547,1,327,548,5);pr.addColorStop(0,'#fff');pr.addColorStop(1,'#6a8090');ctx.fillStyle=pr;ctx.fill();ctx.globalAlpha=1}
@@ -300,12 +477,10 @@ function draw(now){
   // particles / pops
   for(const p of parts){p.x+=p.vx;p.y+=p.vy;p.vy+=0.09;p.l--;ctx.globalAlpha=Math.max(0,p.l/28);ctx.fillStyle=p.c;ctx.fillRect(p.x-p.sz/2,p.y-p.sz/2,p.sz,p.sz)}ctx.globalAlpha=1;parts=parts.filter(p=>p.l>0).slice(-MAXP);
   pops=pops.filter(p=>now-p.t<750);pops.forEach(p=>{const k=(now-p.t)/750;ctx.globalAlpha=1-k;txt(p.txt,p.x,p.y-k*32,p.sz,p.c);ctx.globalAlpha=1});
-  if(flash>0){ctx.fillStyle='rgba(245,215,122,'+(flash*0.28)+')';ctx.fillRect(18,62,286,H-78);flash*=0.86;if(flash<.02)flash=0}
+  if(flash>0){ctx.fillStyle='rgba(245,215,122,'+(flash*0.28)+')';ctx.fillRect(18,92,286,H-110);flash*=0.86;if(flash<.02)flash=0}
 
-  if(s.combo>0&&phase==='play'){const cm=Math.min(1,s.combo/12);ctx.fillStyle='#2a2a2a';ctx.fillRect(40,66,220,5);ctx.fillStyle='#d4af37';ctx.fillRect(40,66,220*cm,5);txt('COMBO '+s.combo+'  ×'+Number(s.mult||1).toFixed(2),150,80,10,'#f5d77a')}
+  if(s.combo>0&&phase==='play'){const cm=Math.min(1,s.combo/12);ctx.fillStyle='#1a1208';ctx.fillRect(40,96,220,6);ctx.fillStyle='#d4af37';ctx.fillRect(40,96,220*cm,6);txt('COMBO '+s.combo+'  ×'+Number(s.mult||1).toFixed(2),150,110,10,'#f5d77a')}
 
-  // mult lane labels (visual only — mult from combo in sim)
-  ctx.globalAlpha=.45;txt('×2',50,200,9,'#d4af37');txt('×3',50,260,9,'#f5d77a');ctx.globalAlpha=1;
 
   if(s.score>hudScore){hudScore+=Math.max(1,Math.ceil((s.score-hudScore)/6));if(hudScore>s.score)hudScore=s.score}else hudScore=s.score;
   $('h1').textContent=hudScore+' pts';$('h2').textContent=(s.balls|0)+' balls';
@@ -318,8 +493,8 @@ function draw(now){
   else if(phase==='ready')$('hint').textContent='Hold plunger to charge · bat flippers · ride the brass rail';
   else $('hint').textContent='Tap to play again';
 
-  if(phase==='ready'){ctx.fillStyle='rgba(10,10,10,.55)';ctx.fillRect(40,200,240,140);ctx.strokeStyle='#d4af37';ctx.lineWidth=2;ctx.strokeRect(40,200,240,140);
-    txt('PLAYBOX',160,250,26,'#f5d77a');txt('HOLD PLUNGER TO LAUNCH',160,285,11,'#d4af37');txt('flippers · rails · RWA cups',160,310,11,'#9a927c')}
+  if(phase==='ready'){ctx.fillStyle='rgba(10,8,4,.5)';ctx.fillRect(48,210,224,130);ctx.strokeStyle='#d4af37';ctx.lineWidth=2;ctx.strokeRect(48,210,224,130);
+    txt('WOODEN CABINET',160,250,18,'#f5d77a');txt('HOLD PLUNGER TO LAUNCH',160,280,11,'#d4af37');txt('flippers · brass rails · RWA cups',160,308,10,'#9a927c')}
   if(phase==='over'){ctx.fillStyle='rgba(10,10,10,.78)';ctx.fillRect(36,180,248,220);ctx.strokeStyle='#d4af37';ctx.lineWidth=2;ctx.strokeRect(36,180,248,220);
     txt(s.cleared?'BOARD CLEAR':'CABINET CLOSED',160,230,18,'#f5d77a');txt(s.score+' PTS',160,280,32,'#fff');
     txt((s.filled||0)+'/16 · best combo '+(s.bestCombo||0),160,315,11,'#9a927c');if(now-overAt>500)txt('TAP TO PLAY AGAIN',160,360,14,'#d4af37')}
