@@ -154,10 +154,10 @@
       s.cols = s.cols.filter(function (o) { return o.x + o.w > -20; }); },
     score: function (s) { return s.gates * 10 + s.tokens * 10; } };
 
-  // ---------------- AIDUNLAP PLAYBOX: wooden smart-ball cabinet, 60 ticks/s.
-  // Inputs (integers): 1..10 = release spring power; 20/21 = mid-flight nudge L/R;
-  // 22 = left flipper; 23 = right flipper; 24 = upper kicker. Max 2 nudges/ball; flippers uncapped but rate-capped by maxIps.
-  // Fill holes; complete rows/cols/diags. Combo / rail / peg-streak / flip bonuses are deterministic.
+  // ---------------- AIDUNLAP PLAYBOX: wooden pinball playbox, 60 ticks/s.
+  // Inputs: 1..10 = plunger power; 20/21 = nudge L/R (max 2/ball);
+  // 22 = left flipper; 23 = right flipper; 24 = upper kicker.
+  // Side plunger lane, bottom flippers, winding elevated rail, RWA cups. Deterministic.
   var PB_T = ['gold', 'stock', 'tbill', 'net'];
   var PB_LINES = (function () {
     var L = [], i;
@@ -166,27 +166,29 @@
     L.push([0, 5, 10, 15], [3, 6, 9, 12]);
     return L;
   })();
+  var PB_RAIL = [[290, 70], [240, 55], [170, 58], [110, 75], [70, 120], [55, 180], [60, 240], [90, 280]];
   G['aidunlap-playbox'] = { tps: 60, maxTicks: 60 * 300, maxIps: 14, higher: true, unit: 'pts',
     W: 360, H: 580, BALLS: 20, actions: function (a) { return (a === (a | 0)) && ((a >= 1 && a <= 10) || (a >= 20 && a <= 24)); },
     create: function (seed) {
       var s = { r: rng(seed), tick: 0, mode: 0, balls: 20, score: 0, filled: 0, lines: 0, done: false,
         ball: null, nudges: 0, pegs: [], bump: [], holes: [], scored: {}, lastLine: -1, lastFill: -1, pop: 0, charge: 0,
-        // dopamine / juice state (deterministic)
-        combo: 0, bestCombo: 0, pegStreak: 0, railTicks: 0, railSide: 0, mult: 1,
+        combo: 0, bestCombo: 0, pegStreak: 0, railTicks: 0, railSide: 0, mult: 1, onRail: 0,
         flipL: 0, flipR: 0, kick: 0, lastEvt: '', evtN: 0, near: -1, sinkAnim: 0,
-        // flipper geometry (fixed)
-        fl: { x: 78, y: 318, len: 42 }, fr: { x: 282, y: 318, len: 42 }, fk: { x: 180, y: 95, len: 28 } };
-      var r, c, x0 = 42, y0 = 70, cols = 7, rows = 7, dx = 46, dy = 30;
+        fl: { x: 115, y: 505, len: 48 }, fr: { x: 245, y: 505, len: 48 }, fk: { x: 180, y: 100, len: 26 },
+        stars: [] };
+      var r, c, x0 = 48, y0 = 95, cols = 6, rows = 5, dx = 40, dy = 32, si;
       for (r = 0; r < rows; r++) for (c = 0; c < cols - (r % 2); c++) {
-        s.pegs.push({ x: x0 + c * dx + (r % 2 ? dx / 2 : 0), y: y0 + r * dy, rad: 5.2, flash: 0 });
+        var px = x0 + c * dx + (r % 2 ? dx / 2 : 0), py = y0 + r * dy;
+        if (px < 280) s.pegs.push({ x: px, y: py, rad: 5, flash: 0 });
       }
-      [[100, 165], [260, 165], [140, 255], [220, 255], [180, 210]].forEach(function (p) {
-        s.bump.push({ x: p[0], y: p[1], rad: 13, hit: 0 });
+      [[120, 160], [220, 155], [170, 210], [100, 250], [230, 255]].forEach(function (p) {
+        s.bump.push({ x: p[0], y: p[1], rad: 14, hit: 0 });
       });
-      var hx0 = 70, hy0 = 340, hs = 70;
+      var hx0 = 78, hy0 = 330, hs = 58;
       for (r = 0; r < 4; r++) for (c = 0; c < 4; c++) {
-        s.holes.push({ x: hx0 + c * hs, y: hy0 + r * (hs - 4), rad: 20, t: Math.floor(s.r() * 4), full: 0 });
+        s.holes.push({ x: hx0 + c * hs, y: hy0 + r * 36, rad: 15, t: Math.floor(s.r() * 4), full: 0 });
       }
+      for (si = 0; si < 8; si++) s.stars.push({ x: 70 + (si % 4) * 60, y: 80 + Math.floor(si / 4) * 40, ph: Math.floor(s.r() * 60) });
       return s;
     },
     evt: function (s, kind, n) { s.lastEvt = kind; s.evtN = n || 0; s.pop = Math.max(s.pop, 10); },
@@ -199,18 +201,21 @@
       if (vn < 0) { b.vx -= (1 + rest) * vn * nx; b.vy -= (1 + rest) * vn * ny; b.squash = 6; }
       return true;
     },
-    // bat a flipper segment: pivot (px,py), rest angle (rad), swing delta, active flag
+    segBounce: function (b, x1, y1, x2, y2, rest) {
+      var lx = x2 - x1, ly = y2 - y1, len2 = lx * lx + ly * ly || 1;
+      var t = ((b.x - x1) * lx + (b.y - y1) * ly) / len2; if (t < 0) t = 0; if (t > 1) t = 1;
+      var cx = x1 + lx * t, cy = y1 + ly * t;
+      return G['aidunlap-playbox'].bounce(b, cx, cy, 3.5, rest);
+    },
     flipHit: function (s, b, px, py, ang, len, power) {
       var cos = Math.cos(ang), sin = Math.sin(ang), ex = px + cos * len, ey = py + sin * len;
-      // closest point on segment to ball
       var lx = ex - px, ly = ey - py, t = ((b.x - px) * lx + (b.y - py) * ly) / (len * len || 1);
       if (t < 0) t = 0; if (t > 1) t = 1;
       var cx = px + lx * t, cy = py + ly * t, dx = b.x - cx, dy = b.y - cy, d2 = dx * dx + dy * dy;
-      if (d2 > (b.r + 5) * (b.r + 5)) return false;
+      if (d2 > (b.r + 6) * (b.r + 6)) return false;
       var d = Math.sqrt(d2) || 1, nx = dx / d, ny = dy / d;
-      b.x = cx + nx * (b.r + 5); b.y = cy + ny * (b.r + 5);
-      // impulse along bat normal + lift
-      b.vx += nx * power + cos * power * 0.35; b.vy += ny * power - Math.abs(sin) * power * 0.85 - 2.2;
+      b.x = cx + nx * (b.r + 6); b.y = cy + ny * (b.r + 6);
+      b.vx += nx * power + cos * power * 0.25; b.vy += ny * power - 3.2;
       b.squash = 8; return true;
     },
     scoreLine: function (s, li) {
@@ -229,7 +234,7 @@
       h.full = 1; s.filled++;
       var base = 2 + (s.combo >= 5 ? 3 : 0) + (s.combo >= 10 ? 5 : 0);
       var pts = Math.round(base * s.mult); s.score += pts; s.lastFill = hi; s.ball = null; s.mode = 0; s.pop = 16; s.sinkAnim = 18;
-      s.combo = 0; s.pegStreak = 0; s.railTicks = 0; s.mult = 1;
+      s.combo = 0; s.pegStreak = 0; s.railTicks = 0; s.mult = 1; s.onRail = 0;
       G['aidunlap-playbox'].evt(s, 'sink', pts);
       for (var i = 0; i < PB_LINES.length; i++) G['aidunlap-playbox'].scoreLine(s, i);
       if (s.filled >= 16) { var clear = 150 + s.balls * 5; s.score += clear; s.done = true; s.cleared = true; G['aidunlap-playbox'].evt(s, 'clear', clear); }
@@ -239,10 +244,10 @@
       if (s.done) return;
       if (a >= 1 && a <= 10) {
         if (s.mode !== 0 || s.balls <= 0) return;
-        var p = a, sp = 6.5 + p * 1.05;
-        s.ball = { x: 180, y: 505, vx: (p - 5.5) * 0.55, vy: -sp, r: 7.5, spin: 0, squash: 0, trail: 0 };
+        var p = a, sp = 7 + p * 1.15;
+        s.ball = { x: 328, y: 520, vx: -0.15, vy: -sp, r: 7.2, spin: 0, squash: 0, lane: 1 };
         s.balls--; s.mode = 1; s.nudges = 2; s.pop = 8; s.charge = 0;
-        s.combo = 0; s.pegStreak = 0; s.railTicks = 0; s.mult = 1; s.near = -1;
+        s.combo = 0; s.pegStreak = 0; s.railTicks = 0; s.mult = 1; s.near = -1; s.onRail = 0;
         G['aidunlap-playbox'].evt(s, 'launch', p);
       } else if ((a === 20 || a === 21) && s.mode === 1 && s.ball && s.nudges > 0) {
         s.ball.vx += a === 20 ? -1.35 : 1.35; s.nudges--; s.pop = 4; G['aidunlap-playbox'].evt(s, 'nudge', a === 20 ? -1 : 1);
@@ -251,7 +256,7 @@
       else if (a === 24 && s.mode === 1) { s.kick = 10; G['aidunlap-playbox'].evt(s, 'kickarm', 0); }
     },
     step: function (s) {
-      var g = G['aidunlap-playbox'], b, i, h, dx, dy, d2, hit;
+      var g = G['aidunlap-playbox'], b, i, h, dx, dy, d2;
       s.tick++;
       if (s.pop > 0) s.pop--;
       if (s.sinkAnim > 0) s.sinkAnim--;
@@ -267,29 +272,48 @@
       b.vy += 0.22;
       b.x += b.vx; b.y += b.vy;
       b.spin += b.vx * 0.18;
-      b.trail = Math.min(1, Math.sqrt(b.vx * b.vx + b.vy * b.vy) / 12);
 
-      // brass rails + rail-ride bonus
+      if (b.lane) {
+        if (b.x < 308) b.x = 308;
+        if (b.x > 348) { b.x = 348; b.vx = -Math.abs(b.vx) * 0.6; }
+        if (b.y < 68) { b.lane = 0; b.vx = -1.8 - Math.abs(b.vy) * 0.08; }
+        if (b.y > 560) { s.ball = null; s.mode = 0; g.evt(s, 'gutter', 0); if (s.balls <= 0) s.done = true; return; }
+        return;
+      }
+
       s.railSide = 0;
-      if (b.x < 26 + b.r) {
-        b.x = 26 + b.r; b.vx = Math.abs(b.vx) * 0.78; s.railSide = -1; s.railTicks++; b.squash = 4;
-        if (s.railTicks > 0 && s.railTicks % 8 === 0) { s.score += 1; s.combo++; g.evt(s, 'rail', 1); }
-      } else if (b.x > 334 - b.r) {
-        b.x = 334 - b.r; b.vx = -Math.abs(b.vx) * 0.78; s.railSide = 1; s.railTicks++; b.squash = 4;
-        if (s.railTicks > 0 && s.railTicks % 8 === 0) { s.score += 1; s.combo++; g.evt(s, 'rail', 1); }
-      } else { if (s.railTicks > 0 && s.railSide === 0) s.railTicks = Math.max(0, s.railTicks - 1); }
-      if (b.y < 42 + b.r) { b.y = 42 + b.r; b.vy = Math.abs(b.vy) * 0.7; }
+      if (b.x < 28 + b.r) {
+        b.x = 28 + b.r; b.vx = Math.abs(b.vx) * 0.78; s.railSide = -1; s.railTicks++; b.squash = 4;
+        if (s.railTicks % 8 === 0) { s.score += 1; s.combo++; g.evt(s, 'rail', 1); }
+      }
+      if (b.x > 300 - b.r) { b.x = 300 - b.r; b.vx = -Math.abs(b.vx) * 0.78; s.railSide = 1; }
+      if (b.y < 48 + b.r) { b.y = 48 + b.r; b.vy = Math.abs(b.vy) * 0.7; }
 
-      // pegs
+      s.onRail = 0;
+      for (i = 0; i < PB_RAIL.length - 1; i++) {
+        var ra = PB_RAIL[i], rc = PB_RAIL[i + 1];
+        // only ride when approaching the rail from above / with downward-ish motion
+        if (b.vy < -2) continue;
+        if (g.segBounce(b, ra[0], ra[1], rc[0], rc[1], 0.35)) {
+          s.onRail = 1; s.railTicks++;
+          var tx = rc[0] - ra[0], ty = rc[1] - ra[1], tl = Math.sqrt(tx * tx + ty * ty) || 1;
+          b.vx = b.vx * 0.7 + (tx / tl) * 1.4; b.vy = Math.max(0.4, b.vy * 0.5 + (ty / tl) * 1.1);
+          if (s.railTicks === 1 || s.railTicks % 10 === 0) { s.score += 1; s.combo++; g.evt(s, 'rail', 1); }
+          break;
+        }
+      }
+      // unstick if pinned under the top rail
+      if (b.y < 60 && Math.abs(b.vy) < 0.4 && Math.abs(b.vx) < 0.4) { b.vy = 1.8; b.vx += (180 - b.x) * 0.02; }
+
+      if (b.x > 300 && b.y > 70) { b.x = 300 - b.r; b.vx = -Math.abs(b.vx) * 0.7; }
+
       for (i = 0; i < s.pegs.length; i++) {
         if (g.bounce(b, s.pegs[i].x, s.pegs[i].y, s.pegs[i].rad, 0.82)) {
           s.pegs[i].flash = 8; s.pegStreak++; s.combo++; if (s.combo > s.bestCombo) s.bestCombo = s.combo;
           if (s.combo >= 4) s.mult = Math.min(3, 1 + Math.floor(s.combo / 4) * 0.25);
-          if (s.pegStreak > 0 && s.pegStreak % 3 === 0) { s.score += 1; g.evt(s, 'clack', s.pegStreak); }
-          else g.evt(s, 'peg', 1);
+          if (s.pegStreak % 3 === 0) { s.score += 1; g.evt(s, 'clack', s.pegStreak); } else g.evt(s, 'peg', 1);
         }
       }
-      // bumpers
       for (i = 0; i < s.bump.length; i++) {
         if (g.bounce(b, s.bump[i].x, s.bump[i].y, s.bump[i].rad, 1.2)) {
           s.bump[i].hit = 14;
@@ -300,56 +324,50 @@
           s.score += 3; g.evt(s, 'bump', 3);
         }
       }
-      // flippers / kicker (active while countdown > 0)
       if (s.flipL > 0) {
-        var aL = -0.55 - (10 - s.flipL) * 0.12; // swings up
-        if (g.flipHit(s, b, s.fl.x, s.fl.y, aL, s.fl.len, 4.2)) { s.score += 2; s.combo += 2; g.evt(s, 'flip', 2); }
+        var aL = -0.85 - (10 - s.flipL) * 0.14;
+        if (g.flipHit(s, b, s.fl.x, s.fl.y, aL, s.fl.len, 5)) { s.score += 2; s.combo += 2; g.evt(s, 'flip', 2); }
       }
       if (s.flipR > 0) {
-        var aR = Math.PI + 0.55 + (10 - s.flipR) * 0.12;
-        if (g.flipHit(s, b, s.fr.x, s.fr.y, aR, s.fr.len, 4.2)) { s.score += 2; s.combo += 2; g.evt(s, 'flip', 2); }
+        var aR = Math.PI + 0.85 + (10 - s.flipR) * 0.14;
+        if (g.flipHit(s, b, s.fr.x, s.fr.y, aR, s.fr.len, 5)) { s.score += 2; s.combo += 2; g.evt(s, 'flip', 2); }
       }
       if (s.kick > 0) {
         var aK = -Math.PI / 2 + (s.kick - 5) * 0.08;
-        if (g.flipHit(s, b, s.fk.x, s.fk.y, aK, s.fk.len, 5.5)) { s.score += 4; s.combo += 2; g.evt(s, 'kick', 4); }
+        if (g.flipHit(s, b, s.fk.x, s.fk.y, aK, s.fk.len, 5.2)) { s.score += 4; s.combo += 2; g.evt(s, 'kick', 4); }
       }
-      // resting flipper pads (soft deflect when not swinging)
-      if (s.flipL <= 0) g.bounce(b, s.fl.x + 18, s.fl.y + 8, 7, 0.45);
-      if (s.flipR <= 0) g.bounce(b, s.fr.x - 18, s.fr.y + 8, 7, 0.45);
-      if (s.kick <= 0) g.bounce(b, s.fk.x, s.fk.y + 6, 6, 0.4);
+      if (s.flipL <= 0) g.bounce(b, s.fl.x + 16, s.fl.y + 6, 8, 0.4);
+      if (s.flipR <= 0) g.bounce(b, s.fr.x - 16, s.fr.y + 6, 8, 0.4);
+      if (s.kick <= 0) g.bounce(b, s.fk.x, s.fk.y + 5, 6, 0.4);
 
-      // filled holes = plugs
       for (i = 0; i < 16; i++) { h = s.holes[i]; if (h.full) g.bounce(b, h.x, h.y, h.rad - 2, 0.55); }
 
-      // near-miss + cup catch while falling
       s.near = -1;
-      if (b.vy > 0.15) {
+      if (b.vy > 0.12) {
         for (i = 0; i < 16; i++) {
           h = s.holes[i]; if (h.full) continue;
           dx = b.x - h.x; dy = b.y - h.y; d2 = dx * dx + dy * dy;
-          var catchR = h.rad + 3;
-          if (d2 < (h.rad + 14) * (h.rad + 14) && d2 > catchR * catchR) s.near = i;
+          var catchR = h.rad + 5;
+          if (d2 < (h.rad + 16) * (h.rad + 16) && d2 > catchR * catchR) s.near = i;
           if (d2 < catchR * catchR) {
             b.vx += -dx * 0.1; b.vy += 0.12;
-            if (d2 < (h.rad - 1) * (h.rad - 1) || (Math.abs(dx) < h.rad * 0.75 && dy > -6)) { g.sink(s, i); return; }
+            if (d2 < (h.rad + 1) * (h.rad + 1) || (Math.abs(dx) < h.rad * 0.85 && dy > -8)) { g.sink(s, i); return; }
           }
         }
       }
       if (b.y > 555) {
-        // gutter — break combo
         s.ball = null; s.mode = 0; s.combo = 0; s.pegStreak = 0; s.mult = 1; g.evt(s, 'gutter', 0);
         if (s.balls <= 0) s.done = true; return;
       }
       var spd = b.vx * b.vx + b.vy * b.vy;
-      if (spd < 0.035 && b.y > 300) {
+      if (spd < 0.03 && b.y > 300 && b.y < 480) {
         var best = -1, bd = 1e9;
         for (i = 0; i < 16; i++) {
           h = s.holes[i]; if (h.full) continue;
           d2 = (b.x - h.x) * (b.x - h.x) + (b.y - h.y) * (b.y - h.y);
           if (d2 < bd) { bd = d2; best = i; }
         }
-        if (best >= 0 && bd < 55 * 55) g.sink(s, best);
-        else { s.ball = null; s.mode = 0; s.combo = 0; s.pegStreak = 0; s.mult = 1; g.evt(s, 'gutter', 0); if (s.balls <= 0) s.done = true; }
+        if (best >= 0 && bd < 48 * 48) g.sink(s, best);
       }
     },
     score: function (s) { return s.score; } };
