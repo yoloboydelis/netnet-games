@@ -154,6 +154,134 @@
       s.cols = s.cols.filter(function (o) { return o.x + o.w > -20; }); },
     score: function (s) { return s.gates * 10 + s.tokens * 10; } };
 
+  // ---------------- AIDUNLAP PLAYBOX: wooden smart-ball cabinet, 60 ticks/s.
+  // action 1..10 = release spring at that power; 20 = nudge left; 21 = nudge right (max 2 nudges/ball).
+  // Fill holes; complete rows/cols/diags. Same peg field + hole types for everyone each week.
+  var PB_T = ['gold', 'stock', 'tbill', 'net'];
+  var PB_LINES = (function () {
+    var L = [], i;
+    for (i = 0; i < 4; i++) L.push([i * 4, i * 4 + 1, i * 4 + 2, i * 4 + 3]);
+    for (i = 0; i < 4; i++) L.push([i, i + 4, i + 8, i + 12]);
+    L.push([0, 5, 10, 15], [3, 6, 9, 12]);
+    return L;
+  })();
+  G['aidunlap-playbox'] = { tps: 60, maxTicks: 60 * 300, maxIps: 12, higher: true, unit: 'pts',
+    W: 360, H: 580, BALLS: 20, actions: function (a) { return (a === (a | 0)) && ((a >= 1 && a <= 10) || a === 20 || a === 21); },
+    create: function (seed) {
+      var s = { r: rng(seed), tick: 0, mode: 0, balls: 20, score: 0, filled: 0, lines: 0, done: false,
+        ball: null, nudges: 0, pegs: [], bump: [], holes: [], scored: {}, lastLine: -1, lastFill: -1, pop: 0, charge: 0 };
+      var r, c, x0 = 42, y0 = 70, cols = 7, rows = 7, dx = 46, dy = 30;
+      for (r = 0; r < rows; r++) for (c = 0; c < cols - (r % 2); c++) {
+        s.pegs.push({ x: x0 + c * dx + (r % 2 ? dx / 2 : 0), y: y0 + r * dy, rad: 5.2 });
+      }
+      // interactive gold bumpers
+      [[100, 165], [260, 165], [140, 255], [220, 255], [180, 210]].forEach(function (p) {
+        s.bump.push({ x: p[0], y: p[1], rad: 13, hit: 0 });
+      });
+      // 4x4 hole cups under the peg field
+      var hx0 = 70, hy0 = 340, hs = 70;
+      for (r = 0; r < 4; r++) for (c = 0; c < 4; c++) {
+        s.holes.push({ x: hx0 + c * hs, y: hy0 + r * (hs - 4), rad: 20, t: Math.floor(s.r() * 4), full: 0 });
+      }
+      return s;
+    },
+    input: function (s, a) {
+      if (s.done) return;
+      if (a >= 1 && a <= 10) {
+        if (s.mode !== 0 || s.balls <= 0) return;
+        var p = a, sp = 6.5 + p * 1.05;
+        // slight aim from power (skill: stronger pull also leans a tad)
+        s.ball = { x: 180, y: 505, vx: (p - 5.5) * 0.55, vy: -sp, r: 7.5 };
+        s.balls--; s.mode = 1; s.nudges = 2; s.pop = 8; s.charge = 0;
+      } else if ((a === 20 || a === 21) && s.mode === 1 && s.ball && s.nudges > 0) {
+        s.ball.vx += a === 20 ? -1.35 : 1.35; s.nudges--; s.pop = 4;
+      }
+    },
+    bounce: function (b, cx, cy, rad, rest) {
+      var dx = b.x - cx, dy = b.y - cy, d = Math.sqrt(dx * dx + dy * dy) || 1, min = rad + b.r;
+      if (d >= min) return false;
+      var nx = dx / d, ny = dy / d, pen = min - d + 0.15;
+      b.x += nx * pen; b.y += ny * pen;
+      var vn = b.vx * nx + b.vy * ny;
+      if (vn < 0) { b.vx -= (1 + rest) * vn * nx; b.vy -= (1 + rest) * vn * ny; }
+      return true;
+    },
+    scoreLine: function (s, li) {
+      if (s.scored[li]) return;
+      var ids = PB_LINES[li], types = {}, gold = 0, i, h;
+      for (i = 0; i < 4; i++) { h = s.holes[ids[i]]; if (!h.full) return; types[h.t] = 1; if (h.t === 0) gold++; }
+      s.scored[li] = 1; s.lines++;
+      var pts = li >= 8 ? 40 : 25;
+      if (gold >= 3) pts += 15;
+      if (Object.keys(types).length === 4) pts += 30;
+      s.score += pts; s.lastLine = li; s.pop = 24;
+    },
+    sink: function (s, hi) {
+      var h = s.holes[hi]; if (h.full) return;
+      h.full = 1; s.filled++; s.score += 2; s.lastFill = hi; s.ball = null; s.mode = 0; s.pop = 14;
+      for (var i = 0; i < PB_LINES.length; i++) G['aidunlap-playbox'].scoreLine(s, i);
+      if (s.filled >= 16) { s.score += 150 + s.balls * 5; s.done = true; s.cleared = true; }
+      else if (s.balls <= 0) s.done = true;
+    },
+    step: function (s) {
+      var g = G['aidunlap-playbox'], b, i, h, dx, dy, d2;
+      s.tick++;
+      if (s.pop > 0) s.pop--;
+      for (i = 0; i < s.bump.length; i++) if (s.bump[i].hit > 0) s.bump[i].hit--;
+      if (s.mode !== 1 || !s.ball) {
+        if (s.mode === 0 && s.balls <= 0) s.done = true;
+        return;
+      }
+      b = s.ball;
+      b.vy += 0.22;
+      b.x += b.vx; b.y += b.vy;
+      // brass rails
+      if (b.x < 26 + b.r) { b.x = 26 + b.r; b.vx = Math.abs(b.vx) * 0.78; }
+      if (b.x > 334 - b.r) { b.x = 334 - b.r; b.vx = -Math.abs(b.vx) * 0.78; }
+      if (b.y < 42 + b.r) { b.y = 42 + b.r; b.vy = Math.abs(b.vy) * 0.7; }
+      for (i = 0; i < s.pegs.length; i++) g.bounce(b, s.pegs[i].x, s.pegs[i].y, s.pegs[i].rad, 0.82);
+      for (i = 0; i < s.bump.length; i++) {
+        if (g.bounce(b, s.bump[i].x, s.bump[i].y, s.bump[i].rad, 1.2)) {
+          s.bump[i].hit = 12;
+          // bumper kick
+          dx = b.x - s.bump[i].x; dy = b.y - s.bump[i].y; d2 = Math.sqrt(dx * dx + dy * dy) || 1;
+          b.vx += dx / d2 * 0.9; b.vy += dy / d2 * 0.9;
+        }
+      }
+      // filled holes act as plugs
+      for (i = 0; i < 16; i++) {
+        h = s.holes[i];
+        if (h.full) g.bounce(b, h.x, h.y, h.rad - 2, 0.55);
+      }
+      // cup catch only while falling (so the shot can climb through the board first)
+      if (b.vy > 0.15) {
+        for (i = 0; i < 16; i++) {
+          h = s.holes[i]; if (h.full) continue;
+          dx = b.x - h.x; dy = b.y - h.y; d2 = dx * dx + dy * dy;
+          var catchR = h.rad + 3;
+          if (d2 < catchR * catchR) {
+            b.vx += -dx * 0.1; b.vy += 0.12;
+            if (d2 < (h.rad - 1) * (h.rad - 1) || (Math.abs(dx) < h.rad * 0.75 && dy > -6)) {
+              g.sink(s, i); return;
+            }
+          }
+        }
+      }
+      if (b.y > 555) { s.ball = null; s.mode = 0; if (s.balls <= 0) s.done = true; return; }
+      var spd = b.vx * b.vx + b.vy * b.vy;
+      if (spd < 0.035 && b.y > 300) {
+        var best = -1, bd = 1e9;
+        for (i = 0; i < 16; i++) {
+          h = s.holes[i]; if (h.full) continue;
+          d2 = (b.x - h.x) * (b.x - h.x) + (b.y - h.y) * (b.y - h.y);
+          if (d2 < bd) { bd = d2; best = i; }
+        }
+        if (best >= 0 && bd < 55 * 55) g.sink(s, best);
+        else { s.ball = null; s.mode = 0; if (s.balls <= 0) s.done = true; }
+      }
+    },
+    score: function (s) { return s.score; } };
+
   // ---------------- run a log -> final state (also used by replay viewers with onTick)
   function simulate(game, seed, log, onTick) {
     var g = G[game]; if (!g) throw new Error('unknown game ' + game);

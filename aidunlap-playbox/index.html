@@ -1,0 +1,169 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>AIDUNLAP PLAYBOX · NetNet Arcade</title><meta name="description" content="Charge the spring, bounce glass balls through pegs and gold bumpers, fill the RWA board. aidunlap runs the wooden playbox. Same board for everyone each week. Replay-verified.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Arcade"><meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/aidunlap-playbox/">
+<meta property="og:title" content="AIDUNLAP PLAYBOX · NetNet Arcade"><meta property="og:description" content="Charge the spring, bounce glass balls through pegs and gold bumpers, fill the RWA board. aidunlap runs the wooden playbox. Same board for everyone each week. Replay-verified."><meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/aidunlap-playbox.png"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a0a0a"><link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css">
+<style>:root{--c:#d4af37;--bg:#0a0a0a;--panel:#121212;--line:#2a2a2a}
+html,body{overscroll-behavior:none}
+#stage{position:relative;margin:0 auto;width:min(100%,420px);aspect-ratio:360/580;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;border-radius:14px;overflow:hidden;background:#0d0d0d;cursor:pointer}
+#c{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+#hud{display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap;margin:8px 0;font:600 13px system-ui;color:#f5d77a}
+.pp-top{display:flex;gap:10px;align-items:center;justify-content:space-between;margin:6px 0;flex-wrap:wrap}
+.pp-top label{font-size:13px}
+#hint{text-align:center;font:12px system-ui;color:#9a927c;margin:6px 0 0;min-height:1.2em}
+@media (max-width:600px){.nn-wrap{padding-left:max(6px,env(safe-area-inset-left));padding-right:max(6px,env(safe-area-inset-right))}.nn-title{font-size:20px;margin:4px 0}}
+</style>
+<script src="../arcade/sims.js"></script><script>window.NN_SCORE_SERVER="https://netnet-arcade-verifier.netnetarcade.workers.dev"</script><script src="../arcade/core.js"></script><script src="../arcade/dunlap.js"></script></head><body>
+<div class="nn-wrap"><div class="nn-top"><a href="../">← LOBBY</a><span class="nn-pill">CABINET 14 · <span class="nna-ok">✔ REPLAY-VERIFIED</span></span></div>
+<div class="pp-top"><h1 class="nn-title">AIDUNLAP PLAYBOX</h1><label class="nna-mut"><input type="checkbox" id="ranked" checked> Ranked (100 <span class="nna-test">TEST</span>)</label></div>
+<div id="hud"><span id="h1">0 pts</span><span id="h2">20 balls</span><span id="h3">0 lines</span></div>
+<div id="stage"><canvas id="c"></canvas></div>
+<div id="hint">Hold the lever to charge · release to shoot · tap left/right sides while the ball flies to nudge</div>
+<p class="nn-sub" style="margin-top:10px">Wooden smart-ball cabinet. Charge the spring (hold), release to launch a glass ball through pegs and gold bumpers into the 4×4 RWA board. Fill holes, clear rows, columns and diagonals. Gold-heavy and mixed-type lines score more. 20 balls. Same board for everyone this week.</p>
+<div class="nn-card"><span class="nna-mut" style="font-size:12px">Ranked entry: 100 test credits (10 to treasury first, 90 to this week's pool). Untick Ranked for free practice. Tokens on the board are game items, not real assets.</span></div>
+<div class="nn-card" id="board"></div>
+<div class="nn-card"><h3>ABOUT THIS CABINET</h3><p class="nn-sub" style="font-size:13px">An original NetNet game starring aidunlap, the NetNet mascot. Everyone gets the same playbox this week (seed from the UTC week, Sunday to Sunday). Lever releases and mid-flight nudges are recorded by tick; the score server re-plays the run from scratch. Runs that go faster than real time, pause, hide the tab or exceed the input-rate cap are rejected. Test credits only, not money.</p>
+<p class="nn-sub" style="font-size:12px">Inputs: 1–10 = spring power on release · 20 = nudge left · 21 = nudge right (max 2 per ball).</p></div></div>
+<script>
+const GAME='aidunlap-playbox',$=id=>document.getElementById(id),cv=$('c'),ctx=cv.getContext('2d'),g=NNS.games[GAME],W=g.W,H=g.H;
+const TNAME=['GOLD','STOCK','T-BILL','NET'], TCOL=['#d4af37','#38f5ff','#9a927c','#f5d77a'];
+function board(){NNA.renderBoard(GAME,$('board'))}
+document.addEventListener('DOMContentLoaded',()=>{board();NNA.foot()});
+let sc=1;function fit(){const r=cv.getBoundingClientRect(),d=Math.min(3,window.devicePixelRatio||1);cv.width=Math.round(r.width*d);cv.height=Math.round(r.height*d);sc=cv.width/W}
+addEventListener('resize',fit);
+
+let phase='ready',preview=g.create(NNS.seedFor(GAME)),last=null,overAt=0,shake=0,flash=0,parts=[],pops=[],sparks=[];
+let charging=false,chargeT=0,chargePow=0,holdPtr=null;
+let audio=null;function beep(f,d,v){try{audio=audio||new (window.AudioContext||window.webkitAudioContext)();const o=audio.createOscillator(),gn=audio.createGain();o.type='triangle';o.frequency.setValueAtTime(f,audio.currentTime);o.frequency.exponentialRampToValueAtTime(Math.max(40,f*0.7),audio.currentTime+d);gn.gain.setValueAtTime(v||.04,audio.currentTime);gn.gain.exponentialRampToValueAtTime(.0001,audio.currentTime+d);o.connect(gn);gn.connect(audio.destination);o.start();o.stop(audio.currentTime+d)}catch(e){}}
+function burst(x,y,n,col,sp){for(let i=0;i<n;i++){const a=Math.random()*6.28,v=(sp||2)*(0.4+Math.random());parts.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,l:24+Math.random()*18,c:col})}}
+
+let prevFill=0,prevLines=0,prevBump=[0,0,0,0,0];
+const R=NNA.runner(GAME,{onFrame:s=>{
+  if(s.filled>prevFill){const h=s.holes[s.lastFill];beep(660,.1,.035);burst(h.x,h.y,16,'#f5d77a',2.8);pops.push({t:performance.now(),txt:'+2',x:h.x,y:h.y-20});shake=6;prevFill=s.filled}
+  if(s.lines>prevLines){beep(990,.18,.05);flash=1;shake=12;pops.push({t:performance.now(),txt:'LINE!',x:W/2,y:300});prevLines=s.lines}
+  for(let i=0;i<s.bump.length;i++){if(s.bump[i].hit>prevBump[i]){beep(220+i*40,.06,.03);burst(s.bump[i].x,s.bump[i].y,8,'#d4af37',2)}prevBump[i]=s.bump[i].hit}
+},onEnd:(run,s)=>{phase='over';overAt=performance.now();last=s;shake=10;flash=.8;beep(110,.3,.05);board()}});
+
+function powerFromHold(ms){return Math.max(1,Math.min(10,Math.round(1+ms/90)))}
+function startRun(){if(document.getElementById('nna-gate'))return;phase='play';prevFill=0;prevLines=0;prevBump=[0,0,0,0,0];parts=[];pops=[];sparks=[];R.start($('ranked').checked)}
+function releaseShot(){
+  if(phase==='ready'){startRun();if(!R.on)return}
+  if(!R.on||!R.state||R.state.mode!==0||R.state.balls<=0)return;
+  const p=chargePow||powerFromHold(performance.now()-chargeT);charging=false;chargePow=0;holdPtr=null;
+  R.input(p);beep(180+p*30,.08,.04);burst(180,520,10,'#f5d77a',2);shake=3+p*0.3
+}
+function nudge(dir){if(!R.on||!R.state||R.state.mode!==1||R.state.nudges<=0)return;R.input(dir===-1?20:21);beep(420,.05,.025);if(R.state.ball)burst(R.state.ball.x,R.state.ball.y,5,'#9a927c',1.5)}
+
+const st=$('stage');
+st.addEventListener('pointerdown',e=>{
+  if(e.target.closest&&e.target.closest('a'))return;e.preventDefault();
+  const rect=st.getBoundingClientRect(),x=(e.clientX-rect.left)/rect.width*W,y=(e.clientY-rect.top)/rect.height*H;
+  if(phase==='over'){if(performance.now()-overAt<500)return;phase='ready';return}
+  if(phase==='ready'){startRun();if(!R.on)return}
+  if(!R.on||!R.state)return;
+  if(R.state.mode===1){nudge(x<W/2?-1:1);return}
+  // charge lever (bottom third or anywhere when ready)
+  charging=true;chargeT=performance.now();chargePow=1;holdPtr=e.pointerId;try{st.setPointerCapture(e.pointerId)}catch(err){}
+},{passive:false});
+st.addEventListener('pointermove',e=>{
+  if(!charging||holdPtr!==e.pointerId)return;
+  const rect=st.getBoundingClientRect(),y=(e.clientY-rect.top)/rect.height*H;
+  // pulling down increases power
+  const pull=Math.max(0,Math.min(1,(y-460)/80));
+  chargePow=Math.max(1,Math.min(10,Math.round(1+pull*9+(performance.now()-chargeT)/100)));
+},{passive:false});
+function endPtr(e){if(holdPtr!=null&&e.pointerId!==holdPtr&&e.type!=='pointercancel')return;if(charging)releaseShot();charging=false;holdPtr=null}
+st.addEventListener('pointerup',endPtr);st.addEventListener('pointercancel',endPtr);st.addEventListener('pointerleave',e=>{if(charging&&holdPtr===e.pointerId)endPtr(e)});
+['touchstart','touchmove','touchend','gesturestart','dblclick','contextmenu'].forEach(t=>st.addEventListener(t,e=>{if(e.target.closest&&e.target.closest('a'))return;e.preventDefault()},{passive:false}));
+addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT'||e.target.tagName==='BUTTON')return;
+  if(e.key===' '||e.key==='ArrowDown'||e.key==='s'){e.preventDefault();if(phase==='over'){if(performance.now()-overAt>500)phase='ready';return}if(phase==='ready')startRun();if(!charging){charging=true;chargeT=performance.now();chargePow=1}}
+  if(e.key==='ArrowLeft'||e.key==='a'){e.preventDefault();nudge(-1)}
+  if(e.key==='ArrowRight'||e.key==='d'){e.preventDefault();nudge(1)}
+});
+addEventListener('keyup',e=>{if((e.key===' '||e.key==='ArrowDown'||e.key==='s')&&charging)releaseShot()});
+NNA.onAgain=()=>{phase='ready'};
+
+function wood(x,y,w,h){const g2=ctx.createLinearGradient(x,y,x+w,y);g2.addColorStop(0,'#3a2a18');g2.addColorStop(.5,'#5a4228');g2.addColorStop(1,'#2e2112');ctx.fillStyle=g2;ctx.fillRect(x,y,w,h);ctx.fillStyle='rgba(0,0,0,.15)';for(let i=0;i<8;i++)ctx.fillRect(x,y+i*(h/8),w,1)}
+function txt(t,x,y,sz,col,al){ctx.font='800 '+sz+'px system-ui,sans-serif';ctx.textAlign=al||'center';ctx.lineWidth=Math.max(2,sz/7);ctx.strokeStyle='#0a0a0a';ctx.strokeText(t,x,y);ctx.fillStyle=col;ctx.fillText(t,x,y)}
+function hole(h,now){
+  // cup recess
+  ctx.beginPath();ctx.arc(h.x,h.y,h.rad+2,0,7);ctx.fillStyle='#1a1208';ctx.fill();
+  ctx.beginPath();ctx.arc(h.x,h.y,h.rad,0,7);
+  if(h.full){ctx.fillStyle='#1a1a1a';ctx.fill();ctx.strokeStyle='#f5d77a';ctx.lineWidth=2;ctx.stroke();
+    NND.badge(ctx,h.x,h.y,12,['gold','stock','tbill','net'][h.t]);
+  }else{
+    const rg=ctx.createRadialGradient(h.x-4,h.y-4,2,h.x,h.y,h.rad);rg.addColorStop(0,'#2a2218');rg.addColorStop(1,'#0d0d0d');ctx.fillStyle=rg;ctx.fill();
+    ctx.strokeStyle=TCOL[h.t];ctx.lineWidth=1.5;ctx.stroke();
+    ctx.globalAlpha=.55;ctx.fillStyle=TCOL[h.t];ctx.font='bold 7px system-ui';ctx.textAlign='center';ctx.fillText(TNAME[h.t],h.x,h.y+2);ctx.globalAlpha=1;
+  }
+}
+function draw(now){
+  const s=phase==='ready'?preview:(R.on?R.state:last||preview);
+  ctx.setTransform(sc,0,0,sc,0,0);
+  let sx=0,sy=0;if(shake>0.3){sx=(Math.random()-.5)*shake;sy=(Math.random()-.5)*shake;shake*=0.85}else shake=0;ctx.translate(sx,sy);
+  // cabinet wood frame
+  wood(-4,-4,W+8,H+8);
+  // glass playfield inset
+  ctx.fillStyle='#0a0a0a';ctx.fillRect(18,36,W-36,H-78);
+  const glass=ctx.createLinearGradient(18,36,18,H-54);glass.addColorStop(0,'rgba(245,215,122,.06)');glass.addColorStop(.5,'rgba(255,255,255,.02)');glass.addColorStop(1,'rgba(0,0,0,.25)');
+  ctx.fillStyle=glass;ctx.fillRect(18,36,W-36,H-78);
+  // brass rails
+  ctx.strokeStyle='#d4af37';ctx.lineWidth=3;ctx.strokeRect(20,38,W-40,H-82);
+  ctx.strokeStyle='#f5d77a';ctx.lineWidth=1;ctx.strokeRect(24,42,W-48,H-90);
+  // title plate
+  ctx.fillStyle='#2a2a2a';ctx.fillRect(40,14,W-80,22);ctx.strokeStyle='#d4af37';ctx.lineWidth=1;ctx.strokeRect(40,14,W-80,22);
+  txt('AIDUNLAP PLAYBOX',W/2,30,11,'#f5d77a');
+
+  // pegs
+  for(const p of s.pegs){ctx.beginPath();ctx.arc(p.x,p.y,p.rad,0,7);ctx.fillStyle='#9a927c';ctx.fill();ctx.fillStyle='#f5d77a';ctx.beginPath();ctx.arc(p.x-1.5,p.y-1.5,1.6,0,7);ctx.fill()}
+  // bumpers
+  for(const b of s.bump){const on=b.hit>0;ctx.beginPath();ctx.arc(b.x,b.y,b.rad+(on?2:0),0,7);
+    ctx.fillStyle=on?'#f5d77a':'#3a3428';ctx.fill();ctx.strokeStyle='#d4af37';ctx.lineWidth=on?3:2;ctx.stroke();
+    ctx.fillStyle=on?'#0a0a0a':'#d4af37';ctx.font='bold 8px system-ui';ctx.textAlign='center';ctx.fillText('⚡',b.x,b.y+3)}
+  // holes
+  for(const h of s.holes)hole(h,now);
+  // glass ball
+  if(s.ball){const b=s.ball;const rg=ctx.createRadialGradient(b.x-2,b.y-2,1,b.x,b.y,b.r);
+    rg.addColorStop(0,'#ffffff');rg.addColorStop(.4,'#c8d8e8');rg.addColorStop(1,'#4a6070');
+    ctx.beginPath();ctx.arc(b.x,b.y,b.r,0,7);ctx.fillStyle=rg;ctx.fill();ctx.strokeStyle='rgba(245,215,122,.5)';ctx.lineWidth=1;ctx.stroke()}
+
+  // aidunlap at the lever
+  const pose=s.mode===1?'run':(s.pop>12&&s.lastLine>=0?'win':(charging?'fail':'stand'));
+  NND.draw(ctx,300,528,46,{v:'dunlap',pose,t:now,flip:false});
+
+  // spring lever
+  const pow=charging?chargePow:(phase==='ready'?1+Math.floor((Math.sin(now/400)+1)*4.5):0);
+  const pull=charging?Math.min(1,(chargePow-1)/9):0;
+  const lx=180,ly=532+pull*22;
+  ctx.fillStyle='#2a2a2a';ctx.fillRect(160,522,40,26);ctx.strokeStyle='#d4af37';ctx.lineWidth=1.5;ctx.strokeRect(160,522,40,26);
+  // spring coils
+  ctx.strokeStyle='#9a927c';ctx.lineWidth=2;ctx.beginPath();
+  for(let i=0;i<6;i++){const yy=505+i*3.5+pull*3;ctx.moveTo(172,yy);ctx.quadraticCurveTo(180,yy+2,188,yy)}ctx.stroke();
+  // knob
+  ctx.beginPath();ctx.arc(lx,ly,14,0,7);ctx.fillStyle=charging?'#f5d77a':'#d4af37';ctx.fill();ctx.strokeStyle='#0a0a0a';ctx.lineWidth=2;ctx.stroke();
+  txt(charging?String(chargePow):'HOLD',lx,ly+4,charging?12:8,'#0a0a0a');
+
+  // particles
+  for(const p of parts){p.x+=p.vx;p.y+=p.vy;p.vy+=0.1;p.l--;ctx.globalAlpha=Math.max(0,p.l/40);ctx.fillStyle=p.c;ctx.fillRect(p.x-2,p.y-2,4,4)}ctx.globalAlpha=1;parts=parts.filter(p=>p.l>0);
+  pops=pops.filter(p=>now-p.t<700);pops.forEach(p=>{const k=(now-p.t)/700;ctx.globalAlpha=1-k;txt(p.txt,p.x,p.y-k*28,16,'#f5d77a');ctx.globalAlpha=1});
+  if(flash>0){ctx.fillStyle='rgba(245,215,122,'+(flash*0.35)+')';ctx.fillRect(18,36,W-36,H-78);flash*=0.88;if(flash<.02)flash=0}
+
+  ctx.setTransform(sc,0,0,sc,0,0);
+  $('h1').textContent=s.score+' pts';$('h2').textContent=s.balls+' balls';$('h3').textContent=s.lines+' lines · '+s.filled+'/16';
+  if(s.mode===1&&s.nudges!=null)$('hint').textContent='Ball in flight · tap LEFT / RIGHT to nudge ('+s.nudges+' left)';
+  else if(charging)$('hint').textContent='Power '+chargePow+'/10 · release to shoot';
+  else if(phase==='play'&&s.mode===0)$('hint').textContent='Hold the gold knob (or Space) to charge, release to shoot';
+  else if(phase==='ready')$('hint').textContent='Hold the lever to charge · release to shoot · tap sides mid-flight to nudge';
+  else if(phase==='over')$('hint').textContent='Tap to play again';
+
+  if(phase==='ready'){ctx.fillStyle='rgba(10,10,10,.55)';ctx.fillRect(40,200,W-80,160);ctx.strokeStyle='#d4af37';ctx.lineWidth=2;ctx.strokeRect(40,200,W-80,160);
+    txt('PLAYBOX',W/2,250,28,'#f5d77a');txt('HOLD LEVER TO CHARGE',W/2,295,14,'#d4af37');txt('20 balls · fill the board',W/2,325,12,'#9a927c')}
+  if(phase==='over'){ctx.fillStyle='rgba(10,10,10,.75)';ctx.fillRect(36,180,W-72,220);ctx.strokeStyle='#d4af37';ctx.lineWidth=2;ctx.strokeRect(36,180,W-72,220);
+    txt('CABINET CLOSED',W/2,230,22,'#f5d77a');txt(s.score+' PTS',W/2,280,36,'#ffffff');txt(s.filled+'/16 holes · '+s.lines+' lines',W/2,315,13,'#9a927c');if(now-overAt>500)txt('TAP TO PLAY AGAIN',W/2,365,16,'#d4af37')}
+}
+let lw=0;function loop(now){const rw=cv.getBoundingClientRect().width;if(Math.abs(rw-lw)>1){lw=rw;fit()}
+  if(charging)chargePow=Math.max(chargePow,powerFromHold(now-chargeT));
+  draw(now);requestAnimationFrame(loop)}
+fit();requestAnimationFrame(loop);
+</script></body></html>
