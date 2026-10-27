@@ -5,6 +5,274 @@
  "feed_url": "https://yoloboydelis.github.io/netnet-games/discover/feed.json",
  "items": [
   {
+   "id": "rootbound",
+   "url": "https://meticulai.com/games/rootbound/",
+   "external_url": "https://x.com/MeticulAi/status/2114880016118841600",
+   "title": "Rootbound by @MeticulAi",
+   "content_text": "Grow a tree underground, reaching for water and fungi; your forest carries over. Play: https://meticulai.com/games/rootbound/ · X post: https://x.com/MeticulAi/status/2114880016118841600",
+   "date_published": "2026-10-27T00:00:00Z",
+   "tags": [
+    "strategy",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "type-blitz-force",
+   "url": "https://type-blitz-force.vercel.app/",
+   "external_url": "https://x.com/Mahnaaz_dev/status/2114981731841511787",
+   "title": "Type Blitz Force by @Mahnaaz_dev",
+   "content_text": "Type words to blast neon drones and push your WPM up. Play: https://type-blitz-force.vercel.app/ · X post: https://x.com/Mahnaaz_dev/status/2114981731841511787",
+   "date_published": "2026-10-27T00:00:00Z",
+   "tags": [
+    "shooter",
+    "casual",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "cat-vs-100-cpus",
+   "url": "https://catvs100cpus.itch.io/cat-vs-100-cpus",
+   "external_url": "https://x.com/catvscpus/status/2114886968794603784",
+   "title": "Cat vs 100 CPUs by @catvscpus",
+   "content_text": "A #smallgamechallenge entry: one cat up against a hundred CPUs. Play: https://catvs100cpus.itch.io/cat-vs-100-cpus · X post: https://x.com/catvscpus/status/2114886968794603784",
+   "date_published": "2026-10-27T00:00:00Z",
+   "tags": [
+    "action",
+    "arcade"
+   ]
+  },
+  {
+   "id": "side-b",
+   "url": "https://sidebgame.vercel.app/",
+   "external_url": "https://x.com/swaaeka/status/2114677906500915474",
+   "title": "SIDE B: One Perfect Afternoon by @swaaeka",
+   "content_text": "Kill a lazy 1969 afternoon doing odd jobs for the neighbours. Play: https://sidebgame.vercel.app/ · X post: https://x.com/swaaeka/status/2114677906500915474",
+   "date_published": "2026-10-26T00:00:00Z",
+   "tags": [
+    "story",
+    "adventure",
+    "casual"
+   ]
+  },
+  {
+   "id": "always-up",
+   "url": "https://agent-marsha.github.io/always-up/",
+   "external_url": "https://x.com/_dev_og/status/2114681627964260635",
+   "title": "Always Up by @_dev_og",
+   "content_text": "Tap-to-climb arcade built to play right from an X post. Beat 232m. Play: https://agent-marsha.github.io/always-up/ · X post: https://x.com/_dev_og/status/2114681627964260635",
+   "date_published": "2026-10-26T00:00:00Z",
+   "tags": [
+    "arcade",
+    "casual",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "dig-it",
+   "url": "https://hakairyuousinn.com/games/dig-it/",
+   "external_url": "https://x.com/hakairyuousinn/status/2114711144183070760",
+   "title": "Dig It! by @hakairyuousinn",
+   "content_text": "Dig deep for loot, but get greedy and you won't make it back up. Play: https://hakairyuousinn.com/games/dig-it/ · X post: https://x.com/hakairyuousinn/status/2114711144183070760",
+   "date_published": "2026-10-26T00:00:00Z",
+   "tags": [
+    "arcade",
+    "casual"
+   ]
+  },
+  {
+   "id": "clawdopolis",
+   "url": "https://clawdopolis.com/",
+   "external_url": "https://x.com/clawdopolis/status/2114830098431946823",
+   "title": "Clawdopolis by @clawdopolis",
+   "content_text": "3D town built with Claude, Blender and Three.js, with a Halloween event on. Play: https://clawdopolis.com/ · X post: https://x.com/clawdopolis/status/2114830098431946823",
+   "date_published": "2026-10-26T00:00:00Z",
+   "tags": [
+    "3d",
+    "adventure",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "cargobolt",
+   "url": "https://cargobolt.online/",
+   "external_url": "https://x.com/itsoyedolapo/status/2114765223462887911",
+   "title": "CargoBolt by @itsoyedolapo",
+   "content_text": "Ride, fight and deliver parcels through the streets of Lagos. Play: https://cargobolt.online/ · X post: https://x.com/itsoyedolapo/status/2114765223462887911",
+   "date_published": "2026-10-26T00:00:00Z",
+   "tags": [
+    "action",
+    "racing"
+   ]
+  },
+  {
+   "id": "time-chronicles",
+   "url": "https://timechronicles.monydragon.com/",
+   "external_url": "https://x.com/Monydragon/status/2114733581977165972",
+   "title": "Time Chronicles by @Monydragon",
+   "content_text": "Drop historic moments into the right spot on the timeline. Play: https://timechronicles.monydragon.com/ · X post: https://x.com/Monydragon/status/2114733581977165972",
+   "date_published": "2026-10-26T00:00:00Z",
+   "tags": [
+    "trivia",
+    "puzzle",
+    "casual"
+   ]
+  },
+  {
+   "id": "terem-uzor",
+   "url": "https://terem-uzor.pages.dev/",
+   "external_url": "https://x.com/Tgbgtgbg/status/2114680291055063055",
+   "title": "Terem-Uzor by @Tgbgtgbg",
+   "content_text": "Slavic-style winter pattern puzzle with chains and a daily challenge. Play: https://terem-uzor.pages.dev/ · X post: https://x.com/Tgbgtgbg/status/2114680291055063055",
+   "date_published": "2026-10-26T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "casual"
+   ]
+  },
+  {
+   "id": "hauntworks",
+   "url": "https://moknowz.itch.io/hauntworks",
+   "external_url": "https://x.com/MoKnowz/status/2114719835250983374",
+   "title": "Hauntworks by @MoKnowz",
+   "content_text": "Build a haunted house, hire scarers and run it with friends online. Play: https://moknowz.itch.io/hauntworks · X post: https://x.com/MoKnowz/status/2114719835250983374",
+   "date_published": "2026-10-26T00:00:00Z",
+   "tags": [
+    "strategy",
+    "multiplayer",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "removed-by-moderator",
+   "url": "https://solitondev.itch.io/removed-by-moderator-demo",
+   "external_url": "https://x.com/SolitonDev/status/2114561285505556911",
+   "title": "Removed by Moderator (Demo) by @SolitonDev",
+   "content_text": "Play a forum mod on a power trip, deciding which posts survive. Play: https://solitondev.itch.io/removed-by-moderator-demo · X post: https://x.com/SolitonDev/status/2114561285505556911",
+   "date_published": "2026-10-26T00:00:00Z",
+   "tags": [
+    "story",
+    "casual"
+   ]
+  },
+  {
+   "id": "triplemaze",
+   "url": "https://julienren.itch.io/triplemaze-fantastic-arrow-puzzle",
+   "external_url": "https://x.com/Julien258852/status/2114658563885023709",
+   "title": "TripleMaze by @Julien258852",
+   "content_text": "Untangle arrow mazes in a student's first published puzzler. Play: https://julienren.itch.io/triplemaze-fantastic-arrow-puzzle · X post: https://x.com/Julien258852/status/2114658563885023709",
+   "date_published": "2026-10-26T00:00:00Z",
+   "tags": [
+    "puzzle"
+   ]
+  },
+  {
+   "id": "zzzzhang-on",
+   "url": "https://lanthanum.itch.io/zzzzhang-on",
+   "external_url": "https://x.com/Lanthanes/status/2114819268055376004",
+   "title": "ZZZZHANG ON! by @Lanthanes",
+   "content_text": "Tiny LittleJS jam game: short, quick and right in the browser. Play: https://lanthanum.itch.io/zzzzhang-on · X post: https://x.com/Lanthanes/status/2114819268055376004",
+   "date_published": "2026-10-26T00:00:00Z",
+   "tags": [
+    "arcade",
+    "casual"
+   ]
+  },
+  {
+   "id": "breadwinner",
+   "url": "https://mithikagames.itch.io/breadwinner",
+   "external_url": "https://x.com/mithikagames/status/2114673548954657159",
+   "title": "Breadwinner by @mithikagames",
+   "content_text": "Free horror game made for the Filipino Horror Game Jam 2026. Play: https://mithikagames.itch.io/breadwinner · X post: https://x.com/mithikagames/status/2114673548954657159",
+   "date_published": "2026-10-26T00:00:00Z",
+   "tags": [
+    "story",
+    "survival"
+   ]
+  },
+  {
+   "id": "fotoshu",
+   "url": "https://sunbirdstudio.itch.io/fotoshu",
+   "external_url": "https://x.com/le_aviv/status/2114745590164713551",
+   "title": "Fotoshu by @le_aviv",
+   "content_text": "Change the past through photographed memories. A Ludum Dare 60 entry. Play: https://sunbirdstudio.itch.io/fotoshu · X post: https://x.com/le_aviv/status/2114745590164713551",
+   "date_published": "2026-10-26T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "story"
+   ]
+  },
+  {
+   "id": "sketch-strike",
+   "url": "https://playgama.ai/play/jxyuuic7wqadk4",
+   "external_url": "https://x.com/selman_asl15214/status/2114806107298468102",
+   "title": "Sketch Strike by @selman_asl15214",
+   "content_text": "Quick indie browser game published on Playgama. Play: https://playgama.ai/play/jxyuuic7wqadk4 · X post: https://x.com/selman_asl15214/status/2114806107298468102",
+   "date_published": "2026-10-26T00:00:00Z",
+   "tags": [
+    "action",
+    "casual"
+   ]
+  },
+  {
+   "id": "spirit-ruins",
+   "url": "https://playgama.ai/play/3tfna4qd4wcs3r",
+   "external_url": "https://x.com/youlingshijie/status/2114786221654516004",
+   "title": "Spirit Ruins by @youlingshijie",
+   "content_text": "Small indie adventure set among spirit ruins, free on Playgama. Play: https://playgama.ai/play/3tfna4qd4wcs3r · X post: https://x.com/youlingshijie/status/2114786221654516004",
+   "date_published": "2026-10-26T00:00:00Z",
+   "tags": [
+    "adventure",
+    "action"
+   ]
+  },
+  {
+   "id": "bee-simulator-mine",
+   "url": "https://playgama.ai/play/j4fa57jmkwo7jv",
+   "external_url": "https://x.com/kassirgames/status/2114776731345437001",
+   "title": "Bee Simulator: Mine by @kassirgames",
+   "content_text": "Casual bee simulator, free to play on Playgama. Play: https://playgama.ai/play/j4fa57jmkwo7jv · X post: https://x.com/kassirgames/status/2114776731345437001",
+   "date_published": "2026-10-26T00:00:00Z",
+   "tags": [
+    "casual"
+   ]
+  },
+  {
+   "id": "sunfield",
+   "url": "https://playgama.ai/play/7tanphe4mpdbmm",
+   "external_url": "https://x.com/BuntyNamberdar/status/2114740986832396308",
+   "title": "Sunfield by @BuntyNamberdar",
+   "content_text": "Grow and sell vegetables to build up a sunny little farm. Play: https://playgama.ai/play/7tanphe4mpdbmm · X post: https://x.com/BuntyNamberdar/status/2114740986832396308",
+   "date_published": "2026-10-26T00:00:00Z",
+   "tags": [
+    "casual",
+    "strategy"
+   ]
+  },
+  {
+   "id": "seven-realms",
+   "url": "https://playgama.ai/play/hv7kqae5mmqntl",
+   "external_url": "https://x.com/youlingshijie/status/2114757527971987502",
+   "title": "Seven Realms by @youlingshijie",
+   "content_text": "Idle cultivation RPG: train up and climb through seven realms. Play: https://playgama.ai/play/hv7kqae5mmqntl · X post: https://x.com/youlingshijie/status/2114757527971987502",
+   "date_published": "2026-10-26T00:00:00Z",
+   "tags": [
+    "strategy",
+    "casual"
+   ]
+  },
+  {
+   "id": "word-search-aenigma",
+   "url": "https://playgama.ai/play/g6ygly234fca7g",
+   "external_url": "https://x.com/ismielabir/status/2114698321440940383",
+   "title": "Word Search Aenigma by @ismielabir",
+   "content_text": "Learn new words while you hunt them down in a word search. Play: https://playgama.ai/play/g6ygly234fca7g · X post: https://x.com/ismielabir/status/2114698321440940383",
+   "date_published": "2026-10-26T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "trivia"
+   ]
+  },
+  {
    "id": "night-study",
    "url": "https://oreumgames.com/en/games/mini/night-study/",
    "external_url": "https://x.com/Oreumgames/status/2114638926220755014",
@@ -348,278 +616,6 @@
    "tags": [
     "adventure",
     "3d"
-   ]
-  },
-  {
-   "id": "one-more-chair",
-   "url": "https://igoryakunin.itch.io/one-more-chair",
-   "external_url": "https://x.com/ibackstrom/status/2114105818341654909",
-   "title": "One More Chair by @ibackstrom",
-   "content_text": "A small itch.io browser game about squeezing in just one more chair. Play: https://igoryakunin.itch.io/one-more-chair · X post: https://x.com/ibackstrom/status/2114105818341654909",
-   "date_published": "2026-10-24T00:00:00Z",
-   "tags": [
-    "casual",
-    "physics"
-   ]
-  },
-  {
-   "id": "duck-store",
-   "url": "https://duck.wildcode-solutions.com/",
-   "external_url": "https://x.com/Youkoulailay/status/2114016072546533640",
-   "title": "Duck Store by @Youkoulailay",
-   "content_text": "Sort rubber ducks onto shop shelves, with a three-minute Time Attack mode. Play: https://duck.wildcode-solutions.com/ · X post: https://x.com/Youkoulailay/status/2114016072546533640",
-   "date_published": "2026-10-24T00:00:00Z",
-   "tags": [
-    "puzzle",
-    "casual"
-   ]
-  },
-  {
-   "id": "chaos-kitchen",
-   "url": "https://playgama.ai/play/xv7oad5qnh",
-   "external_url": "https://x.com/Chaos_Kitcghge/status/2113911059601859068",
-   "title": "ChaosKitchen by @Chaos_Kitcghge",
-   "content_text": "Keep up with orders in a hectic little kitchen game. Play: https://playgama.ai/play/xv7oad5qnh · X post: https://x.com/Chaos_Kitcghge/status/2113911059601859068",
-   "date_published": "2026-10-24T00:00:00Z",
-   "tags": [
-    "casual",
-    "arcade"
-   ]
-  },
-  {
-   "id": "doodle-sports-day",
-   "url": "https://yurustudio.github.io/undoukai/",
-   "external_url": "https://x.com/apkderete/status/2113869309101711677",
-   "title": "Doodle Sports Day by @apkderete",
-   "content_text": "Draw a creature with your finger and it runs the race exactly as drawn. Play: https://yurustudio.github.io/undoukai/ · X post: https://x.com/apkderete/status/2113869309101711677",
-   "date_published": "2026-10-24T00:00:00Z",
-   "tags": [
-    "casual",
-    "physics",
-    "multiplayer"
-   ]
-  },
-  {
-   "id": "melody-machinations",
-   "url": "https://profugobarbatus.itch.io/melody-machinations",
-   "external_url": "https://x.com/ProfugoBarbatus/status/2113825117201416365",
-   "title": "Melody Machinations by @ProfugoBarbatus (with Lyssa_OhNo)",
-   "content_text": "A Ludum Dare 60 jam game built around music and machines. Play: https://profugobarbatus.itch.io/melody-machinations · X post: https://x.com/ProfugoBarbatus/status/2113825117201416365",
-   "date_published": "2026-10-24T00:00:00Z",
-   "tags": [
-    "puzzle",
-    "casual"
-   ]
-  },
-  {
-   "id": "hanamino",
-   "url": "https://playgama.ai/play/6vij4uy2tilpun",
-   "external_url": "https://x.com/PoderosoMasterS/status/2113870806585606259",
-   "title": "Hanamino: Block Puzzle Garden by @PoderosoMasterS",
-   "content_text": "Fit flower blocks into a garden grid in a calm block puzzle. Play: https://playgama.ai/play/6vij4uy2tilpun · X post: https://x.com/PoderosoMasterS/status/2113870806585606259",
-   "date_published": "2026-10-24T00:00:00Z",
-   "tags": [
-    "puzzle",
-    "casual"
-   ]
-  },
-  {
-   "id": "bearsky",
-   "url": "https://www.spawn.co/@fookamon/bearsky",
-   "external_url": "https://x.com/fookamon/status/2113619869446935028",
-   "title": "Bearsky by @fookamon",
-   "content_text": "A bear on a sports bike races an engine down a ramp-filled hill. Play: https://www.spawn.co/@fookamon/bearsky · X post: https://x.com/fookamon/status/2113619869446935028",
-   "date_published": "2026-10-23T00:00:00Z",
-   "tags": [
-    "racing",
-    "arcade",
-    "physics"
-   ]
-  },
-  {
-   "id": "ai-worms",
-   "url": "https://seymour8glass.itch.io/ai-worms",
-   "external_url": "https://x.com/DharmaHarrison/status/2113681890418799072",
-   "title": "AI Worms: They're Everywhere by @DharmaHarrison (itch: seymour8glass)",
-   "content_text": "A phone-friendly jam game about worms that just keep coming. Play: https://seymour8glass.itch.io/ai-worms · X post: https://x.com/DharmaHarrison/status/2113681890418799072",
-   "date_published": "2026-10-23T00:00:00Z",
-   "tags": [
-    "arcade",
-    "action",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "slow-beads",
-   "url": "https://slowbeads.niceday-app.com/",
-   "external_url": "https://x.com/whataniceb2n/status/2113704699463622788",
-   "title": "Slow Beads by @whataniceb2n",
-   "content_text": "Place fuse beads, iron them flat and watch them melt. No timer. Play: https://slowbeads.niceday-app.com/ · X post: https://x.com/whataniceb2n/status/2113704699463622788",
-   "date_published": "2026-10-23T00:00:00Z",
-   "tags": [
-    "casual",
-    "puzzle"
-   ]
-  },
-  {
-   "id": "autodrive-tycoon",
-   "url": "https://autodrive-tycoon.felixsd.workers.dev/",
-   "external_url": "https://x.com/AutoDriveTycoon/status/2113643695425692150",
-   "title": "AutoDrive Tycoon by @AutoDriveTycoon",
-   "content_text": "Grow from one subscriber to a worldwide self-driving taxi fleet. Play: https://autodrive-tycoon.felixsd.workers.dev/ · X post: https://x.com/AutoDriveTycoon/status/2113643695425692150",
-   "date_published": "2026-10-23T00:00:00Z",
-   "tags": [
-    "strategy",
-    "casual"
-   ]
-  },
-  {
-   "id": "draw-to-smash",
-   "url": "https://wavedash.com/games/draw-to-smash-1789364526634",
-   "external_url": "https://x.com/anulagarwal/status/2113570947102077333",
-   "title": "Draw To Smash by @anulagarwal",
-   "content_text": "Draw shapes on a whiteboard and drop them to crack the eggs. Play: https://wavedash.com/games/draw-to-smash-1789364526634 · X post: https://x.com/anulagarwal/status/2113570947102077333",
-   "date_published": "2026-10-23T00:00:00Z",
-   "tags": [
-    "physics",
-    "puzzle",
-    "casual"
-   ]
-  },
-  {
-   "id": "neon-ronin",
-   "url": "https://neon-ronin-blade.higgsfield.app/",
-   "external_url": "https://x.com/juliosilvaai/status/2113759852371800122",
-   "title": "Neon Ronin by @juliosilvaai",
-   "content_text": "A rainy neon samurai duel: parry, break posture, finish it. Play: https://neon-ronin-blade.higgsfield.app/ · X post: https://x.com/juliosilvaai/status/2113759852371800122",
-   "date_published": "2026-10-23T00:00:00Z",
-   "tags": [
-    "action",
-    "3d",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "last-torch",
-   "url": "https://mchatai.itch.io/last-torch",
-   "external_url": "https://x.com/mchataicom/status/2113696543761207568",
-   "title": "Last Torch by @mchataicom",
-   "content_text": "Find the stairs in five dark caverns before your torch burns out. Play: https://mchatai.itch.io/last-torch · X post: https://x.com/mchataicom/status/2113696543761207568",
-   "date_published": "2026-10-23T00:00:00Z",
-   "tags": [
-    "survival",
-    "adventure",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "toot-raft",
-   "url": "https://toot.honkpop.com/",
-   "external_url": "https://x.com/gourav_io/status/2113503358229365225",
-   "title": "Toot Raft by @gourav_io",
-   "content_text": "Up to four animals steer one river raft by tooting together. Play: https://toot.honkpop.com/ · X post: https://x.com/gourav_io/status/2113503358229365225",
-   "date_published": "2026-10-23T00:00:00Z",
-   "tags": [
-    "multiplayer",
-    "casual",
-    "3d",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "beepi",
-   "url": "https://beepi.pages.dev/",
-   "external_url": "https://x.com/Dieselweasels/status/2113464851934728491",
-   "title": "BEEPI by @Dieselweasels",
-   "content_text": "Hatch and raise tiny pixel pets whose care shapes what they become. Play: https://beepi.pages.dev/ · X post: https://x.com/Dieselweasels/status/2113464851934728491",
-   "date_published": "2026-10-23T00:00:00Z",
-   "tags": [
-    "casual",
-    "adventure"
-   ]
-  },
-  {
-   "id": "japa-life",
-   "url": "https://japa-life.com/",
-   "external_url": "https://x.com/JapaLifeaq/status/2113466132182991296",
-   "title": "Japa Life by @JapaLifeaq",
-   "content_text": "Hustle in Lagos, face the embassy and start a new life abroad. Play: https://japa-life.com/ · X post: https://x.com/JapaLifeaq/status/2113466132182991296",
-   "date_published": "2026-10-23T00:00:00Z",
-   "tags": [
-    "story",
-    "casual"
-   ]
-  },
-  {
-   "id": "hundy",
-   "url": "https://hundy.fun/",
-   "external_url": "https://x.com/bajamoji/status/2113426432022204693",
-   "title": "100. by @bajamoji",
-   "content_text": "Use seven dice once each to make exactly 100. Play: https://hundy.fun/ · X post: https://x.com/bajamoji/status/2113426432022204693",
-   "date_published": "2026-10-23T00:00:00Z",
-   "tags": [
-    "puzzle",
-    "casual"
-   ]
-  },
-  {
-   "id": "the-tsotchke",
-   "url": "https://okcyb0rg.itch.io/the-tsotchke",
-   "external_url": "https://x.com/0kCyb0rg/status/2113497197656600620",
-   "title": "The Tsotchke by @0kCyb0rg",
-   "content_text": "A short retro horror visit to a resort that wants you to stay. Play: https://okcyb0rg.itch.io/the-tsotchke · X post: https://x.com/0kCyb0rg/status/2113497197656600620",
-   "date_published": "2026-10-23T00:00:00Z",
-   "tags": [
-    "story",
-    "3d"
-   ]
-  },
-  {
-   "id": "roadster-rush",
-   "url": "https://roadsterrush.fun/",
-   "external_url": "https://x.com/RoadsterRush/status/2113291793848815894",
-   "title": "Roadster Rush by @RoadsterRush",
-   "content_text": "Ring routes, a rainy night expressway, loops and a hopping thruster car. Play: https://roadsterrush.fun/ · X post: https://x.com/RoadsterRush/status/2113291793848815894",
-   "date_published": "2026-10-22T00:00:00Z",
-   "tags": [
-    "racing",
-    "3d"
-   ]
-  },
-  {
-   "id": "boda-rush",
-   "url": "https://boda-rush.vercel.app/",
-   "external_url": "https://x.com/NewLongMoney/status/2113285498613477701",
-   "title": "Boda Rush by @NewLongMoney",
-   "content_text": "Ride a boda boda through real OpenStreetMap streets of Nairobi. Play: https://boda-rush.vercel.app/ · X post: https://x.com/NewLongMoney/status/2113285498613477701",
-   "date_published": "2026-10-22T00:00:00Z",
-   "tags": [
-    "racing",
-    "3d"
-   ]
-  },
-  {
-   "id": "shadows-of-valor",
-   "url": "https://vermillion-pixie-1ad2db.netlify.app/",
-   "external_url": "https://x.com/Vulture5x/status/2113208292876898311",
-   "title": "Shadows of Valor by @Vulture5x",
-   "content_text": "Level a lone wanderer from new adventurer to hero. Play: https://vermillion-pixie-1ad2db.netlify.app/ · X post: https://x.com/Vulture5x/status/2113208292876898311",
-   "date_published": "2026-10-22T00:00:00Z",
-   "tags": [
-    "adventure",
-    "strategy"
-   ]
-  },
-  {
-   "id": "catching-halleys-comet",
-   "url": "https://catchinghalleyscomet07282061.grok.me/",
-   "external_url": "https://x.com/3DPixelPro/status/2113128804931485815",
-   "title": "Catching Halley's Comet by @3DPixelPro",
-   "content_text": "Fly a probe to catch Halley's Comet on its 2061 return. Play: https://catchinghalleyscomet07282061.grok.me/ · X post: https://x.com/3DPixelPro/status/2113128804931485815",
-   "date_published": "2026-10-22T00:00:00Z",
-   "tags": [
-    "arcade",
-    "vibe-coded"
    ]
   }
  ]
