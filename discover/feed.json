@@ -1,0 +1,616 @@
+{
+ "version": "https://jsonfeed.org/version/1.1",
+ "title": "NetNet Arcade Discover: new browser games on X",
+ "home_page_url": "https://yoloboydelis.github.io/netnet-games/discover/",
+ "feed_url": "https://yoloboydelis.github.io/netnet-games/discover/feed.json",
+ "items": [
+  {
+   "id": "halloween-escape-room",
+   "url": "https://halloween-escape-room.pplx.app/",
+   "external_url": "https://x.com/jeffgrimes9/status/2116361674370453884",
+   "title": "Halloween Escape Room by @jeffgrimes9 (built with Perplexity Computer)",
+   "content_text": "Escape a haunted house in a timed, nine-room 90s-style puzzle adventure. Play: https://halloween-escape-room.pplx.app/ · X post: https://x.com/jeffgrimes9/status/2116361674370453884",
+   "date_published": "2026-10-31T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "adventure",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "vipera",
+   "url": "https://playgama.ai/play/frocp3utskw75l",
+   "external_url": "https://x.com/Hugoropmx/status/2116446208118104097",
+   "title": "Vipera by @Hugoropmx",
+   "content_text": "A quick arcade game published on Playgama. Play: https://playgama.ai/play/frocp3utskw75l · X post: https://x.com/Hugoropmx/status/2116446208118104097",
+   "date_published": "2026-10-31T00:00:00Z",
+   "tags": [
+    "arcade",
+    "casual"
+   ]
+  },
+  {
+   "id": "ox-grid-clash",
+   "url": "https://playgama.ai/play/ki2hz2kbbk37kc",
+   "external_url": "https://x.com/OX_KICK/status/2116431265519775983",
+   "title": "OX Grid Clash by @OX_KICK",
+   "content_text": "Noughts-and-crosses style grid battles with a competitive twist. Play: https://playgama.ai/play/ki2hz2kbbk37kc · X post: https://x.com/OX_KICK/status/2116431265519775983",
+   "date_published": "2026-10-31T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "strategy"
+   ]
+  },
+  {
+   "id": "trader-simulator",
+   "url": "https://playgama.ai/play/fywbqg3suyv45k",
+   "external_url": "https://x.com/kassirgames/status/2116357522164748643",
+   "title": "Trader Simulator by @kassirgames",
+   "content_text": "Buy low, sell high and grow a pretend trading account. Play: https://playgama.ai/play/fywbqg3suyv45k · X post: https://x.com/kassirgames/status/2116357522164748643",
+   "date_published": "2026-10-31T00:00:00Z",
+   "tags": [
+    "strategy",
+    "casual"
+   ]
+  },
+  {
+   "id": "bokken-ghost-fire",
+   "url": "https://plinthcybernetics.itch.io/bokken-ghost-fire",
+   "external_url": "https://x.com/plinth_games/status/2116361152418779234",
+   "title": "Bokken: Ghost Fire by @plinth_games",
+   "content_text": "An AI Browser Game Jam 5 entry with ghostly sword combat. Play: https://plinthcybernetics.itch.io/bokken-ghost-fire · X post: https://x.com/plinth_games/status/2116361152418779234",
+   "date_published": "2026-10-31T00:00:00Z",
+   "tags": [
+    "action",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "ramp-rush",
+   "url": "https://tryramprush.com/",
+   "external_url": "https://x.com/mazino213/status/2116387688756752853",
+   "title": "Ramp Rush by @mazino213",
+   "content_text": "Race up a moving flatbed ramp against AI rivals in 3D, free vs bots. Play: https://tryramprush.com/ · X post: https://x.com/mazino213/status/2116387688756752853",
+   "date_published": "2026-10-31T00:00:00Z",
+   "tags": [
+    "racing",
+    "3d",
+    "multiplayer"
+   ]
+  },
+  {
+   "id": "scifistory",
+   "url": "https://rosebud.ai/play/scifistory",
+   "external_url": "https://x.com/SelfishGamingCo/status/2116355670798954611",
+   "title": "SciFiStory by @SelfishGamingCo",
+   "content_text": "A relaxed side-scrolling sci-fi MMORPG to grind and craft in. Play: https://rosebud.ai/play/scifistory · X post: https://x.com/SelfishGamingCo/status/2116355670798954611",
+   "date_published": "2026-10-31T00:00:00Z",
+   "tags": [
+    "adventure",
+    "multiplayer",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "quicksix-word-rush",
+   "url": "https://playgama.ai/play/fbsu2dm6rxthhy",
+   "external_url": "https://x.com/MaknCryptoBacon/status/2116179098976264691",
+   "title": "QuickSix: Word Rush by @MaknCryptoBacon",
+   "content_text": "Spell as many words as you can in three minutes, then chase your best. Play: https://playgama.ai/play/fbsu2dm6rxthhy · X post: https://x.com/MaknCryptoBacon/status/2116179098976264691",
+   "date_published": "2026-10-30T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "casual"
+   ]
+  },
+  {
+   "id": "nil-by-mouth",
+   "url": "https://z13labs.itch.io/nil-by-mouth",
+   "external_url": "https://x.com/z13labs/status/2116230844872605777",
+   "title": "Nil By Mouth by @z13labs",
+   "content_text": "Night shift surgery on Halloween, where some patients are actual vampires. Play: https://z13labs.itch.io/nil-by-mouth · X post: https://x.com/z13labs/status/2116230844872605777",
+   "date_published": "2026-10-30T00:00:00Z",
+   "tags": [
+    "story",
+    "casual"
+   ]
+  },
+  {
+   "id": "owambe-rush",
+   "url": "https://mactrixxr.space/owamberush/",
+   "external_url": "https://x.com/johnokparaeke/status/2116304271859913091",
+   "title": "Owambe Rush by shared by @johnokparaeke (made by Mactrix XR)",
+   "content_text": "Seat the guests and serve the jollof to keep a chaotic Nigerian party running. Play: https://mactrixxr.space/owamberush/ · X post: https://x.com/johnokparaeke/status/2116304271859913091",
+   "date_published": "2026-10-30T00:00:00Z",
+   "tags": [
+    "casual",
+    "strategy"
+   ]
+  },
+  {
+   "id": "pacific-dogfight-arcade",
+   "url": "https://top-fun.xyz/",
+   "external_url": "https://x.com/angelcreative/status/2116233135855992988",
+   "title": "Pacific Dogfight Arcade by @angelcreative",
+   "content_text": "Arcade air combat over the ocean, rebuilt with sharper graphics. Play: https://top-fun.xyz/ · X post: https://x.com/angelcreative/status/2116233135855992988",
+   "date_published": "2026-10-30T00:00:00Z",
+   "tags": [
+    "arcade",
+    "shooter",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "thread",
+   "url": "https://playgama.ai/play/cfr3gkzzlpepee",
+   "external_url": "https://x.com/goofymmm232/status/2116161594833125405",
+   "title": "Thread by @goofymmm232",
+   "content_text": "A small thread puzzle game published on Playgama. Play: https://playgama.ai/play/cfr3gkzzlpepee · X post: https://x.com/goofymmm232/status/2116161594833125405",
+   "date_published": "2026-10-30T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "casual"
+   ]
+  },
+  {
+   "id": "snake-travels-io",
+   "url": "https://playgama.ai/play/zofygdwuke5c5m",
+   "external_url": "https://x.com/Oxirogames/status/2116236001064673308",
+   "title": "Snake Travels: io by @Oxirogames",
+   "content_text": "Grow your snake across the map and outlast rival snakes. Play: https://playgama.ai/play/zofygdwuke5c5m · X post: https://x.com/Oxirogames/status/2116236001064673308",
+   "date_published": "2026-10-30T00:00:00Z",
+   "tags": [
+    "arcade",
+    "casual"
+   ]
+  },
+  {
+   "id": "monkey-business",
+   "url": "https://criticalbananas.com/game",
+   "external_url": "https://x.com/dovrikson/status/2116144461411758401",
+   "title": "Monkey Business by @dovrikson",
+   "content_text": "Dodge the mess and grab the bananas for one more run. Play: https://criticalbananas.com/game · X post: https://x.com/dovrikson/status/2116144461411758401",
+   "date_published": "2026-10-30T00:00:00Z",
+   "tags": [
+    "arcade",
+    "casual"
+   ]
+  },
+  {
+   "id": "jump-scare-doors",
+   "url": "https://random.express/jump-scare-doors/",
+   "external_url": "https://x.com/random__express/status/2116249938300706875",
+   "title": "Jump Scare Doors by @random__express",
+   "content_text": "Open creepy doors and see how many scares you survive before quitting. Play: https://random.express/jump-scare-doors/ · X post: https://x.com/random__express/status/2116249938300706875",
+   "date_published": "2026-10-30T00:00:00Z",
+   "tags": [
+    "casual"
+   ]
+  },
+  {
+   "id": "codesweeper",
+   "url": "https://www.codesweeper.fun/",
+   "external_url": "https://x.com/jasoncashdollar/status/2116280067391434919",
+   "title": "Codesweeper by @jasoncashdollar",
+   "content_text": "Play minesweeper on anyone's GitHub contribution graph. Play: https://www.codesweeper.fun/ · X post: https://x.com/jasoncashdollar/status/2116280067391434919",
+   "date_published": "2026-10-30T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "exozero-impedus",
+   "url": "https://exozero.net/",
+   "external_url": "https://x.com/alithner/status/2116218740920430714",
+   "title": "EXOZERO: Impedus by @alithner",
+   "content_text": "A runner made of light where each world paints itself in as you go. Play: https://exozero.net/ · X post: https://x.com/alithner/status/2116218740920430714",
+   "date_published": "2026-10-30T00:00:00Z",
+   "tags": [
+    "arcade",
+    "action"
+   ]
+  },
+  {
+   "id": "whosesong",
+   "url": "https://whosesong.vercel.app/",
+   "external_url": "https://x.com/anmolmaggon/status/2116110940315983989",
+   "title": "WhoseSong? by @anmolmaggon",
+   "content_text": "Everyone picks a song in secret, then you guess whose is whose. Play: https://whosesong.vercel.app/ · X post: https://x.com/anmolmaggon/status/2116110940315983989",
+   "date_published": "2026-10-30T00:00:00Z",
+   "tags": [
+    "multiplayer",
+    "casual",
+    "trivia"
+   ]
+  },
+  {
+   "id": "robot-no-water",
+   "url": "https://robot-no-water.vercel.app/",
+   "external_url": "https://x.com/mostlyunsupAI/status/2116274341281427535",
+   "title": "Don't Touch the Water by @mostlyunsupAI",
+   "content_text": "Carry a letter around the world as a paper robot that must never touch water. Play: https://robot-no-water.vercel.app/ · X post: https://x.com/mostlyunsupAI/status/2116274341281427535",
+   "date_published": "2026-10-30T00:00:00Z",
+   "tags": [
+    "arcade",
+    "casual",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "liminality",
+   "url": "https://run.world/maximusbcom/liminality",
+   "external_url": "https://x.com/MaxImusBcom/status/2116275341039907297",
+   "title": "Liminality by @MaxImusBcom",
+   "content_text": "A psychological, story-driven adventure you play right in the browser. Play: https://run.world/maximusbcom/liminality · X post: https://x.com/MaxImusBcom/status/2116275341039907297",
+   "date_published": "2026-10-30T00:00:00Z",
+   "tags": [
+    "story",
+    "adventure"
+   ]
+  },
+  {
+   "id": "crownforge",
+   "url": "https://thecrownforge.com/",
+   "external_url": "https://x.com/thecrownforge/status/2116263140451049621",
+   "title": "Crownforge by @thecrownforge",
+   "content_text": "Rebuild a settlement, hatch a dragon and hold the valley with your alliance. Play: https://thecrownforge.com/ · X post: https://x.com/thecrownforge/status/2116263140451049621",
+   "date_published": "2026-10-30T00:00:00Z",
+   "tags": [
+    "strategy",
+    "multiplayer"
+   ]
+  },
+  {
+   "id": "lolo-jump",
+   "url": "https://playgama.ai/play/uu252i2ixrjeez",
+   "external_url": "https://x.com/geofulo/status/2116082137237787036",
+   "title": "Lolo Jump by @geofulo",
+   "content_text": "Hop Lolo higher and higher in a quick browser jumper. Play: https://playgama.ai/play/uu252i2ixrjeez · X post: https://x.com/geofulo/status/2116082137237787036",
+   "date_published": "2026-10-30T00:00:00Z",
+   "tags": [
+    "arcade",
+    "casual"
+   ]
+  },
+  {
+   "id": "mad-bike",
+   "url": "https://playgama.ai/play/cno6kxubvitjeh",
+   "external_url": "https://x.com/0xGEMLAB/status/2116069298221486135",
+   "title": "Mad Bike by @0xGEMLAB",
+   "content_text": "Ride a stunt bike across 100 unlocked tracks without wiping out. Play: https://playgama.ai/play/cno6kxubvitjeh · X post: https://x.com/0xGEMLAB/status/2116069298221486135",
+   "date_published": "2026-10-30T00:00:00Z",
+   "tags": [
+    "racing",
+    "physics"
+   ]
+  },
+  {
+   "id": "world-map-drop-usa",
+   "url": "https://sns.dopagamelab.com/world-pack-us/",
+   "external_url": "https://x.com/sekaichizu_game/status/2115981315174813764",
+   "title": "World Map Drop: USA by @sekaichizu_game",
+   "content_text": "Drop US states into a box and merge neighbors until all 50 connect. Play: https://sns.dopagamelab.com/world-pack-us/ · X post: https://x.com/sekaichizu_game/status/2115981315174813764",
+   "date_published": "2026-10-30T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "physics"
+   ]
+  },
+  {
+   "id": "cozycapitalist",
+   "url": "https://playgama.ai/play/7jv7bbx2topfeu",
+   "external_url": "https://x.com/603interactive/status/2115932953981198608",
+   "title": "CozyCapitalist by @603interactive",
+   "content_text": "A cozy little money-making tycoon you grow one upgrade at a time. Play: https://playgama.ai/play/7jv7bbx2topfeu · X post: https://x.com/603interactive/status/2115932953981198608",
+   "date_published": "2026-10-29T00:00:00Z",
+   "tags": [
+    "casual",
+    "strategy"
+   ]
+  },
+  {
+   "id": "echo-dodge",
+   "url": "https://playgama.ai/play/geenp7xvoh44f7",
+   "external_url": "https://x.com/Tjandra91530399/status/2115946865791246364",
+   "title": "Echo Dodge by @Tjandra91530399",
+   "content_text": "Weave through incoming hazards and see how long you survive. Play: https://playgama.ai/play/geenp7xvoh44f7 · X post: https://x.com/Tjandra91530399/status/2115946865791246364",
+   "date_published": "2026-10-29T00:00:00Z",
+   "tags": [
+    "arcade",
+    "action"
+   ]
+  },
+  {
+   "id": "flower-farm",
+   "url": "https://playgama.ai/play/ko3hcd6cje7s3r",
+   "external_url": "https://x.com/NVositov/status/2115876412364091639",
+   "title": "Flower Farm by @NVositov",
+   "content_text": "Plant, grow and harvest flowers on your own little farm. Play: https://playgama.ai/play/ko3hcd6cje7s3r · X post: https://x.com/NVositov/status/2115876412364091639",
+   "date_published": "2026-10-29T00:00:00Z",
+   "tags": [
+    "casual"
+   ]
+  },
+  {
+   "id": "motis-cozy-garden",
+   "url": "https://playgama.ai/play/4dbm7xmvgknrr4",
+   "external_url": "https://x.com/mudakovat/status/2115902347469820177",
+   "title": "Moti's Cozy Garden by @mudakovat",
+   "content_text": "Tend a calm, cozy garden with Moti at your own pace. Play: https://playgama.ai/play/4dbm7xmvgknrr4 · X post: https://x.com/mudakovat/status/2115902347469820177",
+   "date_published": "2026-10-29T00:00:00Z",
+   "tags": [
+    "casual"
+   ]
+  },
+  {
+   "id": "tap-tap-zero",
+   "url": "https://playgama.ai/play/nwrf545772v47u",
+   "external_url": "https://x.com/eimie_de/status/2115848019123798348",
+   "title": "Tap Tap Zero by @eimie_de",
+   "content_text": "A fast tap-timing game built for one-thumb play. Play: https://playgama.ai/play/nwrf545772v47u · X post: https://x.com/eimie_de/status/2115848019123798348",
+   "date_published": "2026-10-29T00:00:00Z",
+   "tags": [
+    "arcade",
+    "casual"
+   ]
+  },
+  {
+   "id": "dark-cemetery-labyrinth",
+   "url": "https://rosepistachio.itch.io/dark-cemetery-labyrinth",
+   "external_url": "https://x.com/RosePistaczxty/status/2115826680640201027",
+   "title": "Dark Cemetery Labyrinth by @RosePistaczxty",
+   "content_text": "Find your way out of a dark cemetery maze in about 20 minutes. Play: https://rosepistachio.itch.io/dark-cemetery-labyrinth · X post: https://x.com/RosePistaczxty/status/2115826680640201027",
+   "date_published": "2026-10-29T00:00:00Z",
+   "tags": [
+    "adventure",
+    "puzzle"
+   ]
+  },
+  {
+   "id": "home-lost-found",
+   "url": "https://culaliya.itch.io/home-lost-found",
+   "external_url": "https://x.com/culaliya/status/2115798306127577460",
+   "title": "Home Lost & Found by @culaliya",
+   "content_text": "Search four 3D rooms for lost items, then spot what changed since last time. Play: https://culaliya.itch.io/home-lost-found · X post: https://x.com/culaliya/status/2115798306127577460",
+   "date_published": "2026-10-29T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "3d",
+    "casual"
+   ]
+  },
+  {
+   "id": "the-8th-wonder",
+   "url": "https://gorzylla.itch.io/the-8th-wonder",
+   "external_url": "https://x.com/homebrewhive/status/2115792049467232425",
+   "title": "The 8th Wonder by shared by @homebrewhive (made by gorzylla)",
+   "content_text": "A Game Boy-style 1880s medical mystery with three different endings. Play: https://gorzylla.itch.io/the-8th-wonder · X post: https://x.com/homebrewhive/status/2115792049467232425",
+   "date_published": "2026-10-29T00:00:00Z",
+   "tags": [
+    "story",
+    "adventure"
+   ]
+  },
+  {
+   "id": "four-corners-gh",
+   "url": "https://fourcornersgh.com/",
+   "external_url": "https://x.com/WofaYamoah/status/2115824778078527932",
+   "title": "Four Corners by @WofaYamoah",
+   "content_text": "Three-a-side Ghanaian street football versus the computer or friends online. Play: https://fourcornersgh.com/ · X post: https://x.com/WofaYamoah/status/2115824778078527932",
+   "date_published": "2026-10-29T00:00:00Z",
+   "tags": [
+    "sports",
+    "multiplayer"
+   ]
+  },
+  {
+   "id": "launch-week",
+   "url": "https://launchweek.buildthenlearn.com/",
+   "external_url": "https://x.com/Kampari_11/status/2115805402684338204",
+   "title": "Launch Week by @Kampari_11",
+   "content_text": "Two-choice life sim about shipping your first app, with real Swift bugs to fix. Play: https://launchweek.buildthenlearn.com/ · X post: https://x.com/Kampari_11/status/2115805402684338204",
+   "date_published": "2026-10-29T00:00:00Z",
+   "tags": [
+    "story",
+    "trivia"
+   ]
+  },
+  {
+   "id": "eggball",
+   "url": "https://playeggball.com/",
+   "external_url": "https://x.com/EggballGame/status/2115826855651528933",
+   "title": "Eggball by @EggballGame",
+   "content_text": "Grab the egg, pass it and carry it to your endzone, casual or ranked. Play: https://playeggball.com/ · X post: https://x.com/EggballGame/status/2115826855651528933",
+   "date_published": "2026-10-29T00:00:00Z",
+   "tags": [
+    "sports",
+    "multiplayer"
+   ]
+  },
+  {
+   "id": "on-the-turn-golf",
+   "url": "https://game.shopontheturn.com/",
+   "external_url": "https://x.com/OnTheTurngc/status/2115596402810069030",
+   "title": "On The Turn Golf by @OnTheTurngc",
+   "content_text": "Build a pixel golfer, play three quick holes and climb toward a 99 rating. Play: https://game.shopontheturn.com/ · X post: https://x.com/OnTheTurngc/status/2115596402810069030",
+   "date_published": "2026-10-29T00:00:00Z",
+   "tags": [
+    "sports",
+    "casual",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "black-eclipse",
+   "url": "https://run.world/aastha77/black-eclipse",
+   "external_url": "https://x.com/Aastha5ingh/status/2115660717252825481",
+   "title": "Black Eclipse: Legends of the Cursed Realm by @Aastha5ingh",
+   "content_text": "Pick a fighter and battle through a shadowy cursed realm in portrait 2D. Play: https://run.world/aastha77/black-eclipse · X post: https://x.com/Aastha5ingh/status/2115660717252825481",
+   "date_published": "2026-10-29T00:00:00Z",
+   "tags": [
+    "action",
+    "arcade"
+   ]
+  },
+  {
+   "id": "lagoon-lens",
+   "url": "https://lagoonlens.netlify.app/",
+   "external_url": "https://x.com/HanifAbdulai/status/2115731130905186460",
+   "title": "Lagoon Lens by @HanifAbdulai",
+   "content_text": "Snap rare birds on Ghana's coastal wetlands, with score cards and a leaderboard. Play: https://lagoonlens.netlify.app/ · X post: https://x.com/HanifAbdulai/status/2115731130905186460",
+   "date_published": "2026-10-29T00:00:00Z",
+   "tags": [
+    "arcade",
+    "casual"
+   ]
+  },
+  {
+   "id": "banana-game",
+   "url": "https://playbananagame.com/",
+   "external_url": "https://x.com/MainuStudio/status/2115598842167283981",
+   "title": "Banana Game by @MainuStudio",
+   "content_text": "Drop and merge fruit, shake a stuck board, and work up to a Golden Banana. Play: https://playbananagame.com/ · X post: https://x.com/MainuStudio/status/2115598842167283981",
+   "date_published": "2026-10-29T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "casual",
+    "physics"
+   ]
+  },
+  {
+   "id": "my-football-game",
+   "url": "https://www.myfootballgame.com/",
+   "external_url": "https://x.com/footballnowsfd/status/2115728610426585521",
+   "title": "My Football Game by @footballnowsfd",
+   "content_text": "Build a club, set tactics and survive a full season with a judging board. Play: https://www.myfootballgame.com/ · X post: https://x.com/footballnowsfd/status/2115728610426585521",
+   "date_published": "2026-10-29T00:00:00Z",
+   "tags": [
+    "sports",
+    "strategy"
+   ]
+  },
+  {
+   "id": "insect-colony",
+   "url": "https://insectcolony.netlify.app/",
+   "external_url": "https://x.com/AGBAARE2/status/2115603357079306473",
+   "title": "Insect Colony by @AGBAARE2",
+   "content_text": "Grow an underground ant and bee empire that keeps working while you're away. Play: https://insectcolony.netlify.app/ · X post: https://x.com/AGBAARE2/status/2115603357079306473",
+   "date_published": "2026-10-29T00:00:00Z",
+   "tags": [
+    "strategy",
+    "casual",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "neuronaut",
+   "url": "https://neuronaut.ishaanko.com/",
+   "external_url": "https://x.com/tachymeters/status/2115682999140520050",
+   "title": "Neuronaut by @tachymeters",
+   "content_text": "Find the hidden neuron inside a real AI model in 15 guesses, new one daily. Play: https://neuronaut.ishaanko.com/ · X post: https://x.com/tachymeters/status/2115682999140520050",
+   "date_published": "2026-10-29T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "trivia"
+   ]
+  },
+  {
+   "id": "scraps",
+   "url": "https://wavedash.com/games/scraps",
+   "external_url": "https://x.com/anulagarwal/status/2115671952555999711",
+   "title": "Scraps by @anulagarwal",
+   "content_text": "Place hex tiles, link matching colours and survive until the board fills. Play: https://wavedash.com/games/scraps · X post: https://x.com/anulagarwal/status/2115671952555999711",
+   "date_published": "2026-10-29T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "casual"
+   ]
+  },
+  {
+   "id": "retain",
+   "url": "https://readandretain.netlify.app/",
+   "external_url": "https://x.com/thebutternaan/status/2115699014322860415",
+   "title": "Retain by @thebutternaan",
+   "content_text": "Read three silly news briefs in 40 seconds each, then test what you remember. Play: https://readandretain.netlify.app/ · X post: https://x.com/thebutternaan/status/2115699014322860415",
+   "date_published": "2026-10-29T00:00:00Z",
+   "tags": [
+    "trivia",
+    "casual"
+   ]
+  },
+  {
+   "id": "case-file",
+   "url": "https://case-file-game.netlify.app/",
+   "external_url": "https://x.com/scottaweiss/status/2115592189128683555",
+   "title": "Case File by @scottaweiss",
+   "content_text": "Work real historical case files, sift evidence and see what actually happened. Play: https://case-file-game.netlify.app/ · X post: https://x.com/scottaweiss/status/2115592189128683555",
+   "date_published": "2026-10-28T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "story",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "aesthetic-city-builder",
+   "url": "https://game.theaestheticcity.com/",
+   "external_url": "https://x.com/Aesthetic_City/status/2115499690401947714",
+   "title": "Aesthetic City Builder by @Aesthetic_City",
+   "content_text": "Lay out canals, squares and parks to build a town you'd actually want to walk. Play: https://game.theaestheticcity.com/ · X post: https://x.com/Aesthetic_City/status/2115499690401947714",
+   "date_published": "2026-10-28T00:00:00Z",
+   "tags": [
+    "strategy",
+    "casual"
+   ]
+  },
+  {
+   "id": "fake-it",
+   "url": "https://playfakeit.com/",
+   "external_url": "https://x.com/paingtech/status/2115385453516132388",
+   "title": "FAKE IT by @paingtech",
+   "content_text": "Real startup or made-up? You get 20 seconds to call each pitch. Play: https://playfakeit.com/ · X post: https://x.com/paingtech/status/2115385453516132388",
+   "date_published": "2026-10-28T00:00:00Z",
+   "tags": [
+    "trivia",
+    "casual"
+   ]
+  },
+  {
+   "id": "sky-crown-rush",
+   "url": "https://mable.gg/g/9xh89r",
+   "external_url": "https://x.com/Spartaccs/status/2115501438860185881",
+   "title": "Sky Crown Rush by @Spartaccs",
+   "content_text": "Dash across future-city rooftops, dodge laser gates and grab crowns. Play: https://mable.gg/g/9xh89r · X post: https://x.com/Spartaccs/status/2115501438860185881",
+   "date_published": "2026-10-28T00:00:00Z",
+   "tags": [
+    "arcade",
+    "action"
+   ]
+  },
+  {
+   "id": "night-shift-tycoon",
+   "url": "https://playgama.ai/play/yugtlw7ryaztok",
+   "external_url": "https://x.com/shriade/status/2115531681507442839",
+   "title": "Night Shift Tycoon by @shriade",
+   "content_text": "Run the night shift and grow a small business into a late-hours empire. Play: https://playgama.ai/play/yugtlw7ryaztok · X post: https://x.com/shriade/status/2115531681507442839",
+   "date_published": "2026-10-28T00:00:00Z",
+   "tags": [
+    "strategy",
+    "casual"
+   ]
+  },
+  {
+   "id": "golden-catch",
+   "url": "https://playgama.ai/play/juom7l4nxzsy77",
+   "external_url": "https://x.com/shriade/status/2115530605169373589",
+   "title": "Golden Catch by @shriade",
+   "content_text": "Catch the falling gold and chase a higher score in this quick arcade game. Play: https://playgama.ai/play/juom7l4nxzsy77 · X post: https://x.com/shriade/status/2115530605169373589",
+   "date_published": "2026-10-28T00:00:00Z",
+   "tags": [
+    "casual",
+    "arcade"
+   ]
+  }
+ ]
+}

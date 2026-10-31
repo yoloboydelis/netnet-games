@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>DIP DASH · NetNet Arcade Cabinet 04 · Buy the dip on real-world assets</title>
+<meta name="description" content="NetNet Arcade Cabinet 04. A 24-second reflex game on tokenized gold, stocks, bonds and real estate. Hold to go long, buy the dip, dodge liquidation. Same daily tape for everyone. Beat my score.">
+<link rel="canonical" href="https://yoloboydelis.github.io/netnet-games/dip-dash/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Arcade">
+<meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/dip-dash/">
+<meta property="og:title" content="📉 DIP DASH · NetNet Arcade Cabinet 04">
+<meta property="og:description" content="24 seconds. Gold, NVIDIA, Treasury bonds, real estate. Hold to buy the dip, dodge liquidation. Same tape for everyone today. Beat my score.">
+<meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/dip-dash.png"><meta property="og:image:secure_url" content="https://yoloboydelis.github.io/netnet-games/og/dip-dash.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="DIP DASH, NetNet Arcade Cabinet 04">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="📉 DIP DASH · NetNet Arcade Cabinet 04"><meta name="twitter:description" content="24 seconds. Gold, NVIDIA, Treasury bonds, real estate. Buy the dip, dodge liquidation. Beat my score."><meta name="twitter:image" content="https://yoloboydelis.github.io/netnet-games/og/dip-dash.png">
+<link rel="image_src" href="../og/dip-dash.png">
+<meta name="theme-color" content="#07040f">
+<style>
+:root{--bg:#07040f;--neon:#39ff14;--pink:#ff2bd6;--cyan:#38f5ff;--gold:#ffd23f;--red:#ff3b5c;--txt:#eae6ff;--mut:#9a95c0;--line:#3a2a66}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:radial-gradient(circle at 50% -10%,#2a0b4a 0,var(--bg) 60%);color:var(--txt);font-family:"Courier New",ui-monospace,monospace;line-height:1.5;min-height:100vh}
+a{color:var(--cyan)}.wrap{max-width:760px;margin:0 auto;padding:12px 14px 40px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;min-height:44px}
+.top a.home{display:inline-flex;align-items:center;min-height:44px;color:var(--mut);text-decoration:none;font-size:14px}
+.pill{border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12px;color:var(--gold);white-space:nowrap}
+.cab{margin-top:6px;border:3px solid var(--pink);border-radius:22px 22px 14px 14px;background:linear-gradient(#140a2a,#0a0618);box-shadow:0 0 24px #ff2bd655,inset 0 0 30px #000;padding:0 12px 14px;overflow:hidden}
+.marquee{margin:0 -12px 10px;padding:12px 10px 10px;text-align:center;background:linear-gradient(90deg,#2a0b4a,#4a0b5a,#2a0b4a);border-bottom:3px solid var(--pink)}
+.marquee .arc{font-size:12px;letter-spacing:6px;color:var(--cyan);text-shadow:0 0 8px var(--cyan)}
+.marquee h1{margin:2px 0 0;font-size:clamp(34px,10vw,58px);line-height:1;letter-spacing:3px;color:#fff;text-shadow:0 0 6px #fff,0 0 18px var(--pink),0 0 40px var(--pink);font-weight:900}
+.marquee .no{font-size:12px;color:var(--gold);letter-spacing:3px;margin-top:4px}
+.chal{display:none;border:2px dashed var(--gold);border-radius:10px;padding:8px 10px;margin-bottom:10px;color:var(--gold);font-size:14px;text-align:center}
+.hud{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px}
+.hud div{background:#000a;border:1px solid var(--line);border-radius:8px;padding:5px 6px;text-align:center}
+.hud span{display:block;font-size:10px;letter-spacing:1px;color:var(--mut);text-transform:uppercase}
+.hud b{font-size:clamp(14px,4.4vw,20px);font-variant-numeric:tabular-nums}
+.screen{position:relative;border:2px solid #000;border-radius:12px;overflow:hidden;background:#05020c;box-shadow:inset 0 0 40px #000,0 0 0 2px var(--line)}
+.screen canvas{display:block;width:100%;height:clamp(230px,44vh,360px);touch-action:none}
+.screen::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px)}
+.overlay{position:absolute;inset:0;overflow:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:14px;background:rgba(5,2,12,.78);z-index:2}
+.overlay.hide{display:none}
+.overlay .big{font-size:clamp(30px,10vw,52px);font-weight:900;line-height:1.05;text-shadow:0 0 14px currentColor}
+.overlay .sub{color:var(--txt);font-size:15px;margin-top:8px;max-width:420px}
+.blink{animation:bl 1s steps(2) infinite}@keyframes bl{50%{opacity:.25}}
+.strip{font-size:28px;letter-spacing:4px;margin:6px 0}
+.pads{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.pad{min-height:76px;border-radius:14px;border:3px solid;background:#000;font:inherit;font-weight:900;font-size:clamp(16px,5vw,22px);letter-spacing:2px;color:#fff;touch-action:none;user-select:none;-webkit-user-select:none;cursor:pointer}
+.pad small{display:block;font-size:11px;letter-spacing:1px;font-weight:400;color:var(--mut)}
+.pad.s{border-color:var(--red);box-shadow:0 0 12px #ff3b5c66}.pad.l{border-color:var(--neon);box-shadow:0 0 12px #39ff1466}
+.pad.on.s{background:var(--red);color:#000}.pad.on.l{background:var(--neon);color:#000}.pad.on small{color:#000}
+.row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;min-width:44px;padding:0 16px;border-radius:10px;border:2px solid var(--neon);background:transparent;color:var(--neon);font:inherit;font-weight:700;cursor:pointer;text-decoration:none;touch-action:manipulation}
+.btn.fill{background:var(--neon);color:#000}.btn.pink{border-color:var(--pink);color:var(--pink)}.btn.cy{border-color:var(--cyan);color:var(--cyan)}
+.btn.sm{min-height:44px;font-size:14px;padding:0 12px}
+.tag{display:flex;align-items:center;gap:8px;justify-content:center;margin-top:10px;font-size:14px;color:var(--mut)}
+.tag input{width:150px;min-height:44px;padding:0 10px;background:#000;border:1px solid var(--line);border-radius:8px;color:var(--txt);font:inherit;font-size:16px}
+.card{border:1px solid var(--line);border-radius:12px;padding:16px;margin:16px 0;background:#0d0820cc}
+h2{color:var(--cyan);text-shadow:0 0 8px var(--cyan);margin:0 0 8px;font-size:20px}
+.mut{color:var(--mut);font-size:14px}.demo{display:inline-block;border:1px solid var(--gold);color:var(--gold);border-radius:4px;padding:0 6px;font-size:12px}
+ol,ul{padding-left:20px;margin:6px 0}li{margin:5px 0}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:7px 6px;border-bottom:1px solid #1f1640;text-align:right;white-space:nowrap}
+th{color:var(--cyan);font-size:12px}th:nth-child(-n+2),td:nth-child(-n+2){text-align:left}
+tr.me td{color:var(--neon);font-weight:700;background:#0f2a0a}tr.ch td{color:var(--gold)}
+.pos{color:var(--neon)}.neg{color:var(--red)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+label.f{display:block;font-size:13px;color:var(--mut);margin:8px 0 4px}
+input[type=number]{width:100%;min-height:48px;padding:0 10px;background:#000;border:1px solid var(--line);border-radius:8px;color:var(--txt);font:inherit;font-size:16px}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.kv div{border:1px solid var(--line);border-radius:8px;padding:8px;background:#000a}.kv span{display:block;font-size:11px;color:var(--mut)}.kv b{font-size:18px}
+.note{border:1px solid #6a4a00;background:#1a1203;border-radius:12px;padding:14px;color:#ffd98a;font-size:13px}
+footer{text-align:center;color:var(--mut);font-size:13px;margin-top:20px}
+.toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:#000;border:2px solid var(--neon);color:var(--neon);padding:10px 16px;border-radius:8px;display:none;z-index:9;max-width:92vw;text-align:center}
+.mute{min-height:44px;min-width:44px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--txt);font-size:18px;cursor:pointer}
+</style></head><body>
+<div class="wrap">
+<div class="top"><a class="home" href="../">◀ NetNet Arcade</a><span class="pill" id="tapePill">DAILY TAPE · SIMULATED</span><button class="mute" id="mute" aria-label="Toggle sound">🔊</button></div>
+
+<div class="cab">
+  <div class="marquee"><div class="arc">NETNET ARCADE</div><h1>DIP DASH</h1><div class="no">CABINET 04 · REAL-WORLD ASSETS</div></div>
+  <div class="chal" id="chal" role="status"></div>
+  <div class="hud"><div><span>Asset</span><b id="hAsset">—</b></div><div><span>Equity</span><b id="hEq">$10,000</b></div><div><span>Time</span><b id="hTime">24.0</b></div></div>
+  <div class="screen"><canvas id="cv" aria-label="Simulated price chart"></canvas>
+    <div class="overlay" id="ov">
+      <div class="big blink" style="color:var(--neon)">HOLD TO PLAY</div>
+      <div class="sub">Hold <b style="color:var(--neon)">LONG ▶</b> when it's going up, <b style="color:var(--red)">◀ SHORT</b> when it's going down, let go to sit in T-bills. 3× leverage. Survive 4 assets in 24 seconds.</div>
+      <div class="sub mut">First press starts the run. ← / → keys work too.</div>
+    </div>
+  </div>
+  <div class="pads"><button class="pad s" id="padS" aria-label="Hold to short">◀ SHORT<small>hold</small></button><button class="pad l" id="padL" aria-label="Hold to go long">LONG ▶<small>hold</small></button></div>
+  <div id="after" style="display:none">
+    <div class="row"><button class="btn fill" id="shareBtn">📣 SHARE &amp; CHALLENGE</button><button class="btn pink" id="againBtn">↻ PLAY AGAIN</button></div>
+    <div class="row"><a class="btn sm cy" id="xBtn" target="_blank" rel="noopener">Post on X</a><button class="btn sm cy" id="copyBtn">Copy link</button><button class="btn sm cy" id="cardBtn">Save score card</button></div>
+    <div class="tag"><label for="tagIn">Your tag</label><input id="tagIn" maxlength="15" placeholder="anon" autocomplete="off" spellcheck="false"></div>
+  </div>
+</div>
+
+<section class="card" id="board"><h2>Today's tape leaderboard <span class="demo">DEMO DATA</span></h2>
+<p class="mut">20 simulated demo players (rule-based bots) on today's tape, plus your best run. Not real players, not real results.</p>
+<div class="tw"><table><thead><tr><th>#</th><th>Player</th><th>Run</th><th>Score</th></tr></thead><tbody id="lb"></tbody></table></div></section>
+
+<section class="card" id="how"><h2>How to play</h2>
+<ol><li><b>Same tape for everyone.</b> Each day (00:00 UTC) a new 24-second tape drops: 6 seconds each of tokenized <b>gold</b>, <b>NVIDIA</b>, a <b>10Y Treasury bond</b> and <b>real estate</b>. Simulated price action from a public seed.</li>
+<li><b>Hold LONG</b> to ride it up, <b>hold SHORT</b> to ride it down, <b>let go</b> to park in T-bills (small yield). 3× leverage.</li>
+<li><b>Learn the tape.</b> Gold and NVIDIA get dips that bounce back. The bond gaps down on a hot CPI print. Real estate pays rent every 1.5 s. Practice is free and unlimited.</li>
+<li><b>Don't get liquidated.</b> Equity under 50% = 💀 game over. Every switch costs a 0.15% fee, with a 0.2 s cooldown, so spamming doesn't pay.</li>
+<li><b>Share your run.</b> Your challenge link carries your replay, so friends play the same tape and the score is re-checked in their browser.</li></ol></section>
+
+<section class="card" id="econ"><h2>Rules &amp; economics (real version, not live)</h2>
+<ul>
+<li><b>Free practice:</b> unlimited runs on today's tape, always free. You pay only to submit a <b>ranked run</b>.</li>
+<li><b>Ranked entry:</b> 1 USDG (or the equivalent in wsNET) per ranked run. Your best ranked run of the day counts.</li>
+<li><b>Split, taken at entry:</b> <b>70%</b> daily prize pool · <b>25%</b> NetNet treasury · <b>5%</b> seed for tomorrow's pool. The treasury takes its cut first and never puts in its own money.</li>
+<li><b>Payout at 00:00 UTC:</b> top 10% of ranked runs. 1st 30%, 2nd 18%, 3rd 12%, 4th–5th 6%, 6th–8th 4%, 9th–10th 3%; the last 10% is split across the rest of the top 10%.</li>
+<li><b>Duels:</b> send a challenge link with a stake. Both play the same tape; higher score takes 90%, 10% goes to the treasury.</li>
+<li><b>Ties:</b> the earlier submission wins. <b>No random draws, ever.</b> Winning runs are re-simulated from their input log before payout.</li>
+</ul>
+<div class="grid2"><div><label class="f" for="cE">Ranked runs / day</label><input id="cE" type="number" min="0" value="6000" inputmode="numeric"></div><div><label class="f" for="cF">Entry (USDG)</label><input id="cF" type="number" min="0" value="1" inputmode="decimal"></div></div>
+<div class="kv"><div><span>Entries / day</span><b id="kG">—</b></div><div><span>Prize pool / day</span><b id="kP">—</b></div><div><span>Treasury / day</span><b id="kT" class="pos">—</b></div><div><span>Treasury / year</span><b id="kY" class="pos">—</b></div></div>
+<p class="mut" id="kW"></p></section>
+
+<div class="note"><b>Prototype.</b> Play money only: no deposits, no prizes. All prices are <b>simulated</b> from a seeded generator, not real market data and not a forecast. Paid ranked runs and duels would launch only after legal review, 18+, geofenced to permitted regions. Not investment advice. Official links only via <a href="https://docs.netnet.capital/official-channels" target="_blank" rel="noopener">docs.netnet.capital/official-channels</a>.</div>
+<footer>Prototype for the NetNet community &amp; devs, feedback welcome.<br>NetNet Arcade · Cabinet 04 · <a href="../">all cabinets</a></footer>
+</div>
+<div class="toast" id="toast"></div>
+<div style="max-width:900px;margin:0 auto;padding:0 14px"><div class="nn-card" id="nnaBoard"></div><label class="nna-mut" style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="ranked" checked> Ranked entry: 100 <span class="nna-test">TEST</span> credits (10 to treasury first, 90 to the weekly pool). Ranked runs use this week's tape.</label></div>
+<script src="engine.js"></script><script src="../arcade/sims.js"></script><script>window.NN_SCORE_SERVER="https://netnet-arcade-verifier.netnetarcade.workers.dev"</script><script src="../arcade/core.js"></script>
+<script>
+(function(){'use strict';
+const $=id=>document.getElementById(id);
+const fmt$=x=>'$'+Math.round(x).toLocaleString('en-US');
+const pct=x=>(x>=0?'+':'')+x.toFixed(2)+'%';
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const toast=m=>{const t=$('toast');t.textContent=m;t.style.display='block';clearTimeout(toast.h);toast.h=setTimeout(()=>t.style.display='none',2200)};
+const BASE=location.origin+location.pathname;
+
+// ---- tape + challenge params
+const q=new URLSearchParams(location.search);
+let day=NNS.weekId(), chal=null;const WEEK=day;let nnaT0=0,nnaTok=null,nnaRanked=false,nnaHidden=false;document.addEventListener('visibilitychange',()=>{if(document.hidden&&state==='play')nnaHidden=true});
+function nnaBoard(){const e=document.getElementById('nnaBoard');NNA.renderBoard('dip-dash',e)}document.addEventListener('DOMContentLoaded',nnaBoard);
+const qt=+q.get('t');
+if(qt>=20261001&&qt<=20991231){day=qt;}
+const tape=DD.makeTape(day);
+$('tapePill').textContent=`TAPE #${tape.no} · SIMULATED`;
+if(q.get('s')!==null&&q.get('r')!==null){
+  const tag=(q.get('n')||'anon').replace(/[^A-Za-z0-9_]/g,'').slice(0,15)||'anon', claimed=+q.get('s');
+  let ok=false,res=null;try{res=DD.simulate(tape,DD.decode(q.get('r')));ok=Math.abs(res.score-claimed)<0.005;}catch(e){}
+  chal={tag,score:ok?res.score:claimed,ok,strip:res?DD.strip(res):''};
+  $('chal').style.display='block';
+  $('chal').innerHTML=`🎯 <b>@${esc(tag)}</b> scored <b>${pct(chal.score)}</b> ${esc(chal.strip)} on Tape #${tape.no}. Beat it! <span style="color:${ok?'var(--neon)':'var(--red)'}">${ok?'✔ replay-verified':'⚠ unverified score'}</span>`;
+}
+
+// ---- audio + haptics
+let AC=null,muted=localStorage.getItem('dd_mute')==='1';$('mute').textContent=muted?'🔇':'🔊';
+function beep(f,d,type,vol){if(muted)return;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.type=type||'square';o.frequency.value=f;g.gain.value=vol||0.05;g.gain.exponentialRampToValueAtTime(0.0001,AC.currentTime+d);o.connect(g).connect(AC.destination);o.start();o.stop(AC.currentTime+d);}catch(e){}}
+const buzz=p=>{try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}};
+$('mute').onclick=()=>{muted=!muted;localStorage.setItem('dd_mute',muted?'1':'0');$('mute').textContent=muted?'🔇':'🔊';};
+
+// ---- game state
+const cv=$('cv'),ctx=cv.getContext('2d');
+let run=null,changes=[],want=0,lastWant=0,state='idle',acc=0,lastT=0,result=null,shake=0,flash=null;
+const held={s:new Set(),l:new Set()};let lastSide=null;
+function computeWant(){const s=held.s.size>0,l=held.l.size>0;if(s&&l)return lastSide==='s'?-1:1;return l?1:s?-1:0;}
+function setWant(){want=computeWant();$('padL').classList.toggle('on',want===1);$('padS').classList.toggle('on',want===-1);if(want!==0&&state==='idle')start();else if(want!==0&&state==='over'&&performance.now()-overAt>1200){reset();want=computeWant();start();}}
+function press(side,id){held[side].add(id);lastSide=side;setWant();}
+function release(side,id){held[side].delete(id);setWant();}
+[['padS','s'],['padL','l']].forEach(([el,side])=>{const b=$(el);
+  b.addEventListener('pointerdown',e=>{e.preventDefault();try{b.setPointerCapture(e.pointerId)}catch(_){ }press(side,'p'+e.pointerId);});
+  ['pointerup','pointercancel','lostpointercapture'].forEach(ev=>b.addEventListener(ev,e=>release(side,'p'+e.pointerId)));
+  b.addEventListener('contextmenu',e=>e.preventDefault());});
+cv.addEventListener('pointerdown',e=>{e.preventDefault();const r=cv.getBoundingClientRect();const side=(e.clientX-r.left)<r.width/2?'s':'l';try{cv.setPointerCapture(e.pointerId)}catch(_){ }cv._side=cv._side||{};cv._side[e.pointerId]=side;press(side,'c'+e.pointerId);});
+['pointerup','pointercancel','lostpointercapture'].forEach(ev=>cv.addEventListener(ev,e=>{const side=cv._side&&cv._side[e.pointerId];if(side){release(side,'c'+e.pointerId);delete cv._side[e.pointerId];}}));
+$('ov').addEventListener('pointerdown',e=>{if(state==='idle'){e.preventDefault();const r=cv.getBoundingClientRect();const side=(e.clientX-r.left)<r.width/2?'s':'l';press(side,'o');const up=()=>{release(side,'o');removeEventListener('pointerup',up);removeEventListener('pointercancel',up)};addEventListener('pointerup',up);addEventListener('pointercancel',up);}});
+const KEYS={ArrowLeft:'s',a:'s',A:'s',ArrowRight:'l',d:'l',D:'l'};
+addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;const s=KEYS[e.key];if(s){e.preventDefault();if(!e.repeat)press(s,'k'+e.key);}else if((e.key===' '||e.key==='Enter')&&state==='over'){e.preventDefault();reset();}});
+addEventListener('keyup',e=>{const s=KEYS[e.key];if(s)release(s,'k'+e.key);});
+addEventListener('blur',()=>{held.s.clear();held.l.clear();setWant();});
+
+function start(){nnaT0=performance.now();nnaHidden=false;nnaRanked=false;nnaTok=null;if(day===WEEK){const want=document.getElementById('ranked').checked;nnaTok=NNA.srvStart('dip-dash',want).then(t=>{nnaRanked=t?t.ranked:(want&&NNA.enter('dip-dash'));return t});}run=DD.createRun(tape);changes=[];lastWant=0;state='play';acc=0;lastT=performance.now();$('ov').classList.add('hide');$('after').style.display='none';beep(660,.12,'square',.06);buzz(15);}
+function reset(){held.s.clear();held.l.clear();want=0;setWant();run=null;result=null;state='idle';
+  $('ov').innerHTML='<div class="big blink" style="color:var(--neon)">HOLD TO PLAY</div><div class="sub">Same tape, new run. First press starts.</div>';$('ov').classList.remove('hide');$('after').style.display='none';hud();draw();}
+$('againBtn').onclick=reset;
+
+function tick(){const g=run.g+1;if(want!==lastWant){changes.push([g,want]);lastWant=want;}
+  const before=run.pos,seg=Math.floor((g-1)/DD.SEG);run.step(want);
+  if(run.pos!==before){beep(run.pos===1?880:run.pos===-1?330:520,.06,'square',.05);buzz(8);}
+  if(run.pos!==0&&g%3===0){const r=run.path[run.path.length-1]/run.path[run.path.length-2]-1;beep(r>=0?740+Math.min(400,r*4e4):300-Math.min(150,-r*4e4),.04,'triangle',.025);}
+  if(!run.done&&g%DD.SEG===0){const sr=run.segRet[run.segRet.length-1];flash={t:performance.now(),txt:`${DD.ASSETS[seg].id} ${pct(sr*100)}`,col:sr>=0?'#39ff14':'#ff3b5c'};beep(1320,.18,'sine',.07);buzz(20);}
+  if(run.done)finish();}
+function loop(t){requestAnimationFrame(loop);if(state==='play'){acc+=Math.min(250,t-lastT)/1000*DD.TPS;lastT=t;while(acc>=1&&state==='play'){acc-=1;tick();}}hud();draw(t);}
+
+function finish(){state='over';overAt=performance.now();result=run.result();held.s.clear();held.l.clear();want=0;$('padL').classList.remove('on');$('padS').classList.remove('on');
+  const strip=DD.strip(result),best=bestRun();let isBest=false;
+  if(!best||result.score>best.score){localStorage.setItem('dd_best_'+day,JSON.stringify({score:result.score,r:DD.encode(changes),strip}));isBest=true;}
+  lastReplay=DD.encode(changes);
+  if(day===WEEK){const nr=NNA.submit('dip-dash',{week:WEEK,seed:WEEK,log:changes.map(c=>[c[0]-1,c[1]]),wallMs:performance.now()-nnaT0,hidden:nnaHidden,claimed:result.score,ranked:nnaRanked,tok:nnaTok});NNA.toast(nr.v.ok?'✔ Verified by replay: '+nr.score+'%':'✘ Not verified: '+nr.v.reasons.join('; '));nnaBoard();window.__lastRun=nr;if(nr.srv)nr.srv.then(x=>{NNA.toast(!x?'Score server unreachable':x.verified?'🌐 Server verified '+x.score+'%'+(x.rank?' · global rank #'+x.rank:''):'🌐 Server rejected: '+(x.reasons||[]).join('; '));nnaBoard()});}
+  if(result.liquidated){shake=18;beep(110,.6,'sawtooth',.08);buzz([90,40,90,40,160]);}else{beep(988,.12);setTimeout(()=>beep(1319,.25),120);buzz([20,30,20]);}
+  const rows=boardRows(),me=rows.find(r=>r.me);
+  let vs='';if(chal){vs=result.score>chal.score?`<div class="sub" style="color:var(--neon)">🏆 You beat @${esc(chal.tag)} by ${(result.score-chal.score).toFixed(2)} pts!</div>`:`<div class="sub" style="color:var(--gold)">@${esc(chal.tag)} still leads by ${(chal.score-result.score).toFixed(2)} pts. Again?</div>`;}
+  $('ov').innerHTML=`<div class="big" style="color:${result.liquidated?'var(--red)':result.score>=0?'var(--neon)':'var(--gold)'}">${result.liquidated?'💀 LIQUIDATED':pct(result.score)}</div>
+   <div class="strip">${strip}</div><div class="sub">Tape #${tape.no} · ${fmt$(result.equity)} · ${result.trades} trades${isBest?' · <b style="color:var(--gold)">NEW BEST</b>':''}</div>
+   <div class="sub">Rank <b>${me?me.rank:'-'}</b> of ${rows.length} on the demo board</div>${vs}`;
+  $('ov').classList.remove('hide');$('after').style.display='block';renderBoard();updateShare();}
+let lastReplay='',overAt=0;
+function bestRun(){try{return JSON.parse(localStorage.getItem('dd_best_'+day)||'null')}catch(e){return null}}
+
+// ---- HUD + drawing
+function hud(){const g=run?run.g:0,seg=Math.min(DD.ASSETS.length-1,Math.floor(Math.max(0,g-1)/DD.SEG)),a=DD.ASSETS[run&&g>0?seg:0];
+  $('hAsset').textContent=a.emoji+' '+a.id;$('hAsset').style.color=a.color;const eq=run?run.eq:DD.CFG.start;$('hEq').textContent=fmt$(eq);$('hEq').className=eq>=DD.CFG.start?'pos':'neg';
+  $('hTime').textContent=((DD.TICKS-g)/DD.TPS).toFixed(1);}
+function size(){const r=cv.getBoundingClientRect(),d=Math.min(2,devicePixelRatio||1);if(cv.width!==Math.round(r.width*d)||cv.height!==Math.round(r.height*d)){cv.width=Math.round(r.width*d);cv.height=Math.round(r.height*d);}ctx.setTransform(d,0,0,d,0,0);return r;}
+function draw(t){const r=size(),W=r.width,H=r.height;ctx.save();if(shake>0){ctx.translate((Math.random()-.5)*shake,(Math.random()-.5)*shake);shake*=.88;if(shake<.5)shake=0;}
+  ctx.fillStyle='#05020c';ctx.fillRect(-20,-20,W+40,H+40);
+  ctx.strokeStyle='#1a1033';ctx.lineWidth=1;for(let x=0;x<W;x+=28){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}for(let y=0;y<H;y+=28){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+  const g=run?run.g:0,seg=Math.min(DD.ASSETS.length-1,Math.floor(Math.max(0,g-1)/DD.SEG)),i=g===0?0:(g-1)%DD.SEG+1,a=DD.ASSETS[seg],P=tape.segs[seg];
+  const n=Math.max(1,i),pts=P.slice(0,n+1);let lo=Math.min(...pts),hi=Math.max(...pts);const pad=Math.max((hi-lo)*.25,P[0]*.012);lo-=pad;hi+=pad;
+  const L=8,R=W-64,T=34,B=H-16,X=k=>L+(R-L)*k/DD.SEG,Y=v=>T+(B-T)*(1-(v-lo)/(hi-lo));
+  // position band
+  const pos=run?run.pos:0;if(pos!==0){ctx.fillStyle=pos>0?'rgba(57,255,20,.07)':'rgba(255,59,92,.08)';ctx.fillRect(0,0,W,H);}
+  // baseline
+  ctx.setLineDash([4,5]);ctx.strokeStyle='#3a2a66';ctx.beginPath();ctx.moveTo(L,Y(P[0]));ctx.lineTo(R,Y(P[0]));ctx.stroke();ctx.setLineDash([]);
+  // area + line
+  ctx.beginPath();for(let k=0;k<=n&&k<pts.length;k++){k?ctx.lineTo(X(k),Y(pts[k])):ctx.moveTo(X(k),Y(pts[k]));}
+  const lx=X(Math.min(n,pts.length-1)),ly=Y(pts[pts.length-1]);
+  ctx.lineTo(lx,B);ctx.lineTo(L,B);ctx.closePath();const gr=ctx.createLinearGradient(0,T,0,B);gr.addColorStop(0,a.color+'55');gr.addColorStop(1,a.color+'00');ctx.fillStyle=gr;ctx.fill();
+  ctx.beginPath();for(let k=0;k<=n&&k<pts.length;k++){k?ctx.lineTo(X(k),Y(pts[k])):ctx.moveTo(X(k),Y(pts[k]));}
+  ctx.strokeStyle=a.color;ctx.lineWidth=3;ctx.shadowColor=a.color;ctx.shadowBlur=12;ctx.stroke();ctx.shadowBlur=0;
+  ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(lx,ly,5,0,7);ctx.fill();
+  // price tag
+  const chg=(pts[pts.length-1]/P[0]-1)*100;ctx.fillStyle=chg>=0?'#39ff14':'#ff3b5c';ctx.font='bold 13px Courier New,monospace';ctx.fillText((chg>=0?'+':'')+chg.toFixed(2)+'%',R+6,Math.max(T+10,Math.min(B,ly+4)));
+  // header text
+  ctx.font='bold 15px Courier New,monospace';ctx.fillStyle=a.color;ctx.fillText(a.emoji+' '+a.name.toUpperCase(),10,22);
+  ctx.textAlign='right';ctx.fillStyle=pos>0?'#39ff14':pos<0?'#ff3b5c':'#9a95c0';ctx.fillText(pos>0?'LONG 3×':pos<0?'SHORT 3×':'T-BILLS',W-10,22);ctx.textAlign='left';
+  // segment progress
+  for(let s=0;s<4;s++){ctx.fillStyle=s<seg?'#ff2bd6':s===seg?'#38f5ff':'#2a1f4a';ctx.fillRect(10+s*((W-20)/4),H-8,(W-20)/4-4,4);}
+  ctx.font='10px Courier New,monospace';ctx.fillStyle='rgba(255,210,63,.75)';ctx.textAlign='right';ctx.fillText('SIMULATED TAPE #'+tape.no,W-10,H-14);ctx.textAlign='left';
+  // liquidation meter
+  if(run){const eq=run.eq/DD.CFG.start,dangerous=eq<0.7;if(dangerous){ctx.fillStyle=`rgba(255,59,92,${0.12+0.1*Math.sin((t||0)/80)})`;ctx.fillRect(0,0,W,H);ctx.fillStyle='#ff3b5c';ctx.font='bold 14px Courier New,monospace';ctx.textAlign='center';ctx.fillText('⚠ MARGIN CALL',W/2,48);ctx.textAlign='left';}}
+  if(flash&&t&&t-flash.t<900){const k=(t-flash.t)/900;ctx.globalAlpha=1-k;ctx.font=`bold ${28+10*k}px Courier New,monospace`;ctx.textAlign='center';ctx.fillStyle=flash.col;ctx.shadowColor=flash.col;ctx.shadowBlur=16;ctx.fillText('🔔 '+flash.txt,W/2,H/2);ctx.shadowBlur=0;ctx.globalAlpha=1;ctx.textAlign='left';}
+  ctx.restore();}
+
+// ---- leaderboard (demo)
+const demo=DD.demoBoard(tape);
+function boardRows(){const rows=demo.map(r=>Object.assign({},r));const b=bestRun();
+  if(b)rows.push({name:'You'+(myTag()!=='anon'?' (@'+myTag()+')':''),score:b.score,strip:b.strip,me:true,at:-1});
+  if(chal&&chal.ok)rows.push({name:'@'+chal.tag+' (challenge)',score:chal.score,strip:chal.strip,ch:true,at:-0.5});
+  return DD.rank(rows);}
+function renderBoard(){$('lb').innerHTML=boardRows().map(r=>`<tr class="${r.me?'me':''} ${r.ch?'ch':''}"><td>${r.rank}</td><td>${esc(r.name)}</td><td>${r.strip}</td><td class="${r.score>=0?'pos':'neg'}">${pct(r.score)}</td></tr>`).join('');}
+
+// ---- sharing
+function myTag(){return ($('tagIn').value||localStorage.getItem('dd_tag')||'anon').replace(/[^A-Za-z0-9_]/g,'').slice(0,15)||'anon';}
+$('tagIn').value=localStorage.getItem('dd_tag')||'';
+$('tagIn').addEventListener('input',()=>{localStorage.setItem('dd_tag',$('tagIn').value.replace(/[^A-Za-z0-9_]/g,'').slice(0,15));updateShare();renderBoard();});
+function shareURL(){return `${BASE}?t=${day}&s=${result.score.toFixed(2)}&n=${encodeURIComponent(myTag())}&r=${lastReplay}`;}
+function shareText(){return `DIP DASH 📉 NetNet Arcade · Tape #${tape.no}\n${result.liquidated?'💀 LIQUIDATED ':''}${pct(result.score)} ${DD.strip(result)}\nGold, NVIDIA, bonds, real estate. Beat my score 👇`;}
+function updateShare(){if(!result)return;$('xBtn').href='https://x.com/intent/post?text='+encodeURIComponent(shareText())+'&url='+encodeURIComponent(shareURL());}
+function cardCanvas(){const c=document.createElement('canvas');c.width=1200;c.height=630;const x=c.getContext('2d');
+  const bg=x.createRadialGradient(600,-100,50,600,200,900);bg.addColorStop(0,'#2a0b4a');bg.addColorStop(1,'#07040f');x.fillStyle=bg;x.fillRect(0,0,1200,630);
+  x.strokeStyle='#ff2bd6';x.lineWidth=8;x.strokeRect(24,24,1152,582);
+  x.textAlign='center';x.fillStyle='#38f5ff';x.font='bold 30px Courier New,monospace';x.fillText('N E T N E T   A R C A D E  ·  C A B I N E T  0 4',600,90);
+  x.fillStyle='#fff';x.shadowColor='#ff2bd6';x.shadowBlur=30;x.font='900 110px Courier New,monospace';x.fillText('DIP DASH',600,200);x.shadowBlur=0;
+  x.fillStyle=result.liquidated?'#ff3b5c':result.score>=0?'#39ff14':'#ffd23f';x.shadowColor=x.fillStyle;x.shadowBlur=24;x.font='900 120px Courier New,monospace';x.fillText(result.liquidated?'LIQUIDATED':pct(result.score),600,345);x.shadowBlur=0;
+  x.font='64px sans-serif';x.fillText(DD.strip(result),600,435);
+  x.fillStyle='#eae6ff';x.font='bold 32px Courier New,monospace';x.fillText(`@${myTag()} · Tape #${tape.no} · can you beat it?`,600,510);
+  x.fillStyle='#ffd23f';x.font='22px Courier New,monospace';x.fillText('Simulated tape · test credits prototype · NetNet Arcade',600,565);return c;}
+const cardBlob=()=>new Promise(res=>cardCanvas().toBlob(res,'image/png'));
+$('shareBtn').onclick=async()=>{if(!result)return;const url=shareURL(),text=shareText();
+  try{const blob=await cardBlob();const file=new File([blob],'dip-dash-score.png',{type:'image/png'});
+    if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],text:text+'\n'+url,title:'DIP DASH'});return;}
+    if(navigator.share){await navigator.share({title:'DIP DASH',text,url});return;}}catch(e){if(e&&e.name==='AbortError')return;}
+  try{await navigator.clipboard.writeText(text+'\n'+url);toast('Challenge copied. Paste it anywhere!');}catch(e){prompt('Copy your challenge link:',url);}};
+$('copyBtn').onclick=async()=>{try{await navigator.clipboard.writeText(shareURL());toast('Link copied');}catch(e){prompt('Copy your challenge link:',shareURL());}};
+$('cardBtn').onclick=async()=>{const blob=await cardBlob();const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`dip-dash-tape${tape.no}.png`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),4000);};
+
+// ---- economics calc
+function calc(){const e=DD.economics(Math.max(0,Math.floor(+$('cE').value||0)),Math.max(0,+$('cF').value||0));
+  $('kG').textContent=fmt$(e.gross);$('kP').textContent=fmt$(e.prize);$('kT').textContent=fmt$(e.treasury);$('kY').textContent=fmt$(e.treasury*365);
+  $('kW').textContent=e.winners?`Top ${e.winners.toLocaleString('en-US')} runs paid. 1st ${fmt$(e.payouts[0])}, 2nd ${fmt$(e.payouts[1]||0)}, 3rd ${fmt$(e.payouts[2]||0)}. Seed for tomorrow ${fmt$(e.seed)}.`:'';}
+['cE','cF'].forEach(id=>$(id).addEventListener('input',calc));
+
+renderBoard();calc();hud();requestAnimationFrame(loop);
+window.__DD={get state(){return state},get result(){return result},get changes(){return changes},shareURL:()=>result&&shareURL(),tape};
+})();
+</script></body></html>

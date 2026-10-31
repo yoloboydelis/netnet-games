@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>GAME NAME · NetNet Arcade (prototype)</title><meta name="robots" content="noindex">
+<meta property="og:title" content="GAME NAME · NetNet Arcade"><meta property="og:description" content="ONE-LINE PITCH. Prototype for the NetNet community &amp; devs, feedback welcome.">
+<meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/home.png"><meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../_template/arcade.css">
+<script>window.NN_GAME={game:"template",title:"TEMPLATE",color:"#38f5ff",unit:"taps",demoBase:30};/* window.NN_ANALYTICS_ENDPOINT="https://..." to turn analytics on */</script>
+<script src="../_template/arcade.js"></script></head><body>
+<div class="nn-wrap"><div class="nn-top"><a href="../">← NETNET ARCADE</a><span class="nn-pill">CABINET XX · PROTOTYPE</span></div>
+<h1 class="nn-title">TEMPLATE</h1><p class="nn-sub">Tap as many times as you can in 5 seconds. Same rules for everyone, skill only.</p>
+<div class="nn-hud"><span id="t">5.0s</span><span id="s">0</span></div>
+<div class="nn-stage"><button class="nn-btn full" id="go" style="min-height:160px;font-size:28px">START</button></div>
+<div class="nn-card" id="forge"></div></div>
+<script>
+let n=0,t0=0,on=false;const go=document.getElementById("go");NN.boot();NN.forge(document.getElementById("forge"),{coin:"$TPL"});NN.footer();
+go.onclick=()=>{if(!on){on=true;n=0;t0=performance.now();go.textContent="TAP!";NN.track("start");tick();return}n++;s.textContent=n};
+function tick(){const left=5-(performance.now()-t0)/1000;t.textContent=Math.max(0,left).toFixed(1)+"s";if(left>0)return requestAnimationFrame(tick);on=false;go.textContent="START";NN.end({score:n})}
+NN.onRestart=()=>{};
+</script></body></html>
