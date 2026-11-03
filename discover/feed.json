@@ -5,6 +5,198 @@
  "feed_url": "https://yoloboydelis.github.io/netnet-games/discover/feed.json",
  "items": [
   {
+   "id": "perfectly-imperfective",
+   "url": "https://perfectlyimperfective.radimirsi.com/",
+   "external_url": "https://x.com/RadimirSi/status/2117467616403235186",
+   "title": "Perfectly Imperfective by @RadimirSi",
+   "content_text": "A free browser visual novel where you learn Russian at a strict university. Play: https://perfectlyimperfective.radimirsi.com/ · X post: https://x.com/RadimirSi/status/2117467616403235186",
+   "date_published": "2026-11-03T00:00:00Z",
+   "tags": [
+    "story",
+    "trivia",
+    "casual"
+   ]
+  },
+  {
+   "id": "hebrew-letter-drop",
+   "url": "https://claude.ai/artifact/UqyHbwqNEFe2fzBeowZCna",
+   "external_url": "https://x.com/lili201007/status/2117460790282264974",
+   "title": "Hebrew Letter Drop by @lili201007",
+   "content_text": "Hebrew letters fall and you type them; get accurate and whole words drop. Play: https://claude.ai/artifact/UqyHbwqNEFe2fzBeowZCna · X post: https://x.com/lili201007/status/2117460790282264974",
+   "date_published": "2026-11-03T00:00:00Z",
+   "tags": [
+    "trivia",
+    "casual",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "hjkl-vim",
+   "url": "https://hjkl.duy.run",
+   "external_url": "https://x.com/techdaily24/status/2117497506560975169",
+   "title": "hjkl by shared by @techdaily24 (made by duy)",
+   "content_text": "A little browser game for learning Vim movement by doing. Play: https://hjkl.duy.run · X post: https://x.com/techdaily24/status/2117497506560975169",
+   "date_published": "2026-11-03T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "trivia"
+   ]
+  },
+  {
+   "id": "spaghettify",
+   "url": "https://www.playkuul.com/games/?slug=spaghettify",
+   "external_url": "https://x.com/ForkedPush/status/2117292175377547717",
+   "title": "There Is a Black Hole in My Kitchen by @ForkedPush",
+   "content_text": "A three.js toy where a black hole swallows your kitchen, piece by piece. Play: https://www.playkuul.com/games/?slug=spaghettify · X post: https://x.com/ForkedPush/status/2117292175377547717",
+   "date_published": "2026-11-02T00:00:00Z",
+   "tags": [
+    "physics",
+    "3d",
+    "casual",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "tactical-cowboy",
+   "url": "https://tactical-cowboy.tesana.com/",
+   "external_url": "https://x.com/Class_Punk/status/2117174021745725900",
+   "title": "Tactical Cowboy by @Class_Punk",
+   "content_text": "A Wild West arena FPS with bots, still growing version by version. Play: https://tactical-cowboy.tesana.com/ · X post: https://x.com/Class_Punk/status/2117174021745725900",
+   "date_published": "2026-11-02T00:00:00Z",
+   "tags": [
+    "shooter",
+    "3d",
+    "action",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "wandering-blade-tavern",
+   "url": "https://thewanderingbladetavern.com/play.html",
+   "external_url": "https://x.com/WBladeTavern/status/2117353554448986278",
+   "title": "The Wandering Blade Tavern by @WBladeTavern",
+   "content_text": "A sword and sorcery RPG built for players who cannot gather a group. Play: https://thewanderingbladetavern.com/play.html · X post: https://x.com/WBladeTavern/status/2117353554448986278",
+   "date_published": "2026-11-02T00:00:00Z",
+   "tags": [
+    "adventure",
+    "story"
+   ]
+  },
+  {
+   "id": "shroom-shaman",
+   "url": "https://redrummy79-cpu.github.io/shroom-shaman/",
+   "external_url": "https://x.com/Redrum_lI/status/2117311181685924125",
+   "title": "Shroom Shaman by @Redrum_lI",
+   "content_text": "A frog-forest peg shooter made with Grok Bot. Play: https://redrummy79-cpu.github.io/shroom-shaman/ · X post: https://x.com/Redrum_lI/status/2117311181685924125",
+   "date_published": "2026-11-02T00:00:00Z",
+   "tags": [
+    "arcade",
+    "puzzle",
+    "casual",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "snake-garden",
+   "url": "https://hikarilucy.itch.io/snake-garden",
+   "external_url": "https://x.com/homebrewhive/status/2117283308945993741",
+   "title": "Snake Garden by shared by @homebrewhive (made by HikariLucy)",
+   "content_text": "A PICO-8 snake with a garden mode that turns your trail into pixel art. Play: https://hikarilucy.itch.io/snake-garden · X post: https://x.com/homebrewhive/status/2117283308945993741",
+   "date_published": "2026-11-02T00:00:00Z",
+   "tags": [
+    "arcade",
+    "casual"
+   ]
+  },
+  {
+   "id": "dead-road",
+   "url": "https://keida-444.itch.io/dead-road",
+   "external_url": "https://x.com/dllone22/status/2117277281119068250",
+   "title": "Dead Road by @dllone22",
+   "content_text": "An early Godot roguelike about surviving the road ahead. Play: https://keida-444.itch.io/dead-road · X post: https://x.com/dllone22/status/2117277281119068250",
+   "date_published": "2026-11-02T00:00:00Z",
+   "tags": [
+    "action",
+    "survival"
+   ]
+  },
+  {
+   "id": "giga-legend",
+   "url": "https://serene-valkyrie-fcc0d5.netlify.app",
+   "external_url": "https://x.com/Rosh_w3/status/2117178396916809784",
+   "title": "Giga Legend by @Rosh_w3",
+   "content_text": "A solo-built action game that started as an idea and went live. Play: https://serene-valkyrie-fcc0d5.netlify.app · X post: https://x.com/Rosh_w3/status/2117178396916809784",
+   "date_published": "2026-11-02T00:00:00Z",
+   "tags": [
+    "action",
+    "arcade"
+   ]
+  },
+  {
+   "id": "containment-strike",
+   "url": "https://marusfaulkner.github.io/containment-strike/",
+   "external_url": "https://x.com/MarcusFQuality/status/2117301830703063199",
+   "title": "Quality Rush: Containment Strike by @MarcusFQuality",
+   "content_text": "Read warehouse labels and tag suspect boxes HOLD before the truck leaves. Play: https://marusfaulkner.github.io/containment-strike/ · X post: https://x.com/MarcusFQuality/status/2117301830703063199",
+   "date_published": "2026-11-02T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "arcade",
+    "casual"
+   ]
+  },
+  {
+   "id": "glass-break",
+   "url": "https://starknightt.github.io/glass-break/",
+   "external_url": "https://x.com/aigamespotlight/status/2117302856932057329",
+   "title": "Glass Break by shared by @aigamespotlight (made by @prasenx)",
+   "content_text": "Smash glass where every sound is generated by code, no audio files. Play: https://starknightt.github.io/glass-break/ · X post: https://x.com/aigamespotlight/status/2117302856932057329",
+   "date_published": "2026-11-02T00:00:00Z",
+   "tags": [
+    "physics",
+    "casual",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "moonlight-mischief",
+   "url": "https://moonlight-mischief-jack-1102.lively-rhea-3581.chatgpt.site/",
+   "external_url": "https://x.com/ManycoreTech/status/2117235741726286268",
+   "title": "Moonlight Mischief by @ManycoreTech",
+   "content_text": "Catch pumpkins, dodge ghosts and trust a witch in a 60-second Halloween run. Play: https://moonlight-mischief-jack-1102.lively-rhea-3581.chatgpt.site/ · X post: https://x.com/ManycoreTech/status/2117235741726286268",
+   "date_published": "2026-11-02T00:00:00Z",
+   "tags": [
+    "arcade",
+    "casual",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "stick-ascension",
+   "url": "https://stick-ascension.onrender.com/",
+   "external_url": "https://x.com/Dhivahar_X/status/2117379514036854978",
+   "title": "Stick Ascension by @Dhivahar_X",
+   "content_text": "A stick-figure fighter: beat the computer or challenge a friend online. Play: https://stick-ascension.onrender.com/ · X post: https://x.com/Dhivahar_X/status/2117379514036854978",
+   "date_published": "2026-11-02T00:00:00Z",
+   "tags": [
+    "action",
+    "multiplayer",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "benin-life",
+   "url": "https://playbeninlife.app",
+   "external_url": "https://x.com/benin_life_/status/2117402638547333379",
+   "title": "Benin Life by @benin_life_",
+   "content_text": "A free online life game set in Benin City, Nigeria. Play: https://playbeninlife.app · X post: https://x.com/benin_life_/status/2117402638547333379",
+   "date_published": "2026-11-02T00:00:00Z",
+   "tags": [
+    "story",
+    "casual"
+   ]
+  },
+  {
    "id": "tibo-dog",
    "url": "https://tibo.dog/",
    "external_url": "https://x.com/RoundtableSpace/status/2117093087117774957",
@@ -441,190 +633,6 @@
    "tags": [
     "strategy",
     "casual"
-   ]
-  },
-  {
-   "id": "bokken-ghost-fire",
-   "url": "https://plinthcybernetics.itch.io/bokken-ghost-fire",
-   "external_url": "https://x.com/plinth_games/status/2116361152418779234",
-   "title": "Bokken: Ghost Fire by @plinth_games",
-   "content_text": "An AI Browser Game Jam 5 entry with ghostly sword combat. Play: https://plinthcybernetics.itch.io/bokken-ghost-fire · X post: https://x.com/plinth_games/status/2116361152418779234",
-   "date_published": "2026-10-31T00:00:00Z",
-   "tags": [
-    "action",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "ramp-rush",
-   "url": "https://tryramprush.com/",
-   "external_url": "https://x.com/mazino213/status/2116387688756752853",
-   "title": "Ramp Rush by @mazino213",
-   "content_text": "Race up a moving flatbed ramp against AI rivals in 3D, free vs bots. Play: https://tryramprush.com/ · X post: https://x.com/mazino213/status/2116387688756752853",
-   "date_published": "2026-10-31T00:00:00Z",
-   "tags": [
-    "racing",
-    "3d",
-    "multiplayer"
-   ]
-  },
-  {
-   "id": "scifistory",
-   "url": "https://rosebud.ai/play/scifistory",
-   "external_url": "https://x.com/SelfishGamingCo/status/2116355670798954611",
-   "title": "SciFiStory by @SelfishGamingCo",
-   "content_text": "A relaxed side-scrolling sci-fi MMORPG to grind and craft in. Play: https://rosebud.ai/play/scifistory · X post: https://x.com/SelfishGamingCo/status/2116355670798954611",
-   "date_published": "2026-10-31T00:00:00Z",
-   "tags": [
-    "adventure",
-    "multiplayer",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "quicksix-word-rush",
-   "url": "https://playgama.ai/play/fbsu2dm6rxthhy",
-   "external_url": "https://x.com/MaknCryptoBacon/status/2116179098976264691",
-   "title": "QuickSix: Word Rush by @MaknCryptoBacon",
-   "content_text": "Spell as many words as you can in three minutes, then chase your best. Play: https://playgama.ai/play/fbsu2dm6rxthhy · X post: https://x.com/MaknCryptoBacon/status/2116179098976264691",
-   "date_published": "2026-10-30T00:00:00Z",
-   "tags": [
-    "puzzle",
-    "casual"
-   ]
-  },
-  {
-   "id": "nil-by-mouth",
-   "url": "https://z13labs.itch.io/nil-by-mouth",
-   "external_url": "https://x.com/z13labs/status/2116230844872605777",
-   "title": "Nil By Mouth by @z13labs",
-   "content_text": "Night shift surgery on Halloween, where some patients are actual vampires. Play: https://z13labs.itch.io/nil-by-mouth · X post: https://x.com/z13labs/status/2116230844872605777",
-   "date_published": "2026-10-30T00:00:00Z",
-   "tags": [
-    "story",
-    "casual"
-   ]
-  },
-  {
-   "id": "owambe-rush",
-   "url": "https://mactrixxr.space/owamberush/",
-   "external_url": "https://x.com/johnokparaeke/status/2116304271859913091",
-   "title": "Owambe Rush by shared by @johnokparaeke (made by Mactrix XR)",
-   "content_text": "Seat the guests and serve the jollof to keep a chaotic Nigerian party running. Play: https://mactrixxr.space/owamberush/ · X post: https://x.com/johnokparaeke/status/2116304271859913091",
-   "date_published": "2026-10-30T00:00:00Z",
-   "tags": [
-    "casual",
-    "strategy"
-   ]
-  },
-  {
-   "id": "pacific-dogfight-arcade",
-   "url": "https://top-fun.xyz/",
-   "external_url": "https://x.com/angelcreative/status/2116233135855992988",
-   "title": "Pacific Dogfight Arcade by @angelcreative",
-   "content_text": "Arcade air combat over the ocean, rebuilt with sharper graphics. Play: https://top-fun.xyz/ · X post: https://x.com/angelcreative/status/2116233135855992988",
-   "date_published": "2026-10-30T00:00:00Z",
-   "tags": [
-    "arcade",
-    "shooter",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "thread",
-   "url": "https://playgama.ai/play/cfr3gkzzlpepee",
-   "external_url": "https://x.com/goofymmm232/status/2116161594833125405",
-   "title": "Thread by @goofymmm232",
-   "content_text": "A small thread puzzle game published on Playgama. Play: https://playgama.ai/play/cfr3gkzzlpepee · X post: https://x.com/goofymmm232/status/2116161594833125405",
-   "date_published": "2026-10-30T00:00:00Z",
-   "tags": [
-    "puzzle",
-    "casual"
-   ]
-  },
-  {
-   "id": "snake-travels-io",
-   "url": "https://playgama.ai/play/zofygdwuke5c5m",
-   "external_url": "https://x.com/Oxirogames/status/2116236001064673308",
-   "title": "Snake Travels: io by @Oxirogames",
-   "content_text": "Grow your snake across the map and outlast rival snakes. Play: https://playgama.ai/play/zofygdwuke5c5m · X post: https://x.com/Oxirogames/status/2116236001064673308",
-   "date_published": "2026-10-30T00:00:00Z",
-   "tags": [
-    "arcade",
-    "casual"
-   ]
-  },
-  {
-   "id": "monkey-business",
-   "url": "https://criticalbananas.com/game",
-   "external_url": "https://x.com/dovrikson/status/2116144461411758401",
-   "title": "Monkey Business by @dovrikson",
-   "content_text": "Dodge the mess and grab the bananas for one more run. Play: https://criticalbananas.com/game · X post: https://x.com/dovrikson/status/2116144461411758401",
-   "date_published": "2026-10-30T00:00:00Z",
-   "tags": [
-    "arcade",
-    "casual"
-   ]
-  },
-  {
-   "id": "jump-scare-doors",
-   "url": "https://random.express/jump-scare-doors/",
-   "external_url": "https://x.com/random__express/status/2116249938300706875",
-   "title": "Jump Scare Doors by @random__express",
-   "content_text": "Open creepy doors and see how many scares you survive before quitting. Play: https://random.express/jump-scare-doors/ · X post: https://x.com/random__express/status/2116249938300706875",
-   "date_published": "2026-10-30T00:00:00Z",
-   "tags": [
-    "casual"
-   ]
-  },
-  {
-   "id": "codesweeper",
-   "url": "https://www.codesweeper.fun/",
-   "external_url": "https://x.com/jasoncashdollar/status/2116280067391434919",
-   "title": "Codesweeper by @jasoncashdollar",
-   "content_text": "Play minesweeper on anyone's GitHub contribution graph. Play: https://www.codesweeper.fun/ · X post: https://x.com/jasoncashdollar/status/2116280067391434919",
-   "date_published": "2026-10-30T00:00:00Z",
-   "tags": [
-    "puzzle",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "exozero-impedus",
-   "url": "https://exozero.net/",
-   "external_url": "https://x.com/alithner/status/2116218740920430714",
-   "title": "EXOZERO: Impedus by @alithner",
-   "content_text": "A runner made of light where each world paints itself in as you go. Play: https://exozero.net/ · X post: https://x.com/alithner/status/2116218740920430714",
-   "date_published": "2026-10-30T00:00:00Z",
-   "tags": [
-    "arcade",
-    "action"
-   ]
-  },
-  {
-   "id": "whosesong",
-   "url": "https://whosesong.vercel.app/",
-   "external_url": "https://x.com/anmolmaggon/status/2116110940315983989",
-   "title": "WhoseSong? by @anmolmaggon",
-   "content_text": "Everyone picks a song in secret, then you guess whose is whose. Play: https://whosesong.vercel.app/ · X post: https://x.com/anmolmaggon/status/2116110940315983989",
-   "date_published": "2026-10-30T00:00:00Z",
-   "tags": [
-    "multiplayer",
-    "casual",
-    "trivia"
-   ]
-  },
-  {
-   "id": "robot-no-water",
-   "url": "https://robot-no-water.vercel.app/",
-   "external_url": "https://x.com/mostlyunsupAI/status/2116274341281427535",
-   "title": "Don't Touch the Water by @mostlyunsupAI",
-   "content_text": "Carry a letter around the world as a paper robot that must never touch water. Play: https://robot-no-water.vercel.app/ · X post: https://x.com/mostlyunsupAI/status/2116274341281427535",
-   "date_published": "2026-10-30T00:00:00Z",
-   "tags": [
-    "arcade",
-    "casual",
-    "vibe-coded"
    ]
   }
  ]
