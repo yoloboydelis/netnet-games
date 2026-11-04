@@ -5,6 +5,168 @@
  "feed_url": "https://yoloboydelis.github.io/netnet-games/discover/feed.json",
  "items": [
   {
+   "id": "mizumichi",
+   "url": "https://domandev.itch.io/mizumichi",
+   "external_url": "https://x.com/domandev/status/2117867139625546118",
+   "title": "Mizumichi by @domandev",
+   "content_text": "Guide spring water down rice terraces in a calm pixel-art puzzle. Play: https://domandev.itch.io/mizumichi · X post: https://x.com/domandev/status/2117867139625546118",
+   "date_published": "2026-11-04T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "casual"
+   ]
+  },
+  {
+   "id": "mindtrap",
+   "url": "https://mindtrap.app/",
+   "external_url": "https://x.com/roadsteralex/status/2117829479577931825",
+   "title": "MINDTRAP by @roadsteralex",
+   "content_text": "Plan routes on a shared 3D board, defend your ground and sabotage your rival. Play: https://mindtrap.app/ · X post: https://x.com/roadsteralex/status/2117829479577931825",
+   "date_published": "2026-11-04T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "strategy",
+    "3d",
+    "multiplayer"
+   ]
+  },
+  {
+   "id": "chair-champions",
+   "url": "https://bucket-full-games.itch.io/chair-champions",
+   "external_url": "https://x.com/BucketFullGames/status/2117875109633405000",
+   "title": "CHAIR Champions by @BucketFullGames",
+   "content_text": "A game-jam racer where you speed down tracks in an office chair. Play: https://bucket-full-games.itch.io/chair-champions · X post: https://x.com/BucketFullGames/status/2117875109633405000",
+   "date_published": "2026-11-04T00:00:00Z",
+   "tags": [
+    "racing",
+    "physics",
+    "casual"
+   ]
+  },
+  {
+   "id": "yoisho-mochi",
+   "url": "https://mochi-game-lime.vercel.app/",
+   "external_url": "https://x.com/ianwongux/status/2117829462440259888",
+   "title": "Yoisho! Mochi Pounding by @ianwongux",
+   "content_text": "Tap on the beat to pound mochi and dodge your partner's fake-outs. Play: https://mochi-game-lime.vercel.app/ · X post: https://x.com/ianwongux/status/2117829462440259888",
+   "date_published": "2026-11-04T00:00:00Z",
+   "tags": [
+    "casual",
+    "arcade"
+   ]
+  },
+  {
+   "id": "seal-choir",
+   "url": "https://share.combos.game/p/4733450",
+   "external_url": "https://x.com/mumuuuuumo/status/2117877099247948012",
+   "title": "Seal Choir by @mumuuuuumo",
+   "content_text": "Conduct an a cappella choir sung entirely by seals. Sound on. Play: https://share.combos.game/p/4733450 · X post: https://x.com/mumuuuuumo/status/2117877099247948012",
+   "date_published": "2026-11-04T00:00:00Z",
+   "tags": [
+    "casual"
+   ]
+  },
+  {
+   "id": "amegawa",
+   "url": "https://amegawa.grok.me/",
+   "external_url": "https://x.com/AspenthOfficial/status/2117820508037075363",
+   "title": "AMEGAWA: Valley of Rain by @AspenthOfficial",
+   "content_text": "First-person horror: follow a missing sister's postcard into a valley no map names. Play: https://amegawa.grok.me/ · X post: https://x.com/AspenthOfficial/status/2117820508037075363",
+   "date_published": "2026-11-04T00:00:00Z",
+   "tags": [
+    "story",
+    "adventure",
+    "3d"
+   ]
+  },
+  {
+   "id": "bell-migaki",
+   "url": "https://foundrybell.itch.io/bell-migaki-shokunin-peko",
+   "external_url": "https://x.com/FoundryBell/status/2117899714595266579",
+   "title": "Bell-Migaki by @FoundryBell",
+   "content_text": "Polish a grimy bell to a shine in 60 frantic seconds. Play: https://foundrybell.itch.io/bell-migaki-shokunin-peko · X post: https://x.com/FoundryBell/status/2117899714595266579",
+   "date_published": "2026-11-04T00:00:00Z",
+   "tags": [
+    "casual",
+    "arcade"
+   ]
+  },
+  {
+   "id": "startup-simulator",
+   "url": "https://austinbuhltech.com/work/startup-sim/",
+   "external_url": "https://x.com/buhlaustin/status/2117825209243685131",
+   "title": "Startup Simulator by @buhlaustin",
+   "content_text": "Take a company from garage to IPO: fundraising, cap table and survival. Play: https://austinbuhltech.com/work/startup-sim/ · X post: https://x.com/buhlaustin/status/2117825209243685131",
+   "date_published": "2026-11-04T00:00:00Z",
+   "tags": [
+    "strategy",
+    "casual",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "middle-aged-makeover",
+   "url": "https://games.kininarunote34.com/play/ojisan/",
+   "external_url": "https://x.com/kininarunote34/status/2117782240742744181",
+   "title": "Middle-Aged Makeover by @kininarunote34",
+   "content_text": "Give a middle-aged guy a full makeover. Silly, free and phone-friendly. Play: https://games.kininarunote34.com/play/ojisan/ · X post: https://x.com/kininarunote34/status/2117782240742744181",
+   "date_published": "2026-11-04T00:00:00Z",
+   "tags": [
+    "casual"
+   ]
+  },
+  {
+   "id": "boosterpedia",
+   "url": "https://boosterpedia.app/",
+   "external_url": "https://x.com/boosterpedia/status/2117800856699510930",
+   "title": "Boosterpedia by @boosterpedia",
+   "content_text": "Open booster packs where every Wikipedia article is a card, rarer by pageviews. Play: https://boosterpedia.app/ · X post: https://x.com/boosterpedia/status/2117800856699510930",
+   "date_published": "2026-11-04T00:00:00Z",
+   "tags": [
+    "cards",
+    "trivia",
+    "casual"
+   ]
+  },
+  {
+   "id": "glamis-dunes",
+   "url": "https://iotdatabase.github.io/glamis_game/",
+   "external_url": "https://x.com/timothytech2025/status/2117676313154908474",
+   "title": "Glamis Dunes by @timothytech2025",
+   "content_text": "Rip an off-roader across giant sand dunes in a 3D desert sim built with Claude. Play: https://iotdatabase.github.io/glamis_game/ · X post: https://x.com/timothytech2025/status/2117676313154908474",
+   "date_published": "2026-11-03T00:00:00Z",
+   "tags": [
+    "racing",
+    "3d",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "cupquake",
+   "url": "https://bezty.itch.io/cupquake",
+   "external_url": "https://x.com/beztyart/status/2117726407002317206",
+   "title": "CUPQUAKE by @beztyart",
+   "content_text": "Run a cupcake kiosk on a lonely highway full of weird clients and anomalies. Play: https://bezty.itch.io/cupquake · X post: https://x.com/beztyart/status/2117726407002317206",
+   "date_published": "2026-11-03T00:00:00Z",
+   "tags": [
+    "cards",
+    "story"
+   ]
+  },
+  {
+   "id": "a-goose-tale",
+   "url": "https://agoosetale.com/",
+   "external_url": "https://x.com/Rahzell83/status/2117648097476018316",
+   "title": "A Goose Tale by @Rahzell83",
+   "content_text": "Lead a gander with a torch through the night, escaping rats to reunite his family. Play: https://agoosetale.com/ · X post: https://x.com/Rahzell83/status/2117648097476018316",
+   "date_published": "2026-11-03T00:00:00Z",
+   "tags": [
+    "adventure",
+    "3d",
+    "action"
+   ]
+  },
+  {
    "id": "perfectly-imperfective",
    "url": "https://perfectlyimperfective.radimirsi.com/",
    "external_url": "https://x.com/RadimirSi/status/2117467616403235186",
@@ -471,168 +633,6 @@
     "sports",
     "arcade",
     "vibe-coded"
-   ]
-  },
-  {
-   "id": "ransom-express",
-   "url": "https://aimerscoding.itch.io/ransom-express",
-   "external_url": "https://x.com/umairzia700/status/2116708845884252381",
-   "title": "Ransom Express by @umairzia700",
-   "content_text": "A bomb train races to the city and you're holding the ransom bag. Play: https://aimerscoding.itch.io/ransom-express · X post: https://x.com/umairzia700/status/2116708845884252381",
-   "date_published": "2026-11-01T00:00:00Z",
-   "tags": [
-    "action",
-    "3d",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "elderwake",
-   "url": "https://www.elderwake.dev/",
-   "external_url": "https://x.com/Mor1ight/status/2116765898711224814",
-   "title": "Elderwake by @Mor1ight",
-   "content_text": "Pilot a nimble mech against colossal monsters in a ruined city. Play: https://www.elderwake.dev/ · X post: https://x.com/Mor1ight/status/2116765898711224814",
-   "date_published": "2026-11-01T00:00:00Z",
-   "tags": [
-    "action",
-    "3d"
-   ]
-  },
-  {
-   "id": "padel-legacy",
-   "url": "https://rjcalvente.itch.io/padel-legacy",
-   "external_url": "https://x.com/RikypeTW/status/2116697450509689148",
-   "title": "Padel Legacy by @RikypeTW",
-   "content_text": "Build a padel player's career from rookie to legend. Play: https://rjcalvente.itch.io/padel-legacy · X post: https://x.com/RikypeTW/status/2116697450509689148",
-   "date_published": "2026-11-01T00:00:00Z",
-   "tags": [
-    "sports",
-    "strategy"
-   ]
-  },
-  {
-   "id": "tiny-racers",
-   "url": "https://playgama.ai/play/egd4kelrklbavz",
-   "external_url": "https://x.com/MummyBeanYT/status/2116652814650823104",
-   "title": "Tiny Racers by @MummyBeanYT",
-   "content_text": "Pocket-sized cars, tight tracks and quick races. Play: https://playgama.ai/play/egd4kelrklbavz · X post: https://x.com/MummyBeanYT/status/2116652814650823104",
-   "date_published": "2026-10-31T00:00:00Z",
-   "tags": [
-    "racing",
-    "arcade",
-    "casual"
-   ]
-  },
-  {
-   "id": "shion-becomes-a-witch",
-   "url": "https://halshion.itch.io/shion-becomes-a-witch",
-   "external_url": "https://x.com/HalGamePoet/status/2116472932897878430",
-   "title": "Shion Becomes a Witch by @HalGamePoet",
-   "content_text": "Train an apprentice witch in elemental magic and face tougher foes. Play: https://halshion.itch.io/shion-becomes-a-witch · X post: https://x.com/HalGamePoet/status/2116472932897878430",
-   "date_published": "2026-10-31T00:00:00Z",
-   "tags": [
-    "adventure",
-    "action"
-   ]
-  },
-  {
-   "id": "thirteenth-bell",
-   "url": "https://supposed-crimson-nb8.caffeine.xyz/",
-   "external_url": "https://x.com/leftonredtweets/status/2116593049148985390",
-   "title": "The Thirteenth Bell by @leftonredtweets",
-   "content_text": "Find three fragments and free a gothic manor from its endless night. Play: https://supposed-crimson-nb8.caffeine.xyz/ · X post: https://x.com/leftonredtweets/status/2116593049148985390",
-   "date_published": "2026-10-31T00:00:00Z",
-   "tags": [
-    "puzzle",
-    "adventure",
-    "story"
-   ]
-  },
-  {
-   "id": "microcosm-io",
-   "url": "https://microcosm.onrender.com/",
-   "external_url": "https://x.com/penguingrenade/status/2116584038639034773",
-   "title": "Microcosm by @penguingrenade",
-   "content_text": "A quick .io-style arena built in a day. Play: https://microcosm.onrender.com/ · X post: https://x.com/penguingrenade/status/2116584038639034773",
-   "date_published": "2026-10-31T00:00:00Z",
-   "tags": [
-    "multiplayer",
-    "arcade"
-   ]
-  },
-  {
-   "id": "glintblade",
-   "url": "https://pomykalakyle.github.io/glintblade/",
-   "external_url": "https://x.com/KylePomykala/status/2116648126232826068",
-   "title": "Glintblade by @KylePomykala",
-   "content_text": "A pixel-art blade adventure an AI built overnight. Play: https://pomykalakyle.github.io/glintblade/ · X post: https://x.com/KylePomykala/status/2116648126232826068",
-   "date_published": "2026-10-31T00:00:00Z",
-   "tags": [
-    "action",
-    "adventure",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "snakes-death-ladders",
-   "url": "https://practice-production-f40b.up.railway.app/",
-   "external_url": "https://x.com/0xCaps/status/2116652462702813475",
-   "title": "Snakes & (Death) Ladders by @0xCaps",
-   "content_text": "2-6 players race a board where ladders collapse and snakes bite back. Play: https://practice-production-f40b.up.railway.app/ · X post: https://x.com/0xCaps/status/2116652462702813475",
-   "date_published": "2026-10-31T00:00:00Z",
-   "tags": [
-    "multiplayer",
-    "party",
-    "3d"
-   ]
-  },
-  {
-   "id": "halloween-escape-room",
-   "url": "https://halloween-escape-room.pplx.app/",
-   "external_url": "https://x.com/jeffgrimes9/status/2116361674370453884",
-   "title": "Halloween Escape Room by @jeffgrimes9 (built with Perplexity Computer)",
-   "content_text": "Escape a haunted house in a timed, nine-room 90s-style puzzle adventure. Play: https://halloween-escape-room.pplx.app/ · X post: https://x.com/jeffgrimes9/status/2116361674370453884",
-   "date_published": "2026-10-31T00:00:00Z",
-   "tags": [
-    "puzzle",
-    "adventure",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "vipera",
-   "url": "https://playgama.ai/play/frocp3utskw75l",
-   "external_url": "https://x.com/Hugoropmx/status/2116446208118104097",
-   "title": "Vipera by @Hugoropmx",
-   "content_text": "A quick arcade game published on Playgama. Play: https://playgama.ai/play/frocp3utskw75l · X post: https://x.com/Hugoropmx/status/2116446208118104097",
-   "date_published": "2026-10-31T00:00:00Z",
-   "tags": [
-    "arcade",
-    "casual"
-   ]
-  },
-  {
-   "id": "ox-grid-clash",
-   "url": "https://playgama.ai/play/ki2hz2kbbk37kc",
-   "external_url": "https://x.com/OX_KICK/status/2116431265519775983",
-   "title": "OX Grid Clash by @OX_KICK",
-   "content_text": "Noughts-and-crosses style grid battles with a competitive twist. Play: https://playgama.ai/play/ki2hz2kbbk37kc · X post: https://x.com/OX_KICK/status/2116431265519775983",
-   "date_published": "2026-10-31T00:00:00Z",
-   "tags": [
-    "puzzle",
-    "strategy"
-   ]
-  },
-  {
-   "id": "trader-simulator",
-   "url": "https://playgama.ai/play/fywbqg3suyv45k",
-   "external_url": "https://x.com/kassirgames/status/2116357522164748643",
-   "title": "Trader Simulator by @kassirgames",
-   "content_text": "Buy low, sell high and grow a pretend trading account. Play: https://playgama.ai/play/fywbqg3suyv45k · X post: https://x.com/kassirgames/status/2116357522164748643",
-   "date_published": "2026-10-31T00:00:00Z",
-   "tags": [
-    "strategy",
-    "casual"
    ]
   }
  ]
