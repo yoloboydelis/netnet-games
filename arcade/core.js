@@ -16,7 +16,8 @@
     'bear-siege': { n: 'BEAR SIEGE', no: '11', c: '#d4af37', tag: 'aidunlap horde survival · 90 s', path: 'bear-siege/' },
     'deep-vault': { n: 'DEEP VAULT', no: '12', c: '#f5d77a', tag: 'aidunlap treasure angling · 60 s', path: 'deep-vault/' },
     'penthouse-pilot': { n: 'PENTHOUSE PILOT', no: '13', c: '#9a927c', tag: 'aidunlap jetpack flyer', path: 'penthouse-pilot/' },
-    'aidunlap-playbox': { n: 'AIDUNLAP PLAYBOX', no: '14', c: '#d4af37', tag: 'aidunlap wooden smart-ball', path: 'aidunlap-playbox/' }
+    'aidunlap-playbox': { n: 'AIDUNLAP PLAYBOX', no: '14', c: '#d4af37', tag: 'aidunlap wooden smart-ball', path: 'aidunlap-playbox/' },
+    'aidunlap-snowball': { n: 'AIDUNLAP SNOWBALL', no: '15', c: '#9ec9ff', tag: 'aidunlap wealth roller · 90 s', path: 'aidunlap-snowball/' }
   };
   function J(k, d) { try { var v = JSON.parse(LS.getItem(k)); return v == null ? d : v; } catch (e) { return d; } }
   function P(k, v) { try { LS.setItem(k, JSON.stringify(v)); } catch (e) {} }
