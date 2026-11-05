@@ -19,7 +19,7 @@ html,body{overscroll-behavior:none;background:var(--bg);margin:0}
 #hud{display:flex;gap:14px;flex-wrap:wrap;margin:8px 0;font:600 13px system-ui;color:#9ec9ff;align-items:center}
 #hud b{color:#f5d77a;font-weight:800}
 .sb-top{display:flex;gap:10px;align-items:center;justify-content:space-between;margin:6px 0;flex-wrap:wrap}
-#overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;text-align:center;background:linear-gradient(180deg,rgba(5,8,20,.55),rgba(5,8,20,.15) 40%,rgba(5,8,20,.55));z-index:2}
+#overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;text-align:center;background:linear-gradient(180deg,rgba(5,8,20,.35),rgba(5,8,20,.05) 45%,rgba(5,8,20,.45));z-index:2}
 #overlay h2{margin:0;font:900 34px system-ui;color:#f5d77a;text-shadow:0 2px 12px #000;letter-spacing:.04em}
 #overlay p{margin:8px 0 0;font:600 16px system-ui;color:#9ec9ff;text-shadow:0 1px 6px #000}
 #overlay.hidden{display:none}
@@ -67,7 +67,9 @@ function beep(f,d,v,type){try{beep.a=beep.a||new (window.AudioContext||window.we
   try{
     if(!window.THREE||!window.SB3D||!SB3D.ok) throw new Error('no SB3D');
     world=SB3D.create(cv,{quality:MOB?0:2});
-    if(!world||!world.ok) throw new Error('create failed');
+    if(!world||!world.ok) throw new Error(world&&world.err||'create failed');
+    // force a first fit after layout
+    requestAnimationFrame(()=>{ try{world.fit&&world.fit()}catch(e){} });
     use3d=true; fb.style.display='none'; cv.style.display='block';
   }catch(e){
     console.warn('WebGL fallback',e); use3d=false; cv.style.display='none'; fb.style.display='block';
