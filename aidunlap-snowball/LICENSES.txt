@@ -1,0 +1,4 @@
+Aidunlap Snowball (NetNet Arcade cabinet 15)
+- All game code, procedural textures, and scene art: original NetNet / aidunlap work.
+- three.min.js: Three.js r160, MIT License (https://github.com/mrdoob/three.js)
+Genre inspiration only from third-person snowball rollers; no third-party models, textures, or code copied.
