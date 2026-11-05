@@ -215,8 +215,8 @@
     });
     var gSegW = quality > 1 ? 100 : (quality > 0 ? 60 : 36);
     var gSegL = quality > 1 ? 240 : (quality > 0 ? 140 : 80);
-    var ground = new T.Mesh(new T.PlaneGeometry(90, 420, gSegW, gSegL), groundMat);
-    ground.rotation.x = -Math.PI / 2; ground.position.set(0, 0, 140); ground.receiveShadow = true;
+    var ground = new T.Mesh(new T.PlaneGeometry(100, 520, gSegW, gSegL), groundMat);
+    ground.rotation.x = -Math.PI / 2; ground.position.set(0, 0, 200); ground.receiveShadow = true;
     var pos = ground.geometry.attributes.position;
     var rg = mulberry(1234);
     for (var gi = 0; gi < pos.count; gi++) {
@@ -231,10 +231,10 @@
     // sparkle overlay on snow
     var sparkTex = makeSparkleTex(128);
     sparkTex.repeat.set(30, 60);
-    var sparkle = new T.Mesh(new T.PlaneGeometry(70, 300), new T.MeshBasicMaterial({
+    var sparkle = new T.Mesh(new T.PlaneGeometry(80, 480), new T.MeshBasicMaterial({
       map: sparkTex, transparent: true, opacity: 0.35, depthWrite: false, blending: T.AdditiveBlending
     }));
-    sparkle.rotation.x = -Math.PI / 2; sparkle.position.set(0, 0.06, 100); scene.add(sparkle);
+    sparkle.rotation.x = -Math.PI / 2; sparkle.position.set(0, 0.06, 180); scene.add(sparkle);
 
     // trail ribbon with groove
     var trailSeg = quality > 0 ? 48 : 24;
@@ -252,27 +252,28 @@
     // scenery
     var decor = new T.Group(); scene.add(decor);
     var dr = mulberry(20261105);
-    var nTree = quality === 0 ? 36 : 70;
+    var scrap = []; // recycled scenery pieces
+    var nTree = quality === 0 ? 48 : 90;
     for (var ti = 0; ti < nTree; ti++) {
       var tree = buildTree(dr, quality);
       var side = dr() < 0.5 ? -1 : 1;
-      tree.position.set(side * (5.8 + dr() * 14), 0, dr() * 300);
-      decor.add(tree);
+      tree.position.set(side * (5.8 + dr() * 14), 0, dr() * 1600);
+      tree.userData.kind = 'tree'; decor.add(tree); scrap.push(tree);
     }
-    for (var ri = 0; ri < (quality === 0 ? 22 : 42); ri++) {
+    for (var ri = 0; ri < (quality === 0 ? 30 : 55); ri++) {
       var rock = buildRock(dr);
-      rock.position.set((dr() - 0.5) * 28, 0.08, dr() * 300);
+      rock.position.set((dr() - 0.5) * 28, 0.08, dr() * 1600);
       if (Math.abs(rock.position.x) < 4.8) rock.position.x += (rock.position.x < 0 ? -5 : 5);
-      decor.add(rock);
+      rock.userData.kind = 'rock'; decor.add(rock); scrap.push(rock);
     }
-    for (var ci = 0; ci < (quality === 0 ? 8 : 14); ci++) {
+    for (var ci = 0; ci < (quality === 0 ? 12 : 22); ci++) {
       var cot = buildCottage(dr, quality);
       var sideC = ci % 2 === 0 ? -1 : 1;
-      cot.position.set(sideC * (8.5 + dr() * 4), 0, 18 + ci * 22 + dr() * 6);
-      decor.add(cot);
+      cot.position.set(sideC * (8.5 + dr() * 4), 0, 20 + ci * 70 + dr() * 20);
+      cot.userData.kind = 'cot'; decor.add(cot); scrap.push(cot);
     }
     // avenue lamps
-    for (var li = 0; li < 18; li++) {
+    for (var li = 0; li < 40; li++) {
       var lamp = new T.Group();
       var pole = new T.Mesh(new T.CylinderGeometry(0.05, 0.07, 2.8, 6), new T.MeshStandardMaterial({ color: 0x2a2a32, metalness: 0.75, roughness: 0.3 }));
       pole.position.y = 1.4; lamp.add(pole);
@@ -283,20 +284,21 @@
         var pl = new T.PointLight(0xffb14a, 1.35, 16, 2); pl.position.copy(bulb.position); lamp.add(pl);
       }
       var sideL = li % 2 === 0 ? -1 : 1;
-      lamp.position.set(sideL * 5.8, 0, 8 + li * 16);
+      lamp.position.set(sideL * 5.8, 0, 8 + li * 38);
       lamp.scale.x = sideL; // lamp arm toward avenue
-      decor.add(lamp);
+      lamp.userData.kind = 'lamp'; decor.add(lamp); scrap.push(lamp);
     }
 
     // distant mountains + ice ridges
     var mtMat = new T.MeshStandardMaterial({ color: 0x152038, roughness: 1, flatShading: true });
     var iceMat = new T.MeshStandardMaterial({ color: 0x9ecfff, roughness: 0.25, metalness: 0.55, transparent: true, opacity: 0.85, emissive: 0x224466, emissiveIntensity: 0.15 });
-    for (var mi = 0; mi < 11; mi++) {
-      var mt = new T.Mesh(new T.ConeGeometry(9 + (mi % 3) * 3.5, 16 + (mi % 4) * 5, 6), mtMat);
-      mt.position.set(-50 + mi * 11, 5, 210 + (mi % 3) * 18); scene.add(mt);
+    var mountains = new T.Group(); scene.add(mountains);
+    for (var mi = 0; mi < 14; mi++) {
+      var mt = new T.Mesh(new T.ConeGeometry(10 + (mi % 3) * 4, 18 + (mi % 4) * 6, 6), mtMat);
+      mt.position.set(-60 + mi * 10, 6, 0); mountains.add(mt);
       if (mi % 2 === 0) {
-        var ice = new T.Mesh(new T.ConeGeometry(2.5, 6, 5), iceMat);
-        ice.position.set(mt.position.x * 0.3, 3, 160 + mi * 8); scene.add(ice);
+        var ice = new T.Mesh(new T.ConeGeometry(2.8, 7, 5), iceMat);
+        ice.position.set((-40 + mi * 8), 3.5, -30); mountains.add(ice);
       }
     }
 
@@ -461,7 +463,16 @@
       }
       trail.position.set(s.x, 0.04, s.dist - 10);
       trail.scale.set(Math.min(4.2, 0.9 + rad * 1.05), 1, 1 + Math.min(1.5, (s.spd||1)*0.08));
-      sparkle.position.z = s.dist - 40;
+      // sliding world tiles so scenery never runs out before GOAL
+      ground.position.z = s.dist + 40;
+      sparkle.position.z = s.dist + 20;
+      mountains.position.z = s.dist + 220;
+      for (var si = 0; si < scrap.length; si++) {
+        var sc = scrap[si];
+        var dz = sc.position.z - s.dist;
+        if (dz < -40) sc.position.z += 420 + (si % 7) * 12;
+        else if (dz > 380) sc.position.z -= 420;
+      }
 
       var back = 7.2 + rad * 1.35;
       var height = rad + 3.0 + Math.min(3.2, rad * 0.7);
