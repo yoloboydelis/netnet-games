@@ -599,19 +599,20 @@
     },
     score: function (s) { return s.score; } };
 
-  // ---------------- AIDUNLAP SNOWBALL: wealth-roller, 60 ticks/s, 90 s.
-  // action 0..15 = target lane across the avenue. Auto-scroll toward the Vault Spire.
-  // Grow on powder + RWA flakes. Smash anything smaller than you. Hit bigger = crushed.
-  // Topple the Vault Spire if you outweigh it. Original NetNet / aidunlap — no third-party IP.
+  // ---------------- AIDUNLAP SNOWBALL v2: 3D wealth-roller, 60 ticks/s, ~90 s.
+  // action 0..15 = target lane. Auto-scroll toward Vault Spire.
+  // World: x lateral, z forward (dist). Render is separate (Three.js chase cam).
+  // Grow on powder + RWA flakes. Smash anything smaller. Hit bigger = crushed.
+  // Original NetNet / aidunlap — no third-party IP.
   G['aidunlap-snowball'] = { tps: 60, maxTicks: 60 * 90, maxIps: 12, higher: true, unit: 'pts',
-    W: 640, H: 360, PY: 268, LANES: 16, GOAL: 3000, actions: function (a) { return a === (a | 0) && a >= 0 && a <= 15; },
+    W: 640, H: 360, PY: 268, LANES: 16, GOAL: 1500, actions: function (a) { return a === (a | 0) && a >= 0 && a <= 15; },
     create: function (seed) {
-      return { r: rng(seed), tick: 0, x: 320, lane: 8, size: 16, score: 0, dist: 0, spd: 4.2,
-        objs: [], next: 3, smash: 0, got: 0, powder: 0, vaultAt: 0, vaulted: false, crushed: false, done: false, fx: 0, best: 16 };
+      return { r: rng(seed), tick: 0, x: 0, lane: 8, size: 16, score: 0, dist: 0, spd: 4.2,
+        objs: [], next: 3, smash: 0, got: 0, powder: 0, vaultAt: 0, vaulted: false, crushed: false, done: false, fx: 0, best: 16, stuck: [] };
     },
-    laneX: function (lane) { return 48 + lane * (544 / 15); },
+    laneX: function (lane) { return -7.2 + lane * (14.4 / 15); }, // world X ~ -7.2..7.2
     spawn: function (s) {
-      var roll = s.r(), phase = s.dist < 800 ? 0 : s.dist < 1900 ? 1 : 2, k, r, pts, grow, x, near;
+      var roll = s.r(), phase = s.dist < 800 ? 0 : s.dist < 1900 ? 1 : 2, k, r, pts, grow, x, near, z;
       if (phase === 0) {
         if (roll < 0.82) { k = 'powder'; r = 6 + s.r() * 8; pts = 2; grow = 1.05 + s.r() * 0.7; }
         else if (roll < 0.93) { k = s.r() < 0.55 ? 'gold' : 'tbill'; r = 8; pts = k === 'gold' ? 18 : 12; grow = 0.5; }
@@ -620,64 +621,79 @@
         if (roll < 0.55) { k = 'powder'; r = 5 + s.r() * 8; pts = 2; grow = 0.85 + s.r() * 0.55; }
         else if (roll < 0.72) { k = s.r() < 0.4 ? 'gold' : (s.r() < 0.7 ? 'tbill' : 'net'); r = 8; pts = k === 'net' ? 40 : k === 'gold' ? 18 : 12; grow = 0.5; }
         else if (roll < 0.90) { k = 'dump'; r = Math.max(8, s.size * (0.35 + s.r() * 0.55)); pts = 12 + Math.floor(r); grow = r * 0.14; }
-        else { k = 'rival'; r = Math.max(9, s.size * (s.r() < 0.78 ? (0.4 + s.r() * 0.5) : (1.05 + s.r() * 0.35))); pts = 18 + Math.floor(r); grow = r * 0.13; }
+        else { k = 'rival'; r = Math.max(9, s.size * (s.r() < 0.82 ? (0.4 + s.r() * 0.5) : (1.02 + s.r() * 0.2))); pts = 18 + Math.floor(r); grow = r * 0.13; }
       } else {
         if (roll < 0.42) { k = 'powder'; r = 5 + s.r() * 7; pts = 3; grow = 0.75 + s.r() * 0.5; }
         else if (roll < 0.58) { k = s.r() < 0.4 ? 'gold' : (s.r() < 0.7 ? 'tbill' : 'net'); r = 8; pts = k === 'net' ? 40 : k === 'gold' ? 18 : 12; grow = 0.45; }
-        else if (roll < 0.80) { k = 'dump'; r = Math.max(9, s.size * (s.r() < 0.75 ? (0.4 + s.r() * 0.5) : (1.05 + s.r() * 0.3))); pts = 14 + Math.floor(r); grow = r * 0.12; }
-        else { k = 'rival'; r = Math.max(10, s.size * (s.r() < 0.7 ? (0.45 + s.r() * 0.5) : (1.08 + s.r() * 0.35))); pts = 22 + Math.floor(r * 1.1); grow = r * 0.12; }
+        else if (roll < 0.80) { k = 'dump'; r = Math.max(9, s.size * (s.r() < 0.82 ? (0.4 + s.r() * 0.5) : (1.02 + s.r() * 0.2))); pts = 14 + Math.floor(r); grow = r * 0.12; }
+        else { k = 'rival'; r = Math.max(10, s.size * (s.r() < 0.8 ? (0.45 + s.r() * 0.48) : (1.02 + s.r() * 0.22))); pts = 22 + Math.floor(r * 1.1); grow = r * 0.12; }
       }
-      near = (k === 'powder' || k === 'gold' || k === 'tbill' || k === 'net') ? 0.72 : 0.12;
-      if (s.r() < near) x = s.x + (s.r() - 0.5) * (k === 'powder' ? 150 : 110);
-      else x = 50 + s.r() * 540;
-      x = Math.max(36 + r, Math.min(604 - r, x));
-      if (s.objs.some(function (o) { return o.y < 55 && Math.abs(o.x - x) < o.r + r + 8; })) return;
-      s.objs.push({ k: k, x: x, y: -24 - s.r() * 55, r: r, pts: pts, grow: grow, hit: 0 });
+      if ((k === 'dump' || k === 'rival') && r > s.size * 1.25) r = s.size * 1.25;
+      near = (k === 'powder' || k === 'gold' || k === 'tbill' || k === 'net') ? 0.72 : 0.08;
+      if (s.r() < near) x = s.x + (s.r() - 0.5) * 4.5;
+      else x = (s.r() - 0.5) * 14;
+      // oversized threats hug the shoulders so skillful steering can slip past
+      if ((k === 'dump' || k === 'rival') && r > s.size * 1.0) {
+        var side = s.r() < 0.5 ? -1 : 1;
+        x = side * (4.2 + s.r() * 3.0);
+      }
+      x = Math.max(-7.5, Math.min(7.5, x));
+      z = s.dist + 28 + s.r() * 18; // spawn ahead of ball
+      if (s.objs.some(function (o) { return Math.abs(o.z - z) < 4 && Math.abs(o.x - x) < (o.r + r) * 0.08; })) return;
+      s.objs.push({ k: k, x: x, z: z, r: r, pts: pts, grow: grow, hit: 0, id: (s.tick * 1000 + (s.objs.length | 0)) });
       s.next = Math.max(3, 12 - Math.floor(s.dist / 800) - Math.floor(s.size / 35)) + Math.floor(s.r() * 7);
     },
     input: function (s, a) { s.lane = a; },
     step: function (s) {
-      var g = G['aidunlap-snowball'], i, o, dx, lim, dy, rr;
+      var g = G['aidunlap-snowball'], i, o, dx, dz, lim, rr;
       s.tick++;
       s.spd = 4.2 + Math.min(1.8, s.dist / 2200) + Math.min(0.8, s.size / 100);
-      s.dist += s.spd;
+      s.dist += s.spd * 0.085; // world meters-ish per tick
       var tx = g.laneX(s.lane);
       dx = tx - s.x;
-      s.x += Math.max(-5.6, Math.min(5.6, dx * 0.26));
-      lim = 26 + s.size * 0.85;
-      if (s.x < lim) s.x = lim; if (s.x > 640 - lim) s.x = 640 - lim;
-      if (--s.next <= 0 && s.objs.length < 52 && s.dist < g.GOAL - 220) g.spawn(s);
-      if (!s.vaultAt && s.dist >= g.GOAL - 360) {
+      s.x += Math.max(-0.22, Math.min(0.22, dx * 0.28));
+      lim = 7.6 - Math.min(2.5, s.size * 0.02);
+      if (s.x < -lim) s.x = -lim; if (s.x > lim) s.x = lim;
+      if (--s.next <= 0 && s.objs.length < 52 && s.dist < g.GOAL - 70 && !s.vaultAt) g.spawn(s);
+      if (!s.vaultAt && s.dist >= g.GOAL - 55) {
         s.vaultAt = 1;
-        s.objs.push({ k: 'vault', x: 320, y: -110, r: 58, pts: 500, grow: 5, hit: 0, need: 26 });
+        s.objs.push({ k: 'vault', x: 0, z: g.GOAL + 8, r: 58, pts: 500, grow: 5, hit: 0, need: 26, id: -1 });
       }
       for (i = 0; i < s.objs.length; i++) {
-        o = s.objs[i]; o.y += s.spd;
+        o = s.objs[i];
         if (o.hit) continue;
-        if (o.k === 'vault' && o.y >= g.PY - 6) {
-          o.hit = 1;
-          if (s.size + 0.01 >= o.need) {
-            s.score += o.pts + Math.floor(s.size * 5); s.size = Math.min(84, s.size + o.grow);
-            s.best = Math.max(s.best, s.size); s.vaulted = true; s.done = true; s.fx = 22; return;
+        dz = o.z - s.dist;
+        // vault gate — never treat as a smashable object
+        if (o.k === 'vault') {
+          if (dz <= Math.max(2.5, s.size * 0.05 + 1.4)) {
+            o.hit = 1;
+            if (s.size + 0.01 >= o.need) {
+              s.score += o.pts + Math.floor(s.size * 5); s.size = Math.min(84, s.size + o.grow);
+              s.best = Math.max(s.best, s.size); s.vaulted = true; s.done = true; s.fx = 22; return;
+            }
+            s.crushed = true; s.done = true; s.fx = 16; return;
           }
-          s.crushed = true; s.done = true; s.fx = 16; return;
+          continue;
         }
-        dx = o.x - s.x; dy = o.y - g.PY; rr = s.size + o.r;
-        if (dx * dx + dy * dy < rr * rr * 0.86) {
+        dx = o.x - s.x; rr = (s.size + o.r) * 0.05;
+        if (dz > -1.2 && dz < rr + 0.8 && dx * dx < rr * rr) {
           o.hit = 1;
           if (o.k === 'powder') {
             s.size = Math.min(84, s.size + o.grow); s.score += o.pts; s.powder++; s.fx = 8;
+            if (s.stuck.length < 40) s.stuck.push({ k: o.k, ang: s.r() * 6.28, elev: s.r() * 1.2 - 0.3 });
           } else if (o.k === 'gold' || o.k === 'tbill' || o.k === 'net') {
             s.size = Math.min(84, s.size + o.grow); s.score += o.pts; s.got++; s.fx = 10;
-          } else if (s.size >= o.r * 1.02) {
+            if (s.stuck.length < 40) s.stuck.push({ k: o.k, ang: s.r() * 6.28, elev: s.r() * 1.0 - 0.2 });
+          } else if (s.size + 0.5 >= o.r) {
             s.size = Math.min(84, s.size + o.grow); s.score += o.pts; s.smash++; s.fx = 12;
+            if (s.stuck.length < 40) s.stuck.push({ k: o.k, ang: s.r() * 6.28, elev: s.r() * 0.9 - 0.1 });
           } else {
             s.crushed = true; s.done = true; s.fx = 16; return;
           }
           s.best = Math.max(s.best, s.size);
         }
       }
-      s.objs = s.objs.filter(function (q) { return q.y < 420 && !q.hit; });
+      s.objs = s.objs.filter(function (q) { return !q.hit && (q.k === 'vault' ? q.z > s.dist - 20 : q.z > s.dist - 8); });
       if (s.tick % 30 === 0) s.score += 1 + Math.floor(s.size / 16);
       if (s.tick >= 60 * 90) s.done = true;
     },
