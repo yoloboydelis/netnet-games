@@ -5,6 +5,158 @@
  "feed_url": "https://yoloboydelis.github.io/netnet-games/discover/feed.json",
  "items": [
   {
+   "id": "hold-the-field",
+   "url": "https://sigilmark.pages.dev/battle/",
+   "external_url": "https://x.com/SigilMarkStudio/status/2118215646261707220",
+   "title": "Hold the Field by @SigilMarkStudio",
+   "content_text": "Raise an army, choose a captain and break the Hollow Host in two-minute battles. Play: https://sigilmark.pages.dev/battle/ · X post: https://x.com/SigilMarkStudio/status/2118215646261707220",
+   "date_published": "2026-11-05T00:00:00Z",
+   "tags": [
+    "strategy",
+    "cards"
+   ]
+  },
+  {
+   "id": "dont-fall",
+   "url": "https://hatchworks.fyi/dontfall/",
+   "external_url": "https://x.com/dontfallgame_/status/2118137860616294583",
+   "title": "Don't Fall by @dontfallgame_",
+   "content_text": "Climb 3,226 m with no checkpoints; one bad jump sends you back down. Play: https://hatchworks.fyi/dontfall/ · X post: https://x.com/dontfallgame_/status/2118137860616294583",
+   "date_published": "2026-11-05T00:00:00Z",
+   "tags": [
+    "action",
+    "3d",
+    "physics"
+   ]
+  },
+  {
+   "id": "tattoo-shop",
+   "url": "https://oreumgames.com/en/games/mini/tattoo/",
+   "external_url": "https://x.com/Oreumgames/status/2118177470247751853",
+   "title": "Tattoo Shop by @Oreumgames",
+   "content_text": "Trace stencils on customers' arms with the needle and fill in the color. Play: https://oreumgames.com/en/games/mini/tattoo/ · X post: https://x.com/Oreumgames/status/2118177470247751853",
+   "date_published": "2026-11-05T00:00:00Z",
+   "tags": [
+    "casual",
+    "3d"
+   ]
+  },
+  {
+   "id": "rage-room",
+   "url": "https://rageroomonline.netlify.app/",
+   "external_url": "https://x.com/_periperifries/status/2118096573368619432",
+   "title": "Rage Room by @_periperifries",
+   "content_text": "First-person 3D rage room: pick a bat or sledge and hit the cash goal by wrecking stuff. Play: https://rageroomonline.netlify.app/ · X post: https://x.com/_periperifries/status/2118096573368619432",
+   "date_published": "2026-11-04T00:00:00Z",
+   "tags": [
+    "action",
+    "physics",
+    "3d",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "search-defender",
+   "url": "https://reyngames.com/search-defender/",
+   "external_url": "https://x.com/ReynGames/status/2118011008405180758",
+   "title": "Search Defender by @ReynGames",
+   "content_text": "A tower defense hidden inside a fake search engine: type queries to discover towers. Play: https://reyngames.com/search-defender/ · X post: https://x.com/ReynGames/status/2118011008405180758",
+   "date_published": "2026-11-04T00:00:00Z",
+   "tags": [
+    "strategy",
+    "puzzle",
+    "casual"
+   ]
+  },
+  {
+   "id": "dont-erase-me",
+   "url": "https://dont-erase-me-xpharma.vercel.app/",
+   "external_url": "https://x.com/XPharmax/status/2117980466607243274",
+   "title": "Don't Erase Me! by @XPharmax",
+   "content_text": "Stickman runs from a giant eraser and draws his own bridges to escape the sketchbook. Play: https://dont-erase-me-xpharma.vercel.app/ · X post: https://x.com/XPharmax/status/2117980466607243274",
+   "date_published": "2026-11-04T00:00:00Z",
+   "tags": [
+    "arcade",
+    "action",
+    "casual",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "board-battles",
+   "url": "https://playboardbattles.com/",
+   "external_url": "https://x.com/boardbattlesgg/status/2118075242354716739",
+   "title": "Board Battles by @boardbattlesgg",
+   "content_text": "Turn-based board tactics where classes evolve mid-fight; trials, survival and PvP. Play: https://playboardbattles.com/ · X post: https://x.com/boardbattlesgg/status/2118075242354716739",
+   "date_published": "2026-11-04T00:00:00Z",
+   "tags": [
+    "strategy",
+    "multiplayer"
+   ]
+  },
+  {
+   "id": "after-light",
+   "url": "https://inhocsigno.itch.io/after-light",
+   "external_url": "https://x.com/inhocsignolud/status/2117988579444133963",
+   "title": "After Light by @inhocsignolud",
+   "content_text": "A solar storm killed the grid: scavenge, craft, drive and last the night in pixel art. Play: https://inhocsigno.itch.io/after-light · X post: https://x.com/inhocsignolud/status/2117988579444133963",
+   "date_published": "2026-11-04T00:00:00Z",
+   "tags": [
+    "survival",
+    "adventure"
+   ]
+  },
+  {
+   "id": "sumiro",
+   "url": "https://xikhar.github.io/sumiro/",
+   "external_url": "https://x.com/MoarPlzz/status/2118093430924681667",
+   "title": "Sumiro by shared by @MoarPlzz (made by @xikhar)",
+   "content_text": "A misty ink-wash mountain journey in 3D, built in 24 hours with AI tools. Play: https://xikhar.github.io/sumiro/ · X post: https://x.com/MoarPlzz/status/2118093430924681667",
+   "date_published": "2026-11-04T00:00:00Z",
+   "tags": [
+    "adventure",
+    "3d",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "hiraeth",
+   "url": "https://hiraeth.my/",
+   "external_url": "https://x.com/yoosuf_sayyid/status/2117927732298588564",
+   "title": "Hiraeth by @yoosuf_sayyid",
+   "content_text": "A desert adventure in a bold comic-book line art style, with saves and full screen. Play: https://hiraeth.my/ · X post: https://x.com/yoosuf_sayyid/status/2117927732298588564",
+   "date_published": "2026-11-04T00:00:00Z",
+   "tags": [
+    "adventure",
+    "story",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "unilife",
+   "url": "https://playunilife.com/",
+   "external_url": "https://x.com/playunilife/status/2117927336230429154",
+   "title": "UniLife by @playunilife",
+   "content_text": "Juggle stress, energy, coursework and internships through uni with other live players. Play: https://playunilife.com/ · X post: https://x.com/playunilife/status/2117927336230429154",
+   "date_published": "2026-11-04T00:00:00Z",
+   "tags": [
+    "multiplayer",
+    "casual"
+   ]
+  },
+  {
+   "id": "horde-vs-horde",
+   "url": "https://playgama.ai/play/6rat77b2pm3ur6",
+   "external_url": "https://x.com/ClickwiseStudio/status/2118109573231870257",
+   "title": "Horde vs Horde by @ClickwiseStudio",
+   "content_text": "Roam the battlefield as a hero, wipe out wave after wave and level up. Play: https://playgama.ai/play/6rat77b2pm3ur6 · X post: https://x.com/ClickwiseStudio/status/2118109573231870257",
+   "date_published": "2026-11-04T00:00:00Z",
+   "tags": [
+    "action",
+    "arcade"
+   ]
+  },
+  {
    "id": "mizumichi",
    "url": "https://domandev.itch.io/mizumichi",
    "external_url": "https://x.com/domandev/status/2117867139625546118",
@@ -484,155 +636,6 @@
     "racing",
     "3d",
     "arcade"
-   ]
-  },
-  {
-   "id": "liney-jump-the-queue",
-   "url": "https://liney-sepia.vercel.app/",
-   "external_url": "https://x.com/kirri_____/status/2116979739235938519",
-   "title": "Liney: Jump the Queue by @kirri_____",
-   "content_text": "Guide an eagle through five quick skill challenges to skip the line. Play: https://liney-sepia.vercel.app/ · X post: https://x.com/kirri_____/status/2116979739235938519",
-   "date_published": "2026-11-01T00:00:00Z",
-   "tags": [
-    "casual",
-    "arcade"
-   ]
-  },
-  {
-   "id": "space-adventure-moon",
-   "url": "https://moon-game-gx-3--bcla3ys.replit.app/",
-   "external_url": "https://x.com/EntangledMatter/status/2117029051273719891",
-   "title": "Space Adventure by @EntangledMatter",
-   "content_text": "A speedy little space run that keeps getting faster. Play: https://moon-game-gx-3--bcla3ys.replit.app/ · X post: https://x.com/EntangledMatter/status/2117029051273719891",
-   "date_published": "2026-11-01T00:00:00Z",
-   "tags": [
-    "arcade",
-    "casual",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "arkan-the-server",
-   "url": "https://zakvorstudios.com/",
-   "external_url": "https://x.com/zakvorstudios/status/2116808971998601695",
-   "title": "ARKAN: The Server by @zakvorstudios",
-   "content_text": "Neon brick-breaker boss fight in three rule-breaking phases. Play: https://zakvorstudios.com/ · X post: https://x.com/zakvorstudios/status/2116808971998601695",
-   "date_published": "2026-11-01T00:00:00Z",
-   "tags": [
-    "arcade",
-    "action"
-   ]
-  },
-  {
-   "id": "whisker-dash",
-   "url": "https://mable.gg/g/1mf0tx",
-   "external_url": "https://x.com/Poonamkhanna14/status/2116864082058129708",
-   "title": "Whisker Dash by @Poonamkhanna14",
-   "content_text": "A quick cat dash built on Mable. Play: https://mable.gg/g/1mf0tx · X post: https://x.com/Poonamkhanna14/status/2116864082058129708",
-   "date_published": "2026-11-01T00:00:00Z",
-   "tags": [
-    "arcade",
-    "casual"
-   ]
-  },
-  {
-   "id": "game-of-dice-shakuni",
-   "url": "https://shakuni.prayush.dev/",
-   "external_url": "https://x.com/prayushkale/status/2116797112558174552",
-   "title": "The Game of Dice by @prayushkale",
-   "content_text": "Roll against Shakuni's loaded dice in a 3D epic hall. You are meant to lose. Play: https://shakuni.prayush.dev/ · X post: https://x.com/prayushkale/status/2116797112558174552",
-   "date_published": "2026-11-01T00:00:00Z",
-   "tags": [
-    "story",
-    "3d",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "mugunghwa-red-light",
-   "url": "https://mugunghwa.pages.dev/",
-   "external_url": "https://x.com/another_story10/status/2116735085378719891",
-   "title": "Red Light, Green Light by @another_story10",
-   "content_text": "Freeze when the seeker turns or get splashed with paint. Rooms for groups. Play: https://mugunghwa.pages.dev/ · X post: https://x.com/another_story10/status/2116735085378719891",
-   "date_published": "2026-11-01T00:00:00Z",
-   "tags": [
-    "multiplayer",
-    "party",
-    "casual"
-   ]
-  },
-  {
-   "id": "skogens-vaktare",
-   "url": "https://www.wardensofthewild.se/play/",
-   "external_url": "https://x.com/WardensOfTheWil/status/2116682194236461421",
-   "title": "Skogens Väktare by @WardensOfTheWil",
-   "content_text": "A dad-made forest guardian adventure built for his daughters. Play: https://www.wardensofthewild.se/play/ · X post: https://x.com/WardensOfTheWil/status/2116682194236461421",
-   "date_published": "2026-11-01T00:00:00Z",
-   "tags": [
-    "adventure",
-    "casual"
-   ]
-  },
-  {
-   "id": "go-for-orbit",
-   "url": "https://liftoffwatch.com/play",
-   "external_url": "https://x.com/LiftoffWatch/status/2116811969923805605",
-   "title": "Go for Orbit by @LiftoffWatch",
-   "content_text": "Ignite, throttle through Max Q, stage clean and make orbit. Play: https://liftoffwatch.com/play · X post: https://x.com/LiftoffWatch/status/2116811969923805605",
-   "date_published": "2026-11-01T00:00:00Z",
-   "tags": [
-    "arcade",
-    "physics"
-   ]
-  },
-  {
-   "id": "mr-hornet",
-   "url": "https://oreumgames.com/en/games/wasp/",
-   "external_url": "https://x.com/Oreumgames/status/2116750196826923130",
-   "title": "Mr. Hornet by @Oreumgames",
-   "content_text": "Spray wasps, swing a bug net and bag whole nests as a hornet remover. Play: https://oreumgames.com/en/games/wasp/ · X post: https://x.com/Oreumgames/status/2116750196826923130",
-   "date_published": "2026-11-01T00:00:00Z",
-   "tags": [
-    "action",
-    "3d"
-   ]
-  },
-  {
-   "id": "cup-of-tea",
-   "url": "https://www.cupoftea.site/",
-   "external_url": "https://x.com/cv9y8w5dzf/status/2116796166189068742",
-   "title": "Cup of Tea by @cv9y8w5dzf",
-   "content_text": "A tea party with a poisoner at the table. Find the witch before morning. Play: https://www.cupoftea.site/ · X post: https://x.com/cv9y8w5dzf/status/2116796166189068742",
-   "date_published": "2026-11-01T00:00:00Z",
-   "tags": [
-    "multiplayer",
-    "party",
-    "strategy"
-   ]
-  },
-  {
-   "id": "heritap",
-   "url": "https://heritap.app/en",
-   "external_url": "https://x.com/heritapapp/status/2116685400236531881",
-   "title": "Heritap by @heritapapp",
-   "content_text": "Tap the globe to place five World Heritage sites a day. Play: https://heritap.app/en · X post: https://x.com/heritapapp/status/2116685400236531881",
-   "date_published": "2026-11-01T00:00:00Z",
-   "tags": [
-    "trivia",
-    "puzzle"
-   ]
-  },
-  {
-   "id": "famicom-badminton",
-   "url": "https://xyzzyapps.github.io/batminton/",
-   "external_url": "https://x.com/xyzzyapps/status/2116742134388949273",
-   "title": "Badminton by @xyzzyapps",
-   "content_text": "An 8-bit style badminton match against the computer, first to 11. Play: https://xyzzyapps.github.io/batminton/ · X post: https://x.com/xyzzyapps/status/2116742134388949273",
-   "date_published": "2026-11-01T00:00:00Z",
-   "tags": [
-    "sports",
-    "arcade",
-    "vibe-coded"
    ]
   }
  ]
