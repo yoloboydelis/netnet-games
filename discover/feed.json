@@ -5,6 +5,118 @@
  "feed_url": "https://yoloboydelis.github.io/netnet-games/discover/feed.json",
  "items": [
   {
+   "id": "gridclash",
+   "url": "https://gridclashweb.vercel.app/",
+   "external_url": "https://x.com/itswaltertanui/status/2118989004544545009",
+   "title": "GridClash by @itswaltertanui",
+   "content_text": "Connect dots and claim boxes against a friend or the computer. Play: https://gridclashweb.vercel.app/ · X post: https://x.com/itswaltertanui/status/2118989004544545009",
+   "date_published": "2026-11-07T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "strategy",
+    "multiplayer"
+   ]
+  },
+  {
+   "id": "backroom-dimension-9",
+   "url": "https://dimension9.space/",
+   "external_url": "https://x.com/apekshik/status/2118847014071120179",
+   "title": "Backroom: Dimension 9 by @apekshik",
+   "content_text": "An endless Backrooms maze an AI keeps building room by room. Explore it with friends. Play: https://dimension9.space/ · X post: https://x.com/apekshik/status/2118847014071120179",
+   "date_published": "2026-11-06T00:00:00Z",
+   "tags": [
+    "horror",
+    "adventure",
+    "multiplayer",
+    "3d",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "sky-raids",
+   "url": "https://skyraids.netlify.app/",
+   "external_url": "https://x.com/Supabob_/status/2118654024383651872",
+   "title": "Sky Raids by @Supabob_",
+   "content_text": "Space shooter with boss fights, an afrobeat soundtrack and shareable challenge waves. Play: https://skyraids.netlify.app/ · X post: https://x.com/Supabob_/status/2118654024383651872",
+   "date_published": "2026-11-06T00:00:00Z",
+   "tags": [
+    "arcade",
+    "shooter",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "necocco-drop",
+   "url": "https://necocco.com/en/drop/",
+   "external_url": "https://x.com/SoichiroSakai/status/2118716093871333535",
+   "title": "Necocco Drop by @SoichiroSakai",
+   "content_text": "Drop cats, merge matching ones and evolve them all the way to Kuro. Play: https://necocco.com/en/drop/ · X post: https://x.com/SoichiroSakai/status/2118716093871333535",
+   "date_published": "2026-11-06T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "physics",
+    "casual"
+   ]
+  },
+  {
+   "id": "pax-terra",
+   "url": "https://playpaxterra.itch.io/pax-terra",
+   "external_url": "https://x.com/crip_0/status/2118762626716938545",
+   "title": "Pax Terra by @crip_0",
+   "content_text": "Grow a village into a superpower across 20 nations while dodging coups and crashes. Play: https://playpaxterra.itch.io/pax-terra · X post: https://x.com/crip_0/status/2118762626716938545",
+   "date_published": "2026-11-06T00:00:00Z",
+   "tags": [
+    "strategy"
+   ]
+  },
+  {
+   "id": "lok-sabha-manager",
+   "url": "https://loksabha-manager.onrender.com/",
+   "external_url": "https://x.com/darwizzy2346/status/2118674373217563030",
+   "title": "Lok Sabha Manager by @darwizzy2346",
+   "content_text": "Start a party and chase 272 of 543 seats in an Indian election sim, solo or with friends. Play: https://loksabha-manager.onrender.com/ · X post: https://x.com/darwizzy2346/status/2118674373217563030",
+   "date_published": "2026-11-06T00:00:00Z",
+   "tags": [
+    "strategy",
+    "multiplayer"
+   ]
+  },
+  {
+   "id": "on-location-kigali",
+   "url": "https://www.nozaflow.com/",
+   "external_url": "https://x.com/ryanyewell/status/2118696064090005784",
+   "title": "On Location, Kigali by @ryanyewell",
+   "content_text": "Be a documentary filmmaker: film, record or walk on by as moments unfold. Play: https://www.nozaflow.com/ · X post: https://x.com/ryanyewell/status/2118696064090005784",
+   "date_published": "2026-11-06T00:00:00Z",
+   "tags": [
+    "story",
+    "casual"
+   ]
+  },
+  {
+   "id": "run-away-kusoge",
+   "url": "https://run-away-five.vercel.app/",
+   "external_url": "https://x.com/RunAwayKusoge/status/2118772303244980372",
+   "title": "Run Away by @RunAwayKusoge",
+   "content_text": "Famicom-style skate gag game: lie down, skate and try not to die. Play: https://run-away-five.vercel.app/ · X post: https://x.com/RunAwayKusoge/status/2118772303244980372",
+   "date_published": "2026-11-06T00:00:00Z",
+   "tags": [
+    "arcade",
+    "action"
+   ]
+  },
+  {
+   "id": "smile-to-your-prince",
+   "url": "https://mable.gg/g/vk136v",
+   "external_url": "https://x.com/Smileekong/status/2118665450309488725",
+   "title": "Smile to Your Prince by @Smileekong",
+   "content_text": "Tap to smile at the prince and collect hearts for a royal dance. Play: https://mable.gg/g/vk136v · X post: https://x.com/Smileekong/status/2118665450309488725",
+   "date_published": "2026-11-06T00:00:00Z",
+   "tags": [
+    "casual"
+   ]
+  },
+  {
    "id": "pocket-diwali",
    "url": "https://pocket-diwali.apat-bharat.chatgpt.site/",
    "external_url": "https://x.com/bharatapat/status/2118560622510284898",
@@ -515,122 +627,6 @@
     "adventure",
     "3d",
     "action"
-   ]
-  },
-  {
-   "id": "perfectly-imperfective",
-   "url": "https://perfectlyimperfective.radimirsi.com/",
-   "external_url": "https://x.com/RadimirSi/status/2117467616403235186",
-   "title": "Perfectly Imperfective by @RadimirSi",
-   "content_text": "A free browser visual novel where you learn Russian at a strict university. Play: https://perfectlyimperfective.radimirsi.com/ · X post: https://x.com/RadimirSi/status/2117467616403235186",
-   "date_published": "2026-11-03T00:00:00Z",
-   "tags": [
-    "story",
-    "trivia",
-    "casual"
-   ]
-  },
-  {
-   "id": "hebrew-letter-drop",
-   "url": "https://claude.ai/artifact/UqyHbwqNEFe2fzBeowZCna",
-   "external_url": "https://x.com/lili201007/status/2117460790282264974",
-   "title": "Hebrew Letter Drop by @lili201007",
-   "content_text": "Hebrew letters fall and you type them; get accurate and whole words drop. Play: https://claude.ai/artifact/UqyHbwqNEFe2fzBeowZCna · X post: https://x.com/lili201007/status/2117460790282264974",
-   "date_published": "2026-11-03T00:00:00Z",
-   "tags": [
-    "trivia",
-    "casual",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "hjkl-vim",
-   "url": "https://hjkl.duy.run",
-   "external_url": "https://x.com/techdaily24/status/2117497506560975169",
-   "title": "hjkl by shared by @techdaily24 (made by duy)",
-   "content_text": "A little browser game for learning Vim movement by doing. Play: https://hjkl.duy.run · X post: https://x.com/techdaily24/status/2117497506560975169",
-   "date_published": "2026-11-03T00:00:00Z",
-   "tags": [
-    "puzzle",
-    "trivia"
-   ]
-  },
-  {
-   "id": "spaghettify",
-   "url": "https://www.playkuul.com/games/?slug=spaghettify",
-   "external_url": "https://x.com/ForkedPush/status/2117292175377547717",
-   "title": "There Is a Black Hole in My Kitchen by @ForkedPush",
-   "content_text": "A three.js toy where a black hole swallows your kitchen, piece by piece. Play: https://www.playkuul.com/games/?slug=spaghettify · X post: https://x.com/ForkedPush/status/2117292175377547717",
-   "date_published": "2026-11-02T00:00:00Z",
-   "tags": [
-    "physics",
-    "3d",
-    "casual",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "tactical-cowboy",
-   "url": "https://tactical-cowboy.tesana.com/",
-   "external_url": "https://x.com/Class_Punk/status/2117174021745725900",
-   "title": "Tactical Cowboy by @Class_Punk",
-   "content_text": "A Wild West arena FPS with bots, still growing version by version. Play: https://tactical-cowboy.tesana.com/ · X post: https://x.com/Class_Punk/status/2117174021745725900",
-   "date_published": "2026-11-02T00:00:00Z",
-   "tags": [
-    "shooter",
-    "3d",
-    "action",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "wandering-blade-tavern",
-   "url": "https://thewanderingbladetavern.com/play.html",
-   "external_url": "https://x.com/WBladeTavern/status/2117353554448986278",
-   "title": "The Wandering Blade Tavern by @WBladeTavern",
-   "content_text": "A sword and sorcery RPG built for players who cannot gather a group. Play: https://thewanderingbladetavern.com/play.html · X post: https://x.com/WBladeTavern/status/2117353554448986278",
-   "date_published": "2026-11-02T00:00:00Z",
-   "tags": [
-    "adventure",
-    "story"
-   ]
-  },
-  {
-   "id": "shroom-shaman",
-   "url": "https://redrummy79-cpu.github.io/shroom-shaman/",
-   "external_url": "https://x.com/Redrum_lI/status/2117311181685924125",
-   "title": "Shroom Shaman by @Redrum_lI",
-   "content_text": "A frog-forest peg shooter made with Grok Bot. Play: https://redrummy79-cpu.github.io/shroom-shaman/ · X post: https://x.com/Redrum_lI/status/2117311181685924125",
-   "date_published": "2026-11-02T00:00:00Z",
-   "tags": [
-    "arcade",
-    "puzzle",
-    "casual",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "snake-garden",
-   "url": "https://hikarilucy.itch.io/snake-garden",
-   "external_url": "https://x.com/homebrewhive/status/2117283308945993741",
-   "title": "Snake Garden by shared by @homebrewhive (made by HikariLucy)",
-   "content_text": "A PICO-8 snake with a garden mode that turns your trail into pixel art. Play: https://hikarilucy.itch.io/snake-garden · X post: https://x.com/homebrewhive/status/2117283308945993741",
-   "date_published": "2026-11-02T00:00:00Z",
-   "tags": [
-    "arcade",
-    "casual"
-   ]
-  },
-  {
-   "id": "dead-road",
-   "url": "https://keida-444.itch.io/dead-road",
-   "external_url": "https://x.com/dllone22/status/2117277281119068250",
-   "title": "Dead Road by @dllone22",
-   "content_text": "An early Godot roguelike about surviving the road ahead. Play: https://keida-444.itch.io/dead-road · X post: https://x.com/dllone22/status/2117277281119068250",
-   "date_published": "2026-11-02T00:00:00Z",
-   "tags": [
-    "action",
-    "survival"
    ]
   }
  ]
