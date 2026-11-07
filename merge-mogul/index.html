@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MERGE MOGUL · NetNet Arcade</title><meta name="description" content="Merge RWA tiles from T-bills to gold vaults to towers to a full Dunlap dynasty. 3-minute ranked rounds, same tile drops for everyone. Replay-verified.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Arcade"><meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/merge-mogul/">
+<meta property="og:title" content="MERGE MOGUL · NetNet Arcade"><meta property="og:description" content="Merge RWA tiles from T-bills to gold vaults to towers to a full Dunlap dynasty. 3-minute ranked rounds, same tile drops for everyone. Replay-verified."><meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/merge-mogul.png"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a0a0a"><link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css">
+<style>:root{--c:#f5d77a;--bg:#0a0a0a;--panel:#121212;--line:#2a2a2a}canvas{width:100%;max-width:480px;margin:0 auto;border-radius:12px;display:block;touch-action:none;background:#0d0d0d;user-select:none;-webkit-user-select:none}.row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.row .nn-btn{flex:1}</style>
+<script src="../arcade/sims.js"></script><script>window.NN_SCORE_SERVER="https://netnet-arcade-verifier.netnetarcade.workers.dev"</script><script src="../arcade/core.js"></script><script src="../arcade/dunlap.js"></script></head><body>
+<div class="nn-wrap"><div class="nn-top"><a href="../">← LOBBY</a><span class="nn-pill">CABINET 09 · <span class="nna-ok">✔ REPLAY-VERIFIED</span></span></div>
+<h1 class="nn-title">MERGE MOGUL</h1><p class="nn-sub">Swipe on the board, use the arrow keys / WASD or the buttons. Two identical assets merge into the next level: T-bill → bond → gold bar → vault → condo → tower → blue chip → index → fund → empire → dynasty. 3 minutes per round; the tile drops are the same for everyone this week.</p>
+<div class="nn-hud"><span id="h1">0 pts</span><span id="h2"></span><span id="h3"></span></div>
+<canvas id="c" width="440" height="560"></canvas>
+<div class="row"><button class="nn-btn ghost" data-d="3">◀</button><button class="nn-btn ghost" data-d="0">▲</button><button class="nn-btn ghost" data-d="2">▼</button><button class="nn-btn ghost" data-d="1">▶</button></div><div class="row"><button class="nn-btn" id="go">START</button></div>
+<label class="nna-mut" style="display:block;margin:8px 0"><input type="checkbox" id="ranked" checked> Ranked entry: 100 <span class="nna-test">TEST</span> credits (10 to treasury first, 90 to this week's pool). Untick for free practice.</label>
+<div class="nn-card" id="board"></div>
+<div class="nn-card"><h3>ABOUT THIS CABINET</h3><p class="nn-sub" style="font-size:13px">An original NetNet game starring aidunlap, the NetNet mascot. Everyone gets the same level this week (seed from the UTC week, Sunday to Sunday). Your inputs are recorded tick by tick and the score server re-plays them from scratch; only the re-simulated score counts. Runs that go faster than real time, pause, hide the tab or exceed the input-rate cap are rejected. Tokens in the game are game items, not real assets or prices. Test credits only, not money.</p></div></div>
+<script>
+const GAME='merge-mogul',$=id=>document.getElementById(id),cv=$('c'),ctx=NND.hidpi(cv).getContext('2d'),g=NNS.games[GAME];
+function board(){NNA.renderBoard(GAME,$('board'))}
+document.addEventListener('DOMContentLoaded',()=>{board();NNA.foot()});
+let want=null,sent=null,lastT=-99,Q=[];const GAP=2;
+function pump(s){if(!R.on)return;if(Q.length&&s.tick-lastT>=GAP){lastT=s.tick;R.input(Q.shift());return}if(want!==null&&want!==sent&&s.tick-lastT>=GAP){sent=want;lastT=s.tick;R.input(want)}}
+function tap(a){if(!R.on)return;if(Q.length<3)Q.push(a);pump(R.state)}
+let preview=g.create(NNS.seedFor(GAME));
+const R=NNA.runner(GAME,{onFrame:s=>{pump(s);draw(s,performance.now())},onEnd:()=>{$('go').style.display='';board()}});
+function start(){want=null;sent=null;lastT=-99;Q=[];R.start($('ranked').checked);$('go').style.display='none'}
+NNA.onAgain=start;$('go').onclick=e=>{e.preventDefault();start()};
+function idle(now){if(!R.on){draw(R.state&&R.state.done?R.state:preview,now)}requestAnimationFrame(idle)}
+function label(t1,t2){ctx.fillStyle='rgba(10,10,10,.62)';ctx.fillRect(0,0,cv.width,cv.height);ctx.textAlign='center';ctx.fillStyle='#f5d77a';ctx.font='bold 30px system-ui';ctx.fillText(t1,cv.width/2,cv.height/2-10);ctx.fillStyle='#9a927c';ctx.font='15px system-ui';ctx.fillText(t2,cv.width/2,cv.height/2+22)}
+
+const N=4,T=[['T-BILL','tbill'],['BOND','tbill'],['GOLD BAR','gold'],['VAULT','gold'],['CONDO','estate'],['TOWER','estate'],['BLUE CHIP','stock'],['INDEX','stock'],['FUND','net'],['EMPIRE','net'],['DYNASTY','net']];
+function draw(s,now){ctx.fillStyle='#0d0d0d';ctx.fillRect(0,0,440,560);let top=-1;s.B.forEach(r=>r.forEach(v=>{if(v>top)top=v}));
+ NND.draw(ctx,56,112,96,{v:top>=8?'boss':'dunlap',pose:top>=6?'win':'stand',t:now});
+ ctx.fillStyle='#f5d77a';ctx.font='bold 22px system-ui';ctx.textAlign='left';ctx.fillText('MERGE MOGUL',110,52);ctx.fillStyle='#9a927c';ctx.font='13px system-ui';ctx.fillText('Top asset: '+(top>=0?T[Math.min(top,10)][0]:'·'),110,76);ctx.fillText((180-s.tick/10).toFixed(1)+'s left · '+s.moves+' moves',110,98);
+ const S=100,Gp=8,ox=16,oy=128;ctx.fillStyle='#1a1a1a';ctx.fillRect(ox-6,oy-6,N*(S+Gp)+4,N*(S+Gp)+4);
+ for(let y=0;y<N;y++)for(let x=0;x<N;x++){const v=s.B[y][x],px=ox+x*(S+Gp),py=oy+y*(S+Gp);ctx.fillStyle=v<0?'#141414':(v>=8?'#2a2408':'#222');ctx.fillRect(px,py,S,S);
+  if(v>=0){ctx.strokeStyle=v>=6?'#d4af37':'#3a3a3a';ctx.lineWidth=2;ctx.strokeRect(px+1,py+1,S-2,S-2);const t=T[Math.min(v,10)];NND.badge(ctx,px+S/2,py+40,20+Math.min(v,6)*1.5,t[1]);
+   ctx.fillStyle='#f5d77a';ctx.font='bold 13px system-ui';ctx.textAlign='center';ctx.fillText(t[0],px+S/2,py+82);ctx.fillStyle='#9a927c';ctx.font='10px system-ui';ctx.fillText('LVL '+(v+1),px+S/2,py+96)}}
+ $('h1').textContent=s.score+' pts';$('h2').textContent=(180-s.tick/10).toFixed(0)+'s left';$('h3').textContent=s.moves+' moves';
+ if(!R.on)label(s.done?'ROUND OVER · '+s.score:'MERGE MOGUL',s.done?'Press START to go again':'Press START · 3-minute ranked round')}
+document.querySelectorAll('[data-d]').forEach(b=>b.addEventListener('pointerdown',e=>{e.preventDefault();tap(+b.dataset.d)}));
+const K={ArrowUp:0,ArrowRight:1,ArrowDown:2,ArrowLeft:3,w:0,d:1,s:2,a:3};
+addEventListener('keydown',e=>{const k=K[e.key];if(k!=null&&R.on){e.preventDefault();tap(k)}});
+let sx,sy;cv.addEventListener('pointerdown',e=>{sx=e.clientX;sy=e.clientY});cv.addEventListener('pointerup',e=>{const dx=e.clientX-sx,dy=e.clientY-sy;if(Math.max(Math.abs(dx),Math.abs(dy))<24)return;tap(Math.abs(dx)>Math.abs(dy)?(dx>0?1:3):(dy>0?2:0))});
+
+NND.ready.then(()=>requestAnimationFrame(idle));
+</script></body></html>

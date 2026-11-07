@@ -1,0 +1,84 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>PENTHOUSE PILOT · NetNet Arcade</title><meta name="description" content="Tap to flap. aidunlap jetpacks through the gaps between towers and grabs RWA tokens. Same skyline for everyone each week. Replay-verified.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Arcade"><meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/penthouse-pilot/">
+<meta property="og:title" content="PENTHOUSE PILOT · NetNet Arcade"><meta property="og:description" content="Tap to flap. aidunlap jetpacks through the gaps between towers and grabs RWA tokens. Same skyline for everyone each week. Replay-verified."><meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/penthouse-pilot.png"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a0a0a"><link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css">
+<style>:root{--c:#9a927c;--bg:#0a0a0a;--panel:#121212;--line:#2a2a2a}
+html,body{overscroll-behavior:none}
+#stage{position:relative;margin:0 auto;width:min(100%,calc((100dvh - 96px) * 9 / 16),480px);aspect-ratio:9/16;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;border-radius:14px;overflow:hidden;background:#0d0d0d;cursor:pointer}
+@supports not (height:100dvh){#stage{width:min(100%,calc((100vh - 96px) * 9 / 16),480px)}}
+#c{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+#res{position:absolute;left:8px;right:8px;bottom:calc(8px + env(safe-area-inset-bottom));font:13px system-ui;color:#f5d77a;text-align:center;pointer-events:none;text-shadow:0 1px 2px #000}
+#res a{pointer-events:auto;color:#d4af37}
+.pp-top{display:flex;gap:10px;align-items:center;justify-content:space-between;margin:6px 0;flex-wrap:wrap}
+.pp-top label{font-size:13px}
+@media (max-width:600px){.nn-wrap{padding-left:max(6px,env(safe-area-inset-left));padding-right:max(6px,env(safe-area-inset-right))}.nn-title{font-size:20px;margin:4px 0}}
+</style>
+<script src="../arcade/sims.js"></script><script>window.NN_SCORE_SERVER="https://netnet-arcade-verifier.netnetarcade.workers.dev"</script><script src="../arcade/core.js"></script><script src="../arcade/dunlap.js"></script></head><body>
+<div class="nn-wrap"><div class="nn-top"><a href="../">← LOBBY</a><span class="nn-pill">CABINET 13 · <span class="nna-ok">✔ REPLAY-VERIFIED</span></span></div>
+<div class="pp-top"><h1 class="nn-title">PENTHOUSE PILOT</h1><label class="nna-mut"><input type="checkbox" id="ranked" checked> Ranked (100 <span class="nna-test">TEST</span>)</label></div>
+<div id="stage"><canvas id="c"></canvas><div id="res"></div></div>
+<p class="nn-sub" style="margin-top:10px">Tap anywhere on the game (or press Space / ↑) to flap. Each tap gives aidunlap's jetpack one burst upward; gravity does the rest. Fly through the gaps: each tower +10, tokens in the gap T-bill +20, gold +30, NET +50. Hit a tower or the street and the flight ends. Tap again to fly instantly.</p>
+<div class="nn-card"><span class="nna-mut" style="font-size:12px">Ranked entry: 100 test credits (10 to treasury first, 90 to this week's pool). Untick Ranked for free practice.</span></div>
+<div class="nn-card" id="board"></div>
+<div class="nn-card"><h3>ABOUT THIS CABINET</h3><p class="nn-sub" style="font-size:13px">An original NetNet game starring aidunlap, the NetNet mascot. Everyone gets the same level this week (seed from the UTC week, Sunday to Sunday). Every flap is recorded by tick and the score server re-plays the run from scratch; only the re-simulated score counts. Runs that go faster than real time, pause, hide the tab or exceed the tap-rate cap are rejected. Tokens in the game are game items, not real assets or prices. Test credits only, not money.</p></div></div>
+<script>
+const GAME='penthouse-pilot',$=id=>document.getElementById(id),cv=$('c'),ctx=cv.getContext('2d'),g=NNS.games[GAME],W=g.W,H=g.H,GR=g.GROUND;
+function board(){NNA.renderBoard(GAME,$('board'))}
+document.addEventListener('DOMContentLoaded',()=>{board();NNA.foot()});
+// crisp canvas at device pixel ratio, logical 360x640
+let sc=1;function fit(){const r=cv.getBoundingClientRect(),d=Math.min(3,window.devicePixelRatio||1);cv.width=Math.round(r.width*d);cv.height=Math.round(r.height*d);sc=cv.width/W}
+addEventListener('resize',fit);
+// phases: ready (get-ready screen), play, over
+let phase='ready',preview=g.create(NNS.seedFor(GAME)),overAt=0,last=null,shake=0,parts=[],flash=0,best=+(localStorage.getItem('pp_best')||0),prevG=0,prevT=0,pops=[];
+// never let the site's own result modal cover the game: show the result inline instead
+NNA.result=function(run){const el=$('res');const ok=run.v&&run.v.ok;el.innerHTML=(ok?'✔ verified '+run.score+' pts':'✘ '+NNA.esc((run.v.reasons||[]).join('; ')))+(run.srv?' · <span id="srvst">🌐 checking…</span>':'')+' · <a href="'+NNA.replayURL(run)+'">replay ▶</a>';
+ if(run.srv)run.srv.then(x=>{const e=$('srvst');if(!e)return;e.innerHTML=!x?'⚠ server offline':x.verified?'🌐 SERVER VERIFIED'+(x.ranked?(x.rank?' · rank #'+x.rank:''):' (practice)'):'🌐 rejected: '+NNA.esc((x.reasons||[]).join('; '));board()})};
+let audio=null;function beep(f,d,v){try{audio=audio||new (window.AudioContext||window.webkitAudioContext)();const o=audio.createOscillator(),gn=audio.createGain();o.type='square';o.frequency.setValueAtTime(f,audio.currentTime);o.frequency.exponentialRampToValueAtTime(f*1.6,audio.currentTime+d);gn.gain.setValueAtTime(v||.04,audio.currentTime);gn.gain.exponentialRampToValueAtTime(.0001,audio.currentTime+d);o.connect(gn);gn.connect(audio.destination);o.start();o.stop(audio.currentTime+d)}catch(e){}}
+function burst(x,y,n,col,sp){for(let i=0;i<n;i++){const a=Math.random()*6.28,v=(sp||2)*(0.4+Math.random());parts.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,l:30+Math.random()*20,c:col})}}
+const R=NNA.runner(GAME,{onFrame:s=>{if(s.gates>prevG){beep(880,.08,.03);pops.push({t:performance.now(),txt:'+10'});prevG=s.gates}if(s.tokens>prevT){beep(1320,.12,.04);burst(g.BX+20,s.y,14,'#f5d77a',2.5);pops.push({t:performance.now(),txt:'TOKEN'});prevT=s.tokens}},
+ onEnd:(run,s)=>{phase='over';overAt=performance.now();last=s;shake=14;flash=1;burst(g.BX,s.y,30,'#d4af37',4);beep(110,.35,.06);const v=g.score(s);if(v>best){best=v;localStorage.setItem('pp_best',best)}board()}});
+function flap(){
+ if(phase==='over'){if(performance.now()-overAt<450)return;phase='ready'}
+ if(phase==='ready'){if(document.getElementById('nna-gate'))return;phase='play';prevG=0;prevT=0;parts=[];pops=[];$('res').textContent='';R.start($('ranked').checked)}
+ if(!R.on)return;R.input(1);beep(520,.07,.025);burst(g.BX-14,R.state.y+16,6,'#f5d77a',1.5)}
+NNA.onAgain=()=>{phase='ready'};
+const st=$('stage');
+st.addEventListener('pointerdown',e=>{if(e.target.closest('a'))return;e.preventDefault();flap()},{passive:false});
+// iOS: stop double-tap zoom / scroll / long-press callout on the stage (pointerdown still fires)
+['touchstart','touchmove','touchend','gesturestart','dblclick','contextmenu'].forEach(t=>st.addEventListener(t,e=>{if(e.target.closest&&e.target.closest('a'))return;e.preventDefault()},{passive:false}));
+addEventListener('keydown',e=>{if((e.key===' '||e.key==='ArrowUp'||e.key==='w')&&!e.repeat){if(e.target.tagName==='INPUT'||e.target.tagName==='BUTTON')return;e.preventDefault();flap()}});
+
+function txt(t,x,y,sz,col,al){ctx.font='900 '+sz+'px system-ui,sans-serif';ctx.textAlign=al||'center';ctx.lineWidth=sz/6;ctx.strokeStyle='#0a0a0a';ctx.strokeText(t,x,y);ctx.fillStyle=col;ctx.fillText(t,x,y)}
+function draw(now){const s=phase==='ready'?preview:(R.on?R.state:last||preview);
+ ctx.setTransform(sc,0,0,sc,0,0);let sx=0,sy=0;if(shake>0.3){sx=(Math.random()-.5)*shake;sy=(Math.random()-.5)*shake;shake*=0.86}else shake=0;ctx.translate(sx,sy);
+ const sky=ctx.createLinearGradient(0,0,0,H);sky.addColorStop(0,'#050505');sky.addColorStop(.7,'#141414');sky.addColorStop(1,'#1c1a14');ctx.fillStyle=sky;ctx.fillRect(-20,-20,W+40,H+40);
+ ctx.fillStyle='rgba(245,215,122,.5)';for(let i=0;i<30;i++){const x=(i*97+((s.dist||0)*0.05))%W,y=(i*53)%300;ctx.fillRect(W-x,y,1.5,1.5)}
+ ctx.fillStyle='#151515';const off=((s.dist||now*0.03)*0.35)%90;for(let i=-1;i<6;i++){const k=i+Math.floor(((s.dist||now*0.03)*0.35)/90),bh=120+((k*37%7+7)%7)*28;ctx.fillRect(i*90-off,GR-bh,70,bh);ctx.fillStyle='rgba(212,175,55,.08)';for(let y=GR-bh+10;y<GR-8;y+=16)ctx.fillRect(i*90-off+10,y,50,5);ctx.fillStyle='#151515'}
+ for(const o of s.cols){const t=o.c-o.gap/2,b=o.c+o.gap/2;ctx.fillStyle='#262626';ctx.fillRect(o.x,-20,o.w,t+20);ctx.fillRect(o.x,b,o.w,GR-b);
+  ctx.fillStyle='#1b1b1b';ctx.fillRect(o.x+o.w-10,-20,10,t+20);ctx.fillRect(o.x+o.w-10,b,10,GR-b);
+  ctx.fillStyle='#d4af37';ctx.fillRect(o.x-5,t-12,o.w+10,12);ctx.fillRect(o.x-5,b,o.w+10,12);ctx.fillStyle='#f5d77a';ctx.fillRect(o.x-5,t-12,o.w+10,2);ctx.fillRect(o.x-5,b,o.w+10,2);
+  ctx.fillStyle='rgba(245,215,122,.25)';for(let y=t-30;y>-10;y-=20)for(let x=o.x+9;x<o.x+o.w-10;x+=15)ctx.fillRect(x,y,6,9);for(let y=b+22;y<GR-6;y+=20)for(let x=o.x+9;x<o.x+o.w-10;x+=15)ctx.fillRect(x,y,6,9);
+  if(o.tok&&!o.took)NND.badge(ctx,o.x+o.w/2,o.c+Math.sin(now/250+o.x*0.05)*4,12,o.tok)}
+ ctx.fillStyle='#2a2a2a';ctx.fillRect(-20,GR,W+40,H-GR+20);ctx.fillStyle='#d4af37';ctx.fillRect(-20,GR,W+40,3);ctx.fillStyle='#3a3a3a';const so=(s.dist||now*0.15)%40;for(let x=-so;x<W;x+=40)ctx.fillRect(x,GR+22,22,4);
+ // aidunlap + jetpack, tilt from velocity
+ let y=s.y;if(phase==='ready')y=300+Math.sin(now/220)*8;const vy=phase==='ready'?0:s.vy,ang=Math.max(-0.45,Math.min(1.1,vy*0.09)),bx=g.BX;
+ ctx.save();ctx.translate(bx,y);ctx.rotate(ang);
+ const fl=phase==='play'&&s.lastFlap!=null&&s.tick-s.lastFlap<10;
+ if(fl||phase==='ready'){ctx.fillStyle=Math.floor(now/50)%2?'#f5d77a':'#d4af37';ctx.beginPath();ctx.moveTo(-17,8);ctx.lineTo(-9,8);ctx.lineTo(-13,22+Math.random()*10);ctx.fill()}
+ ctx.fillStyle='#2a2a2a';ctx.fillRect(-18,-12,10,20);ctx.fillStyle='#d4af37';ctx.fillRect(-18,-12,10,3);
+ NND.draw(ctx,0,25,52,{v:'dunlap',pose:s.crash&&phase==='over'?'fail':(fl?'win':'stand'),t:now});ctx.restore();
+ // particles
+ for(const p of parts){p.x+=p.vx;p.y+=p.vy;p.vy+=0.08;p.l--;ctx.globalAlpha=Math.max(0,p.l/50);ctx.fillStyle=p.c;ctx.fillRect(p.x-2,p.y-2,4,4)}ctx.globalAlpha=1;parts=parts.filter(p=>p.l>0);
+ ctx.setTransform(sc,0,0,sc,0,0);
+ if(flash>0){ctx.fillStyle='rgba(255,255,255,'+flash*0.5+')';ctx.fillRect(0,0,W,H);flash*=0.85;if(flash<0.02)flash=0}
+ const v=phase==='ready'?0:g.score(s);
+ if(phase!=='ready')txt(String(v),W/2,78,56,'#f5d77a');
+ pops=pops.filter(p=>now-p.t<600);pops.forEach((p,i)=>{const k=(now-p.t)/600;ctx.globalAlpha=1-k;txt(p.txt,W/2,110-k*24+i*20,18,'#d4af37');ctx.globalAlpha=1});
+ if(phase==='ready'){txt('PENTHOUSE PILOT',W/2,150,32,'#f5d77a');txt('GET READY',W/2,200,24,'#d4af37');txt('TAP TO FLAP',W/2,440,26,'#f5d77a');txt('☝',W/2,490+Math.sin(now/200)*6,34,'#f5d77a');if(best)txt('BEST '+best,W/2,540,16,'#9a927c')}
+ if(phase==='over'){ctx.fillStyle='rgba(10,10,10,.72)';ctx.fillRect(40,190,W-80,230);ctx.strokeStyle='#d4af37';ctx.lineWidth=2;ctx.strokeRect(40,190,W-80,230);
+  txt('GAME OVER',W/2,236,30,'#f5d77a');txt(v+' PTS',W/2,290,40,'#ffffff');txt(s.gates+' towers · best '+best,W/2,325,15,'#9a927c');if(now-overAt>450)txt('TAP TO FLY AGAIN',W/2,385,20,'#d4af37')}
+}
+let lw=0;function loop(now){const rw=cv.getBoundingClientRect().width;if(Math.abs(rw-lw)>1){lw=rw;fit()}draw(now);requestAnimationFrame(loop)}
+fit();requestAnimationFrame(loop);
+</script></body></html>
