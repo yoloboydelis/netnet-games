@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updated": "2026-11-07",
+  "updated": "2026-11-08",
   "about": "NetNet Arcade Discover list. Community games link out to the creator's own site; NetNet does not host, copy or monetize them.",
   "originals": [
     {
@@ -6498,6 +6498,186 @@
       "likes": 0,
       "reposts": 0,
       "views": 0,
+      "status": "ok",
+      "kind": "community"
+    },
+    {
+      "slug": "dead-even",
+      "title": "Dead Even",
+      "creator": "VerseZeroGames",
+      "credit": "@VerseZeroGames",
+      "x_post": "https://x.com/VerseZeroGames/status/2119113854437249529",
+      "play_url": "https://versezero.com/games/dead_even",
+      "posted": "2026-11-07",
+      "added": "2026-11-08",
+      "tags": [
+        "puzzle",
+        "casual"
+      ],
+      "genre": "Precision puzzle",
+      "pitch": "Rotate everyday objects so one fixed blade slices them exactly in half.",
+      "thumbnail": "",
+      "likes": 0,
+      "reposts": 0,
+      "views": 3,
+      "status": "ok",
+      "kind": "community"
+    },
+    {
+      "slug": "the-wandering-editor",
+      "title": "The Wandering Editor",
+      "creator": "stavrosnonis",
+      "credit": "@stavrosnonis",
+      "x_post": "https://x.com/stavrosnonis/status/2119025781133254907",
+      "play_url": "https://www.spawn.co/@nioni/the-wandering-editor",
+      "posted": "2026-11-07",
+      "added": "2026-11-08",
+      "tags": [
+        "puzzle",
+        "story",
+        "vibe-coded"
+      ],
+      "genre": "Mystery puzzle",
+      "pitch": "A puzzle-loving author lands on an island and stumbles into a murder.",
+      "thumbnail": "",
+      "likes": 2,
+      "reposts": 0,
+      "views": 66,
+      "status": "ok",
+      "kind": "community"
+    },
+    {
+      "slug": "emberkeep",
+      "title": "Emberkeep: The Dragon Hatchery",
+      "creator": "keepofthedragon",
+      "credit": "@keepofthedragon",
+      "x_post": "https://x.com/keepofthedragon/status/2119089701768314913",
+      "play_url": "https://keepofthedragon.com/",
+      "posted": "2026-11-07",
+      "added": "2026-11-08",
+      "tags": [
+        "casual",
+        "puzzle"
+      ],
+      "genre": "Merge game",
+      "pitch": "Merge eggs and hatch ember dragons to relight a sleeping sanctuary.",
+      "thumbnail": "",
+      "likes": 0,
+      "reposts": 0,
+      "views": 3,
+      "status": "ok",
+      "kind": "community"
+    },
+    {
+      "slug": "mabel-the-furniture-witch",
+      "title": "Mabel the Furniture Witch",
+      "creator": "n_i15",
+      "credit": "@n_i15",
+      "x_post": "https://x.com/n_i15/status/2119031257942409384",
+      "play_url": "https://pigmhall.itch.io/mfw",
+      "posted": "2026-11-07",
+      "added": "2026-11-08",
+      "tags": [
+        "puzzle",
+        "action",
+        "arcade"
+      ],
+      "genre": "Retro action puzzle",
+      "pitch": "A finished MSX2-style action puzzler starring a furniture-moving witch.",
+      "thumbnail": "",
+      "likes": 129,
+      "reposts": 31,
+      "views": 2500,
+      "status": "ok",
+      "kind": "community"
+    },
+    {
+      "slug": "save-the-diwali-lights",
+      "title": "Save the Diwali Lights",
+      "creator": "shuvramotion",
+      "credit": "@shuvramotion",
+      "x_post": "https://x.com/shuvramotion/status/2119104516624965633",
+      "play_url": "https://www.codecrafttech.com/experiments/diwali-lights/",
+      "posted": "2026-11-07",
+      "added": "2026-11-08",
+      "tags": [
+        "casual",
+        "arcade"
+      ],
+      "genre": "Festive mini game",
+      "pitch": "Light all five diyas before the wind sweeps through the courtyard.",
+      "thumbnail": "",
+      "likes": 2,
+      "reposts": 0,
+      "views": 47,
+      "status": "ok",
+      "kind": "community"
+    },
+    {
+      "slug": "bison-open-range",
+      "title": "Bison: Open Range",
+      "creator": "MBu8klc5",
+      "credit": "@MBu8klc5",
+      "x_post": "https://x.com/MBu8klc5/status/2119167599653302537",
+      "play_url": "https://bison-open-range.lzmb.chatgpt.site/",
+      "posted": "2026-11-07",
+      "added": "2026-11-08",
+      "tags": [
+        "adventure",
+        "3d",
+        "casual",
+        "vibe-coded"
+      ],
+      "genre": "Open-world wander",
+      "pitch": "Roam as a bison, gather a herd and explore through weather and seasons.",
+      "thumbnail": "",
+      "likes": 0,
+      "reposts": 0,
+      "views": 80,
+      "status": "ok",
+      "kind": "community"
+    },
+    {
+      "slug": "zyklus-mars-cadet-year",
+      "title": "MARS: Cadet Year",
+      "creator": "talesbytim",
+      "credit": "@talesbytim",
+      "x_post": "https://x.com/talesbytim/status/2119092415977955568",
+      "play_url": "https://thezyklus.com/mars/",
+      "posted": "2026-11-07",
+      "added": "2026-11-08",
+      "tags": [
+        "story",
+        "adventure"
+      ],
+      "genre": "Sci-fi story game",
+      "pitch": "A sci-fi story game about very unqualified heroes in the ZYKLUS universe.",
+      "thumbnail": "",
+      "likes": 1,
+      "reposts": 0,
+      "views": 11,
+      "status": "ok",
+      "kind": "community"
+    },
+    {
+      "slug": "doodle-arena",
+      "title": "Doodle Arena",
+      "creator": "alainwang11",
+      "credit": "@alainwang11",
+      "x_post": "https://x.com/alainwang11/status/2119087079305224631",
+      "play_url": "https://capsuleworlds.itch.io/doodle-arena-draw-a-monster-watch-it-fight",
+      "posted": "2026-11-07",
+      "added": "2026-11-08",
+      "tags": [
+        "casual",
+        "action"
+      ],
+      "genre": "Draw-and-battle",
+      "pitch": "Draw your own monster, then watch it fight in the arena.",
+      "thumbnail": "",
+      "likes": 0,
+      "reposts": 0,
+      "views": 9,
       "status": "ok",
       "kind": "community"
     }

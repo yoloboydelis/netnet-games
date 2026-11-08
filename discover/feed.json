@@ -5,6 +5,106 @@
  "feed_url": "https://yoloboydelis.github.io/netnet-games/discover/feed.json",
  "items": [
   {
+   "id": "dead-even",
+   "url": "https://versezero.com/games/dead_even",
+   "external_url": "https://x.com/VerseZeroGames/status/2119113854437249529",
+   "title": "Dead Even by @VerseZeroGames",
+   "content_text": "Rotate everyday objects so one fixed blade slices them exactly in half. Play: https://versezero.com/games/dead_even · X post: https://x.com/VerseZeroGames/status/2119113854437249529",
+   "date_published": "2026-11-07T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "casual"
+   ]
+  },
+  {
+   "id": "the-wandering-editor",
+   "url": "https://www.spawn.co/@nioni/the-wandering-editor",
+   "external_url": "https://x.com/stavrosnonis/status/2119025781133254907",
+   "title": "The Wandering Editor by @stavrosnonis",
+   "content_text": "A puzzle-loving author lands on an island and stumbles into a murder. Play: https://www.spawn.co/@nioni/the-wandering-editor · X post: https://x.com/stavrosnonis/status/2119025781133254907",
+   "date_published": "2026-11-07T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "story",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "emberkeep",
+   "url": "https://keepofthedragon.com/",
+   "external_url": "https://x.com/keepofthedragon/status/2119089701768314913",
+   "title": "Emberkeep: The Dragon Hatchery by @keepofthedragon",
+   "content_text": "Merge eggs and hatch ember dragons to relight a sleeping sanctuary. Play: https://keepofthedragon.com/ · X post: https://x.com/keepofthedragon/status/2119089701768314913",
+   "date_published": "2026-11-07T00:00:00Z",
+   "tags": [
+    "casual",
+    "puzzle"
+   ]
+  },
+  {
+   "id": "mabel-the-furniture-witch",
+   "url": "https://pigmhall.itch.io/mfw",
+   "external_url": "https://x.com/n_i15/status/2119031257942409384",
+   "title": "Mabel the Furniture Witch by @n_i15",
+   "content_text": "A finished MSX2-style action puzzler starring a furniture-moving witch. Play: https://pigmhall.itch.io/mfw · X post: https://x.com/n_i15/status/2119031257942409384",
+   "date_published": "2026-11-07T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "action",
+    "arcade"
+   ]
+  },
+  {
+   "id": "save-the-diwali-lights",
+   "url": "https://www.codecrafttech.com/experiments/diwali-lights/",
+   "external_url": "https://x.com/shuvramotion/status/2119104516624965633",
+   "title": "Save the Diwali Lights by @shuvramotion",
+   "content_text": "Light all five diyas before the wind sweeps through the courtyard. Play: https://www.codecrafttech.com/experiments/diwali-lights/ · X post: https://x.com/shuvramotion/status/2119104516624965633",
+   "date_published": "2026-11-07T00:00:00Z",
+   "tags": [
+    "casual",
+    "arcade"
+   ]
+  },
+  {
+   "id": "bison-open-range",
+   "url": "https://bison-open-range.lzmb.chatgpt.site/",
+   "external_url": "https://x.com/MBu8klc5/status/2119167599653302537",
+   "title": "Bison: Open Range by @MBu8klc5",
+   "content_text": "Roam as a bison, gather a herd and explore through weather and seasons. Play: https://bison-open-range.lzmb.chatgpt.site/ · X post: https://x.com/MBu8klc5/status/2119167599653302537",
+   "date_published": "2026-11-07T00:00:00Z",
+   "tags": [
+    "adventure",
+    "3d",
+    "casual",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "zyklus-mars-cadet-year",
+   "url": "https://thezyklus.com/mars/",
+   "external_url": "https://x.com/talesbytim/status/2119092415977955568",
+   "title": "MARS: Cadet Year by @talesbytim",
+   "content_text": "A sci-fi story game about very unqualified heroes in the ZYKLUS universe. Play: https://thezyklus.com/mars/ · X post: https://x.com/talesbytim/status/2119092415977955568",
+   "date_published": "2026-11-07T00:00:00Z",
+   "tags": [
+    "story",
+    "adventure"
+   ]
+  },
+  {
+   "id": "doodle-arena",
+   "url": "https://capsuleworlds.itch.io/doodle-arena-draw-a-monster-watch-it-fight",
+   "external_url": "https://x.com/alainwang11/status/2119087079305224631",
+   "title": "Doodle Arena by @alainwang11",
+   "content_text": "Draw your own monster, then watch it fight in the arena. Play: https://capsuleworlds.itch.io/doodle-arena-draw-a-monster-watch-it-fight · X post: https://x.com/alainwang11/status/2119087079305224631",
+   "date_published": "2026-11-07T00:00:00Z",
+   "tags": [
+    "casual",
+    "action"
+   ]
+  },
+  {
    "id": "gridclash",
    "url": "https://gridclashweb.vercel.app/",
    "external_url": "https://x.com/itswaltertanui/status/2118989004544545009",
@@ -527,106 +627,6 @@
    "date_published": "2026-11-04T00:00:00Z",
    "tags": [
     "casual"
-   ]
-  },
-  {
-   "id": "amegawa",
-   "url": "https://amegawa.grok.me/",
-   "external_url": "https://x.com/AspenthOfficial/status/2117820508037075363",
-   "title": "AMEGAWA: Valley of Rain by @AspenthOfficial",
-   "content_text": "First-person horror: follow a missing sister's postcard into a valley no map names. Play: https://amegawa.grok.me/ · X post: https://x.com/AspenthOfficial/status/2117820508037075363",
-   "date_published": "2026-11-04T00:00:00Z",
-   "tags": [
-    "story",
-    "adventure",
-    "3d"
-   ]
-  },
-  {
-   "id": "bell-migaki",
-   "url": "https://foundrybell.itch.io/bell-migaki-shokunin-peko",
-   "external_url": "https://x.com/FoundryBell/status/2117899714595266579",
-   "title": "Bell-Migaki by @FoundryBell",
-   "content_text": "Polish a grimy bell to a shine in 60 frantic seconds. Play: https://foundrybell.itch.io/bell-migaki-shokunin-peko · X post: https://x.com/FoundryBell/status/2117899714595266579",
-   "date_published": "2026-11-04T00:00:00Z",
-   "tags": [
-    "casual",
-    "arcade"
-   ]
-  },
-  {
-   "id": "startup-simulator",
-   "url": "https://austinbuhltech.com/work/startup-sim/",
-   "external_url": "https://x.com/buhlaustin/status/2117825209243685131",
-   "title": "Startup Simulator by @buhlaustin",
-   "content_text": "Take a company from garage to IPO: fundraising, cap table and survival. Play: https://austinbuhltech.com/work/startup-sim/ · X post: https://x.com/buhlaustin/status/2117825209243685131",
-   "date_published": "2026-11-04T00:00:00Z",
-   "tags": [
-    "strategy",
-    "casual",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "middle-aged-makeover",
-   "url": "https://games.kininarunote34.com/play/ojisan/",
-   "external_url": "https://x.com/kininarunote34/status/2117782240742744181",
-   "title": "Middle-Aged Makeover by @kininarunote34",
-   "content_text": "Give a middle-aged guy a full makeover. Silly, free and phone-friendly. Play: https://games.kininarunote34.com/play/ojisan/ · X post: https://x.com/kininarunote34/status/2117782240742744181",
-   "date_published": "2026-11-04T00:00:00Z",
-   "tags": [
-    "casual"
-   ]
-  },
-  {
-   "id": "boosterpedia",
-   "url": "https://boosterpedia.app/",
-   "external_url": "https://x.com/boosterpedia/status/2117800856699510930",
-   "title": "Boosterpedia by @boosterpedia",
-   "content_text": "Open booster packs where every Wikipedia article is a card, rarer by pageviews. Play: https://boosterpedia.app/ · X post: https://x.com/boosterpedia/status/2117800856699510930",
-   "date_published": "2026-11-04T00:00:00Z",
-   "tags": [
-    "cards",
-    "trivia",
-    "casual"
-   ]
-  },
-  {
-   "id": "glamis-dunes",
-   "url": "https://iotdatabase.github.io/glamis_game/",
-   "external_url": "https://x.com/timothytech2025/status/2117676313154908474",
-   "title": "Glamis Dunes by @timothytech2025",
-   "content_text": "Rip an off-roader across giant sand dunes in a 3D desert sim built with Claude. Play: https://iotdatabase.github.io/glamis_game/ · X post: https://x.com/timothytech2025/status/2117676313154908474",
-   "date_published": "2026-11-03T00:00:00Z",
-   "tags": [
-    "racing",
-    "3d",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "cupquake",
-   "url": "https://bezty.itch.io/cupquake",
-   "external_url": "https://x.com/beztyart/status/2117726407002317206",
-   "title": "CUPQUAKE by @beztyart",
-   "content_text": "Run a cupcake kiosk on a lonely highway full of weird clients and anomalies. Play: https://bezty.itch.io/cupquake · X post: https://x.com/beztyart/status/2117726407002317206",
-   "date_published": "2026-11-03T00:00:00Z",
-   "tags": [
-    "cards",
-    "story"
-   ]
-  },
-  {
-   "id": "a-goose-tale",
-   "url": "https://agoosetale.com/",
-   "external_url": "https://x.com/Rahzell83/status/2117648097476018316",
-   "title": "A Goose Tale by @Rahzell83",
-   "content_text": "Lead a gander with a torch through the night, escaping rats to reunite his family. Play: https://agoosetale.com/ · X post: https://x.com/Rahzell83/status/2117648097476018316",
-   "date_published": "2026-11-03T00:00:00Z",
-   "tags": [
-    "adventure",
-    "3d",
-    "action"
    ]
   }
  ]
