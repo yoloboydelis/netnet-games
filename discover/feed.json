@@ -5,6 +5,155 @@
  "feed_url": "https://yoloboydelis.github.io/netnet-games/discover/feed.json",
  "items": [
   {
+   "id": "bhag-noida-bhag",
+   "url": "https://bhagnoidabhag.vercel.app/",
+   "external_url": "https://x.com/Vikas__gupta03/status/2119684673597297071",
+   "title": "Bhag Noida Bhag by @Vikas__gupta03",
+   "content_text": "Sprint through Noida streets dodging cars, autos, cows and police. Play: https://bhagnoidabhag.vercel.app/ · X post: https://x.com/Vikas__gupta03/status/2119684673597297071",
+   "date_published": "2026-11-09T00:00:00Z",
+   "tags": [
+    "arcade",
+    "action",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "bihar-gali",
+   "url": "https://soft-kringle-fa2289.netlify.app",
+   "external_url": "https://x.com/unfav_abhishek3/status/2119690821285102016",
+   "title": "Bihar Gali by @unfav_abhishek3",
+   "content_text": "A tiny street game of chai, paan and mithai. Play: https://soft-kringle-fa2289.netlify.app · X post: https://x.com/unfav_abhishek3/status/2119690821285102016",
+   "date_published": "2026-11-09T00:00:00Z",
+   "tags": [
+    "casual",
+    "arcade"
+   ]
+  },
+  {
+   "id": "laslos-life",
+   "url": "https://laslos.com",
+   "external_url": "https://x.com/LaslosLife/status/2119608866002649361",
+   "title": "Laslos Life by @LaslosLife",
+   "content_text": "Thirty days in Los Angeles: manage hunger, energy and mood, eight endings. Play: https://laslos.com · X post: https://x.com/LaslosLife/status/2119608866002649361",
+   "date_published": "2026-11-09T00:00:00Z",
+   "tags": [
+    "survival",
+    "story"
+   ]
+  },
+  {
+   "id": "needle-hunt",
+   "url": "https://playgama.ai/play/obqpad7xdvaf4g",
+   "external_url": "https://x.com/taykotoker/status/2119674101010682145",
+   "title": "Needle Hunt by @taykotoker",
+   "content_text": "Hunt down the needle before time runs out. Play: https://playgama.ai/play/obqpad7xdvaf4g · X post: https://x.com/taykotoker/status/2119674101010682145",
+   "date_published": "2026-11-09T00:00:00Z",
+   "tags": [
+    "casual",
+    "puzzle"
+   ]
+  },
+  {
+   "id": "tower-in-a-minute-observatory",
+   "url": "https://playgama.ai/play/xflncundzrmxjg",
+   "external_url": "https://x.com/tuhlopuz/status/2119704660080837056",
+   "title": "Tower in a Minute: Observatory by @tuhlopuz",
+   "content_text": "Build an observatory tower against a one-minute clock. Play: https://playgama.ai/play/xflncundzrmxjg · X post: https://x.com/tuhlopuz/status/2119704660080837056",
+   "date_published": "2026-11-09T00:00:00Z",
+   "tags": [
+    "casual",
+    "physics"
+   ]
+  },
+  {
+   "id": "sarkari-simulator",
+   "url": "https://sarkari-simulator.nitesh.lol",
+   "external_url": "https://x.com/CseNitesh/status/2119436324138860587",
+   "title": "Sarkari Simulator by @CseNitesh",
+   "content_text": "Beat captchas and queues to get a passport in 90 days without losing it. Play: https://sarkari-simulator.nitesh.lol · X post: https://x.com/CseNitesh/status/2119436324138860587",
+   "date_published": "2026-11-08T00:00:00Z",
+   "tags": [
+    "casual",
+    "story",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "canopy-rush",
+   "url": "https://canopyrush.vercel.app",
+   "external_url": "https://x.com/anokarun03/status/2119463113779187745",
+   "title": "Canopy Rush by @anokarun03",
+   "content_text": "First-person gravity karts down jungle hills, solo or with up to five friends. Play: https://canopyrush.vercel.app · X post: https://x.com/anokarun03/status/2119463113779187745",
+   "date_published": "2026-11-08T00:00:00Z",
+   "tags": [
+    "racing",
+    "multiplayer",
+    "3d",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "lumina-zombies",
+   "url": "https://luminazombies.com/",
+   "external_url": "https://x.com/sonuv_dev/status/2119426562525139190",
+   "title": "Lumina Zombies by shared by @sonuv_dev (made by Luminabench)",
+   "content_text": "Survive zombie waves, upgrade weapons and explore The Rig and Das Eishaus. Play: https://luminazombies.com/ · X post: https://x.com/sonuv_dev/status/2119426562525139190",
+   "date_published": "2026-11-08T00:00:00Z",
+   "tags": [
+    "shooter",
+    "survival",
+    "3d"
+   ]
+  },
+  {
+   "id": "every-challenge-builds-a-way",
+   "url": "https://mable.gg/g/kmp153",
+   "external_url": "https://x.com/D7x_Soultext/status/2119247539262128545",
+   "title": "Every Challenge Builds a Way by @D7x_Soultext",
+   "content_text": "Carry water to lower the bridge, climb ladders and swing across gaps. Play: https://mable.gg/g/kmp153 · X post: https://x.com/D7x_Soultext/status/2119247539262128545",
+   "date_published": "2026-11-08T00:00:00Z",
+   "tags": [
+    "adventure",
+    "puzzle"
+   ]
+  },
+  {
+   "id": "recoil-force",
+   "url": "https://playgama.ai/play/blsce3basovqim",
+   "external_url": "https://x.com/argonzipper987/status/2119373800458625221",
+   "title": "Recoil Force by @argonzipper987",
+   "content_text": "Use your gun's kick to move and blast your way through. Play: https://playgama.ai/play/blsce3basovqim · X post: https://x.com/argonzipper987/status/2119373800458625221",
+   "date_published": "2026-11-08T00:00:00Z",
+   "tags": [
+    "action",
+    "physics"
+   ]
+  },
+  {
+   "id": "who-dies-last-elite",
+   "url": "https://playgama.ai/play/ooss5wgr4nxnrs",
+   "external_url": "https://x.com/argonzipper987/status/2119374093971759518",
+   "title": "Who Dies Last Elite by @argonzipper987",
+   "content_text": "Outlast everyone else in a quick last-survivor showdown. Play: https://playgama.ai/play/ooss5wgr4nxnrs · X post: https://x.com/argonzipper987/status/2119374093971759518",
+   "date_published": "2026-11-08T00:00:00Z",
+   "tags": [
+    "action",
+    "casual"
+   ]
+  },
+  {
+   "id": "guess-word",
+   "url": "https://playgama.ai/play/b5r2xugzejxppj",
+   "external_url": "https://x.com/GioLomidze89/status/2119486666226466856",
+   "title": "Guess Word by @GioLomidze89",
+   "content_text": "Two pictures, one word that links them. Can you find it? Play: https://playgama.ai/play/b5r2xugzejxppj · X post: https://x.com/GioLomidze89/status/2119486666226466856",
+   "date_published": "2026-11-08T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "trivia"
+   ]
+  },
+  {
    "id": "dead-even",
    "url": "https://versezero.com/games/dead_even",
    "external_url": "https://x.com/VerseZeroGames/status/2119113854437249529",
@@ -476,156 +625,6 @@
    "tags": [
     "strategy",
     "puzzle",
-    "casual"
-   ]
-  },
-  {
-   "id": "dont-erase-me",
-   "url": "https://dont-erase-me-xpharma.vercel.app/",
-   "external_url": "https://x.com/XPharmax/status/2117980466607243274",
-   "title": "Don't Erase Me! by @XPharmax",
-   "content_text": "Stickman runs from a giant eraser and draws his own bridges to escape the sketchbook. Play: https://dont-erase-me-xpharma.vercel.app/ · X post: https://x.com/XPharmax/status/2117980466607243274",
-   "date_published": "2026-11-04T00:00:00Z",
-   "tags": [
-    "arcade",
-    "action",
-    "casual",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "board-battles",
-   "url": "https://playboardbattles.com/",
-   "external_url": "https://x.com/boardbattlesgg/status/2118075242354716739",
-   "title": "Board Battles by @boardbattlesgg",
-   "content_text": "Turn-based board tactics where classes evolve mid-fight; trials, survival and PvP. Play: https://playboardbattles.com/ · X post: https://x.com/boardbattlesgg/status/2118075242354716739",
-   "date_published": "2026-11-04T00:00:00Z",
-   "tags": [
-    "strategy",
-    "multiplayer"
-   ]
-  },
-  {
-   "id": "after-light",
-   "url": "https://inhocsigno.itch.io/after-light",
-   "external_url": "https://x.com/inhocsignolud/status/2117988579444133963",
-   "title": "After Light by @inhocsignolud",
-   "content_text": "A solar storm killed the grid: scavenge, craft, drive and last the night in pixel art. Play: https://inhocsigno.itch.io/after-light · X post: https://x.com/inhocsignolud/status/2117988579444133963",
-   "date_published": "2026-11-04T00:00:00Z",
-   "tags": [
-    "survival",
-    "adventure"
-   ]
-  },
-  {
-   "id": "sumiro",
-   "url": "https://xikhar.github.io/sumiro/",
-   "external_url": "https://x.com/MoarPlzz/status/2118093430924681667",
-   "title": "Sumiro by shared by @MoarPlzz (made by @xikhar)",
-   "content_text": "A misty ink-wash mountain journey in 3D, built in 24 hours with AI tools. Play: https://xikhar.github.io/sumiro/ · X post: https://x.com/MoarPlzz/status/2118093430924681667",
-   "date_published": "2026-11-04T00:00:00Z",
-   "tags": [
-    "adventure",
-    "3d",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "hiraeth",
-   "url": "https://hiraeth.my/",
-   "external_url": "https://x.com/yoosuf_sayyid/status/2117927732298588564",
-   "title": "Hiraeth by @yoosuf_sayyid",
-   "content_text": "A desert adventure in a bold comic-book line art style, with saves and full screen. Play: https://hiraeth.my/ · X post: https://x.com/yoosuf_sayyid/status/2117927732298588564",
-   "date_published": "2026-11-04T00:00:00Z",
-   "tags": [
-    "adventure",
-    "story",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "unilife",
-   "url": "https://playunilife.com/",
-   "external_url": "https://x.com/playunilife/status/2117927336230429154",
-   "title": "UniLife by @playunilife",
-   "content_text": "Juggle stress, energy, coursework and internships through uni with other live players. Play: https://playunilife.com/ · X post: https://x.com/playunilife/status/2117927336230429154",
-   "date_published": "2026-11-04T00:00:00Z",
-   "tags": [
-    "multiplayer",
-    "casual"
-   ]
-  },
-  {
-   "id": "horde-vs-horde",
-   "url": "https://playgama.ai/play/6rat77b2pm3ur6",
-   "external_url": "https://x.com/ClickwiseStudio/status/2118109573231870257",
-   "title": "Horde vs Horde by @ClickwiseStudio",
-   "content_text": "Roam the battlefield as a hero, wipe out wave after wave and level up. Play: https://playgama.ai/play/6rat77b2pm3ur6 · X post: https://x.com/ClickwiseStudio/status/2118109573231870257",
-   "date_published": "2026-11-04T00:00:00Z",
-   "tags": [
-    "action",
-    "arcade"
-   ]
-  },
-  {
-   "id": "mizumichi",
-   "url": "https://domandev.itch.io/mizumichi",
-   "external_url": "https://x.com/domandev/status/2117867139625546118",
-   "title": "Mizumichi by @domandev",
-   "content_text": "Guide spring water down rice terraces in a calm pixel-art puzzle. Play: https://domandev.itch.io/mizumichi · X post: https://x.com/domandev/status/2117867139625546118",
-   "date_published": "2026-11-04T00:00:00Z",
-   "tags": [
-    "puzzle",
-    "casual"
-   ]
-  },
-  {
-   "id": "mindtrap",
-   "url": "https://mindtrap.app/",
-   "external_url": "https://x.com/roadsteralex/status/2117829479577931825",
-   "title": "MINDTRAP by @roadsteralex",
-   "content_text": "Plan routes on a shared 3D board, defend your ground and sabotage your rival. Play: https://mindtrap.app/ · X post: https://x.com/roadsteralex/status/2117829479577931825",
-   "date_published": "2026-11-04T00:00:00Z",
-   "tags": [
-    "puzzle",
-    "strategy",
-    "3d",
-    "multiplayer"
-   ]
-  },
-  {
-   "id": "chair-champions",
-   "url": "https://bucket-full-games.itch.io/chair-champions",
-   "external_url": "https://x.com/BucketFullGames/status/2117875109633405000",
-   "title": "CHAIR Champions by @BucketFullGames",
-   "content_text": "A game-jam racer where you speed down tracks in an office chair. Play: https://bucket-full-games.itch.io/chair-champions · X post: https://x.com/BucketFullGames/status/2117875109633405000",
-   "date_published": "2026-11-04T00:00:00Z",
-   "tags": [
-    "racing",
-    "physics",
-    "casual"
-   ]
-  },
-  {
-   "id": "yoisho-mochi",
-   "url": "https://mochi-game-lime.vercel.app/",
-   "external_url": "https://x.com/ianwongux/status/2117829462440259888",
-   "title": "Yoisho! Mochi Pounding by @ianwongux",
-   "content_text": "Tap on the beat to pound mochi and dodge your partner's fake-outs. Play: https://mochi-game-lime.vercel.app/ · X post: https://x.com/ianwongux/status/2117829462440259888",
-   "date_published": "2026-11-04T00:00:00Z",
-   "tags": [
-    "casual",
-    "arcade"
-   ]
-  },
-  {
-   "id": "seal-choir",
-   "url": "https://share.combos.game/p/4733450",
-   "external_url": "https://x.com/mumuuuuumo/status/2117877099247948012",
-   "title": "Seal Choir by @mumuuuuumo",
-   "content_text": "Conduct an a cappella choir sung entirely by seals. Sound on. Play: https://share.combos.game/p/4733450 · X post: https://x.com/mumuuuuumo/status/2117877099247948012",
-   "date_published": "2026-11-04T00:00:00Z",
-   "tags": [
     "casual"
    ]
   }
