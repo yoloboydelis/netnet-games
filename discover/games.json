@@ -125,6 +125,53 @@
   ],
   "games": [
     {
+      "slug": "turfwar",
+      "title": "TurfWar",
+      "creator": "NetNetIntel",
+      "credit": "@NetNetIntel",
+      "x_post": "https://x.com/NetNetIntel/status/2118333587603034272",
+      "play_url": "https://netnetintel.com/turfwar-demo",
+      "posted": "2026-11-05",
+      "added": "2026-11-09",
+      "tags": [
+        "action",
+        "shooter",
+        "arcade"
+      ],
+      "genre": "Turf survival",
+      "pitch": "Browser turf-war arcade on Robinhood Testnet — testnet, no real money.",
+      "thumbnail": "",
+      "likes": 34,
+      "reposts": 8,
+      "views": 592,
+      "status": "ok",
+      "kind": "community",
+      "submission": true
+    },
+    {
+      "slug": "net-hustle",
+      "title": "Net Hustle",
+      "creator": "OzzietheOwl__",
+      "credit": "@OzzietheOwl__",
+      "x_post": "https://x.com/OzzietheOwl__/status/2118335315303637501",
+      "play_url": "https://www.nethustle.online/",
+      "posted": "2026-11-05",
+      "added": "2026-11-09",
+      "tags": [
+        "strategy",
+        "casual"
+      ],
+      "genre": "Corporate ladder",
+      "pitch": "Corporate-ladder NFT game on Robinhood Chain — hire, promote, earn NET.",
+      "thumbnail": "",
+      "likes": 4,
+      "reposts": 2,
+      "views": 137,
+      "status": "ok",
+      "kind": "community",
+      "submission": true
+    },
+    {
       "slug": "blue-line",
       "title": "Blue Line",
       "creator": "AlexStLouis10",

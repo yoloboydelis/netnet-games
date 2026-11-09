@@ -18,6 +18,9 @@
 .step{display:flex;gap:10px;align-items:flex-start;margin:8px 0}.step b.n{flex:0 0 28px;height:28px;border-radius:50%;background:#38f5ff;color:#05070f;display:flex;align-items:center;justify-content:center}
 </style><style>
 .badge-new{position:absolute;top:10px;right:10px;background:#ff2bd6;color:#fff;font:900 11px system-ui;letter-spacing:.08em;border-radius:999px;padding:3px 8px}
+.badge-sub{position:absolute;top:10px;left:10px;background:#38f5ff;color:#05070f;font:900 11px system-ui;letter-spacing:.04em;border-radius:999px;padding:3px 8px}
+.gc.subm{border-color:#38f5ff;box-shadow:0 0 0 1px #38f5ff44}
+.chip.sub{border-color:#38f5ff;color:#38f5ff;background:#0a2a33}
 .orig{border-color:#d4af37;background:linear-gradient(160deg,#1d1606,#0b0b0b)}.orig h3{color:#f5d77a}
 .gc{min-width:0}.orig{overflow:hidden}.orig .thumb{width:100%;min-width:0;max-height:150px;aspect-ratio:1200/630;object-fit:cover;border-radius:12px;border:1px solid #3a3115}
 .sec{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:22px 0 4px;flex-wrap:wrap}.sec h2{margin:0;font-size:22px}
@@ -61,18 +64,18 @@ const EM={sports:'🏆',racing:'🏁',multiplayer:'👥',rpg:'⚔️',arcade:'�
 const em=g=>{for(const t of g.tags)if(EM[t])return EM[t];return '🎮'};const k=n=>n>=1000?(n/1000).toFixed(n>=1e4?0:1)+'k':n;
 const E=s=>NNA.esc(String(s==null?'':s)),TODAY=Date.now(),isNew=g=>(TODAY-Date.parse(g.posted+'T00:00:00Z'))<7*864e5;
 const vis=()=>D.games.filter(g=>g.status==='ok'&&!state.hidden.includes(g.slug));
-function card(g){const c=state.claims[g.slug],col=COL[g.title.length%COL.length];
- return '<div class="gc">'+(isNew(g)?'<span class="badge-new">NEW</span>':'')+'<div class="ti"><div class="em" style="background:'+col+'22;border:1px solid '+col+'">'+em(g)+'</div><div><h3>'+E(g.title)+'</h3><div class="cr">by <a href="https://x.com/'+encodeURIComponent(g.creator)+'" target="_blank" rel="noopener noreferrer">'+E(g.credit)+'</a></div></div></div>'+
- '<div>'+g.tags.slice(0,3).map(t=>'<span class="chip">#'+E(t)+'</span> ').join('')+(c?'<span class="chip cl">✔ Claimed'+(c.optin?' · NetNet rails soon':'')+'</span>':'<span class="chip">Unclaimed</span>')+'</div>'+
+function card(g){const c=state.claims[g.slug],col=COL[g.title.length%COL.length],sub=!!g.submission;
+ return '<div class="gc'+(sub?' subm':'')+'">'+(sub?'<span class="badge-sub">ARCADE SUBMISSION</span>':'')+(isNew(g)?'<span class="badge-new">NEW</span>':'')+'<div class="ti"><div class="em" style="background:'+col+'22;border:1px solid '+col+'">'+em(g)+'</div><div><h3>'+E(g.title)+'</h3><div class="cr">by <a href="https://x.com/'+encodeURIComponent(g.creator)+'" target="_blank" rel="noopener noreferrer">'+E(g.credit)+'</a></div></div></div>'+
+ '<div>'+(sub?'<span class="chip sub">NetNet Arcade submission</span> ':'')+g.tags.slice(0,3).map(t=>'<span class="chip">#'+E(t)+'</span> ').join('')+(c?'<span class="chip cl">✔ Claimed'+(c.optin?' · NetNet rails soon':'')+'</span>':'<span class="chip">Unclaimed</span>')+'</div>'+
  '<p class="nna-mut" style="margin:0;font-size:14px">'+E(g.pitch)+'</p><div class="meta"><span>♥ '+k(g.likes||0)+'</span>'+(g.views?'<span>👁 '+k(g.views)+'</span>':'')+'<span>posted '+E(g.posted)+'</span></div>'+
  '<div class="act"><a class="nn-btn" href="'+E(g.play_url)+'" target="_blank" rel="noopener noreferrer">Open game ↗</a><a class="nn-btn ghost" href="'+E(g.x_post)+'" target="_blank" rel="noopener noreferrer">X post ↗</a></div>'+
  '<a class="nna-mut" style="font-size:12px;color:#8b9bb8" href="claim/?g='+encodeURIComponent(g.slug)+'">Creator? Claim or remove →</a></div>'}
 function render(){const q=document.getElementById('q').value.toLowerCase(),so=document.getElementById('sort').value;
  let L=vis().filter(g=>(tag==='all'||g.tags.includes(tag))&&(!q||(g.title+' '+g.creator+' '+g.credit+' '+g.genre+' '+g.pitch+' '+g.tags.join(' ')).toLowerCase().includes(q)));
- L.sort(so==='new'?(a,b)=>b.posted.localeCompare(a.posted)||b.added.localeCompare(a.added):so==='az'?(a,b)=>a.title.localeCompare(b.title):(a,b)=>(b.likes||0)-(a.likes||0)||(b.views||0)-(a.views||0));
+ const pin=(a,b)=>(!!b.submission)-(!!a.submission); L.sort(so==='new'?(a,b)=>pin(a,b)||b.posted.localeCompare(a.posted)||b.added.localeCompare(a.added):so==='az'?(a,b)=>pin(a,b)||a.title.localeCompare(b.title):(a,b)=>pin(a,b)||(b.likes||0)-(a.likes||0)||(b.views||0)-(a.views||0));
  document.getElementById('grid').innerHTML=L.map(card).join('')||'<div class="nna-mut">No games match.</div>';
  document.getElementById('cnt').textContent=L.length+' of '+vis().length+' games';
- const F=vis().filter(isNew).sort((a,b)=>b.posted.localeCompare(a.posted));
+ const F=vis().filter(isNew).sort((a,b)=>(!!b.submission)-(!!a.submission)||b.posted.localeCompare(a.posted));
  document.getElementById('fresh').innerHTML=F.map(card).join('')||'<div class="nna-mut">Nothing new this week yet. Post yours with #NetNetArcade.</div>';
  document.getElementById('newc').textContent=F.length+' new in the last 7 days · swipe →'}
 function init(){document.getElementById('orig').innerHTML=D.originals.map(g=>'<a class="gc orig" style="text-decoration:none;color:inherit" href="'+E(g.play_url)+'"><img class="thumb" loading="lazy" alt="" src="'+E(g.thumbnail)+'"><h3>'+E(g.title)+'</h3><p class="nna-mut" style="margin:0;font-size:14px">'+E(g.pitch)+'</p><span class="nn-btn" style="min-height:44px">Play now ▶</span></a>').join('');

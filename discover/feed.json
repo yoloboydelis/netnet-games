@@ -416,6 +416,31 @@
    ]
   },
   {
+   "id": "turfwar",
+   "url": "https://netnetintel.com/turfwar-demo",
+   "external_url": "https://x.com/NetNetIntel/status/2118333587603034272",
+   "title": "TurfWar by @NetNetIntel",
+   "content_text": "Browser turf-war arcade on Robinhood Testnet — testnet, no real money. Play: https://netnetintel.com/turfwar-demo · X post: https://x.com/NetNetIntel/status/2118333587603034272",
+   "date_published": "2026-11-05T00:00:00Z",
+   "tags": [
+    "action",
+    "shooter",
+    "arcade"
+   ]
+  },
+  {
+   "id": "net-hustle",
+   "url": "https://www.nethustle.online/",
+   "external_url": "https://x.com/OzzietheOwl__/status/2118335315303637501",
+   "title": "Net Hustle by @OzzietheOwl__",
+   "content_text": "Corporate-ladder NFT game on Robinhood Chain — hire, promote, earn NET. Play: https://www.nethustle.online/ · X post: https://x.com/OzzietheOwl__/status/2118335315303637501",
+   "date_published": "2026-11-05T00:00:00Z",
+   "tags": [
+    "strategy",
+    "casual"
+   ]
+  },
+  {
    "id": "kitchen-kart",
    "url": "https://hisefath.github.io/kitchen-kart/",
    "external_url": "https://x.com/SefathC/status/2118441356754616719",
@@ -599,33 +624,6 @@
    "tags": [
     "casual",
     "3d"
-   ]
-  },
-  {
-   "id": "rage-room",
-   "url": "https://rageroomonline.netlify.app/",
-   "external_url": "https://x.com/_periperifries/status/2118096573368619432",
-   "title": "Rage Room by @_periperifries",
-   "content_text": "First-person 3D rage room: pick a bat or sledge and hit the cash goal by wrecking stuff. Play: https://rageroomonline.netlify.app/ · X post: https://x.com/_periperifries/status/2118096573368619432",
-   "date_published": "2026-11-04T00:00:00Z",
-   "tags": [
-    "action",
-    "physics",
-    "3d",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "search-defender",
-   "url": "https://reyngames.com/search-defender/",
-   "external_url": "https://x.com/ReynGames/status/2118011008405180758",
-   "title": "Search Defender by @ReynGames",
-   "content_text": "A tower defense hidden inside a fake search engine: type queries to discover towers. Play: https://reyngames.com/search-defender/ · X post: https://x.com/ReynGames/status/2118011008405180758",
-   "date_published": "2026-11-04T00:00:00Z",
-   "tags": [
-    "strategy",
-    "puzzle",
-    "casual"
    ]
   }
  ]
