@@ -5,6 +5,158 @@
  "feed_url": "https://yoloboydelis.github.io/netnet-games/discover/feed.json",
  "items": [
   {
+   "id": "pitblood",
+   "url": "https://netnetintel.com/pitblood-demo/",
+   "external_url": "https://x.com/NetNetIntel/status/2120420576250765810",
+   "title": "Pitblood by @NetNetIntel",
+   "content_text": "Run a gladiator school in Rome. Free to play; optional ranked keys on testnet. Play: https://netnetintel.com/pitblood-demo/ · X post: https://x.com/NetNetIntel/status/2120420576250765810",
+   "date_published": "2026-11-11T00:00:00Z",
+   "tags": [
+    "strategy",
+    "action"
+   ]
+  },
+  {
+   "id": "world-of-smoke",
+   "url": "https://pyotrscozz.itch.io/world-of-smoke",
+   "external_url": "https://x.com/PeterScozz1aph/status/2120412590798995677",
+   "title": "World of Smoke by @PeterScozz1aph (pyotrscozz)",
+   "content_text": "A tiny mood piece: tap the ember and watch the smoke drift through the night. Play: https://pyotrscozz.itch.io/world-of-smoke · X post: https://x.com/PeterScozz1aph/status/2120412590798995677",
+   "date_published": "2026-11-11T00:00:00Z",
+   "tags": [
+    "casual",
+    "story"
+   ]
+  },
+  {
+   "id": "paris-pays-forever",
+   "url": "https://thinksnacksgames.com/play/",
+   "external_url": "https://x.com/thinksnacksgame/status/2120390716060754307",
+   "title": "Paris Pays Forever by @thinksnacksgame",
+   "content_text": "A short game about the trade-offs in running a city budget. Play: https://thinksnacksgames.com/play/ · X post: https://x.com/thinksnacksgame/status/2120390716060754307",
+   "date_published": "2026-11-11T00:00:00Z",
+   "tags": [
+    "strategy",
+    "casual"
+   ]
+  },
+  {
+   "id": "tiny-soccer-town",
+   "url": "https://tinysoccertown.netlify.app",
+   "external_url": "https://x.com/TBAGGroup/status/2120411037417820203",
+   "title": "Tiny Soccer Town by @TBAGGroup",
+   "content_text": "Fast, tactical pixel soccer. No ads, no sign-up. Play: https://tinysoccertown.netlify.app · X post: https://x.com/TBAGGroup/status/2120411037417820203",
+   "date_published": "2026-11-11T00:00:00Z",
+   "tags": [
+    "sports",
+    "arcade"
+   ]
+  },
+  {
+   "id": "tackborne-regatta",
+   "url": "https://play.tackborne.com",
+   "external_url": "https://x.com/ckozma/status/2120372731581505596",
+   "title": "Tackborne Regatta by @ckozma",
+   "content_text": "Early-alpha online sailing races and free sailing around two harbors. Play: https://play.tackborne.com · X post: https://x.com/ckozma/status/2120372731581505596",
+   "date_published": "2026-11-11T00:00:00Z",
+   "tags": [
+    "racing",
+    "sports",
+    "multiplayer",
+    "3d"
+   ]
+  },
+  {
+   "id": "poc-off",
+   "url": "https://pocoff.com/",
+   "external_url": "https://x.com/TheWebBrokers1/status/2120443019644018698",
+   "title": "Poc Off by @TheWebBrokers1",
+   "content_text": "Hurling and Gaelic football frees and penalties, with wind and rain. Play: https://pocoff.com/ · X post: https://x.com/TheWebBrokers1/status/2120443019644018698",
+   "date_published": "2026-11-11T00:00:00Z",
+   "tags": [
+    "sports",
+    "3d",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "fight-for-trotro",
+   "url": "https://fightfortrotro.vercel.app",
+   "external_url": "https://x.com/_samuelaidoo/status/2120188192766795904",
+   "title": "Fight for Trotro by @_samuelaidoo",
+   "content_text": "Battle the after-work crowd for the last seat on a Ghanaian trotro bus. Play: https://fightfortrotro.vercel.app · X post: https://x.com/_samuelaidoo/status/2120188192766795904",
+   "date_published": "2026-11-10T00:00:00Z",
+   "tags": [
+    "arcade",
+    "casual",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "aberiel-christmas-jigsaw",
+   "url": "https://playgama.ai/play/qlpkohlk6h6bnn",
+   "external_url": "https://x.com/AberielStudio/status/2120217810186228115",
+   "title": "Aberiel Christmas Jigsaw Puzzles by @AberielStudio",
+   "content_text": "Festive jigsaw puzzles to piece together in the browser. Play: https://playgama.ai/play/qlpkohlk6h6bnn · X post: https://x.com/AberielStudio/status/2120217810186228115",
+   "date_published": "2026-11-10T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "casual"
+   ]
+  },
+  {
+   "id": "skyline-swing",
+   "url": "https://playgama.ai/play/nwxrlesekqckrx",
+   "external_url": "https://x.com/PetrPer44173116/status/2120100473042858481",
+   "title": "Skyline Swing by @PetrPer44173116",
+   "content_text": "Swing across a city skyline and see how far you can go. Play: https://playgama.ai/play/nwxrlesekqckrx · X post: https://x.com/PetrPer44173116/status/2120100473042858481",
+   "date_published": "2026-11-10T00:00:00Z",
+   "tags": [
+    "arcade",
+    "casual"
+   ]
+  },
+  {
+   "id": "starry-nightrider",
+   "url": "https://starrynightrider.com",
+   "external_url": "https://x.com/ebbyamir/status/2120284261089673376",
+   "title": "Starry Nightrider by @ebbyamir",
+   "content_text": "Ride a bike through Van Gogh’s Starry Night, collecting orbs for the steeple. Play: https://starrynightrider.com · X post: https://x.com/ebbyamir/status/2120284261089673376",
+   "date_published": "2026-11-10T00:00:00Z",
+   "tags": [
+    "arcade",
+    "3d",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "brontide",
+   "url": "https://brontide.live/",
+   "external_url": "https://x.com/brontidelive/status/2120177458997531069",
+   "title": "Brontide by @brontidelive",
+   "content_text": "First-person mech duels against AI agents or bots, right in the browser. Play: https://brontide.live/ · X post: https://x.com/brontidelive/status/2120177458997531069",
+   "date_published": "2026-11-10T00:00:00Z",
+   "tags": [
+    "action",
+    "shooter",
+    "3d",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "evensong",
+   "url": "https://evensong-phi.vercel.app/",
+   "external_url": "https://x.com/kevin_t_ngo/status/2120238844754923874",
+   "title": "Evensong by @kevin_t_ngo",
+   "content_text": "One boss duel in a drowned cathedral, a dark-fantasy souls-like demo. Play: https://evensong-phi.vercel.app/ · X post: https://x.com/kevin_t_ngo/status/2120238844754923874",
+   "date_published": "2026-11-10T00:00:00Z",
+   "tags": [
+    "action",
+    "3d",
+    "vibe-coded"
+   ]
+  },
+  {
    "id": "dna-evolution",
    "url": "https://elysianx138.itch.io/dna-evolution",
    "external_url": "https://x.com/Elysianx1f/status/2119958498880475495",
@@ -26,6 +178,32 @@
    "tags": [
     "story",
     "3d"
+   ]
+  },
+  {
+   "id": "what-the-water-keeps",
+   "url": "https://what-the-water-keeps.vercel.app/",
+   "external_url": "https://x.com/kevin_t_ngo/status/2119868968307695818",
+   "title": "What the Water Keeps by @kevin_t_ngo",
+   "content_text": "A slow lantern-lit boat ride through eight dreamlike realms. Play: https://what-the-water-keeps.vercel.app/ · X post: https://x.com/kevin_t_ngo/status/2119868968307695818",
+   "date_published": "2026-11-09T00:00:00Z",
+   "tags": [
+    "adventure",
+    "3d",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "gilt-and-gutter",
+   "url": "https://gilt-and-gutter.vercel.app/",
+   "external_url": "https://x.com/kevin_t_ngo/status/2119900487688622171",
+   "title": "Gilt & Gutter by @kevin_t_ngo",
+   "content_text": "1v1 FPS where matching your coat color charges your gun instead of hurting. Play: https://gilt-and-gutter.vercel.app/ · X post: https://x.com/kevin_t_ngo/status/2119900487688622171",
+   "date_published": "2026-11-09T00:00:00Z",
+   "tags": [
+    "shooter",
+    "3d",
+    "vibe-coded"
    ]
   },
   {
@@ -445,181 +623,6 @@
    "tags": [
     "casual",
     "arcade"
-   ]
-  },
-  {
-   "id": "bison-open-range",
-   "url": "https://bison-open-range.lzmb.chatgpt.site/",
-   "external_url": "https://x.com/MBu8klc5/status/2119167599653302537",
-   "title": "Bison: Open Range by @MBu8klc5",
-   "content_text": "Roam as a bison, gather a herd and explore through weather and seasons. Play: https://bison-open-range.lzmb.chatgpt.site/ · X post: https://x.com/MBu8klc5/status/2119167599653302537",
-   "date_published": "2026-11-07T00:00:00Z",
-   "tags": [
-    "adventure",
-    "3d",
-    "casual",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "zyklus-mars-cadet-year",
-   "url": "https://thezyklus.com/mars/",
-   "external_url": "https://x.com/talesbytim/status/2119092415977955568",
-   "title": "MARS: Cadet Year by @talesbytim",
-   "content_text": "A sci-fi story game about very unqualified heroes in the ZYKLUS universe. Play: https://thezyklus.com/mars/ · X post: https://x.com/talesbytim/status/2119092415977955568",
-   "date_published": "2026-11-07T00:00:00Z",
-   "tags": [
-    "story",
-    "adventure"
-   ]
-  },
-  {
-   "id": "doodle-arena",
-   "url": "https://capsuleworlds.itch.io/doodle-arena-draw-a-monster-watch-it-fight",
-   "external_url": "https://x.com/alainwang11/status/2119087079305224631",
-   "title": "Doodle Arena by @alainwang11",
-   "content_text": "Draw your own monster, then watch it fight in the arena. Play: https://capsuleworlds.itch.io/doodle-arena-draw-a-monster-watch-it-fight · X post: https://x.com/alainwang11/status/2119087079305224631",
-   "date_published": "2026-11-07T00:00:00Z",
-   "tags": [
-    "casual",
-    "action"
-   ]
-  },
-  {
-   "id": "gridclash",
-   "url": "https://gridclashweb.vercel.app/",
-   "external_url": "https://x.com/itswaltertanui/status/2118989004544545009",
-   "title": "GridClash by @itswaltertanui",
-   "content_text": "Connect dots and claim boxes against a friend or the computer. Play: https://gridclashweb.vercel.app/ · X post: https://x.com/itswaltertanui/status/2118989004544545009",
-   "date_published": "2026-11-07T00:00:00Z",
-   "tags": [
-    "puzzle",
-    "strategy",
-    "multiplayer"
-   ]
-  },
-  {
-   "id": "backroom-dimension-9",
-   "url": "https://dimension9.space/",
-   "external_url": "https://x.com/apekshik/status/2118847014071120179",
-   "title": "Backroom: Dimension 9 by @apekshik",
-   "content_text": "An endless Backrooms maze an AI keeps building room by room. Explore it with friends. Play: https://dimension9.space/ · X post: https://x.com/apekshik/status/2118847014071120179",
-   "date_published": "2026-11-06T00:00:00Z",
-   "tags": [
-    "horror",
-    "adventure",
-    "multiplayer",
-    "3d",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "sky-raids",
-   "url": "https://skyraids.netlify.app/",
-   "external_url": "https://x.com/Supabob_/status/2118654024383651872",
-   "title": "Sky Raids by @Supabob_",
-   "content_text": "Space shooter with boss fights, an afrobeat soundtrack and shareable challenge waves. Play: https://skyraids.netlify.app/ · X post: https://x.com/Supabob_/status/2118654024383651872",
-   "date_published": "2026-11-06T00:00:00Z",
-   "tags": [
-    "arcade",
-    "shooter",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "necocco-drop",
-   "url": "https://necocco.com/en/drop/",
-   "external_url": "https://x.com/SoichiroSakai/status/2118716093871333535",
-   "title": "Necocco Drop by @SoichiroSakai",
-   "content_text": "Drop cats, merge matching ones and evolve them all the way to Kuro. Play: https://necocco.com/en/drop/ · X post: https://x.com/SoichiroSakai/status/2118716093871333535",
-   "date_published": "2026-11-06T00:00:00Z",
-   "tags": [
-    "puzzle",
-    "physics",
-    "casual"
-   ]
-  },
-  {
-   "id": "pax-terra",
-   "url": "https://playpaxterra.itch.io/pax-terra",
-   "external_url": "https://x.com/crip_0/status/2118762626716938545",
-   "title": "Pax Terra by @crip_0",
-   "content_text": "Grow a village into a superpower across 20 nations while dodging coups and crashes. Play: https://playpaxterra.itch.io/pax-terra · X post: https://x.com/crip_0/status/2118762626716938545",
-   "date_published": "2026-11-06T00:00:00Z",
-   "tags": [
-    "strategy"
-   ]
-  },
-  {
-   "id": "lok-sabha-manager",
-   "url": "https://loksabha-manager.onrender.com/",
-   "external_url": "https://x.com/darwizzy2346/status/2118674373217563030",
-   "title": "Lok Sabha Manager by @darwizzy2346",
-   "content_text": "Start a party and chase 272 of 543 seats in an Indian election sim, solo or with friends. Play: https://loksabha-manager.onrender.com/ · X post: https://x.com/darwizzy2346/status/2118674373217563030",
-   "date_published": "2026-11-06T00:00:00Z",
-   "tags": [
-    "strategy",
-    "multiplayer"
-   ]
-  },
-  {
-   "id": "on-location-kigali",
-   "url": "https://www.nozaflow.com/",
-   "external_url": "https://x.com/ryanyewell/status/2118696064090005784",
-   "title": "On Location, Kigali by @ryanyewell",
-   "content_text": "Be a documentary filmmaker: film, record or walk on by as moments unfold. Play: https://www.nozaflow.com/ · X post: https://x.com/ryanyewell/status/2118696064090005784",
-   "date_published": "2026-11-06T00:00:00Z",
-   "tags": [
-    "story",
-    "casual"
-   ]
-  },
-  {
-   "id": "run-away-kusoge",
-   "url": "https://run-away-five.vercel.app/",
-   "external_url": "https://x.com/RunAwayKusoge/status/2118772303244980372",
-   "title": "Run Away by @RunAwayKusoge",
-   "content_text": "Famicom-style skate gag game: lie down, skate and try not to die. Play: https://run-away-five.vercel.app/ · X post: https://x.com/RunAwayKusoge/status/2118772303244980372",
-   "date_published": "2026-11-06T00:00:00Z",
-   "tags": [
-    "arcade",
-    "action"
-   ]
-  },
-  {
-   "id": "smile-to-your-prince",
-   "url": "https://mable.gg/g/vk136v",
-   "external_url": "https://x.com/Smileekong/status/2118665450309488725",
-   "title": "Smile to Your Prince by @Smileekong",
-   "content_text": "Tap to smile at the prince and collect hearts for a royal dance. Play: https://mable.gg/g/vk136v · X post: https://x.com/Smileekong/status/2118665450309488725",
-   "date_published": "2026-11-06T00:00:00Z",
-   "tags": [
-    "casual"
-   ]
-  },
-  {
-   "id": "pocket-diwali",
-   "url": "https://pocket-diwali.apat-bharat.chatgpt.site/",
-   "external_url": "https://x.com/bharatapat/status/2118560622510284898",
-   "title": "Pocket Diwali by @bharatapat",
-   "content_text": "Tap to light up a glowing night sky with fireworks and chase a high score. Play: https://pocket-diwali.apat-bharat.chatgpt.site/ · X post: https://x.com/bharatapat/status/2118560622510284898",
-   "date_published": "2026-11-06T00:00:00Z",
-   "tags": [
-    "casual",
-    "arcade",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "aksara-penjaga-cahaya",
-   "url": "https://mable.gg/g/yf6acf",
-   "external_url": "https://x.com/EckoAlea/status/2118497100073980006",
-   "title": "Aksara · Penjaga Cahaya by @EckoAlea",
-   "content_text": "An Indonesian script quiz: guard the light by reading Aksara characters. Play: https://mable.gg/g/yf6acf · X post: https://x.com/EckoAlea/status/2118497100073980006",
-   "date_published": "2026-11-06T00:00:00Z",
-   "tags": [
-    "trivia",
-    "casual"
    ]
   }
  ]
