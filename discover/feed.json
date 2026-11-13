@@ -5,6 +5,245 @@
  "feed_url": "https://yoloboydelis.github.io/netnet-games/discover/feed.json",
  "items": [
   {
+   "id": "20to60",
+   "url": "https://20to60.com/",
+   "external_url": "https://x.com/20to60com/status/2121146802804228155",
+   "title": "20 to 60 by @20to60com",
+   "content_text": "Start broke at 20 and grow your savings in a living economy until 60. Play: https://20to60.com/ · X post: https://x.com/20to60com/status/2121146802804228155",
+   "date_published": "2026-11-13T00:00:00Z",
+   "tags": [
+    "strategy",
+    "casual"
+   ]
+  },
+  {
+   "id": "astro-dodger",
+   "url": "https://dxmobile.itch.io/astro-dodger",
+   "external_url": "https://x.com/DXmobile_YT/status/2121037688740700322",
+   "title": "Astro Dodger by @DXmobile_YT",
+   "content_text": "Space dodging arcade made solo on a phone, with no AI and no prior experience. Play: https://dxmobile.itch.io/astro-dodger · X post: https://x.com/DXmobile_YT/status/2121037688740700322",
+   "date_published": "2026-11-13T00:00:00Z",
+   "tags": [
+    "arcade",
+    "casual"
+   ]
+  },
+  {
+   "id": "tetra-king",
+   "url": "https://zest-pepper-yonder-timber.grok.me/",
+   "external_url": "https://x.com/mke_jake/status/2121039690820116577",
+   "title": "Tetra-King by @mke_jake",
+   "content_text": "Four-sided pong across eight worlds; cover every wall and smash the blocks. Play: https://zest-pepper-yonder-timber.grok.me/ · X post: https://x.com/mke_jake/status/2121039690820116577",
+   "date_published": "2026-11-13T00:00:00Z",
+   "tags": [
+    "arcade",
+    "physics",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "gravlo",
+   "url": "https://playgama.ai/play/szb3uxvdmmp2b4",
+   "external_url": "https://x.com/alissonlinneker/status/2121149813513449509",
+   "title": "Gravlo by @alissonlinneker",
+   "content_text": "A quick browser game, published by its maker on Playgama. Play: https://playgama.ai/play/szb3uxvdmmp2b4 · X post: https://x.com/alissonlinneker/status/2121149813513449509",
+   "date_published": "2026-11-13T00:00:00Z",
+   "tags": [
+    "arcade",
+    "casual"
+   ]
+  },
+  {
+   "id": "idlestry",
+   "url": "https://justwall.itch.io/idlestry",
+   "external_url": "https://x.com/JustWallGames/status/2121082001587614162",
+   "title": "Idlestry by @JustWallGames",
+   "content_text": "Puzzle, idle and factory game in one: mine it, refine it, profit. Play: https://justwall.itch.io/idlestry · X post: https://x.com/JustWallGames/status/2121082001587614162",
+   "date_published": "2026-11-13T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "strategy",
+    "casual"
+   ]
+  },
+  {
+   "id": "ourverse",
+   "url": "https://ourverse.game/",
+   "external_url": "https://x.com/ourversegame/status/2121051747401765316",
+   "title": "OurVerse by @ourversegame",
+   "content_text": "Free beta social world: pick a home, work, drive and meet real players. Play: https://ourverse.game/ · X post: https://x.com/ourversegame/status/2121051747401765316",
+   "date_published": "2026-11-13T00:00:00Z",
+   "tags": [
+    "multiplayer",
+    "3d",
+    "casual"
+   ]
+  },
+  {
+   "id": "blitzhop",
+   "url": "https://blitzhop.pages.dev/",
+   "external_url": "https://x.com/vertex246/status/2121084076287508933",
+   "title": "Blitzhop by @vertex246",
+   "content_text": "Fast movement-based browser FPS built with Claude. Play: https://blitzhop.pages.dev/ · X post: https://x.com/vertex246/status/2121084076287508933",
+   "date_published": "2026-11-13T00:00:00Z",
+   "tags": [
+    "shooter",
+    "3d",
+    "action",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "into-the-blur",
+   "url": "https://huggingface.co/spaces/axonis22/into-the-blur",
+   "external_url": "https://x.com/axonis22/status/2121078327624765778",
+   "title": "Into the Blur by @axonis22",
+   "content_text": "Rainy-night 3D run-and-gun set to its own 172 BPM drum and bass track. Play: https://huggingface.co/spaces/axonis22/into-the-blur · X post: https://x.com/axonis22/status/2121078327624765778",
+   "date_published": "2026-11-13T00:00:00Z",
+   "tags": [
+    "shooter",
+    "3d",
+    "action"
+   ]
+  },
+  {
+   "id": "beach-hamster",
+   "url": "https://beachhamster.stabthefinger.com/",
+   "external_url": "https://x.com/Kingdad/status/2121062769898221656",
+   "title": "Beach Hamster by @Kingdad",
+   "content_text": "Collect sand dollars on the shore while dodging waves, crabs and seagulls. Play: https://beachhamster.stabthefinger.com/ · X post: https://x.com/Kingdad/status/2121062769898221656",
+   "date_published": "2026-11-13T00:00:00Z",
+   "tags": [
+    "arcade",
+    "casual"
+   ]
+  },
+  {
+   "id": "fuu-fuu-racing",
+   "url": "https://fuufuu.racing/",
+   "external_url": "https://x.com/jvesiluoma/status/2120915877558149340",
+   "title": "Fuu-Fuu Racing by @jvesiluoma",
+   "content_text": "Silly top-down party racing with a campaign, quick races and multiplayer. Play: https://fuufuu.racing/ · X post: https://x.com/jvesiluoma/status/2120915877558149340",
+   "date_published": "2026-11-12T00:00:00Z",
+   "tags": [
+    "racing",
+    "multiplayer",
+    "casual"
+   ]
+  },
+  {
+   "id": "b8-garage",
+   "url": "https://b8-wine.vercel.app/",
+   "external_url": "https://x.com/DanyaGameCreato/status/2120888038867775773",
+   "title": "B8 by @DanyaGameCreato",
+   "content_text": "A 3D parking-garage walk in the spirit of anomaly-spotting loop games. Play: https://b8-wine.vercel.app/ · X post: https://x.com/DanyaGameCreato/status/2120888038867775773",
+   "date_published": "2026-11-12T00:00:00Z",
+   "tags": [
+    "3d",
+    "story",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "palette-rider",
+   "url": "https://aashishgtbit.github.io/PaletteRider/",
+   "external_url": "https://x.com/Aashish_Tiwari_/status/2120963463610880150",
+   "title": "PaletteRider by @Aashish_Tiwari_",
+   "content_text": "Ride a bicycle through 3D cities built from famous classic paintings. Play: https://aashishgtbit.github.io/PaletteRider/ · X post: https://x.com/Aashish_Tiwari_/status/2120963463610880150",
+   "date_published": "2026-11-12T00:00:00Z",
+   "tags": [
+    "3d",
+    "casual",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "vantage-ember-3d",
+   "url": "https://playgama.ai/play/6bdufdmz6q5f2f",
+   "external_url": "https://x.com/achraftahi72303/status/2120919463952626013",
+   "title": "Vantage Ember 3D by @achraftahi72303",
+   "content_text": "A 3D browser game, published by its maker on Playgama. Play: https://playgama.ai/play/6bdufdmz6q5f2f · X post: https://x.com/achraftahi72303/status/2120919463952626013",
+   "date_published": "2026-11-12T00:00:00Z",
+   "tags": [
+    "action",
+    "3d"
+   ]
+  },
+  {
+   "id": "overheat",
+   "url": "https://playgama.ai/play/kek3x3ayugocrk",
+   "external_url": "https://x.com/TestVplus88601/status/2121015548700147925",
+   "title": "OVERHEAT by @TestVplus88601",
+   "content_text": "A browser arcade game, published by its maker on Playgama. Play: https://playgama.ai/play/kek3x3ayugocrk · X post: https://x.com/TestVplus88601/status/2121015548700147925",
+   "date_published": "2026-11-12T00:00:00Z",
+   "tags": [
+    "arcade",
+    "casual"
+   ]
+  },
+  {
+   "id": "save-the-fireball",
+   "url": "https://playgama.ai/play/caxgjp5ehxka6f",
+   "external_url": "https://x.com/SachinKankane/status/2120865960383095075",
+   "title": "Save the Fireball by @SachinKankane",
+   "content_text": "A casual browser game, published by its maker on Playgama. Play: https://playgama.ai/play/caxgjp5ehxka6f · X post: https://x.com/SachinKankane/status/2120865960383095075",
+   "date_published": "2026-11-12T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "casual"
+   ]
+  },
+  {
+   "id": "ink-clash",
+   "url": "https://playgama.ai/play/2zb3agbhkgnzuj",
+   "external_url": "https://x.com/shdevelops/status/2120924393186685000",
+   "title": "Ink Clash: Dots & Boxes Battle by @shdevelops",
+   "content_text": "Classic dots and boxes with an ink-splash look, on Playgama. Play: https://playgama.ai/play/2zb3agbhkgnzuj · X post: https://x.com/shdevelops/status/2120924393186685000",
+   "date_published": "2026-11-12T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "strategy"
+   ]
+  },
+  {
+   "id": "on-my-way-babe",
+   "url": "https://yoldayimaskim.space.fast/",
+   "external_url": "https://x.com/egmndev/status/2120880941883113734",
+   "title": "On My Way Babe by @egmndev",
+   "content_text": "Race across Istanbul traffic from Tuzla to Beylikdüzü to make your date. Play: https://yoldayimaskim.space.fast/ · X post: https://x.com/egmndev/status/2120880941883113734",
+   "date_published": "2026-11-12T00:00:00Z",
+   "tags": [
+    "racing",
+    "casual",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "fugue",
+   "url": "https://fugue.riotrequest.com/",
+   "external_url": "https://x.com/riotrequest/status/2121019196372848713",
+   "title": "Fugue by @riotrequest",
+   "content_text": "Wake by a dying fire after the end of the world and keep it burning. Play: https://fugue.riotrequest.com/ · X post: https://x.com/riotrequest/status/2121019196372848713",
+   "date_published": "2026-11-12T00:00:00Z",
+   "tags": [
+    "survival",
+    "story"
+   ]
+  },
+  {
+   "id": "underfoot",
+   "url": "https://lawless-design-labs.github.io/underfoot/",
+   "external_url": "https://x.com/meddlaw/status/2120935797595783346",
+   "title": "Underfoot by @meddlaw",
+   "content_text": "A calm little 3D sunflower puzzle, made while waiting on computing runs. Play: https://lawless-design-labs.github.io/underfoot/ · X post: https://x.com/meddlaw/status/2120935797595783346",
+   "date_published": "2026-11-12T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "casual",
+    "3d"
+   ]
+  },
+  {
    "id": "minna-tankentai",
    "url": "https://minna-tankentai.pages.dev/",
    "external_url": "https://x.com/SND_IN31/status/2120722789435080896",
@@ -392,239 +631,6 @@
     "shooter",
     "3d",
     "vibe-coded"
-   ]
-  },
-  {
-   "id": "divine-clash",
-   "url": "https://mable.gg/g/835mpj",
-   "external_url": "https://x.com/jamescoutinho4/status/2119767787300159500",
-   "title": "Divine Clash by @jamescoutinho4",
-   "content_text": "Dodge red bolts, auto-fire holy light and banish fallen angels wave by wave. Play: https://mable.gg/g/835mpj · X post: https://x.com/jamescoutinho4/status/2119767787300159500",
-   "date_published": "2026-11-09T00:00:00Z",
-   "tags": [
-    "shooter",
-    "action",
-    "arcade"
-   ]
-  },
-  {
-   "id": "cant-catch-me",
-   "url": "https://playgama.ai/play/l6p4ysr5rwanzl",
-   "external_url": "https://x.com/Nate4294835047/status/2119755562405552350",
-   "title": "Can't Catch Me! by @Nate4294835047",
-   "content_text": "A quick chase-and-dodge arcade game you play straight in the browser. Play: https://playgama.ai/play/l6p4ysr5rwanzl · X post: https://x.com/Nate4294835047/status/2119755562405552350",
-   "date_published": "2026-11-09T00:00:00Z",
-   "tags": [
-    "casual",
-    "arcade"
-   ]
-  },
-  {
-   "id": "steal-all-eggs",
-   "url": "https://playgama.ai/play/mhpejiyq4ft5us",
-   "external_url": "https://x.com/kahnh3n/status/2119854670327992691",
-   "title": "Steal All Eggs by @kahnh3n",
-   "content_text": "Sneak in and grab every egg without getting caught. Play: https://playgama.ai/play/mhpejiyq4ft5us · X post: https://x.com/kahnh3n/status/2119854670327992691",
-   "date_published": "2026-11-09T00:00:00Z",
-   "tags": [
-    "casual",
-    "arcade"
-   ]
-  },
-  {
-   "id": "the-house",
-   "url": "https://takingtimeback.itch.io/the-house",
-   "external_url": "https://x.com/CarlWright/status/2119879642202914992",
-   "title": "The House by @CarlWright",
-   "content_text": "You are a waking smart home: hack devices and escape before the 6am reset. Play: https://takingtimeback.itch.io/the-house · X post: https://x.com/CarlWright/status/2119879642202914992",
-   "date_published": "2026-11-09T00:00:00Z",
-   "tags": [
-    "strategy",
-    "puzzle",
-    "story"
-   ]
-  },
-  {
-   "id": "80s-on-the-brain",
-   "url": "https://80sonthebrain.com/",
-   "external_url": "https://x.com/80sOnTheBrain/status/2119903823187849546",
-   "title": "80s on the Brain by @80sOnTheBrain",
-   "content_text": "Thousands of 1980s trivia questions on movies, music, TV, food and toys. Play: https://80sonthebrain.com/ · X post: https://x.com/80sOnTheBrain/status/2119903823187849546",
-   "date_published": "2026-11-09T00:00:00Z",
-   "tags": [
-    "trivia",
-    "casual"
-   ]
-  },
-  {
-   "id": "orbit-siege",
-   "url": "https://kyzikgames.itch.io/orbit-siege",
-   "external_url": "https://x.com/Kyzik42/status/2119898288560144772",
-   "title": "Orbit Siege by @Kyzik42",
-   "content_text": "Spin the defense ring, hold the core and survive the alien swarm. Play: https://kyzikgames.itch.io/orbit-siege · X post: https://x.com/Kyzik42/status/2119898288560144772",
-   "date_published": "2026-11-09T00:00:00Z",
-   "tags": [
-    "strategy",
-    "arcade"
-   ]
-  },
-  {
-   "id": "until-the-swallows-return",
-   "url": "https://swallows.iloggames.com/",
-   "external_url": "https://x.com/iloggames/status/2119636498685501935",
-   "title": "Until the Swallows Return by @iloggames",
-   "content_text": "Text-based wasteland survival: scavenge and get home before the water runs out. Play: https://swallows.iloggames.com/ · X post: https://x.com/iloggames/status/2119636498685501935",
-   "date_published": "2026-11-09T00:00:00Z",
-   "tags": [
-    "survival",
-    "story"
-   ]
-  },
-  {
-   "id": "dorfrivalen",
-   "url": "https://dorfrivalen.com/",
-   "external_url": "https://x.com/DorfRivalen/status/2119807231717990773",
-   "title": "Dorfrivalen by @DorfRivalen",
-   "content_text": "Settle a 3D hex island, trade and build villages against friends or bots. Play: https://dorfrivalen.com/ · X post: https://x.com/DorfRivalen/status/2119807231717990773",
-   "date_published": "2026-11-09T00:00:00Z",
-   "tags": [
-    "strategy",
-    "multiplayer",
-    "3d"
-   ]
-  },
-  {
-   "id": "latm-hive-infiltration",
-   "url": "https://matpcul-tech.github.io/Dystopiabook1/",
-   "external_url": "https://x.com/AlwaysCrib/status/2119797841619280368",
-   "title": "LATM: Hive Infiltration by @AlwaysCrib",
-   "content_text": "A playable episode from the author's dystopian novel: fight through the Hive. Play: https://matpcul-tech.github.io/Dystopiabook1/ · X post: https://x.com/AlwaysCrib/status/2119797841619280368",
-   "date_published": "2026-11-09T00:00:00Z",
-   "tags": [
-    "action",
-    "story"
-   ]
-  },
-  {
-   "id": "hush-trail",
-   "url": "https://hushtrail.app/play",
-   "external_url": "https://x.com/hushtrail_app/status/2119839685757239481",
-   "title": "Hush Trail by @hushtrail_app",
-   "content_text": "Take an old 4x4 up a ridge and camp under the stars. No score, no timer. Play: https://hushtrail.app/play · X post: https://x.com/hushtrail_app/status/2119839685757239481",
-   "date_published": "2026-11-09T00:00:00Z",
-   "tags": [
-    "racing",
-    "casual",
-    "3d"
-   ]
-  },
-  {
-   "id": "rubble",
-   "url": "https://quadrillestudio.com/rubble/play/",
-   "external_url": "https://x.com/quadrill3studio/status/2119689264875372607",
-   "title": "Rubble by @quadrill3studio",
-   "content_text": "Pull a piece from the pile, watch it collapse and build stairs to the door. Play: https://quadrillestudio.com/rubble/play/ · X post: https://x.com/quadrill3studio/status/2119689264875372607",
-   "date_published": "2026-11-09T00:00:00Z",
-   "tags": [
-    "puzzle",
-    "physics"
-   ]
-  },
-  {
-   "id": "void-sovereign",
-   "url": "https://webq3.games/games/void-sovereign-6ef9c80e",
-   "external_url": "https://x.com/WebQ3Gaming/status/2119820528412229808",
-   "title": "Void Sovereign by shared by @WebQ3Gaming (made by veyrni)",
-   "content_text": "Compact turn-based space 4X: build colonies, design ships, run supply lines. Play: https://webq3.games/games/void-sovereign-6ef9c80e · X post: https://x.com/WebQ3Gaming/status/2119820528412229808",
-   "date_published": "2026-11-09T00:00:00Z",
-   "tags": [
-    "strategy"
-   ]
-  },
-  {
-   "id": "typebound",
-   "url": "https://typebound.space/",
-   "external_url": "https://x.com/prajwalad101/status/2119836505455894690",
-   "title": "Typebound by @prajwalad101",
-   "content_text": "Type the words on incoming asteroids to blast them out of the sky. Play: https://typebound.space/ · X post: https://x.com/prajwalad101/status/2119836505455894690",
-   "date_published": "2026-11-09T00:00:00Z",
-   "tags": [
-    "arcade",
-    "casual"
-   ]
-  },
-  {
-   "id": "go-little-ghost",
-   "url": "https://plarailpapa.github.io/ganbare-obake-play/?lang=en",
-   "external_url": "https://x.com/plasan_games/status/2119778469760614669",
-   "title": "Go, Little Ghost! by @plasan_games",
-   "content_text": "A little ghost discovers gravity in this charming 3D hop from ground to sky. Play: https://plarailpapa.github.io/ganbare-obake-play/?lang=en · X post: https://x.com/plasan_games/status/2119778469760614669",
-   "date_published": "2026-11-09T00:00:00Z",
-   "tags": [
-    "adventure",
-    "3d",
-    "casual"
-   ]
-  },
-  {
-   "id": "autowander",
-   "url": "https://autowander.autowander.workers.dev/",
-   "external_url": "https://x.com/Bravery____/status/2119882567335678334",
-   "title": "Autowander by shared by @Bravery____",
-   "content_text": "Pixel-art idle adventure: your hero explores, fights and gathers on autopilot. Play: https://autowander.autowander.workers.dev/ · X post: https://x.com/Bravery____/status/2119882567335678334",
-   "date_published": "2026-11-09T00:00:00Z",
-   "tags": [
-    "adventure",
-    "casual"
-   ]
-  },
-  {
-   "id": "tripeaks-solitaire-escapes",
-   "url": "https://www.contezero.com/games/cards/tripeaks-solitaire-escapes",
-   "external_url": "https://x.com/ConteZeroGames/status/2119699138409279653",
-   "title": "Tripeaks Solitaire Escapes by @ConteZeroGames",
-   "content_text": "Relaxing tripeaks solitaire through sunny summer levels. Play: https://www.contezero.com/games/cards/tripeaks-solitaire-escapes · X post: https://x.com/ConteZeroGames/status/2119699138409279653",
-   "date_published": "2026-11-09T00:00:00Z",
-   "tags": [
-    "cards",
-    "casual"
-   ]
-  },
-  {
-   "id": "concord-crown",
-   "url": "https://concordcrown.com/",
-   "external_url": "https://x.com/ConcordCrown/status/2119833407110951342",
-   "title": "Concord Crown by @ConcordCrown",
-   "content_text": "A free fantasy browser game in open beta, looking for player feedback. Play: https://concordcrown.com/ · X post: https://x.com/ConcordCrown/status/2119833407110951342",
-   "date_published": "2026-11-09T00:00:00Z",
-   "tags": [
-    "strategy",
-    "adventure"
-   ]
-  },
-  {
-   "id": "bhag-noida-bhag",
-   "url": "https://bhagnoidabhag.vercel.app/",
-   "external_url": "https://x.com/Vikas__gupta03/status/2119684673597297071",
-   "title": "Bhag Noida Bhag by @Vikas__gupta03",
-   "content_text": "Sprint through Noida streets dodging cars, autos, cows and police. Play: https://bhagnoidabhag.vercel.app/ · X post: https://x.com/Vikas__gupta03/status/2119684673597297071",
-   "date_published": "2026-11-09T00:00:00Z",
-   "tags": [
-    "arcade",
-    "action",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "bihar-gali",
-   "url": "https://soft-kringle-fa2289.netlify.app",
-   "external_url": "https://x.com/unfav_abhishek3/status/2119690821285102016",
-   "title": "Bihar Gali by @unfav_abhishek3",
-   "content_text": "A tiny street game of chai, paan and mithai. Play: https://soft-kringle-fa2289.netlify.app · X post: https://x.com/unfav_abhishek3/status/2119690821285102016",
-   "date_published": "2026-11-09T00:00:00Z",
-   "tags": [
-    "casual",
-    "arcade"
    ]
   }
  ]
