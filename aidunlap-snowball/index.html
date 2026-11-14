@@ -1,0 +1,180 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>AIDUNLAP SNOWBALL · NetNet Arcade</title>
+<meta name="description" content="Third-person 3D: ride a compounding snowball through a snowy NetNet avenue. Grow, smash what you outweigh, topple the Vault Spire. Same weekly course. Replay-verified.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Arcade">
+<meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/aidunlap-snowball/">
+<meta property="og:title" content="AIDUNLAP SNOWBALL · NetNet Arcade">
+<meta property="og:description" content="Third-person chase cam. Grow the snowball, smash what you outweigh, topple the Vault Spire. Replay-verified.">
+<meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/aidunlap-snowball.svg">
+<meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#050814">
+<link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css">
+<style>
+:root{--c:#9ec9ff;--bg:#050814;--panel:#0a1020;--line:#1c2740}
+html,body{overscroll-behavior:none;background:var(--bg);margin:0}
+.nn-wrap{max-width:1100px}
+#stage{position:relative;margin:0 auto;width:min(100%,1040px);aspect-ratio:16/9;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;border-radius:14px;overflow:hidden;background:#050814;border:1px solid #1c2740;cursor:grab}
+#stage:active{cursor:grabbing}
+#c,#fallback{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+#fallback{display:none;background:#0a1020}
+#hud{display:flex;gap:14px;flex-wrap:wrap;margin:8px 0;font:600 13px system-ui;color:#9ec9ff;align-items:center}
+#hud b{color:#f5d77a;font-weight:800}
+.sb-top{display:flex;gap:10px;align-items:center;justify-content:space-between;margin:6px 0;flex-wrap:wrap}
+#overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;text-align:center;background:linear-gradient(180deg,rgba(5,8,20,.35),rgba(5,8,20,.05) 45%,rgba(5,8,20,.45));z-index:2}
+#overlay h2{margin:0;font:900 34px system-ui;color:#f5d77a;text-shadow:0 2px 12px #000;letter-spacing:.04em}
+#overlay p{margin:8px 0 0;font:600 16px system-ui;color:#9ec9ff;text-shadow:0 1px 6px #000}
+#overlay.hidden{display:none}
+#toast{position:absolute;left:50%;top:18%;transform:translateX(-50%);font:800 20px system-ui;color:#f5d77a;text-shadow:0 2px 8px #000;opacity:0;transition:opacity .2s;z-index:3;pointer-events:none}
+@media (max-width:600px){.nn-wrap{padding-left:max(6px,env(safe-area-inset-left));padding-right:max(6px,env(safe-area-inset-right))}#overlay h2{font-size:22px}.nn-title{font-size:20px}}
+</style>
+<script src="../arcade/sims.js"></script>
+<script>window.NN_SCORE_SERVER="https://netnet-arcade-verifier.netnetarcade.workers.dev"</script>
+<script src="../arcade/core.js"></script>
+<script src="../arcade/dunlap.js"></script>
+<script src="vendor/three.min.js"></script>
+<script src="game3d.js"></script>
+</head><body>
+<div class="nn-wrap">
+<div class="nn-top"><a href="../">← LOBBY</a><span class="nn-pill">CABINET 15 · <span class="nna-ok">✔ REPLAY-VERIFIED</span> · 3D</span></div>
+<div class="sb-top"><h1 class="nn-title">AIDUNLAP SNOWBALL</h1>
+<label class="nna-mut"><input type="checkbox" id="ranked" checked> Ranked (100 <span class="nna-test">TEST</span>)</label></div>
+<div id="hud"><span>SCORE <b id="h1">0</b></span><span>SIZE <b id="h2">16</b></span><span>SMASH <b id="h3">0</b></span><span id="h4" class="nna-mut">third-person · drag to steer</span></div>
+<div id="stage">
+  <canvas id="c"></canvas>
+  <canvas id="fallback" width="640" height="360"></canvas>
+  <div id="overlay"><h2>AIDUNLAP SNOWBALL</h2><p>TAP TO ROLL · grow · smash · topple the Vault Spire</p></div>
+  <div id="toast"></div>
+</div>
+<p class="nn-sub" style="margin-top:10px">Third-person chase cam. Drag across the stage (or ← → / A D) to steer. Roll over powder and RWA flakes to grow — they stick to the ball. Smash DUMP crates and rival balls you outweigh. Hit something bigger and the run ends. Topple the gold Vault Spire at the end of the avenue. Same course for everyone this week.</p>
+<div class="nn-card"><span class="nna-mut" style="font-size:12px">Ranked entry: 100 test credits (10 to treasury first, 90 to this week's pool). Untick Ranked for free practice. Original NetNet 3D — genre inspiration only, no third-party art.</span></div>
+<div class="nn-card" id="board"></div>
+<div class="nn-card"><h3>ABOUT THIS CABINET</h3><p class="nn-sub" style="font-size:13px">An original NetNet game starring aidunlap. Everyone gets the same level this week (UTC Sunday–Sunday seed). Inputs are recorded tick-by-tick; the score server re-simulates from scratch. The 3D view is a renderer on top of that deterministic sim. Runs that go faster than real time, pause, hide the tab or exceed the input-rate cap are rejected. Test credits only, not money. Three.js (MIT) vendored locally; all scene art is procedural / original.</p></div>
+</div>
+<script>
+const GAME='aidunlap-snowball',$=id=>document.getElementById(id),cv=$('c'),fb=$('fallback'),g=NNS.games[GAME],MOB=/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+function board(){try{NNA.renderBoard(GAME,$('board'))}catch(e){}}
+document.addEventListener('DOMContentLoaded',()=>{board();try{NNA.foot()}catch(e){}});
+
+let phase='ready', preview=null, overAt=0, last=null, ptrLane=8, sentLane=null, lastT=-99, GAP=5, world=null, use3d=false, nndReady=false, drawErr=0;
+try{preview=g.create(NNS.seedFor(GAME))}catch(e){preview=null}
+
+NNA.result=function(){/* inline overlay */};
+
+function toast(t){const el=$('toast');el.textContent=t;el.style.opacity='1';clearTimeout(toast._t);toast._t=setTimeout(()=>el.style.opacity='0',900)}
+function beep(f,d,v,type){try{beep.a=beep.a||new (window.AudioContext||window.webkitAudioContext)();const t0=beep.a.currentTime,o=beep.a.createOscillator(),gn=beep.a.createGain();o.type=type||'sine';o.frequency.setValueAtTime(f,t0);gn.gain.setValueAtTime(v||.03,t0);gn.gain.exponentialRampToValueAtTime(.0001,t0+d);o.connect(gn);gn.connect(beep.a.destination);o.start(t0);o.stop(t0+d)}catch(e){}}
+
+// init 3D with fallback
+(function init3d(){
+  try{
+    if(!window.THREE||!window.SB3D||!SB3D.ok) throw new Error('no SB3D');
+    world=SB3D.create(cv,{quality:MOB?0:2});
+    if(!world||!world.ok) throw new Error(world&&world.err||'create failed');
+    // force a first fit after layout
+    requestAnimationFrame(()=>{ try{world.fit&&world.fit()}catch(e){} });
+    use3d=true; fb.style.display='none'; cv.style.display='block';
+  }catch(e){
+    console.warn('WebGL fallback',e); use3d=false; cv.style.display='none'; fb.style.display='block';
+  }
+})();
+
+const R=NNA.runner(GAME,{
+  onFrame:s=>{
+    if(sentLane!==null && s.tick-lastT>=GAP && sentLane!==R._lastSent){ R._lastSent=sentLane; lastT=s.tick; R.input(sentLane); }
+    if(s.fx && s.fx!==R._fx){ R._fx=s.fx;
+      if(s.vaulted){beep(880,.25,.05);toast('VAULT TOPPLED'); if(world) world.bump('vault')}
+      else if(s.crushed){beep(110,.3,.05,'square');toast('CRUSHED'); if(world) world.bump('crush')}
+      else if(s.fx>=12){beep(520,.06,.03); if(world) world.bump('smash')}
+      else {beep(660,.05,.02); if(world) world.bump('pickup')}
+    }
+  },
+  onEnd:(run,s)=>{phase='over';overAt=performance.now();last=s; board(); showOverlay(s)}
+});
+
+function laneFromClientX(cx){
+  const r=$('stage').getBoundingClientRect(); if(r.width<2) return 8;
+  const t=(cx-r.left)/r.width; return Math.max(0,Math.min(15, Math.round(t*15)));
+}
+function steer(cx){ ptrLane=laneFromClientX(cx); if(phase==='play'&&R.on) sentLane=ptrLane; }
+function start(){
+  if(document.getElementById('nna-gate')) return;
+  phase='play'; sentLane=ptrLane; R._lastSent=null; R._fx=0; lastT=-99;
+  $overlay.classList.add('hidden');
+  R.start($('ranked').checked);
+}
+function showOverlay(s){
+  const o=$overlay; o.classList.remove('hidden');
+  if(phase==='ready'){ o.innerHTML='<h2>AIDUNLAP SNOWBALL</h2><p>TAP TO ROLL · grow · smash · topple the Vault Spire</p>'; return; }
+  if(phase==='over'){
+    const sc=g.score(s||last||{score:0,size:16});
+    o.innerHTML='<h2>'+(s&&s.vaulted?'VAULT TOPPLED':'CRUSHED')+'</h2><p style="font-size:28px;color:#fff;font-weight:900">'+sc+' PTS</p><p>size '+Math.round((s&&(s.best||s.size))||16)+' · smash '+((s&&s.smash)||0)+' · tokens '+((s&&s.got)||0)+'</p><p style="margin-top:14px;color:#9ec9ff">TAP TO ROLL AGAIN</p>';
+  }
+}
+const $overlay=$('overlay');
+
+function tap(e){
+  if(e.target&&e.target.closest&&e.target.closest('a')) return;
+  e.preventDefault();
+  const cx=e.clientX!=null?e.clientX:(e.touches&&e.touches[0]?e.touches[0].clientX:0);
+  if(phase==='over'){ if(performance.now()-overAt<500) return; phase='ready'; showOverlay(preview); return; }
+  if(phase==='ready'){ steer(cx); start(); return; }
+  steer(cx);
+}
+const st=$('stage');
+st.addEventListener('pointerdown',tap,{passive:false});
+st.addEventListener('pointermove',e=>{ if(phase!=='play') return; e.preventDefault(); steer(e.clientX);},{passive:false});
+['touchstart','touchmove','touchend','gesturestart','dblclick','contextmenu'].forEach(t=>st.addEventListener(t,e=>{
+  if(e.target.closest&&e.target.closest('a'))return; e.preventDefault();
+  if(t==='touchstart'||t==='touchmove'){ const th=e.touches&&e.touches[0]; if(th){ if(phase==='ready'){steer(th.clientX);start()} else if(phase==='play') steer(th.clientX); else if(phase==='over'&&performance.now()-overAt>500){phase='ready';showOverlay(preview)} } }
+},{passive:false}));
+addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT'||e.target.tagName==='BUTTON') return;
+  if(e.key==='ArrowLeft'||e.key==='a'){ e.preventDefault(); ptrLane=Math.max(0,ptrLane-1); if(phase==='ready') start(); if(phase==='play') sentLane=ptrLane; }
+  if(e.key==='ArrowRight'||e.key==='d'){ e.preventDefault(); ptrLane=Math.min(15,ptrLane+1); if(phase==='ready') start(); if(phase==='play') sentLane=ptrLane; }
+  if((e.key===' '||e.key==='Enter')&&phase!=='play'){ e.preventDefault(); if(phase==='over'){ if(performance.now()-overAt>500){ phase='ready'; showOverlay(preview);} } else start(); }
+});
+
+// 2D fallback (if WebGL dies) — still not black
+function drawFallback(s,now){
+  const ctx=fb.getContext('2d'), W=640, H=360;
+  try{
+    const dpr=Math.min(2,devicePixelRatio||1), r=fb.getBoundingClientRect();
+    if(r.width>=2){ const tw=Math.round(r.width*dpr), th=Math.round(r.height*dpr); if(fb.width!==tw||fb.height!==th){fb.width=tw;fb.height=th} }
+    ctx.setTransform(fb.width/W,0,0,fb.height/H,0,0);
+    const sky=ctx.createLinearGradient(0,0,0,H); sky.addColorStop(0,'#050814'); sky.addColorStop(1,'#152038');
+    ctx.fillStyle=sky; ctx.fillRect(0,0,W,H);
+    ctx.fillStyle='#dfe8f5'; ctx.fillRect(0,H*0.62,W,H);
+    const rad=Math.max(10,(s.size||16)*1.1), px=320+((s.x||0)/7.2)*200, py=H*0.62-rad;
+    ctx.fillStyle='#e8f2ff'; ctx.beginPath(); ctx.arc(px,py,rad,0,7); ctx.fill();
+    ctx.strokeStyle='#d4af37'; ctx.lineWidth=3; ctx.beginPath(); ctx.arc(px,py,rad*0.7,0,7); ctx.stroke();
+    if(nndReady) try{NND.draw(ctx,px,py-rad+4,Math.min(48,rad*1.2),{v:'dunlap',pose:s.crushed?'fail':(s.vaulted?'win':'run'),t:now})}catch(e){}
+    ctx.fillStyle='#f5d77a'; ctx.font='900 22px system-ui'; ctx.textAlign='center';
+    if(phase==='ready') ctx.fillText('TAP TO ROLL (2D fallback)',320,80);
+  }catch(e){}
+}
+
+function hud(s){
+  try{
+    $('h1').textContent=String(phase==='ready'?0:g.score(s||{score:0,size:16}));
+    $('h2').textContent=String(Math.round((s&&s.size)||16));
+    $('h3').textContent=String((s&&s.smash)||0);
+    $('h4').textContent=s&&s.vaulted?'VAULT TOPPLED':(s&&s.crushed?'CRUSHED':(phase==='play'?('lane '+(s.lane!=null?s.lane:ptrLane)+' · '+Math.round(s.dist||0)+'m'):'third-person · drag to steer'));
+  }catch(e){}
+}
+
+function loop(now){
+  try{
+    const s=phase==='ready'?(preview||{x:0,size:16,objs:[],dist:0,score:0,smash:0,tick:0,lane:8,stuck:[]}):(R.on?R.state:(last||preview));
+    if(use3d&&world) world.render(s,now); else drawFallback(s,now);
+    hud(s);
+  }catch(e){ if(drawErr<3){console.warn(e);drawErr++} if(use3d){ use3d=false; cv.style.display='none'; fb.style.display='block'; } }
+  requestAnimationFrame(loop);
+}
+
+function boot(){
+  nndReady=true;
+  showOverlay(preview);
+  if(use3d&&world&&world.fit) world.fit();
+  requestAnimationFrame(loop);
+}
+if(window.NND&&NND.ready&&NND.ready.then) NND.ready.then(boot).catch(boot); else boot();
+addEventListener('resize',()=>{ if(world&&world.fit) world.fit(); });
+</script></body></html>

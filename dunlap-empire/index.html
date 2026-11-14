@@ -1,0 +1,59 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>DUNLAP EMPIRE · NetNet Arcade</title><meta name="description" content="Idle tycoon: help aidunlap build an RWA empire of T-bill desks, gold vaults, rental towers and equity floors.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Arcade"><meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/dunlap-empire/">
+<meta property="og:title" content="DUNLAP EMPIRE · NetNet Arcade"><meta property="og:description" content="Idle tycoon: help aidunlap build an RWA empire of T-bill desks, gold vaults, rental towers and equity floors."><meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/dunlap-empire.png"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a0a0a"><link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css">
+<style>:root{--c:#9a927c;--bg:#0a0a0a;--panel:#121212;--line:#2a2a2a}canvas{width:100%;border-radius:12px;display:block;touch-action:none;background:#0d0d0d}.casual{display:inline-block;border:1px solid #9a927c;color:#f5d77a;border-radius:6px;padding:1px 7px;font-size:12px;letter-spacing:.06em}.row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.row .nn-btn{flex:1}</style>
+<script src="../arcade/sims.js"></script><script>window.NN_SCORE_SERVER="https://netnet-arcade-verifier.netnetarcade.workers.dev"</script><script src="../arcade/core.js"></script><script src="../arcade/dunlap.js"></script></head><body>
+<div class="nn-wrap"><div class="nn-top"><a href="../">← LOBBY</a><span class="nn-pill">CABINET 10 · <span class="casual">CASUAL · UNRANKED</span></span></div>
+<h1 class="nn-title">DUNLAP EMPIRE</h1><p class="nn-sub">Close deals to raise cash, buy RWA businesses that earn every second, and hire a team. All money here is game money.</p>
+<div class="nn-hud"><span id="cash">$0</span><span id="rate">$0/s</span></div>
+<canvas id="c" width="640" height="300"></canvas>
+<div class="row"><button class="nn-btn" id="deal">🤝 CLOSE A DEAL</button></div>
+<div class="nn-card" id="shop"></div>
+<div class="row"><button class="nn-btn ghost" id="reset">Reset empire</button></div>
+<div class="nn-card"><h3>ABOUT THIS CABINET</h3><p class="nn-sub" style="font-size:13px">An original NetNet game starring aidunlap, the NetNet mascot. Casual and unranked: no credits, no entries, no prizes. Your best score is saved only in this browser. The tokens in the game are game items, not real assets or prices.</p></div></div>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{window.NNA&&NNA.foot&&NNA.foot()});
+const $=id=>document.getElementById(id);
+
+const cv=$('c'),ctx=NND.hidpi(cv).getContext('2d'),SK='nnd-empire-v1';
+const A=[{id:'tbill',n:'T-Bill Desk',k:'tbill',c:15,r:0.5},{id:'gold',n:'Gold Vault',k:'gold',c:120,r:4},{id:'estate',n:'Rental Tower',k:'estate',c:1100,r:30},{id:'stock',n:'Equity Floor',k:'stock',c:12000,r:250},{id:'net',n:'NetNet HQ',k:'net',c:150000,r:2200}];
+const H=[{id:'trader',n:'Hire a Trader',d:'Deals pay x2',c:200},{id:'banker',n:'Hire a Banker',d:'All income x2',c:5000},{id:'boss',n:'Partner Boss',d:'All income x3',c:250000}];
+let G=JSON.parse(localStorage.getItem(SK)||'null')||{cash:0,total:0,own:{},hired:{},t:Date.now()};
+function mult(){return(G.hired.banker?2:1)*(G.hired.boss?3:1)}
+function rate(){return A.reduce((s,a)=>s+(G.own[a.id]||0)*a.r,0)*mult()}
+function cost(a){return Math.ceil(a.c*Math.pow(1.15,G.own[a.id]||0))}
+function fmt(n){return n>=1e9?(n/1e9).toFixed(2)+'B':n>=1e6?(n/1e6).toFixed(2)+'M':n>=1e4?(n/1e3).toFixed(1)+'K':Math.floor(n).toString()}
+function earn(v){G.cash+=v;G.total+=v}
+// offline earnings capped at 2h
+{const dt=Math.min(7200,(Date.now()-G.t)/1000);if(dt>5)earn(rate()*dt)}
+let pops=[];
+$('deal').onclick=()=>{const v=(1+Math.floor(rate()*0.05))*(G.hired.trader?2:1)*mult();earn(v);pops.push({v,a:50});shop()};
+$('reset').onclick=()=>{if(confirm('Reset your empire?')){G={cash:0,total:0,own:{},hired:{},t:Date.now()};save();shop()}};
+function save(){G.t=Date.now();localStorage.setItem(SK,JSON.stringify(G))}
+function shop(){let h='<h3>BUILD THE EMPIRE</h3>';
+ A.forEach(a=>{const c=cost(a);h+=`<div class="row" style="align-items:center"><span style="flex:2">${a.n} <span class="nna-mut">×${G.own[a.id]||0} · +$${fmt(a.r*mult())}/s each</span></span><button class="nn-btn${G.cash<c?' ghost':''}" data-a="${a.id}" ${G.cash<c?'disabled':''}>$${fmt(c)}</button></div>`});
+ h+='<h3>TEAM</h3>';H.forEach(x=>{h+=`<div class="row" style="align-items:center"><span style="flex:2">${x.n} <span class="nna-mut">${x.d}</span></span><button class="nn-btn${G.hired[x.id]||G.cash<x.c?' ghost':''}" data-h="${x.id}" ${G.hired[x.id]||G.cash<x.c?'disabled':''}>${G.hired[x.id]?'HIRED':'$'+fmt(x.c)}</button></div>`});
+ h+=`<p class="nna-mut" style="font-size:13px">Lifetime earned: $${fmt(G.total)} (game money). Progress saves in this browser; up to 2h of offline income.</p>`;
+ $('shop').innerHTML=h;
+ $('shop').querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{const a=A.find(z=>z.id===b.dataset.a),c=cost(a);if(G.cash>=c){G.cash-=c;G.own[a.id]=(G.own[a.id]||0)+1;save();shop()}});
+ $('shop').querySelectorAll('[data-h]').forEach(b=>b.onclick=()=>{const x=H.find(z=>z.id===b.dataset.h);if(G.cash>=x.c&&!G.hired[x.id]){G.cash-=x.c;G.hired[x.id]=1;save();shop()}})}
+function draw(now){ctx.fillStyle='#0a0a0a';ctx.fillRect(0,0,640,300);
+ // empire skyline grows with holdings
+ let bx=250;A.forEach((a,i)=>{const n=G.own[a.id]||0;for(let j=0;j<Math.min(n,4);j++){const bh=40+i*28+j*6,w=26+i*3;ctx.fillStyle=i===4?'#2a2408':'#1d1d1d';ctx.fillRect(bx,240-bh,w,bh);ctx.strokeStyle=i===4?'#d4af37':'#2a2a2a';ctx.strokeRect(bx+.5,240-bh+.5,w-1,bh-1);ctx.fillStyle='rgba(245,215,122,.25)';for(let y=240-bh+8;y<234;y+=12)ctx.fillRect(bx+5,y,w-10,4);bx+=w+6}
+  if(n)NND.badge(ctx,250+i*76+20,272,11,a.k)});
+ ctx.fillStyle='#d4af37';ctx.fillRect(0,240,640,2);
+ // desk + aidunlap + team
+ ctx.fillStyle='#2a2a2a';ctx.fillRect(40,200,170,40);ctx.fillStyle='#d4af37';ctx.fillRect(40,200,170,3);
+ NND.draw(ctx,125,205,120,{v:'dunlap',pose:pops.length?'win':'stand',t:now});
+ const team=H.filter(x=>G.hired[x.id]);team.forEach((x,i)=>NND.draw(ctx,30+i*0+ (i===0?10:i===1?225:195),240,i===2?96:84,{v:x.id,pose:'stand',t:now,flip:i===0}));
+ pops.forEach(p=>{ctx.globalAlpha=p.a/50;ctx.fillStyle='#f5d77a';ctx.font='bold 18px system-ui';ctx.textAlign='center';ctx.fillText('+$'+fmt(p.v),125,60-(50-p.a));p.a--});ctx.globalAlpha=1;pops=pops.filter(p=>p.a>0);
+ ctx.fillStyle='#9a927c';ctx.font='12px system-ui';ctx.textAlign='left';ctx.fillText('AIDUNLAP HOLDINGS',12,20)}
+let last=performance.now(),acc=0;
+function loop(now){const dt=Math.min(1,(now-last)/1000);last=now;earn(rate()*dt);acc+=dt;if(acc>1){acc=0;save();shop()}
+ $('cash').textContent='$'+fmt(G.cash);$('rate').textContent='$'+fmt(rate())+'/s';draw(now);requestAnimationFrame(loop)}
+shop();NND.ready.then(()=>requestAnimationFrame(loop));
+addEventListener('beforeunload',save);
+
+</script></body></html>

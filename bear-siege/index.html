@@ -1,0 +1,50 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>BEAR SIEGE · NetNet Arcade</title><meta name="description" content="aidunlap holds the trading floor against waves of bears for 90 seconds. Auto-fire gold, move to survive. Same waves for everyone each week. Replay-verified.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Arcade"><meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/bear-siege/">
+<meta property="og:title" content="BEAR SIEGE · NetNet Arcade"><meta property="og:description" content="aidunlap holds the trading floor against waves of bears for 90 seconds. Auto-fire gold, move to survive. Same waves for everyone each week. Replay-verified."><meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/bear-siege.png"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a0a0a"><link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css">
+<style>:root{--c:#d4af37;--bg:#0a0a0a;--panel:#121212;--line:#2a2a2a}canvas{width:100%;max-width:900px;margin:0 auto;border-radius:12px;display:block;touch-action:none;background:#0d0d0d;user-select:none;-webkit-user-select:none}.row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.row .nn-btn{flex:1}</style>
+<script src="../arcade/sims.js"></script><script>window.NN_SCORE_SERVER="https://netnet-arcade-verifier.netnetarcade.workers.dev"</script><script src="../arcade/core.js"></script><script src="../arcade/dunlap.js"></script></head><body>
+<div class="nn-wrap"><div class="nn-top"><a href="../">← LOBBY</a><span class="nn-pill">CABINET 11 · <span class="nna-ok">✔ REPLAY-VERIFIED</span></span></div>
+<h1 class="nn-title">BEAR SIEGE</h1><p class="nn-sub">Move with WASD / arrow keys, or drag anywhere on the screen like a joystick. aidunlap fires gold at the nearest bear automatically, and every 15 takedowns his firepower levels up. 3 hits and you are out. Score: 10 per bear, 2 per second survived, +500 and +100 per heart left if you last all 90 seconds.</p>
+<div class="nn-hud"><span id="h1">0 pts</span><span id="h2"></span><span id="h3"></span></div>
+<canvas id="c" width="640" height="360"></canvas>
+<div class="row"><button class="nn-btn" id="go">START</button></div>
+<label class="nna-mut" style="display:block;margin:8px 0"><input type="checkbox" id="ranked" checked> Ranked entry: 100 <span class="nna-test">TEST</span> credits (10 to treasury first, 90 to this week's pool). Untick for free practice.</label>
+<div class="nn-card" id="board"></div>
+<div class="nn-card"><h3>ABOUT THIS CABINET</h3><p class="nn-sub" style="font-size:13px">An original NetNet game starring aidunlap, the NetNet mascot. Everyone gets the same level this week (seed from the UTC week, Sunday to Sunday). Your inputs are recorded tick by tick and the score server re-plays them from scratch; only the re-simulated score counts. Runs that go faster than real time, pause, hide the tab or exceed the input-rate cap are rejected. Tokens in the game are game items, not real assets or prices. Test credits only, not money.</p></div></div>
+<script>
+const GAME='bear-siege',$=id=>document.getElementById(id),cv=$('c'),ctx=NND.hidpi(cv).getContext('2d'),g=NNS.games[GAME];
+function board(){NNA.renderBoard(GAME,$('board'))}
+document.addEventListener('DOMContentLoaded',()=>{board();NNA.foot()});
+let want=null,sent=null,lastT=-99,Q=[];const GAP=3;
+function pump(s){if(!R.on)return;if(Q.length&&s.tick-lastT>=GAP){lastT=s.tick;R.input(Q.shift());return}if(want!==null&&want!==sent&&s.tick-lastT>=GAP){sent=want;lastT=s.tick;R.input(want)}}
+function tap(a){if(!R.on)return;if(Q.length<3)Q.push(a);pump(R.state)}
+let preview=g.create(NNS.seedFor(GAME));
+const R=NNA.runner(GAME,{onFrame:s=>{pump(s);draw(s,performance.now())},onEnd:()=>{$('go').style.display='';board()}});
+function start(){want=8;sent=8;lastT=-99;Q=[];R.start($('ranked').checked);$('go').style.display='none'}
+NNA.onAgain=start;$('go').onclick=e=>{e.preventDefault();start()};
+function idle(now){if(!R.on){draw(R.state&&R.state.done?R.state:preview,now)}requestAnimationFrame(idle)}
+function label(t1,t2){NND.panel(ctx,cv.width,cv.height,t1,t2)}
+
+function bear(x,y,big,t){NND.draw(ctx,x,y+(big?19:13),big?44:30,{v:'bear',pose:'run',t:t+x*9})}
+function draw(s,now){ctx.fillStyle='#0d0d0d';ctx.fillRect(0,0,640,360);ctx.strokeStyle='#1c1c1c';ctx.lineWidth=1;for(let x=0;x<640;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,360);ctx.stroke()}for(let y=0;y<360;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(640,y);ctx.stroke()}
+ ctx.strokeStyle='rgba(212,175,55,.35)';ctx.lineWidth=2;ctx.beginPath();ctx.arc(320,180,70,0,7);ctx.stroke();ctx.fillStyle='rgba(212,175,55,.08)';ctx.font='bold 40px system-ui';ctx.textAlign='center';ctx.fillText('NET',320,195);
+ for(const e of s.en)bear(e.x,e.y,e.big,now);
+ for(const b of s.sh){NND.badge(ctx,b.x,b.y,5,'gold')}
+ if(!(s.inv>0&&Math.floor(s.tick/3)%2))NND.draw(ctx,s.px,s.py+26,56,{v:'dunlap',pose:s.done&&!s.survived?'fail':(s.d!==8&&R.on?'run':'stand'),t:now,flip:s.d>=5&&s.d<=7});
+ ctx.textAlign='left';ctx.font='bold 16px system-ui';ctx.fillStyle='#ff5f6d';ctx.fillText('♥'.repeat(Math.max(0,s.hp)),12,24);ctx.fillStyle='#9a927c';ctx.font='12px system-ui';const st=g.stats(s);ctx.fillText('FIREPOWER LV '+(s.lvl+1)+' · x'+st.multi+' shots',12,42);
+ const sc=g.score(s);$('h1').textContent=sc+' pts';$('h2').textContent=(90-s.tick/30).toFixed(1)+'s left';$('h3').textContent=s.kills+' bears';
+ if(joy){ctx.strokeStyle='rgba(245,215,122,.5)';ctx.lineWidth=2;ctx.beginPath();ctx.arc(joy.x0,joy.y0,40,0,7);ctx.stroke()}
+ if(!R.on)label(s.done?(s.survived?'HELD THE FLOOR · '+sc:'OVERRUN · '+sc+' PTS'):'BEAR SIEGE',s.done?'Press START to go again':'Press START · WASD / arrows or drag to move')}
+const keys={};function kdir(){const x=(keys.r?1:0)-(keys.l?1:0),y=(keys.d?1:0)-(keys.u?1:0);return dirOf(x,y)}
+function dirOf(x,y){if(!x&&!y)return 8;const a=Math.atan2(x,-y);return ((Math.round(a/(Math.PI/4))%8)+8)%8}
+const KM={ArrowUp:'u',w:'u',W:'u',ArrowDown:'d',s:'d',S:'d',ArrowLeft:'l',a:'l',A:'l',ArrowRight:'r',d:'r',D:'r'};
+addEventListener('keydown',e=>{const k=KM[e.key];if(k){e.preventDefault();keys[k]=1;want=kdir()}});addEventListener('keyup',e=>{const k=KM[e.key];if(k){keys[k]=0;want=kdir()}});
+let joy=null;function cpos(e){const r=cv.getBoundingClientRect();return{x:(e.clientX-r.left)*640/r.width,y:(e.clientY-r.top)*360/r.height}}
+cv.addEventListener('pointerdown',e=>{e.preventDefault();const p=cpos(e);joy={x0:p.x,y0:p.y};cv.setPointerCapture(e.pointerId)});
+cv.addEventListener('pointermove',e=>{if(!joy)return;const p=cpos(e),dx=p.x-joy.x0,dy=p.y-joy.y0;want=Math.hypot(dx,dy)<12?8:dirOf(dx,dy)});
+['pointerup','pointercancel'].forEach(t=>cv.addEventListener(t,()=>{joy=null;want=8}));
+
+NND.ready.then(()=>requestAnimationFrame(idle));
+</script></body></html>
