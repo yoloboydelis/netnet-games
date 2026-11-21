@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#050814"/><stop offset="55%" stop-color="#0b1528"/><stop offset="100%" stop-color="#152038"/></linearGradient>
+    <radialGradient id="ball" cx="35%" cy="30%" r="65%"><stop offset="0%" stop-color="#ffffff"/><stop offset="45%" stop-color="#e8f2ff"/><stop offset="100%" stop-color="#9eb6d4"/></radialGradient>
+    <linearGradient id="vault" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f5d77a"/><stop offset="50%" stop-color="#d4af37"/><stop offset="100%" stop-color="#7a5a12"/></linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#sky)"/>
+  <rect x="0" y="40" width="1280" height="90" fill="#39ff88" opacity="0.12"/>
+  <rect x="0" y="70" width="1280" height="80" fill="#38f5ff" opacity="0.1"/>
+  <g fill="#101826">
+    <rect x="40" y="360" width="110" height="180"/><rect x="200" y="300" width="110" height="240"/><rect x="360" y="380" width="100" height="160"/>
+    <rect x="980" y="320" width="120" height="220"/><rect x="1140" y="360" width="100" height="180"/>
+  </g>
+  <rect x="0" y="540" width="1280" height="180" fill="#dfe8f5"/>
+  <rect x="0" y="536" width="1280" height="4" fill="#d4af37"/>
+  <polygon points="320,250 390,420 410,540 230,540 250,420" fill="url(#vault)"/>
+  <rect x="292" y="470" width="56" height="70" fill="#0a0a0a"/>
+  <circle cx="860" cy="430" r="150" fill="url(#ball)"/>
+  <circle cx="860" cy="430" r="115" fill="none" stroke="#d4af37" stroke-width="6" opacity="0.7"/>
+  <path d="M780 450 Q860 500 940 430" fill="none" stroke="#d4af37" stroke-width="8"/>
+  <circle cx="810" cy="380" r="28" fill="#ffffff" opacity="0.55"/>
+  <text x="64" y="90" font-family="system-ui,Segoe UI,sans-serif" font-size="64" font-weight="800" fill="#f5d77a">AIDUNLAP SNOWBALL</text>
+  <text x="64" y="140" font-family="system-ui,Segoe UI,sans-serif" font-size="28" fill="#9ec9ff">NetNet Arcade · Cabinet 15 · replay-verified</text>
+  <text x="64" y="185" font-family="system-ui,Segoe UI,sans-serif" font-size="24" fill="#9a927c">grow · smash · topple the Vault Spire</text>
+</svg>
