@@ -1,0 +1,100 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>VOICES · NetNet Arcade</title><meta name="description" content="NetNet Voices: post about NetNet on X, get community votes, climb the weekly creator board and win bounties. Test credits only.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Arcade"><meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/voices/">
+<meta property="og:title" content="VOICES · NetNet Arcade"><meta property="og:description" content="NetNet Voices: post about NetNet on X, get community votes, climb the weekly creator board and win bounties. Test credits only.">
+<meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/home.png"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#070b16"><link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css">
+<style>:root{--c:#ff2bd6}</style><style>:root{--c:#ff2bd6}
+.vh{letter-spacing:.18em;font-size:14px;color:#38f5ff;margin:22px 0 8px}
+.vc-card{display:flex;flex-wrap:wrap;align-items:center;gap:14px;padding:16px;border-radius:20px;background:linear-gradient(135deg,#2a0b3d,#0b1022);border:2px solid #ff2bd6;box-shadow:0 0 26px #ff2bd644}
+.av{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#ff2bd6,#38f5ff);display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:900;color:#05070f}
+.vc-card .st{text-align:center;min-width:64px}.vc-card .st b{display:block;font-size:24px}.vc-card .st span{font-size:11px;color:var(--mut)}
+.raid{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
+.ri{flex:0 0 min(86%,330px);scroll-snap-align:start;position:relative}.rn{position:absolute;top:-8px;left:10px;background:#38f5ff;color:#05070f;font-weight:900;border-radius:6px;padding:0 8px;font-size:12px;z-index:1}
+.pc{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px;margin:10px 0;height:calc(100% - 20px);display:flex;flex-direction:column;gap:6px}
+.pch{font-size:14px}.pct{font-size:15px;line-height:1.4;word-break:break-word}.pcm{display:flex;gap:12px;font-size:13px;color:var(--mut);align-items:center}.ex{font-size:10px;border:1px solid #7a5a12;color:#ffd27a;border-radius:6px;padding:0 4px}
+.pca{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}.pca .nn-btn{min-height:44px;padding:0 12px;font-size:14px;flex:1}
+.vbtn{background:#ff2bd6;border-color:#ff2bd6}.vbtn.done{background:#0b3320;border-color:#1d7a4a;color:#39ff88}
+.vin{min-height:48px;border-radius:12px;border:1px solid var(--line);background:#0b1022;color:var(--txt);padding:0 12px;font:inherit;width:100%}
+.tabs{display:flex;gap:6px;overflow-x:auto;margin:20px 0 4px;padding:6px 0}
+.tab{flex:1 0 auto;min-height:44px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--txt);font:inherit;font-weight:800;padding:0 14px;cursor:pointer}.tab.on{background:#ff2bd6;border-color:#ff2bd6;color:#05070f}
+.be{display:flex;gap:8px;justify-content:space-between;align-items:center;border-top:1px dashed #1b2944;padding:8px 0;font-size:14px}.be a{color:var(--c)}.be .nn-btn{min-height:44px;font-size:13px;flex:0 0 auto}
+.live{display:inline-block;background:#0b3320;color:#39ff88;border:1px solid #1d7a4a;border-radius:999px;padding:1px 8px;font-size:11px;font-weight:800}
+</style>
+<script src="../arcade/sims.js"></script><script>window.NN_SCORE_SERVER="https://netnet-arcade-verifier.netnetarcade.workers.dev"</script><script src="../arcade/core.js"></script></head><body>
+<div class="nn-wrap" style="max-width:820px">
+<div class="nn-top"><a href="../apps/">← NETNET APPS</a><span class="nn-pill"><span class="live">● LIVE</span> · TEST CREDITS</span></div>
+<h1 class="nn-title" style="color:#ff2bd6;text-shadow:0 0 14px #ff2bd6">🎙️ VOICES</h1>
+<p class="nn-sub">Post about NetNet on X, drop the link here, and let the community vote. Most votes this week tops the board and takes the biggest share of the sponsor pool. <span class="nna-test">TEST CREDITS</span></p>
+
+<div class="vc-card" id="me"></div>
+
+<h2 class="vh">⚡ RAID OF THE DAY <span class="nna-mut" style="letter-spacing:0">Boost these 3 on X</span></h2>
+<div class="raid" id="raid"><div class="nna-mut">Loading…</div></div>
+
+<div class="nn-card"><h3>SUBMIT YOUR POST</h3>
+<div class="nn-row"><input id="url" class="vin" placeholder="https://x.com/you/status/123…" inputmode="url" autocomplete="off" style="flex:3;min-width:220px"><select id="bty" class="vin" style="flex:2;min-width:160px"><option value="">No bounty</option></select></div>
+<button class="nn-btn full" id="sub" style="background:#ff2bd6;border-color:#ff2bd6">Submit to Voices</button><div id="subm" class="nna-mut" style="margin-top:6px"></div>
+<div class="nna-mut" style="font-size:11px">Max 5 posts per account a day. We check the post exists via X's public embed. Views/likes shown are <b>EXAMPLE values</b> until X metrics are connected server-side.</div></div>
+
+<div class="tabs" role="tablist"><button class="tab on" data-t="posts">🔥 This week</button><button class="tab" data-t="board">🏆 Leaderboard</button><button class="tab" data-t="bounties">🎯 Bounties</button><button class="tab" data-t="pool">💰 Sponsor pool</button></div>
+<div id="t-posts" class="tp"></div>
+<div id="t-board" class="tp" hidden></div>
+<div id="t-bounties" class="tp" hidden></div>
+<div id="t-pool" class="tp" hidden></div>
+</div>
+<script>
+const $=id=>document.getElementById(id),S=()=>NNA.SERVER,E=NNA.esc;
+const post=(p,b)=>fetch(S()+p,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(Object.assign({secret:NNA.acct().secret},b))}).then(async r=>Object.assign(await r.json(),{_s:r.status}));
+const get=p=>fetch(S()+p).then(r=>r.json());
+let MY={posts:[],bounties:[]},POSTS=[],BOUNTIES=[];
+const k=n=>n>=1000?(n/1000).toFixed(n>=1e4?0:1)+'k':String(n);
+function postCard(p,opts={}){const voted=MY.posts.includes(p.id),me=p.handle===NNA.acct().handle;
+ return '<div class="pc"><div class="pch"><b>@'+E(p.handle)+'</b> <span class="nna-mut">via X: '+E(p.xuser)+'</span>'+(p.verified?' <span class="nna-ok" title="Post exists on X (checked via public embed)">✔ on X</span>':'')+(p.bounty?' <span class="nna-test">🎯 bounty</span>':'')+'</div>'+
+ (p.text?'<div class="pct">'+E(p.text)+'</div>':'<div class="pct nna-mut">(text not available)</div>')+
+ '<div class="pcm"><span title="EXAMPLE metrics">👁 '+k(p.metrics.views)+'</span><span>♥ '+k(p.metrics.likes)+'</span><span>🔁 '+k(p.metrics.reposts)+'</span><span class="ex">EXAMPLE</span></div>'+
+ '<div class="pca"><button class="nn-btn vbtn'+(voted?' done':'')+'" data-v="'+p.id+'" '+(voted||me?'disabled':'')+'>'+(me?'Your post':voted?'✔ Voted':'▲ Vote')+' · <b>'+p.votes+'</b></button>'+
+ '<a class="nn-btn ghost" target="_blank" rel="noopener" href="'+E(p.url)+'">Open on X ↗</a>'+(opts.raid?'<a class="nn-btn ghost" target="_blank" rel="noopener" href="https://x.com/intent/retweet?tweet_id='+p.id+'">🔁 Boost</a>':'')+'</div></div>'}
+async function loadMine(){try{MY=await post('/v1/voices/myvotes',{})}catch(e){}}
+async function loadPosts(){const d=await get('/v1/voices/posts');POSTS=d.posts;$('t-posts').innerHTML=POSTS.length?POSTS.map(p=>postCard(p)).join(''):'<div class="nn-card nna-mut">No posts yet this week. Be the first Voice.</div>'}
+async function loadRaid(){const d=await get('/v1/voices/raid');$('raid').innerHTML=d.posts.length?d.posts.map((p,i)=>'<div class="ri"><div class="rn">#'+(i+1)+'</div>'+postCard(p,{raid:1})+'</div>').join(''):'<div class="nna-mut">No posts yet. Submit one and it shows up here.</div>'}
+async function loadBoard(){const d=await get('/v1/voices/board');const me=NNA.acct().handle;
+ $('t-board').innerHTML='<div class="nn-card"><h3>WEEKLY CREATOR BOARD</h3><div class="nna-mut">'+NNA.weekLabel(d.week)+' · ranked by community votes (real, one per account per post)</div><table class="nn-lb">'+(d.rows.length?d.rows.map((r,i)=>'<tr class="'+(r.handle===me?'me':'')+'"><td>'+(['🥇','🥈','🥉'][i]||'#'+(i+1))+'</td><td>@'+E(r.handle)+'</td><td>'+r.posts+' posts</td><td style="text-align:right"><b>'+r.votes+'</b> votes</td><td class="nna-mut">'+(i<5?['40%','25%','15%','12%','8%'][i]+' of pool':'')+'</td></tr>').join(''):'<tr><td class="nna-mut">No votes yet this week.</td></tr>')+'</table></div>';return d}
+async function loadBounties(){const d=await get('/v1/voices/bounties');BOUNTIES=d.bounties;
+ $('bty').innerHTML='<option value="">No bounty</option>'+BOUNTIES.map(b=>'<option value="'+b.id+'">🎯 '+E(b.title)+'</option>').join('');
+ $('t-bounties').innerHTML=BOUNTIES.map(b=>{const mine=(MY.bounties||[]).find(x=>x.bounty===b.id);return '<div class="nn-card bty"><h3>🎯 '+E(b.title)+'</h3><p class="nna-mut" style="font-size:14px;margin:0 0 6px">'+E(b.brief)+'</p><div class="nn-kv"><span>Reward <span class="nna-test">TEST · EXAMPLE</span></span><b>'+b.reward.toLocaleString()+' credits</b></div><div class="nn-kv"><span>Closes</span><b>'+b.ends+' 00:00 UTC</b></div><div class="nn-kv"><span>Entries</span><b>'+b.entries.length+'</b></div>'+
+  (b.entries.length?b.entries.map((e,i)=>'<div class="be"><span>'+(i===0&&e.bvotes?'👑 ':'')+'<b>@'+E(e.handle)+'</b> <a href="'+E(e.url)+'" target="_blank" rel="noopener">post ↗</a><br><span class="nna-mut">'+E((e.text||'').slice(0,110))+'</span></span><button class="nn-btn ghost bv" data-b="'+b.id+'" data-p="'+e.id+'" '+(mine||e.handle===NNA.acct().handle?'disabled':'')+'>'+(mine&&mine.post===e.id?'✔ Your pick':'Pick winner')+' · '+e.bvotes+'</button></div>').join(''):'<div class="nna-mut">No entries yet. Submit a post above and pick this bounty.</div>')+'</div>'}).join('')}
+function pool(){const gross=52000,cut=0.10,net=gross*(1-cut),sp=[['Demo RWA Fund (example)',20000],['Sample Gold Token (example)',15000],['NetNet Treasury match (test)',10000],['Community tips (test)',7000]],split=[40,25,15,12,8];
+ const past=[['2026-10-11','@demo_whale',8400],['2026-10-04','@rwa_maxi',7900],['2026-09-27','@gm_desk',6100]];
+ $('t-pool').innerHTML='<div class="nn-card" style="border-color:#f5c542"><h3>💰 SPONSOR POOL · THIS WEEK <span class="nna-test">TEST · EXAMPLE VALUES</span></h3><div class="nn-big" style="color:#f5c542">'+gross.toLocaleString()+'</div><div class="nna-mut">test credits pledged by sponsors</div>'+
+ '<div class="nn-kv" style="margin-top:8px"><span>1. Treasury cut (first)</span><b>'+(gross*cut).toLocaleString()+' (10%)</b></div><div class="nn-kv"><span>2. Paid to creators</span><b>'+net.toLocaleString()+'</b></div>'+
+ '<h3 style="margin-top:12px">Payout split · top 5</h3>'+split.map((s,i)=>'<div class="nn-kv"><span>'+['🥇 #1','🥈 #2','🥉 #3','#4','#5'][i]+'</span><b>'+s+'% · '+Math.round(net*s/100).toLocaleString()+'</b></div>').join('')+
+ '<h3 style="margin-top:12px">Sponsors</h3>'+sp.map(s=>'<div class="nn-kv"><span>'+s[0]+'</span><b>'+s[1].toLocaleString()+'</b></div>').join('')+
+ '<h3 style="margin-top:12px">Past payouts (#1 creator)</h3>'+past.map(p=>'<div class="nn-kv"><span>Week of '+p[0]+' · '+p[1]+'</span><b>'+p[2].toLocaleString()+'</b></div>').join('')+
+ '<p class="nna-mut" style="font-size:12px">Example values to show the model: sponsors fund the pool, the treasury cut comes first, the rest goes to the top 5 Voices by votes. Nothing here is paid in money. Want to sponsor a pool for real later? Ask in the official NetNet channels.</p></div>'}
+async function loadMe(){const a=NNA.acct();let c={posts:0,votes:0,weekVotes:0,best:null};try{c=await get('/v1/voices/creator?handle='+encodeURIComponent(a.handle))}catch(e){}
+ let rank='–';try{const b=await get('/v1/voices/board'),i=b.rows.findIndex(r=>r.handle===a.handle);if(i>=0)rank='#'+(i+1)}catch(e){}
+ window.__me={h:a.handle,rank,wv:c.weekVotes,v:c.votes,p:c.posts};
+ $('me').innerHTML='<div class="av">'+E(a.handle[0]||'?').toUpperCase()+'</div><div style="flex:1;min-width:160px"><div class="nna-mut" style="font-size:11px;letter-spacing:.2em">YOUR CREATOR CARD</div><div style="font-size:22px;font-weight:900">@'+E(a.handle)+'</div><div class="nna-mut"><a href="../profile/" style="color:var(--c)">change handle</a> · same ID as the Arcade</div></div>'+
+ '<div class="st"><b>'+rank+'</b><span>rank</span></div><div class="st"><b>'+c.weekVotes+'</b><span>votes wk</span></div><div class="st"><b>'+c.posts+'</b><span>posts</span></div>'+
+ '<div class="nn-row" style="flex-basis:100%;margin:6px 0 0"><button class="nn-btn" id="card" style="background:#ff2bd6;border-color:#ff2bd6">🖼 Share card</button><a class="nn-btn ghost" id="xshare" target="_blank" rel="noopener">Post on X ↗</a></div>';
+ $('xshare').href='https://x.com/intent/post?text='+encodeURIComponent('I\'m '+rank+' on NetNet Voices this week 🎙️ Vote for the best NetNet posts 👇')+'&url='+encodeURIComponent(location.origin+location.pathname);
+ $('card').onclick=shareCard}
+function shareCard(){const m=window.__me,c=document.createElement('canvas');c.width=1200;c.height=675;const x=c.getContext('2d');
+ const g=x.createLinearGradient(0,0,1200,675);g.addColorStop(0,'#1a0838');g.addColorStop(1,'#05070f');x.fillStyle=g;x.fillRect(0,0,1200,675);x.strokeStyle='#ff2bd6';x.lineWidth=10;x.strokeRect(30,30,1140,615);
+ x.fillStyle='#38f5ff';x.font='bold 34px system-ui';x.fillText('NETNET VOICES · '+NNA.weekLabel().replace(/ \(.*/,''),80,110);
+ x.fillStyle='#ff2bd6';x.shadowColor='#ff2bd6';x.shadowBlur=30;x.font='900 120px system-ui';x.fillText('@'+m.h,80,270);x.shadowBlur=0;
+ [['RANK',m.rank],['VOTES THIS WEEK',m.wv],['POSTS',m.p]].forEach((s,i)=>{x.fillStyle='#8b9bb8';x.font='bold 28px system-ui';x.fillText(s[0],80+i*360,380);x.fillStyle='#fff';x.font='900 96px system-ui';x.fillText(String(s[1]),80+i*360,480)});
+ x.fillStyle='#f5c542';x.font='bold 30px system-ui';x.fillText('Vote for the best NetNet posts → netnet arcade / voices',80,590);x.fillStyle='#8b9bb8';x.font='22px system-ui';x.fillText('Test credits only',960,630);
+ c.toBlob(async b=>{const f=new File([b],'netnet-voices.png',{type:'image/png'});try{if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],text:'NetNet Voices'});return}}catch(e){}
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='netnet-voices.png';a.click();NNA.toast('Share card downloaded. Attach it to your X post.')},'image/png')}
+document.addEventListener('click',async e=>{const v=e.target.closest('.vbtn');if(v&&!v.disabled){v.disabled=true;const r=await post('/v1/voices/vote',{post:v.dataset.v});
+  if(r.ok){NNA.toast('Vote counted ▲');MY.posts.push(v.dataset.v)}else{NNA.toast('✘ '+(r.error||'vote failed'))}refresh();return}
+ const bv=e.target.closest('.bv');if(bv&&!bv.disabled){bv.disabled=true;const r=await post('/v1/voices/bounties/vote',{bounty:bv.dataset.b,post:bv.dataset.p});NNA.toast(r.ok?'Winner pick saved':'✘ '+(r.error||'failed'));await loadMine();loadBounties();return}
+ const t=e.target.closest('.tab');if(t){document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===t));document.querySelectorAll('.tp').forEach(x=>x.hidden=x.id!=='t-'+t.dataset.t)}});
+$('sub').onclick=async()=>{const u=$('url').value.trim();$('subm').textContent='Checking the post on X…';$('sub').disabled=true;
+ const r=await post('/v1/voices/posts',{url:u,bounty:$('bty').value});$('sub').disabled=false;
+ if(r.ok){$('subm').innerHTML='<span class="nna-ok">✔ Added</span> Now share it and ask for votes.';$('url').value='';refresh()}else $('subm').innerHTML='<span class="nna-bad">✘</span> '+E(r.error||'failed')};
+async function refresh(){await loadMine();await Promise.all([loadPosts(),loadRaid(),loadBoard(),loadBounties(),loadMe()])}
+document.addEventListener('DOMContentLoaded',async()=>{pool();NNA.foot();if(!S()){$('t-posts').innerHTML='<div class="nn-card">Voices needs the NetNet server.</div>';return}await NNA.sync();refresh().catch(()=>NNA.toast('⚠ Voices server unreachable'))});
+</script></body></html>

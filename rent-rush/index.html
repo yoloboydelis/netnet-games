@@ -1,0 +1,26 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>RENT RUSH · NetNet Arcade</title><meta name="description" content="45-second tokenized real-estate tycoon. Same prices for everyone. Replay-verified scores.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Arcade"><meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/rent-rush/">
+<meta property="og:title" content="RENT RUSH · NetNet Arcade"><meta property="og:description" content="45-second tokenized real-estate tycoon. Same prices for everyone. Replay-verified scores.">
+<meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/rent-rush.png"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#070b16"><link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css">
+<style>:root{--c:#39ff88}</style><style>#shop .nn-btn{justify-content:space-between;margin:6px 0;min-height:60px}#shop .nn-btn.can{border-color:var(--up);box-shadow:0 0 0 2px #39ff8855,0 0 18px #39ff8866}#shop .nn-btn.cant{opacity:.55}.need{color:var(--gold);font-size:13px}</style>
+<script src="../arcade/sims.js"></script><script>window.NN_SCORE_SERVER="https://netnet-arcade-verifier.netnetarcade.workers.dev"</script><script src="../arcade/core.js"></script></head><body>
+<div class="nn-wrap"><div class="nn-top"><a href="../">← LOBBY</a><span class="nn-pill">CABINET 06 · <span class="nna-ok">✔ REPLAY-VERIFIED</span></span></div>
+<h1 class="nn-title">RENT RUSH</h1><p class="nn-sub"><b>Press START, then tap properties to buy them.</b> Each pays rent every second, so buy early and climb to bigger buildings. Most rent earned in 45 s wins. Same prices for everyone; the skill is the build order.</p>
+<div class="nn-hud"><span id="tm">45.0s</span><span id="cash">$20</span><span id="rps">+$0/s</span></div>
+<div class="nn-stage"><div id="shop"></div><div class="nn-sub" id="earned" style="text-align:center;margin:6px 0 0">Rent earned: $0</div><button class="nn-btn full" id="go" style="margin-top:8px">START (45 s)</button></div><label class="nna-mut" style="display:block;margin:8px 0"><input type="checkbox" id="ranked" checked> Ranked entry: 100 <span class="nna-test">TEST</span> credits (10 to treasury first, 90 to this week's pool). Untick for free practice.</label><div class="nn-card" id="board"></div><div class="nn-card"><h3>HOW SCORES ARE VERIFIED</h3><p class="nn-sub" style="font-size:13px">Everyone gets the same level this week (seed from the UTC week). Your inputs are recorded tick by tick; at game over the shared verifier re-plays them from scratch and only the re-simulated score counts. Runs that go faster than real time, pause, hide the tab, or exceed the input-rate cap are rejected.</p></div></div>
+<script>
+const GAME='rent-rush';
+const $=id=>document.getElementById(id);function board(){NNA.renderBoard(GAME,$('board'))}
+document.addEventListener('DOMContentLoaded',()=>{board();NNA.foot()});
+const g=NNS.games[GAME],P=g.P;$('shop').innerHTML=P.map((p,i)=>'<button class="nn-btn ghost full" data-i="'+i+'"><span></span><span style="text-align:right"></span></button>').join('');
+function draw(s){P.forEach((p,i)=>{const b=$('shop').children[i],c=g.cost(s,i),ok=R.on&&s.cash>=c;b.classList.toggle('can',ok);b.classList.toggle('cant',!ok);
+ b.children[0].innerHTML=p.n+' <b>×'+s.own[i]+'</b><br><span style="font-size:12px;color:var(--mut)">+$'+p.r+'/s each</span>';
+ b.children[1].innerHTML='$'+c.toLocaleString()+(ok||!R.on?'':'<br><span class="need">need $'+Math.ceil(c-s.cash).toLocaleString()+'</span>')});
+ $('cash').textContent='$'+Math.floor(s.cash).toLocaleString();$('rps').textContent='+$'+g.rate(s)+'/s';$('tm').textContent=Math.max(0,45-s.tick/10).toFixed(1)+'s';$('earned').textContent='Rent earned: $'+Math.floor(s.earned).toLocaleString()}
+const R=NNA.runner(GAME,{onFrame:draw,onInput:()=>navigator.vibrate&&navigator.vibrate(10),onEnd:()=>{$('go').style.display='';board()}});
+draw(g.create());
+$('shop').addEventListener('click',e=>{const b=e.target.closest('button');if(!b||!R.on)return;R.input(+b.dataset.i);draw(R.state)});
+$('go').onclick=()=>{R.start($('ranked').checked);$('go').style.display='none'};
+</script></body></html>

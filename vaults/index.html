@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../_template/arcade.css"><link rel="stylesheet" href="../arcade/arcade.css"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>NetNet Liquidity Vaults · Concentrated-liquidity vaults on Robinhood Chain (prototype)</title>
+<meta name="description" content="Design prototype: automated NET/USDG and tokenized-stock/USDG liquidity vaults with zero-swap rebalancing, a 10% fee on earned LP fees only, and wsNET staker tiers. Simulated data, nothing live onchain.">
+<link rel="canonical" href="https://yoloboydelis.github.io/netnet-games/vaults/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="NetNet Arcade">
+<meta property="og:url" content="https://yoloboydelis.github.io/netnet-games/vaults/">
+<meta property="og:title" content="NetNet Liquidity Vaults · Design prototype">
+<meta property="og:description" content="NET/USDG and RWA stock/USDG vaults. Zero-swap rebalancing, fee only on LP fees earned, wsNET tiers. Simulated, nothing live. Prototype for the NetNet community &amp; devs, feedback welcome.">
+<meta property="og:image" content="https://yoloboydelis.github.io/netnet-games/og/vaults.png"><meta property="og:image:secure_url" content="https://yoloboydelis.github.io/netnet-games/og/vaults.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="NetNet Liquidity Vaults design prototype">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="NetNet Liquidity Vaults · Design prototype"><meta name="twitter:description" content="Zero-swap rebalancing, fee only on LP fees earned, wsNET tiers. Simulated, nothing live."><meta name="twitter:image" content="https://yoloboydelis.github.io/netnet-games/og/vaults.png">
+<meta name="theme-color" content="#0a1220">
+<style>
+:root{--bg:#0a1220;--panel:#0f1a2c;--line:#22324d;--txt:#e6edf6;--mut:#8ea0b8;--acc:#f5a623;--up:#2fd18b;--dn:#ff5f6d;--blue:#4fa3ff;--pur:#a78bfa}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.55 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px}a{color:var(--blue)}
+header{position:sticky;top:0;z-index:5;background:rgba(10,18,32,.95);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;justify-content:space-between;align-items:center;min-height:56px;gap:8px}
+.logo{font-weight:800;letter-spacing:.14em;font-size:13px;color:var(--acc);text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
+.sim{background:#3a2a05;color:#ffd27a;border:1px solid #7a5a12;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:700;white-space:nowrap}
+.banner{background:#2a1a05;border-bottom:1px solid #7a5a12;color:#ffd27a;font-size:13px;padding:8px 0;text-align:center}
+section{padding:30px 0;border-bottom:1px solid var(--line)}
+h1{font-size:clamp(28px,7vw,48px);line-height:1.1;margin:10px 0 12px}h1 em{font-style:normal;color:var(--acc)}
+h2{font-size:clamp(21px,4.5vw,28px);margin:0 0 8px}.mut{color:var(--mut)}.small{font-size:13px}
+.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:12px;color:var(--acc);font-weight:700}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
+.card h3{margin:0 0 4px;font-size:18px}.tag{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:2px 8px;color:var(--mut);margin-right:4px}
+.kv{display:flex;justify-content:space-between;font-size:14px;padding:3px 0;border-bottom:1px dashed #1c2a42}.kv b{font-variant-numeric:tabular-nums}
+.up{color:var(--up)}.dn{color:var(--dn)}
+label{display:block;font-size:13px;color:var(--mut);margin:10px 0 4px}
+select,input{width:100%;min-height:48px;background:#0b1526;color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:0 12px;font:inherit}
+.seg{display:flex;gap:6px;flex-wrap:wrap}.seg button{flex:1;min-height:44px;min-width:44px;border-radius:10px;border:1px solid var(--line);background:#0b1526;color:var(--txt);font:inherit;font-size:14px;cursor:pointer}
+.seg button.on{border-color:var(--acc);background:#2a1f08;color:var(--acc);font-weight:700}
+.bar{display:flex;height:34px;border-radius:8px;overflow:hidden;margin:10px 0}.bar div{display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#111}
+.res{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.res div{background:#0b1526;border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center}
+.res b{display:block;font-size:20px;font-variant-numeric:tabular-nums}.res span{font-size:12px;color:var(--mut)}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:10px 6px;border-bottom:1px solid var(--line);text-align:left}th{color:var(--mut);font-weight:600}
+ul.risk li{margin:6px 0}
+footer{padding:26px 0 40px;color:var(--mut);font-size:13px;text-align:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:10px;border:1px solid var(--line);color:var(--txt);text-decoration:none;font-weight:700}
+</style><script src="../arcade/sims.js"></script><script>window.NN_SCORE_SERVER="https://netnet-arcade-verifier.netnetarcade.workers.dev"</script><script src="../arcade/core.js"></script></head><body>
+<header><div class="wrap"><a class="logo" href="../">← NETNET ARCADE</a><span class="sim">SIMULATED · NOT LIVE</span></div></header>
+<div class="banner"><div class="wrap">Design prototype. No contracts deployed, no deposits possible. All figures come from a seeded simulation.</div></div>
+<main class="wrap">
+<section><div class="eyebrow">NetNet Products · Liquidity</div>
+<h1>NetNet <em>Liquidity Vaults</em></h1>
+<p class="mut">Automated concentrated-liquidity vaults for NET/USDG and tokenized-stock/USDG pools on Robinhood Chain. Zero-swap rebalancing, a fee <b>only on LP fees earned</b>, and lower fees for wsNET stakers. The treasury is paid first.</p></section>
+
+<section id="vaults"><h2>Vaults</h2><p class="mut small">Planned pools. Status: design only. Fee yields are <b>simulation assumptions</b>, not APYs.</p>
+<div class="grid" id="vlist"></div></section>
+
+<section id="sim"><h2>Deposit simulator</h2><p class="mut small">Replays a 180-day seeded synthetic price path. Your result scales linearly from a $10,000 run. Simulation only, past or simulated performance means nothing for the future.</p>
+<div class="card">
+<label for="pool">Vault</label><select id="pool"><option>NET/USDG</option><option>NVDA/USDG</option></select>
+<label for="amt">Deposit (USDG value)</label><input id="amt" type="number" inputmode="decimal" min="0" value="10000">
+<label>Simulated market</label><div class="seg" id="reg"></div>
+<label>Strategy</label><div class="seg" id="strat"></div>
+<label>Your wsNET tier</label><div class="seg" id="tier"></div>
+<div class="res"><div><b id="rHold">-</b><span>Just holding</span></div><div><b id="rVault">-</b><span>Vault, after fees</span></div><div><b id="rFee">-</b><span>Perf fee paid</span></div></div>
+<div id="detail" class="small mut" style="margin-top:10px"></div>
+</div></section>
+
+<section id="fees"><h2>Fee split</h2><p class="mut">10% of <b>LP fees earned</b> (high-water mark on fees only, never on your principal or price moves). No deposit, withdrawal or management fee.</p>
+<div class="bar"><div style="flex:5;background:var(--acc)">Treasury 5%</div><div style="flex:3;background:var(--blue)">NET POL 3%</div><div style="flex:2;background:var(--pur)">Team 2%</div></div>
+<div class="grid"><div class="card"><h3>Treasury · 5%</h3><p class="mut small">Paid first into the NetNet USDG treasury.</p></div><div class="card"><h3>NET liquidity layer · 3%</h3><p class="mut small">Protocol-owned NET/USDG liquidity.</p></div><div class="card"><h3>Builders &amp; ops fund · 2%</h3><p class="mut small">Funds development and audits through a public onchain vesting contract. Anyone can check it.</p></div></div>
+<p class="small mut" id="tvlrev"></p></section>
+
+<section id="tiers"><h2>wsNET staker tiers</h2>
+<table><thead><tr><th>Tier</th><th>wsNET held</th><th>Perf fee</th></tr></thead><tbody>
+<tr><td>Base</td><td>0</td><td>10%</td></tr><tr><td>Bronze</td><td>≥ 1,000</td><td>7.5%</td></tr><tr><td>Silver</td><td>≥ 10,000</td><td>5%</td></tr><tr><td>Gold</td><td>≥ 50,000</td><td>0% on first $25k, then 5%</td></tr></tbody></table>
+<p class="small mut">Balances are checked over a holding window so nobody can flash-stake into a tier. Thresholds are placeholders.</p></section>
+
+<section id="risk"><h2>Risks, plainly</h2>
+<ul class="risk">
+<li><b>You can lose money versus just holding.</b> In our own simulation the vaults ended below "just hold" in most scenarios once impermanent loss is counted.</li>
+<li><b>Tight ranges are dangerous on volatile tokens.</b> On a NET-like 90% volatility path, ±5–10% ranges lost most of their value. The plan uses wide, volatility-scaled ranges.</li>
+<li><b>Zero-swap is not magic.</b> It cuts swap costs about 95%, but in strong trends it ends up holding the losing token.</li>
+<li><b>Smart-contract risk.</b> Two audits, a bug bounty through NetNet Prizes, deposit caps, a 48h timelock and a multisig are planned. Withdrawals can never be paused.</li>
+<li><b>Tokenized-stock and stablecoin risk.</b> Issuer, depeg and market-hours gaps.</li>
+<li><b>Regulatory.</b> MiCA/MiFID review is needed before any EU launch. Not available to anyone yet.</li>
+</ul></section>
+<section><a class="btn" href="https://github.com/yoloboydelis/netnet-games/tree/main/vaults" target="_blank" rel="noopener">Read the spec and simulation on GitHub</a></section>
+</main>
+<footer>Prototype for the NetNet community &amp; devs, feedback welcome · Simulated data · Not financial advice · <a href="https://docs.netnet.capital/official-channels" target="_blank" rel="noopener">Official channels</a></footer>
+<script>
+const SIM={"NET/USDG":{"random_walk":{"chg":-0.4053,"hold":7973,"naive":7945,"nf":1156,"nc":55,"nr":1,"zero":7623,"zf":1280,"zc":2.5,"zr":50},"mean_revert":{"chg":-0.0683,"hold":9658,"naive":10814,"nf":1194,"nc":0,"nr":0,"zero":10814,"zf":1194,"zc":0.0,"zr":0},"trend_up":{"chg":1.6653,"hold":18327,"naive":11981,"nf":1348,"nc":344,"nr":4,"zero":12725,"zf":2538,"zc":5.6,"zr":112},"trend_down":{"chg":-0.7971,"hold":6015,"naive":3316,"nf":872,"nc":204,"nr":5,"zero":3144,"zf":1040,"zc":10.6,"zr":211}},"NVDA/USDG":{"random_walk":{"chg":-0.0912,"hold":9544,"naive":8870,"nf":345,"nc":32,"nr":3,"zero":8478,"zf":604,"zc":6.0,"zr":121},"mean_revert":{"chg":0.0648,"hold":10324,"naive":10230,"nf":392,"nc":13,"nr":1,"zero":10261,"zf":418,"zc":0.4,"zr":9},"trend_up":{"chg":0.3248,"hold":11624,"naive":11125,"nf":418,"nc":27,"nr":2,"zero":10623,"zf":656,"zc":4.2,"zr":85},"trend_down":{"chg":-0.3544,"hold":8228,"naive":6965,"nf":317,"nc":50,"nr":5,"zero":6234,"zf":546,"zc":11.1,"zr":222}}};
+const POOLS={"NET/USDG":{desc:"NetNet's own pair. Feeds the NET liquidity layer.",range:"±40% (vol-scaled)",fee:"30.7%",cap:"$50k beta cap"},"NVDA/USDG":{desc:"Tokenized NVIDIA, the first RWA pool. Venue and pool tier not yet verified.",range:"±15%",fee:"11.3%",cap:"$50k beta cap"}};
+const REG={random_walk:"Choppy",mean_revert:"Range-bound",trend_up:"Uptrend",trend_down:"Downtrend"};
+const TIERS=[["Base",.10],["Bronze",.075],["Silver",.05],["Gold",0]];
+let st={reg:"random_walk",strat:"zero",tier:0};
+const $=id=>document.getElementById(id),f=n=>"$"+Math.round(n).toLocaleString("en-US");
+$("vlist").innerHTML=Object.entries(POOLS).map(([k,v])=>'<div class="card"><h3>'+k+'</h3><p class="mut small">'+v.desc+'</p><div class="kv"><span>Range</span><b>'+v.range+'</b></div><div class="kv"><span>Sim. fee yield (assumption)</span><b>'+v.fee+'</b></div><div class="kv"><span>Cap</span><b>'+v.cap+'</b></div><div class="kv"><span>Status</span><b style="color:#ffd27a">Design only</b></div></div>').join("")+'<div class="card"><h3>More RWA/USDG</h3><p class="mut small">QQQ, GLD and others after the beta. Each pool gets its own isolated vault.</p></div>';
+function seg(id,items,key){$(id).innerHTML=items.map(([v,l])=>'<button type="button" data-v="'+v+'">'+l+'</button>').join("");$(id).onclick=e=>{const b=e.target.closest("button");if(!b)return;st[key]=key=="tier"?+b.dataset.v:b.dataset.v;calc()}}
+seg("reg",Object.entries(REG),"reg");seg("strat",[["zero","Zero-swap"],["naive","Swap-rebalance"]],"strat");seg("tier",TIERS.map((t,i)=>[i,t[0]+" "+(t[1]*100)+"%"]),"tier");
+function calc(){
+ for(const id of["reg","strat","tier"])for(const b of $(id).children)b.classList.toggle("on",b.dataset.v==String(st[id]));
+ const r=SIM[$("pool").value][st.reg],a=Math.max(0,+$("amt").value||0),k=a/10000;
+ const z=st.strat=="zero",gross=(z?r.zero:r.naive)*k,fees=(z?r.zf:r.nf)*k;
+ let rate=TIERS[st.tier][1],perf=fees*rate;
+ if(st.tier==3){const capShare=Math.min(1,25000/Math.max(a,1));perf=fees*(1-capShare)*.05;rate=perf/Math.max(fees,1e-9)}
+ const net=gross-perf;
+ $("rHold").textContent=f(r.hold*k);$("rVault").textContent=f(net);$("rVault").className=net>=r.hold*k?"up":"dn";$("rFee").textContent=f(perf);
+ $("detail").innerHTML="Simulated price move "+(r.chg*100).toFixed(1)+"% · LP fees earned "+f(fees)+" · rebalances "+(z?r.zr:r.nr)+" · rebalance costs "+f((z?r.zc:r.nc)*k)+" · fee split: treasury "+f(perf*.5)+", NET POL "+f(perf*.3)+", team (vested) "+f(perf*.2)+". <b>SIMULATED</b>.";
+}
+$("pool").onchange=calc;$("amt").oninput=calc;calc();
+$("tvlrev").innerHTML="Simulated treasury share (5%) per year, diluted by assumed competing liquidity: NET/USDG ~$10k at $1M TVL, ~$26k at $10M · NVDA/USDG ~$5k at $1M, ~$19k at $10M. <b>SIMULATED</b>, inputs are assumptions.";
+</script></body></html>
