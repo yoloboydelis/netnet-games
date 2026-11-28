@@ -5,608 +5,603 @@
  "feed_url": "https://yoloboydelis.github.io/netnet-games/discover/feed.json",
  "items": [
   {
-   "id": "cosmic-survival-final-stand",
-   "url": "https://starfighter-sector-siege.lovable.app/",
-   "external_url": "https://x.com/joia_imran46006/status/2126215193260900664",
-   "title": "Cosmic Survival: Final Stand by @joia_imran46006",
-   "content_text": "Humanity's last pilot pushes into enemy space to bring down the Dreadnoughts. Play: https://starfighter-sector-siege.lovable.app/ · X post: https://x.com/joia_imran46006/status/2126215193260900664",
-   "date_published": "2026-11-27T00:00:00Z",
+   "id": "big-fish-electronics-repair",
+   "url": "https://repair.earth.online/",
+   "external_url": "https://x.com/EarthOnlineHQ/status/2126479364191854933",
+   "title": "Big Fish Electronics Repair by @EarthOnlineHQ",
+   "content_text": "Run a phone repair counter: greet customers, fix broken phones, get paid. Play: https://repair.earth.online/ · X post: https://x.com/EarthOnlineHQ/status/2126479364191854933",
+   "date_published": "2026-11-28T00:00:00Z",
+   "tags": [
+    "casual",
+    "strategy"
+   ]
+  },
+  {
+   "id": "bell-tower-climb",
+   "url": "https://run.world/eldmeregames/bell-tower-climb",
+   "external_url": "https://x.com/EldmereGames/status/2126472086780772783",
+   "title": "Bell Tower Climb by @EldmereGames",
+   "content_text": "One tap to leap side to side up a bell tower; pick the wrong side and fall. Play: https://run.world/eldmeregames/bell-tower-climb · X post: https://x.com/EldmereGames/status/2126472086780772783",
+   "date_published": "2026-11-28T00:00:00Z",
+   "tags": [
+    "arcade",
+    "casual"
+   ]
+  },
+  {
+   "id": "steel-crusade",
+   "url": "https://crusade.topsoft.cc/",
+   "external_url": "https://x.com/TopSoftDev/status/2126586901717004456",
+   "title": "Steel Crusade by @TopSoftDev",
+   "content_text": "Grab a rifle and survive a hostile desert planet in a colonial-command shooter. Play: https://crusade.topsoft.cc/ · X post: https://x.com/TopSoftDev/status/2126586901717004456",
+   "date_published": "2026-11-28T00:00:00Z",
    "tags": [
     "shooter",
+    "action"
+   ]
+  },
+  {
+   "id": "hashbolt",
+   "url": "https://retrolifegames.com/hashbolt/",
+   "external_url": "https://x.com/RetroLifeGamesX/status/2126481310520680776",
+   "title": "Hashbolt by @RetroLifeGamesX",
+   "content_text": "Seven-on-seven arcade American football: call plays, juke and spin to score. Play: https://retrolifegames.com/hashbolt/ · X post: https://x.com/RetroLifeGamesX/status/2126481310520680776",
+   "date_published": "2026-11-28T00:00:00Z",
+   "tags": [
+    "sports",
     "arcade"
    ]
   },
   {
-   "id": "neon-galaxy-starships",
-   "url": "https://neon-void-starfall.lovable.app/",
-   "external_url": "https://x.com/joia_imran46006/status/2126214462994551043",
-   "title": "Neon Galaxy Starships by @joia_imran46006",
-   "content_text": "Neon starship missions across worlds, starting with an asteroid field. Play: https://neon-void-starfall.lovable.app/ · X post: https://x.com/joia_imran46006/status/2126214462994551043",
-   "date_published": "2026-11-27T00:00:00Z",
-   "tags": [
-    "shooter",
-    "arcade"
-   ]
-  },
-  {
-   "id": "the-lost-mirror",
-   "url": "https://the-lost-mirror.vercel.app/",
-   "external_url": "https://x.com/joia_imran46006/status/2126214989438693769",
-   "title": "The Lost Mirror by @joia_imran46006",
-   "content_text": "Rotate and slide tiles to guide light through 10 sealed observatory chambers. Play: https://the-lost-mirror.vercel.app/ · X post: https://x.com/joia_imran46006/status/2126214989438693769",
-   "date_published": "2026-11-27T00:00:00Z",
+   "id": "detour-snake",
+   "url": "https://playgama.ai/play/j6mppw3ea3ne5w",
+   "external_url": "https://x.com/Tvastr1eyx/status/2126588516977049917",
+   "title": "Detour Snake by @Tvastr1eyx",
+   "content_text": "Snake puzzle in reverse: find the longest detour to the hole, not the shortest. Play: https://playgama.ai/play/j6mppw3ea3ne5w · X post: https://x.com/Tvastr1eyx/status/2126588516977049917",
+   "date_published": "2026-11-28T00:00:00Z",
    "tags": [
     "puzzle"
    ]
   },
   {
-   "id": "monster-punch",
-   "url": "https://gamesweb.fun/play/monster-punch/",
-   "external_url": "https://x.com/UditKhandelwal8/status/2126184410559214047",
-   "title": "Monster Punch by @UditKhandelwal8",
-   "content_text": "Punch monsters out of the air with your real fists via webcam; tap mode too. Play: https://gamesweb.fun/play/monster-punch/ · X post: https://x.com/UditKhandelwal8/status/2126184410559214047",
-   "date_published": "2026-11-27T00:00:00Z",
+   "id": "pikokana",
+   "url": "https://playgama.ai/play/5n5aqrfv4oszjd",
+   "external_url": "https://x.com/minitelx/status/2126580983826927804",
+   "title": "pikokana by @minitelx",
+   "content_text": "Learn hiragana and katakana one step at a time with a cute mascot. Play: https://playgama.ai/play/5n5aqrfv4oszjd · X post: https://x.com/minitelx/status/2126580983826927804",
+   "date_published": "2026-11-28T00:00:00Z",
    "tags": [
-    "arcade",
-    "action"
-   ]
-  },
-  {
-   "id": "wild-creature-battles",
-   "url": "https://creaturebattles.com/game",
-   "external_url": "https://x.com/creaturebattles/status/2126114427841753094",
-   "title": "Wild Creature Battles by @creaturebattles",
-   "content_text": "Snap a real animal or bug and it becomes a battle card with stats and moves. Play: https://creaturebattles.com/game · X post: https://x.com/creaturebattles/status/2126114427841753094",
-   "date_published": "2026-11-27T00:00:00Z",
-   "tags": [
-    "cards",
-    "adventure"
-   ]
-  },
-  {
-   "id": "mega-frankenstine",
-   "url": "https://playgama.ai/play/tmfmxmlfqnvzbz",
-   "external_url": "https://x.com/GuyStephensPro/status/2126219016410960038",
-   "title": "Mega-Frankenstine by @GuyStephensPro",
-   "content_text": "A body rebuilt, a will unbroken: gothic action starring a stitched-up giant. Play: https://playgama.ai/play/tmfmxmlfqnvzbz · X post: https://x.com/GuyStephensPro/status/2126219016410960038",
-   "date_published": "2026-11-27T00:00:00Z",
-   "tags": [
-    "action",
-    "adventure"
-   ]
-  },
-  {
-   "id": "empty-the-desert",
-   "url": "https://playgama.ai/play/rpu264vcbhv7dc",
-   "external_url": "https://x.com/VEYRBIT/status/2126177381794627674",
-   "title": "Empty the Desert by @VEYRBIT",
-   "content_text": "Idle incremental: clear a whole desert grain by grain and upgrade your tools. Play: https://playgama.ai/play/rpu264vcbhv7dc · X post: https://x.com/VEYRBIT/status/2126177381794627674",
-   "date_published": "2026-11-27T00:00:00Z",
-   "tags": [
-    "casual",
-    "strategy"
-   ]
-  },
-  {
-   "id": "cosmic-enigmas",
-   "url": "https://cosmicenigmas.com/play/",
-   "external_url": "https://x.com/cosmicenigmas/status/2125767369591042515",
-   "title": "Cosmic Enigmas by @cosmicenigmas",
-   "content_text": "Original 54-card UFO duel: Truth Seekers vs Cosmic Guardians, vs a friend or the CPU. Play: https://cosmicenigmas.com/play/ · X post: https://x.com/cosmicenigmas/status/2125767369591042515",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "cards",
-    "strategy"
-   ]
-  },
-  {
-   "id": "crownspell",
-   "url": "https://automachan.itch.io/crownspell",
-   "external_url": "https://x.com/Automachan/status/2125742244011630634",
-   "title": "Crownspell by @Automachan",
-   "content_text": "Turn-based tactics on a board where lucky card draws decide your moves. Play: https://automachan.itch.io/crownspell · X post: https://x.com/Automachan/status/2125742244011630634",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "strategy",
-    "cards"
-   ]
-  },
-  {
-   "id": "86d-kitchen-brawl",
-   "url": "https://86d.base44.app/",
-   "external_url": "https://x.com/__Udi__/status/2126000862388801909",
-   "title": "86'D: A Kitchen Brawl by @__Udi__",
-   "content_text": "Free 4-player pixel-art kitchen brawler with 1-minute rounds, gamepad-ready. Play: https://86d.base44.app/ · X post: https://x.com/__Udi__/status/2126000862388801909",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "action",
-    "multiplayer",
-    "arcade"
-   ]
-  },
-  {
-   "id": "air-hockey-duel",
-   "url": "https://airhockey-card.19900522.xyz/",
-   "external_url": "https://x.com/vm3jp6u04/status/2125940588646408472",
-   "title": "Air Hockey Duel by @vm3jp6u04",
-   "content_text": "Two players on one phone, or play the computer, first to 3-11 goals. Play: https://airhockey-card.19900522.xyz/ · X post: https://x.com/vm3jp6u04/status/2125940588646408472",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "sports",
-    "multiplayer",
+    "trivia",
     "casual"
    ]
   },
   {
-   "id": "solar-drift",
-   "url": "https://souranyp-stack.github.io/solar-drift/",
-   "external_url": "https://x.com/SouranyPhomhome/status/2126001440191857101",
-   "title": "Solar Drift by @SouranyPhomhome",
-   "content_text": "3D hover-bike time trial through 12 gates on a desert mesa circuit. Play: https://souranyp-stack.github.io/solar-drift/ · X post: https://x.com/SouranyPhomhome/status/2126001440191857101",
-   "date_published": "2026-11-26T00:00:00Z",
+   "id": "zen-cube",
+   "url": "https://playgama.ai/play/2fsx2qkjtncmen",
+   "external_url": "https://x.com/volkan_duran/status/2126579074437120132",
+   "title": "Zen Cube by @volkan_duran",
+   "content_text": "Calm, minimal puzzle: fill the glass cube with blocks, 60 levels. Play: https://playgama.ai/play/2fsx2qkjtncmen · X post: https://x.com/volkan_duran/status/2126579074437120132",
+   "date_published": "2026-11-28T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "casual"
+   ]
+  },
+  {
+   "id": "crop-circus",
+   "url": "https://playgama.ai/play/vevknbljubkrmn",
+   "external_url": "https://x.com/MossMeteorGames/status/2126576150684238217",
+   "title": "Crop Circus by @MossMeteorGames",
+   "content_text": "Farm lane defense: protect your crops from waves of raiders. Play: https://playgama.ai/play/vevknbljubkrmn · X post: https://x.com/MossMeteorGames/status/2126576150684238217",
+   "date_published": "2026-11-28T00:00:00Z",
+   "tags": [
+    "strategy",
+    "casual"
+   ]
+  },
+  {
+   "id": "knife-master-pro",
+   "url": "https://playgama.ai/play/7wpt7mnb3ivh6u",
+   "external_url": "https://x.com/a_fayruzbek/status/2126569713509781891",
+   "title": "Knife Master Pro by @a_fayruzbek",
+   "content_text": "Throw knives into spinning targets and unlock legendary blades. Play: https://playgama.ai/play/7wpt7mnb3ivh6u · X post: https://x.com/a_fayruzbek/status/2126569713509781891",
+   "date_published": "2026-11-28T00:00:00Z",
+   "tags": [
+    "arcade",
+    "casual"
+   ]
+  },
+  {
+   "id": "dice-trail",
+   "url": "https://playgama.ai/play/tqnfdufd6u5jjs",
+   "external_url": "https://x.com/wmsangel/status/2126564142094135383",
+   "title": "Dice Trail by @wmsangel",
+   "content_text": "Roll dice along a trail so the numbers land right on target tiles. Play: https://playgama.ai/play/tqnfdufd6u5jjs · X post: https://x.com/wmsangel/status/2126564142094135383",
+   "date_published": "2026-11-28T00:00:00Z",
+   "tags": [
+    "puzzle"
+   ]
+  },
+  {
+   "id": "brick-pop-rally",
+   "url": "https://playgama.ai/play/ic4bqhqbfuls24",
+   "external_url": "https://x.com/paulocoutinhox/status/2126559488589353207",
+   "title": "Brick Pop Rally by @paulocoutinhox",
+   "content_text": "Colourful brick-popping rally with balls, gems and power-ups. Play: https://playgama.ai/play/ic4bqhqbfuls24 · X post: https://x.com/paulocoutinhox/status/2126559488589353207",
+   "date_published": "2026-11-28T00:00:00Z",
+   "tags": [
+    "arcade",
+    "casual"
+   ]
+  },
+  {
+   "id": "ice-glide",
+   "url": "https://playgama.ai/play/llxjxtb6ciufhi",
+   "external_url": "https://x.com/MdAmanu72336301/status/2126535604565660123",
+   "title": "Ice Glide by @MdAmanu72336301",
+   "content_text": "Slide a penguin across the ice and keep the run going. Play: https://playgama.ai/play/llxjxtb6ciufhi · X post: https://x.com/MdAmanu72336301/status/2126535604565660123",
+   "date_published": "2026-11-28T00:00:00Z",
+   "tags": [
+    "arcade",
+    "casual"
+   ]
+  },
+  {
+   "id": "gadget-grand-prix",
+   "url": "https://playgama.ai/play/gz5fpxm3bv6vxd",
+   "external_url": "https://x.com/Alejo69685683/status/2126528701407899705",
+   "title": "Gadget Grand Prix by @Alejo69685683",
+   "content_text": "Cartoon gadget racers on candy-coloured tracks. Play: https://playgama.ai/play/gz5fpxm3bv6vxd · X post: https://x.com/Alejo69685683/status/2126528701407899705",
+   "date_published": "2026-11-28T00:00:00Z",
    "tags": [
     "racing",
-    "3d",
-    "vibe-coded"
-   ]
-  },
-  {
-   "id": "egg-peeling",
-   "url": "https://bakabakogames.com/egg-peeling",
-   "external_url": "https://x.com/bakabako_games/status/2125745705973317771",
-   "title": "Egg Peeling! by @bakabako_games",
-   "content_text": "Peel a raw egg without tearing it. Silly, short and oddly satisfying. Play: https://bakabakogames.com/egg-peeling · X post: https://x.com/bakabako_games/status/2125745705973317771",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "casual",
-    "physics"
-   ]
-  },
-  {
-   "id": "campfire-siege",
-   "url": "https://playgama.ai/play/vo7zjmxl7df7zi",
-   "external_url": "https://x.com/DuanKaiyue23507/status/2125814751901143112",
-   "title": "Campfire Siege by @DuanKaiyue23507",
-   "content_text": "Defend the campfire against the siege. AI-assisted, tuned by its maker. Play: https://playgama.ai/play/vo7zjmxl7df7zi · X post: https://x.com/DuanKaiyue23507/status/2125814751901143112",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "strategy",
-    "action"
-   ]
-  },
-  {
-   "id": "jungle-leap",
-   "url": "https://playgama.ai/play/v4kbulcdwppmig",
-   "external_url": "https://x.com/marsconner1/status/2125772533895147995",
-   "title": "Jungle Leap by @marsconner1",
-   "content_text": "Pick a runner and time your jumps to catch vines across jungle waterfalls. Play: https://playgama.ai/play/v4kbulcdwppmig · X post: https://x.com/marsconner1/status/2125772533895147995",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "arcade",
     "casual"
    ]
   },
   {
-   "id": "ringlet",
-   "url": "https://playgama.ai/play/bv3c425tq4hmfs",
-   "external_url": "https://x.com/annapurnageeks/status/2125914552726679588",
-   "title": "Ringlet by @annapurnageeks",
-   "content_text": "Minimal tap-and-switch ring game with daily runs and an endless mode. Play: https://playgama.ai/play/bv3c425tq4hmfs · X post: https://x.com/annapurnageeks/status/2125914552726679588",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "arcade",
-    "casual"
-   ]
-  },
-  {
-   "id": "volt-thrust",
-   "url": "https://playgama.ai/play/dt6255ywfcu45r",
-   "external_url": "https://x.com/yaya_bn8/status/2126070245341437978",
-   "title": "Volt Thrust by @yaya_bn8",
-   "content_text": "Electric-pursuit arcade flyer with missions and garage upgrades. Play: https://playgama.ai/play/dt6255ywfcu45r · X post: https://x.com/yaya_bn8/status/2126070245341437978",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "arcade",
-    "action"
-   ]
-  },
-  {
-   "id": "dough-merge",
-   "url": "https://playgama.ai/play/mfx4dslechlh6f",
-   "external_url": "https://x.com/VelvetCogGames/status/2125914805366399127",
-   "title": "Dough Merge by @VelvetCogGames",
-   "content_text": "Drop dough into the jar and merge matching pieces into bigger bakes. Play: https://playgama.ai/play/mfx4dslechlh6f · X post: https://x.com/VelvetCogGames/status/2125914805366399127",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "puzzle",
-    "casual"
-   ]
-  },
-  {
-   "id": "farm-escape",
-   "url": "https://playgama.ai/play/enmuxwuwxev6wh",
-   "external_url": "https://x.com/NSezg51536/status/2125912343951376772",
-   "title": "Farm Escape by @NSezg51536",
-   "content_text": "Help the animals break out of the barnyard. AI-assisted, tuned by its maker. Play: https://playgama.ai/play/enmuxwuwxev6wh · X post: https://x.com/NSezg51536/status/2125912343951376772",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "puzzle",
-    "casual"
-   ]
-  },
-  {
-   "id": "cargo-bay-packer",
-   "url": "https://playgama.ai/play/hgmh2wmouijj6c",
-   "external_url": "https://x.com/ItsAMeAndo/status/2125749699085009091",
-   "title": "Cargo Bay Packer by @ItsAMeAndo",
-   "content_text": "Pack crates, dispatch trucks and upgrade your cargo bay for shift cash. Play: https://playgama.ai/play/hgmh2wmouijj6c · X post: https://x.com/ItsAMeAndo/status/2125749699085009091",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "puzzle",
-    "strategy"
-   ]
-  },
-  {
-   "id": "taktika",
-   "url": "https://play.unity.com/en/games/7ecdbe64-c982-48a0-abf9-baa2603d8c38/taktika",
-   "external_url": "https://x.com/noschajev/status/2126026699389480963",
-   "title": "Taktika by @noschajev",
-   "content_text": "Work-in-progress top-down tactical close-quarters shooter; mouse only. Play: https://play.unity.com/en/games/7ecdbe64-c982-48a0-abf9-baa2603d8c38/taktika · X post: https://x.com/noschajev/status/2126026699389480963",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "shooter",
-    "strategy"
-   ]
-  },
-  {
-   "id": "defenders-of-earth-gods",
-   "url": "https://earth-defense-test.netlify.app/",
-   "external_url": "https://x.com/471110110Liu/status/2125997832599728344",
-   "title": "Defenders of Earth: Gods Assemble by @471110110Liu",
-   "content_text": "Tower defense where mythic gods combo attacks; prototype open for playtesters. Play: https://earth-defense-test.netlify.app/ · X post: https://x.com/471110110Liu/status/2125997832599728344",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "strategy",
-    "action"
-   ]
-  },
-  {
-   "id": "sleigh-ride-rusko",
-   "url": "https://run.world/rusko/sleigh-ride",
-   "external_url": "https://x.com/GamesByRusko/status/2125946815920865587",
-   "title": "Sleigh Ride by @GamesByRusko",
-   "content_text": "Festive sleigh-riding arcade game for the holidays. Play: https://run.world/rusko/sleigh-ride · X post: https://x.com/GamesByRusko/status/2125946815920865587",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "arcade",
-    "casual"
-   ]
-  },
-  {
-   "id": "laneflip",
-   "url": "https://playlaneflip.com/",
-   "external_url": "https://x.com/playlaneflip/status/2125930071244612080",
-   "title": "Lane Flip by @playlaneflip",
-   "content_text": "One new course a day for everyone: race ghosts and flip traffic to carve a gap. Play: https://playlaneflip.com/ · X post: https://x.com/playlaneflip/status/2125930071244612080",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "arcade",
-    "racing"
-   ]
-  },
-  {
-   "id": "jolly-winter-quest",
-   "url": "https://monstermachineblox584.itch.io/httpsgdgamesmidnighthero57help-santa",
-   "external_url": "https://x.com/chicken_po75763/status/2126072236637393345",
-   "title": "Jolly Winter Quest by @chicken_po75763",
-   "content_text": "Dodge snowmen as Santa, using cookie shields; made in GDevelop. Play: https://monstermachineblox584.itch.io/httpsgdgamesmidnighthero57help-santa · X post: https://x.com/chicken_po75763/status/2126072236637393345",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "arcade",
-    "casual"
-   ]
-  },
-  {
-   "id": "dig-to-infinity",
-   "url": "https://playgama.ai/play/q3r63nlrvixekn",
-   "external_url": "https://x.com/Loukoumotive_/status/2125822645568467354",
-   "title": "Dig to Infinity by @Loukoumotive_",
-   "content_text": "Dig ever deeper underground and see how far down you can get. Play: https://playgama.ai/play/q3r63nlrvixekn · X post: https://x.com/Loukoumotive_/status/2125822645568467354",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "casual",
-    "arcade"
-   ]
-  },
-  {
-   "id": "mega-ramp-car-master",
-   "url": "https://playgama.ai/play/cbmjocmthudu72",
-   "external_url": "https://x.com/lakhiram_m81177/status/2125745975776129235",
-   "title": "Mega Ramp: Car Master 3D by @lakhiram_m81177",
-   "content_text": "Launch cars off huge ramps and land wild 3D stunts. Play: https://playgama.ai/play/cbmjocmthudu72 · X post: https://x.com/lakhiram_m81177/status/2125745975776129235",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "racing",
-    "3d",
-    "casual"
-   ]
-  },
-  {
-   "id": "recipe-for-wealth",
-   "url": "https://playgama.ai/play/mye46w7or2tqfg",
-   "external_url": "https://x.com/piupipi2341/status/2125837823211143640",
-   "title": "Recipe for Wealth - Merge by @piupipi2341",
-   "content_text": "Merge ingredients into better dishes and grow your kitchen fortune. Play: https://playgama.ai/play/mye46w7or2tqfg · X post: https://x.com/piupipi2341/status/2125837823211143640",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "puzzle",
-    "casual"
-   ]
-  },
-  {
-   "id": "sunny-flap",
-   "url": "https://playgama.ai/play/um5xl45aljxusi",
-   "external_url": "https://x.com/sumit56388/status/2125845112077128118",
-   "title": "Sunny Flap by @sumit56388",
-   "content_text": "One-tap flapper: keep flying through the gaps on a sunny day. Play: https://playgama.ai/play/um5xl45aljxusi · X post: https://x.com/sumit56388/status/2125845112077128118",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "arcade",
-    "casual"
-   ]
-  },
-  {
-   "id": "wildborn-survival",
-   "url": "https://playgama.ai/play/e5ucp3izakfw5z",
-   "external_url": "https://x.com/Froggy1015001/status/2125788732918038839",
-   "title": "Wildborn Survival by @Froggy1015001",
-   "content_text": "Gather, craft and stay alive in the wild. Play: https://playgama.ai/play/e5ucp3izakfw5z · X post: https://x.com/Froggy1015001/status/2125788732918038839",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "survival",
-    "adventure"
-   ]
-  },
-  {
-   "id": "unwatched",
-   "url": "https://playgama.com/game/unwatched",
-   "external_url": "https://x.com/vilin188188/status/2125858870748950975",
-   "title": "UNWATCHED by @vilin188188",
-   "content_text": "The robot only moves when you look away; find the exit. Play: https://playgama.com/game/unwatched · X post: https://x.com/vilin188188/status/2125858870748950975",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "puzzle",
-    "3d",
-    "adventure"
-   ]
-  },
-  {
-   "id": "floppa-mining",
-   "url": "https://floppamining.com/play/",
-   "external_url": "https://x.com/TTVKianFloppaYT/status/2125831364624912436",
-   "title": "Floppa Mining by @TTVKianFloppaYT",
-   "content_text": "Dig deeper, open chests and hatch pets in an online mining game. Play: https://floppamining.com/play/ · X post: https://x.com/TTVKianFloppaYT/status/2125831364624912436",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "casual",
-    "multiplayer"
-   ]
-  },
-  {
-   "id": "survivor-toon",
-   "url": "https://survivortoon.com/survivortoon/",
-   "external_url": "https://x.com/SurvivorToon/status/2125748909784113530",
-   "title": "Survivor Toon by @SurvivorToon",
-   "content_text": "Gather supplies, build a base and survive the island with others. Play: https://survivortoon.com/survivortoon/ · X post: https://x.com/SurvivorToon/status/2125748909784113530",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "survival",
-    "multiplayer"
-   ]
-  },
-  {
-   "id": "overtime-thenubox",
-   "url": "https://overtime.thenubox.com/",
-   "external_url": "https://x.com/thenubox/status/2125861859479920982",
-   "title": "OVERTIME by @thenubox",
-   "content_text": "Night-shift horror: the whole office tower hunts the one who didn't connect. Play: https://overtime.thenubox.com/ · X post: https://x.com/thenubox/status/2125861859479920982",
-   "date_published": "2026-11-26T00:00:00Z",
+   "id": "kiro-moonlit",
+   "url": "https://playgama.ai/play/xqx7ol4lvvksfu",
+   "external_url": "https://x.com/Aiofbeauty/status/2126470620506653131",
+   "title": "Kiro Moonlit by @Aiofbeauty",
+   "content_text": "A moonlit creature game with a dreamy night-garden look. Play: https://playgama.ai/play/xqx7ol4lvvksfu · X post: https://x.com/Aiofbeauty/status/2126470620506653131",
+   "date_published": "2026-11-28T00:00:00Z",
    "tags": [
     "adventure",
-    "story"
-   ]
-  },
-  {
-   "id": "iso-legend",
-   "url": "https://isolegend.itch.io/iso-legend",
-   "external_url": "https://x.com/Iso__Legend/status/2125748542274736252",
-   "title": "Iso Legend by @Iso__Legend",
-   "content_text": "Take a hooper to the Hall of Fame or play friends in 1v1 and H-O-R-S-E. Play: https://isolegend.itch.io/iso-legend · X post: https://x.com/Iso__Legend/status/2125748542274736252",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "sports",
-    "multiplayer"
-   ]
-  },
-  {
-   "id": "paper-and-jute",
-   "url": "https://jute-and-paper.mfgway.com/",
-   "external_url": "https://x.com/PraveenSRPR/status/2125843901957411078",
-   "title": "Paper & Jute by @PraveenSRPR",
-   "content_text": "Tear through paper doors to reach the golden seal before time runs out. Play: https://jute-and-paper.mfgway.com/ · X post: https://x.com/PraveenSRPR/status/2125843901957411078",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "puzzle",
-    "arcade"
-   ]
-  },
-  {
-   "id": "worker-755",
-   "url": "https://worker755.com/",
-   "external_url": "https://x.com/iamthuya/status/2125807013850456502",
-   "title": "Worker 755 by shared by @iamthuya (made by gulivan)",
-   "content_text": "Your AI manager thinks you're its subagent; finish tasks before time runs out. Play: https://worker755.com/ · X post: https://x.com/iamthuya/status/2125807013850456502",
-   "date_published": "2026-11-26T00:00:00Z",
-   "tags": [
-    "story",
     "casual"
    ]
   },
   {
-   "id": "aigarchy",
-   "url": "https://aigarchy.samuelberton.com/",
-   "external_url": "https://x.com/SamuelGBerton/status/2125618007598567569",
-   "title": "AIgarchy by @SamuelGBerton",
-   "content_text": "Run an AI datacenter empire from Nov 2022 and hunt for all 7 endings. Play: https://aigarchy.samuelberton.com/ · X post: https://x.com/SamuelGBerton/status/2125618007598567569",
-   "date_published": "2026-11-25T00:00:00Z",
+   "id": "disco-tanks",
+   "url": "https://mdawg74.itch.io/disco-tanks",
+   "external_url": "https://x.com/EddieTheAnvil/status/2126346252426121221",
+   "title": "Disco Tanks by @EddieTheAnvil",
+   "content_text": "Two tanks on a lit-up disco dance floor, first to 30 hits wins. Play: https://mdawg74.itch.io/disco-tanks · X post: https://x.com/EddieTheAnvil/status/2126346252426121221",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "action",
+    "multiplayer",
+    "arcade"
+   ]
+  },
+  {
+   "id": "goa-offshore-fishing",
+   "url": "https://goa-offshore-fishing.web.app/",
+   "external_url": "https://x.com/GOAOffshoreFish/status/2126135340461170937",
+   "title": "GOA Offshore Fishing by @GOAOffshoreFish",
+   "content_text": "Realistic offshore sportfishing in the Gulf, on PC or phone. Big first load (~175 MB). Play: https://goa-offshore-fishing.web.app/ · X post: https://x.com/GOAOffshoreFish/status/2126135340461170937",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "sports",
+    "3d"
+   ]
+  },
+  {
+   "id": "lantern-vale-td",
+   "url": "https://ai1sun.itch.io/lantern-vale-td",
+   "external_url": "https://x.com/garanomori/status/2126208796305616953",
+   "title": "Lantern Vale TD by @garanomori",
+   "content_text": "Guard the Great Lantern in a dusk-lit valley; free browser demo of levels 1-3. Play: https://ai1sun.itch.io/lantern-vale-td · X post: https://x.com/garanomori/status/2126208796305616953",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "strategy"
+   ]
+  },
+  {
+   "id": "garden-eel-challenge-2",
+   "url": "https://hirogucci.itch.io/garden-eel-challenge2",
+   "external_url": "https://x.com/hirogucci_0326b/status/2126239452800627189",
+   "title": "Garden Eel Challenge 2 by @hirogucci_0326b",
+   "content_text": "Hold to stretch a garden eel and match the target length over five rounds. Play: https://hirogucci.itch.io/garden-eel-challenge2 · X post: https://x.com/hirogucci_0326b/status/2126239452800627189",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "casual",
+    "arcade"
+   ]
+  },
+  {
+   "id": "b7-vending-machine",
+   "url": "https://B7.fail/",
+   "external_url": "https://x.com/londonzade__/status/2126451006355411397",
+   "title": "B7 by @londonzade__",
+   "content_text": "Co-op vending machine game with stretchy arms that pop off (and grow back). Play: https://B7.fail/ · X post: https://x.com/londonzade__/status/2126451006355411397",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "multiplayer",
+    "physics",
+    "casual"
+   ]
+  },
+  {
+   "id": "mission-daybreak",
+   "url": "https://play.huaiwalab.top/?scene=m9g&edit=0&lang=en",
+   "external_url": "https://x.com/CHUCKYLAB/status/2126248273430327666",
+   "title": "Mission: Daybreak by @CHUCKYLAB",
+   "content_text": "Cinematic AI-made air-battle set piece, playable demo on PC. Play: https://play.huaiwalab.top/?scene=m9g&edit=0&lang=en · X post: https://x.com/CHUCKYLAB/status/2126248273430327666",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "action",
+    "3d",
+    "story"
+   ]
+  },
+  {
+   "id": "runway-control",
+   "url": "https://runwaycontrolgame.com/",
+   "external_url": "https://x.com/karthikmns/status/2126334327143424090",
+   "title": "Runway Control by @karthikmns",
+   "content_text": "Draw planes to the runway across 12 stages, with holding orbits and slow-mo radar. Play: https://runwaycontrolgame.com/ · X post: https://x.com/karthikmns/status/2126334327143424090",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "strategy",
+    "casual"
+   ]
+  },
+  {
+   "id": "implicit-deny",
+   "url": "https://implicit-deny.com/",
+   "external_url": "https://x.com/stennill/status/2126367540934762536",
+   "title": "Implicit Deny by @stennill",
+   "content_text": "Real-time cyber-espionage: defend your nation's grid while hacking everyone else's. Play: https://implicit-deny.com/ · X post: https://x.com/stennill/status/2126367540934762536",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "strategy"
+   ]
+  },
+  {
+   "id": "squish-shelf",
+   "url": "https://squish.vitacazap.com/play/",
+   "external_url": "https://x.com/DESCUAI/status/2126329585868701833",
+   "title": "Squish Shelf by @DESCUAI",
+   "content_text": "Cozy ASMR toy box: squish soft toys and crack the ice egg. Sound on. Play: https://squish.vitacazap.com/play/ · X post: https://x.com/DESCUAI/status/2126329585868701833",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "casual"
+   ]
+  },
+  {
+   "id": "rifts",
+   "url": "https://www.spawn.co/@abbidabbi/rifts",
+   "external_url": "https://x.com/Pumpnasterr/status/2126329913258934389",
+   "title": "Rifts by @Pumpnasterr",
+   "content_text": "Three teams fight over a broken keep: pick a hero, fall, get up, fight again. Play: https://www.spawn.co/@abbidabbi/rifts · X post: https://x.com/Pumpnasterr/status/2126329913258934389",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "action",
+    "multiplayer"
+   ]
+  },
+  {
+   "id": "paper-snow",
+   "url": "https://starknightt.github.io/paper-snow/",
+   "external_url": "https://x.com/prasenx/status/2126314965833560130",
+   "title": "Paper Snow by @prasenx",
+   "content_text": "A paper-style snow day in one 98 KB HTML file: no images, models or sounds. Play: https://starknightt.github.io/paper-snow/ · X post: https://x.com/prasenx/status/2126314965833560130",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "3d",
+    "casual",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "duskline-depot-9",
+   "url": "https://duskline-depot9.vercel.app/",
+   "external_url": "https://x.com/OmedVibeCodes/status/2126436973539983556",
+   "title": "Duskline: Depot 9 by @OmedVibeCodes",
+   "content_text": "Hold the yard in a one-prompt three.js first-person shooter. PC only. Play: https://duskline-depot9.vercel.app/ · X post: https://x.com/OmedVibeCodes/status/2126436973539983556",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "shooter",
+    "3d",
+    "vibe-coded"
+   ]
+  },
+  {
+   "id": "the-last-resident",
+   "url": "https://mothwisp-studio.itch.io/the-last-resident",
+   "external_url": "https://x.com/mothwisp_studio/status/2126388269403230232",
+   "title": "The Last Resident by @mothwisp_studio",
+   "content_text": "Low-poly VHS horror demo set in Brazil: wake up after a blackout and follow the clues. Play: https://mothwisp-studio.itch.io/the-last-resident · X post: https://x.com/mothwisp_studio/status/2126388269403230232",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "survival",
+    "story",
+    "3d"
+   ]
+  },
+  {
+   "id": "world-100",
+   "url": "https://nyans911.itch.io/world100",
+   "external_url": "https://x.com/nyans959/status/2126169778763243655",
+   "title": "WORLD/100 by @nyans959",
+   "content_text": "Steer a village of 100 people through 50 years and 10 big decisions. Play: https://nyans911.itch.io/world100 · X post: https://x.com/nyans959/status/2126169778763243655",
+   "date_published": "2026-11-27T00:00:00Z",
    "tags": [
     "strategy",
     "story"
    ]
   },
   {
-   "id": "gridiron-stadium",
-   "url": "https://internationalgridironfederation.com/",
-   "external_url": "https://x.com/GridironStadium/status/2125583950445695406",
-   "title": "Gridiron Stadium by @GridironStadium",
-   "content_text": "Be the coach in a fictional gridiron league and call every down yourself. Play: https://internationalgridironfederation.com/ · X post: https://x.com/GridironStadium/status/2125583950445695406",
-   "date_published": "2026-11-25T00:00:00Z",
+   "id": "void-driller-80",
+   "url": "https://vdustr.itch.io/void-driller-80",
+   "external_url": "https://x.com/vp_tw/status/2126294722780217437",
+   "title": "VOID DRILLER 80 by @vp_tw",
+   "content_text": "Gunboots and a very long way down: how deep can you go? Made in TIC-80. Play: https://vdustr.itch.io/void-driller-80 · X post: https://x.com/vp_tw/status/2126294722780217437",
+   "date_published": "2026-11-27T00:00:00Z",
    "tags": [
-    "sports",
-    "strategy"
+    "arcade",
+    "action"
    ]
   },
   {
-   "id": "swordmate",
-   "url": "https://swordmate.vercel.app/",
-   "external_url": "https://x.com/alokk983/status/2125628105708777646",
-   "title": "Swordmate by @alokk983",
-   "content_text": "Chess where every capture becomes a sword fight; play online, vs AI or pass-and-play. Play: https://swordmate.vercel.app/ · X post: https://x.com/alokk983/status/2125628105708777646",
-   "date_published": "2026-11-25T00:00:00Z",
+   "id": "vegas-street-heist",
+   "url": "https://rajsharma1.itch.io/vegas-street-heist",
+   "external_url": "https://x.com/rajsharma_write/status/2126236695788126257",
+   "title": "Vegas Street Heist by @rajsharma_write",
+   "content_text": "Steal cars in a neon desert city, outrun the cops and sell at the garage. Play: https://rajsharma1.itch.io/vegas-street-heist · X post: https://x.com/rajsharma_write/status/2126236695788126257",
+   "date_published": "2026-11-27T00:00:00Z",
    "tags": [
-    "strategy",
-    "multiplayer"
-   ]
-  },
-  {
-   "id": "sky-builders",
-   "url": "https://playgama.ai/play/op4ubj5ht36txm",
-   "external_url": "https://x.com/NSezg51536/status/2125665257742024709",
-   "title": "Sky Builders by @NSezg51536",
-   "content_text": "Build and shoot on floating islands with vehicles and Sky Raid battles. Play: https://playgama.ai/play/op4ubj5ht36txm · X post: https://x.com/NSezg51536/status/2125665257742024709",
-   "date_published": "2026-11-25T00:00:00Z",
-   "tags": [
+    "racing",
     "action",
-    "shooter",
     "3d"
    ]
   },
   {
-   "id": "aliens-station-defense",
-   "url": "https://playgama.ai/play/qb7ppcfhsnrzmd",
-   "external_url": "https://x.com/Delarion85/status/2125593669487272214",
-   "title": "Aliens: Station Defense by @Delarion85",
-   "content_text": "Hold your space station against waves of alien attackers. Play: https://playgama.ai/play/qb7ppcfhsnrzmd · X post: https://x.com/Delarion85/status/2125593669487272214",
-   "date_published": "2026-11-25T00:00:00Z",
+   "id": "the-roots",
+   "url": "https://theroots.localplayer.dev/",
+   "external_url": "https://x.com/therootsvoxel/status/2126459618687615435",
+   "title": "The Roots by @therootsvoxel",
+   "content_text": "First-person voxel roguelite: break rooms apart and descend layer by layer. Play: https://theroots.localplayer.dev/ · X post: https://x.com/therootsvoxel/status/2126459618687615435",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "adventure",
+    "3d"
+   ]
+  },
+  {
+   "id": "rinkroar",
+   "url": "https://retrolifegames.com/rinkroar/",
+   "external_url": "https://x.com/RetroLifeGamesX/status/2126451400867516544",
+   "title": "Rinkroar by @RetroLifeGamesX",
+   "content_text": "Three-on-three arcade ice hockey with big hits and a Roar meter. Play: https://retrolifegames.com/rinkroar/ · X post: https://x.com/RetroLifeGamesX/status/2126451400867516544",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "sports",
+    "arcade"
+   ]
+  },
+  {
+   "id": "tilefen",
+   "url": "https://retrolifegames.com/tilefen/",
+   "external_url": "https://x.com/RetroLifeGamesX/status/2126119183964373318",
+   "title": "Tilefen by @RetroLifeGamesX",
+   "content_text": "Calm tile-matching solitaire with river stones and a fresh daily layout. Play: https://retrolifegames.com/tilefen/ · X post: https://x.com/RetroLifeGamesX/status/2126119183964373318",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "casual"
+   ]
+  },
+  {
+   "id": "meow-stack",
+   "url": "https://meow-minigames-14c8a1.deed.page/meowstack/",
+   "external_url": "https://x.com/imnotnjoking/status/2126357373702824207",
+   "title": "Meow Stack by @imnotnjoking",
+   "content_text": "Tap cat tiles into the tray and match three before it fills. Level 2 bites. Play: https://meow-minigames-14c8a1.deed.page/meowstack/ · X post: https://x.com/imnotnjoking/status/2126357373702824207",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "casual"
+   ]
+  },
+  {
+   "id": "starlane-siege",
+   "url": "https://kingkelshad.itch.io/starlane-siege",
+   "external_url": "https://x.com/starlanesiege/status/2126143248276033963",
+   "title": "Starlane Siege by @starlanesiege",
+   "content_text": "Hunt an alien swarm through 120 asteroid-belt levels, then a deep endless run. Play: https://kingkelshad.itch.io/starlane-siege · X post: https://x.com/starlanesiege/status/2126143248276033963",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "shooter",
+    "arcade"
+   ]
+  },
+  {
+   "id": "star-storm",
+   "url": "https://stop60.no/stjernestorm/en/",
+   "external_url": "https://x.com/stop60_games/status/2126293004126200273",
+   "title": "Star Storm by @stop60_games",
+   "content_text": "Steer with one finger while your ship fires itself; no ads, no account. Play: https://stop60.no/stjernestorm/en/ · X post: https://x.com/stop60_games/status/2126293004126200273",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "shooter",
+    "arcade"
+   ]
+  },
+  {
+   "id": "idle-war",
+   "url": "https://oscarolim.itch.io/idle-war",
+   "external_url": "https://x.com/oscar_builds/status/2126362272981201234",
+   "title": "Idle War by @oscar_builds",
+   "content_text": "Pick a mission and a ship formation, then let the fleet fight it out. Play: https://oscarolim.itch.io/idle-war · X post: https://x.com/oscar_builds/status/2126362272981201234",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "strategy",
+    "casual"
+   ]
+  },
+  {
+   "id": "neon-pour",
+   "url": "https://neonpour.itch.io/neon-pour",
+   "external_url": "https://x.com/neon_pour/status/2126105225006043493",
+   "title": "NEON POUR by @neon_pour",
+   "content_text": "Rainy-night industrial sci-fi vertical shoot-'em-up, in development. Play: https://neonpour.itch.io/neon-pour · X post: https://x.com/neon_pour/status/2126105225006043493",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "shooter",
+    "arcade"
+   ]
+  },
+  {
+   "id": "plus-1-dino-per-click",
+   "url": "https://playgama.ai/play/6k6xcicmardfau",
+   "external_url": "https://x.com/BlueberryBsmnt/status/2126105373962863037",
+   "title": "+1 Dino per Click! by @BlueberryBsmnt",
+   "content_text": "Every click adds a dino: level up, swing and grow your herd. Play: https://playgama.ai/play/6k6xcicmardfau · X post: https://x.com/BlueberryBsmnt/status/2126105373962863037",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "casual",
+    "arcade"
+   ]
+  },
+  {
+   "id": "the-last-camp",
+   "url": "https://playgama.ai/play/q6qmhs65p4t3ob",
+   "external_url": "https://x.com/rck_2018/status/2126110781662187779",
+   "title": "The Last Camp by @rck_2018",
+   "content_text": "Build and defend a walled camp in an isometric survival strategy game. Play: https://playgama.ai/play/q6qmhs65p4t3ob · X post: https://x.com/rck_2018/status/2126110781662187779",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "strategy",
+    "survival"
+   ]
+  },
+  {
+   "id": "fifteen-classic-puzzle",
+   "url": "https://playgama.ai/play/35x2d47k3b5dzb",
+   "external_url": "https://x.com/ADF1245s/status/2126356631709716702",
+   "title": "FIFTEEN: Classic Puzzle by @ADF1245s",
+   "content_text": "The classic 15 sliding-tile puzzle with a scenic wooden board. Play: https://playgama.ai/play/35x2d47k3b5dzb · X post: https://x.com/ADF1245s/status/2126356631709716702",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "puzzle"
+   ]
+  },
+  {
+   "id": "apex-court",
+   "url": "https://playgama.ai/play/7p3hsxv72t4zb2",
+   "external_url": "https://x.com/LeilahJ65109/status/2126457417399484640",
+   "title": "APEX COURT by @LeilahJ65109",
+   "content_text": "Tennis with exhibition, championship, doubles and 2-player versus modes. Play: https://playgama.ai/play/7p3hsxv72t4zb2 · X post: https://x.com/LeilahJ65109/status/2126457417399484640",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "sports",
+    "multiplayer"
+   ]
+  },
+  {
+   "id": "block-master",
+   "url": "https://playgama.ai/play/imgnwh2wsbscbi",
+   "external_url": "https://x.com/x_5mail_x/status/2126412590716756211",
+   "title": "Block Master by @x_5mail_x",
+   "content_text": "Place blocks, clear lines, and take on a daily challenge. Play: https://playgama.ai/play/imgnwh2wsbscbi · X post: https://x.com/x_5mail_x/status/2126412590716756211",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "casual"
+   ]
+  },
+  {
+   "id": "critter-island",
+   "url": "https://playgama.ai/play/aojz5cufwhrdcb",
+   "external_url": "https://x.com/TiounaevCrypto/status/2126410894104310051",
+   "title": "Critter Island by @TiounaevCrypto",
+   "content_text": "Turn the path pieces to help the fox find its way home. Play: https://playgama.ai/play/aojz5cufwhrdcb · X post: https://x.com/TiounaevCrypto/status/2126410894104310051",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "casual"
+   ]
+  },
+  {
+   "id": "gold-burrow",
+   "url": "https://playgama.ai/play/4iwcq25h2f2vdu",
+   "external_url": "https://x.com/TiounaevCrypto/status/2126410100399280572",
+   "title": "Gold Burrow by @TiounaevCrypto",
+   "content_text": "Dig deep as a miner mole, collect crystals and outsmart guards. Play: https://playgama.ai/play/4iwcq25h2f2vdu · X post: https://x.com/TiounaevCrypto/status/2126410100399280572",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "arcade",
+    "adventure"
+   ]
+  },
+  {
+   "id": "torchline",
+   "url": "https://playgama.ai/play/yhhsdertrg6kqt",
+   "external_url": "https://x.com/Us49375Usman/status/2126406868360991012",
+   "title": "Torchline by @Us49375Usman",
+   "content_text": "Draw the path, survive the dungeon; with a daily delve and heroes. Play: https://playgama.ai/play/yhhsdertrg6kqt · X post: https://x.com/Us49375Usman/status/2126406868360991012",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "puzzle",
+    "adventure"
+   ]
+  },
+  {
+   "id": "brick-climb",
+   "url": "https://playgama.ai/play/r7ym2kdg3ashff",
+   "external_url": "https://x.com/iamR_V/status/2126398268867571773",
+   "title": "BRICK CLIMB by @iamR_V",
+   "content_text": "Stack bricks to build a tower and climb higher. Play: https://playgama.ai/play/r7ym2kdg3ashff · X post: https://x.com/iamR_V/status/2126398268867571773",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "arcade",
+    "casual"
+   ]
+  },
+  {
+   "id": "battle-girls-idle",
+   "url": "https://playgama.ai/play/ovhy3rfqcrzmjc",
+   "external_url": "https://x.com/akane_2525777/status/2126328561128866086",
+   "title": "Battle Girls Idle by @akane_2525777",
+   "content_text": "Idle auto-battle RPG: fight, upgrade and prestige with tap attacks. Play: https://playgama.ai/play/ovhy3rfqcrzmjc · X post: https://x.com/akane_2525777/status/2126328561128866086",
+   "date_published": "2026-11-27T00:00:00Z",
+   "tags": [
+    "strategy",
+    "casual"
+   ]
+  },
+  {
+   "id": "assembly-battleship",
+   "url": "https://playgama.ai/play/lrinfe6b4g43wx",
+   "external_url": "https://x.com/honeyjaminc/status/2126208872667136176",
+   "title": "Assembly Battleship by @honeyjaminc",
+   "content_text": "Arrange and merge cannons, missiles and planes on your deck, then fight bosses. Play: https://playgama.ai/play/lrinfe6b4g43wx · X post: https://x.com/honeyjaminc/status/2126208872667136176",
+   "date_published": "2026-11-27T00:00:00Z",
    "tags": [
     "strategy",
     "action"
    ]
   },
   {
-   "id": "careville",
-   "url": "https://playgama.ai/play/6zgt3zia2gxjfx",
-   "external_url": "https://x.com/Froggy1015001/status/2125719376645230712",
-   "title": "Careville by @Froggy1015001",
-   "content_text": "Small cozy caretaking sim, made with AI help and tuned by its maker. Play: https://playgama.ai/play/6zgt3zia2gxjfx · X post: https://x.com/Froggy1015001/status/2125719376645230712",
-   "date_published": "2026-11-25T00:00:00Z",
+   "id": "beacon-keeper-last-watch",
+   "url": "https://playgama.ai/play/6rts5o3x6eas5c",
+   "external_url": "https://x.com/LuoTuo98245/status/2126374617434800403",
+   "title": "Beacon Keeper: Last Watch by @LuoTuo98245",
+   "content_text": "Hold the last lighthouse against the fog: pixel roguelike TD, 12 heroes. Play: https://playgama.ai/play/6rts5o3x6eas5c · X post: https://x.com/LuoTuo98245/status/2126374617434800403",
+   "date_published": "2026-11-27T00:00:00Z",
    "tags": [
-    "casual"
-   ]
-  },
-  {
-   "id": "obby-cut-the-trees",
-   "url": "https://playgama.com/game/obby--cut-the-trees",
-   "external_url": "https://x.com/dan1990Year/status/2125653218608766978",
-   "title": "Obby: Cut The Trees by @dan1990Year",
-   "content_text": "Chop an endless forest, level up, unlock rare axes and climb the board. Play: https://playgama.com/game/obby--cut-the-trees · X post: https://x.com/dan1990Year/status/2125653218608766978",
-   "date_published": "2026-11-25T00:00:00Z",
-   "tags": [
-    "casual",
-    "arcade"
-   ]
-  },
-  {
-   "id": "evening-breeze-road",
-   "url": "https://breezeroads.com/",
-   "external_url": "https://x.com/jarrett75079144/status/2125612977537593418",
-   "title": "Evening Breeze Road by @jarrett75079144",
-   "content_text": "Endless calm drive with rain, wipers and a sunset coast; no fail state. Play: https://breezeroads.com/ · X post: https://x.com/jarrett75079144/status/2125612977537593418",
-   "date_published": "2026-11-25T00:00:00Z",
-   "tags": [
-    "racing",
-    "casual",
-    "3d"
-   ]
-  },
-  {
-   "id": "borrowedlight-exe",
-   "url": "https://jellymaze.itch.io/borolight",
-   "external_url": "https://x.com/JellyMazeGaming/status/2125643889415520529",
-   "title": "BorrowedLight.exe by @JellyMazeGaming",
-   "content_text": "Drag sun.exe and moon.exe windows to guide light and reveal hidden doors. Play: https://jellymaze.itch.io/borolight · X post: https://x.com/JellyMazeGaming/status/2125643889415520529",
-   "date_published": "2026-11-25T00:00:00Z",
-   "tags": [
-    "puzzle"
-   ]
-  },
-  {
-   "id": "realtime-missile",
-   "url": "https://realtime-missile.vercel.app/",
-   "external_url": "https://x.com/joshtriedcoding/status/2125615139860672849",
-   "title": "Realtime Missile by @joshtriedcoding",
-   "content_text": "Steer a missile by tilting your phone; scan the code on desktop. Play: https://realtime-missile.vercel.app/ · X post: https://x.com/joshtriedcoding/status/2125615139860672849",
-   "date_published": "2026-11-25T00:00:00Z",
-   "tags": [
-    "arcade",
-    "physics"
-   ]
-  },
-  {
-   "id": "dont-spill",
-   "url": "https://bakabakogames.com/dont-spill",
-   "external_url": "https://x.com/bakabako_games/status/2125381391315579301",
-   "title": "Don't Spill! by @bakabako_games",
-   "content_text": "Carry the water without spilling a single drop. Silly and short. Play: https://bakabakogames.com/dont-spill · X post: https://x.com/bakabako_games/status/2125381391315579301",
-   "date_published": "2026-11-25T00:00:00Z",
-   "tags": [
-    "casual",
-    "physics"
-   ]
-  },
-  {
-   "id": "glowline",
-   "url": "https://glowline-6vc.pages.dev/play/",
-   "external_url": "https://x.com/ArcticEagle108/status/2125404219238645991",
-   "title": "Glowline by @ArcticEagle108",
-   "content_text": "Skate a neon city in real-time 3D, chaining tricks and leaving light trails. Play: https://glowline-6vc.pages.dev/play/ · X post: https://x.com/ArcticEagle108/status/2125404219238645991",
-   "date_published": "2026-11-25T00:00:00Z",
-   "tags": [
-    "sports",
-    "3d",
-    "physics"
-   ]
-  },
-  {
-   "id": "hrodics-mafia-2d",
-   "url": "https://hrodic.github.io/mafia-2d-minigame/",
-   "external_url": "https://x.com/hrodic/status/2125559623918785009",
-   "title": "Hrodic's Mafia 2D by @hrodic",
-   "content_text": "Build a crew and take over the whole city block by block. Vibe-coded in 2 hours. Play: https://hrodic.github.io/mafia-2d-minigame/ · X post: https://x.com/hrodic/status/2125559623918785009",
-   "date_published": "2026-11-25T00:00:00Z",
-   "tags": [
-    "strategy",
-    "vibe-coded"
+    "strategy"
    ]
   }
  ]
